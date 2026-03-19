@@ -1,6 +1,3 @@
-# gen-hack
+# ERA5 Errors Analysis
 
-```bash
-uv sync
-uv run dashboard --port 8050
-```
+[![View Report](https://img.shields.io/badge/View%20Report-GitHub%20Pages-blue?style=for-the-badge)](https://saadsouilmi.github.io/ERA5_resid/)

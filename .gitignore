@@ -14,3 +14,4 @@ docs/
 .venv
 .python-install/
 .ipynb_checkpoints/
+data2/residuals.parquet

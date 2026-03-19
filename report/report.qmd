@@ -3,6 +3,8 @@ title: "ERA5 Errors Analysis"
 format:
   html:
     toc: true
+    page-layout: full
+    css: style.css
 ---
 
 ```{python}
@@ -26,12 +28,12 @@ Residual = station temperature $-$ ERA5. Positive means ERA5 underestimates.
 #| echo: false
 station_mean = pd.read_parquet(PLOT_DATA / "mean_residual_map.parquet")
 
-fig = px.scatter_mapbox(
+fig = px.scatter_map(
     station_mean,
     lat="lat", lon="lon", color="mean_residual",
     color_continuous_scale="RdBu_r", range_color=[-3, 3],
     zoom=3, center={"lat": 50, "lon": 10},
-    mapbox_style="open-street-map",
+    map_style="open-street-map",
     hover_data=["STAID", "mean_residual"],
 )
 fig.update_traces(marker=dict(size=6))
