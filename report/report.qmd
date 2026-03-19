@@ -2,7 +2,7 @@
 title: "ERA5 Errors Analysis"
 format:
   html:
-    toc: true
+    toc: false
     page-layout: full
     css: style.css
 ---
