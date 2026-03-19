@@ -1,0 +1,153 @@
+---
+title: "ERA5 Errors Analysis"
+format:
+  html:
+    toc: true
+---
+
+```{python}
+#| echo: false
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+PLOT_DATA = Path("../data2/plot_data")
+```
+
+## Mean residual per station
+
+Residual = station temperature $-$ ERA5. Positive means ERA5 underestimates.
+
+```{python}
+#| echo: false
+station_mean = pd.read_parquet(PLOT_DATA / "mean_residual_map.parquet")
+
+fig = px.scatter_mapbox(
+    station_mean,
+    lat="lat", lon="lon", color="mean_residual",
+    color_continuous_scale="RdBu_r", range_color=[-3, 3],
+    zoom=3, center={"lat": 50, "lon": 10},
+    mapbox_style="open-street-map",
+    hover_data=["STAID", "mean_residual"],
+)
+fig.update_traces(marker=dict(size=6))
+fig.update_layout(
+    height=700, width=1000, template="plotly_white",
+    coloraxis_colorbar_title="WS - ERA5 (°C)",
+)
+fig.show()
+```
+
+## Partial dependence plots
+
+Mean residual as a function of each covariate. Each covariate is binned into quantiles. Shaded bands are 95% CIs from cluster bootstrap (resampling stations, 1000 iterations).
+
+```{python}
+#| echo: false
+pdp = pd.read_parquet(PLOT_DATA / "pdp.parquet")
+
+feature_order = ["station_celsius", "tp", "wind", "ndvi", "dist_to_sea_km", "altitude"]
+labels = pdp.drop_duplicates("feature").set_index("feature")["label"].to_dict()
+rgbs = pdp.drop_duplicates("feature").set_index("feature")["rgb"].to_dict()
+
+fig = make_subplots(
+    rows=2, cols=3,
+    subplot_titles=[labels[f] for f in feature_order],
+    horizontal_spacing=0.08, vertical_spacing=0.15,
+)
+
+for i, feat in enumerate(feature_order):
+    row, c = divmod(i, 3)
+    row += 1; c += 1
+    sub = pdp[pdp["feature"] == feat].sort_values("center")
+    rgb = rgbs[feat]
+    rgba = rgb.replace("rgb(", "rgba(").replace(")", ",0.15)")
+
+    fig.add_trace(go.Scatter(
+        x=np.concatenate([sub["center"].values, sub["center"].values[::-1]]),
+        y=np.concatenate([sub["ci_hi"].values, sub["ci_lo"].values[::-1]]),
+        fill="toself", fillcolor=rgba, line=dict(width=0), showlegend=False, hoverinfo="skip",
+    ), row=row, col=c)
+    fig.add_trace(go.Scatter(
+        x=sub["center"].values, y=sub["mean"].values,
+        mode="lines+markers", marker=dict(size=8, color=rgb),
+        line=dict(color=rgb, width=2), showlegend=False,
+    ), row=row, col=c)
+    fig.add_hline(y=0, line_dash="dash", line_color="grey", opacity=0.4, row=row, col=c)
+
+fig.update_layout(height=600, width=1200, template="plotly_white", margin=dict(t=40))
+fig.update_yaxes(title_text="Mean residual (°C)", col=1)
+fig.show()
+```
+
+## DEGURBA
+
+Mean residual by urbanisation class. Error bars are 95% cluster bootstrap CIs.
+
+```{python}
+#| echo: false
+deg = pd.read_parquet(PLOT_DATA / "degurba_pdp.parquet")
+
+fig = go.Figure()
+fig.add_trace(go.Bar(
+    x=deg["degurba_label"], y=deg["mean"],
+    marker_color=deg["color"],
+    error_y=dict(
+        type="data", symmetric=False,
+        array=deg["ci_hi"] - deg["mean"],
+        arrayminus=deg["mean"] - deg["ci_lo"],
+        color="black", thickness=2, width=4,
+    ),
+    showlegend=False,
+    hovertemplate="%{x}<br>Mean: %{y:.3f} °C<extra></extra>",
+))
+fig.add_hline(y=0, line_dash="dash", line_color="grey", opacity=0.4)
+fig.update_layout(
+    height=450, width=800, template="plotly_white",
+    yaxis_title="Mean residual (°C)", xaxis_tickangle=-30,
+)
+fig.show()
+```
+
+## Temperature × wind interaction
+
+Same PDP for station temperature, but stratified by wind speed tercile. The fan-out at high temperatures shows that low wind amplifies ERA5's warm bias.
+
+```{python}
+#| echo: false
+strat = pd.read_parquet(PLOT_DATA / "temp_pdp_cond_wind.parquet")
+
+colors = {
+    strat["group"].unique()[0]: "rgb(220,20,60)",
+    strat["group"].unique()[1]: "rgb(255,165,0)",
+    strat["group"].unique()[2]: "rgb(30,144,255)",
+}
+
+fig = go.Figure()
+for group, color in colors.items():
+    sub = strat[strat["group"] == group].sort_values("center")
+    rgba = color.replace("rgb(", "rgba(").replace(")", ",0.12)")
+    fig.add_trace(go.Scatter(
+        x=np.concatenate([sub["center"].values, sub["center"].values[::-1]]),
+        y=np.concatenate([sub["ci_hi"].values, sub["ci_lo"].values[::-1]]),
+        fill="toself", fillcolor=rgba, line=dict(width=0), showlegend=False, hoverinfo="skip",
+    ))
+    fig.add_trace(go.Scatter(
+        x=sub["center"].values, y=sub["mean"].values,
+        mode="lines+markers", marker=dict(size=8, color=color),
+        line=dict(color=color, width=2), name=group,
+    ))
+
+fig.add_hline(y=0, line_dash="dash", line_color="grey", opacity=0.4)
+fig.update_layout(
+    height=500, width=800, template="plotly_white",
+    xaxis_title="Station temperature (°C)",
+    yaxis_title="Mean residual (°C)",
+    legend=dict(x=0.02, y=0.98),
+)
+fig.show()
+```
