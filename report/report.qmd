@@ -13,11 +13,17 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import polars as pl
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+from era5_analysis import pdp
+
+DATA = Path("../data2/")
 PLOT_DATA = Path("../data2/plot_data")
+
+rng = np.random.default_rng(1337)
 ```
 
 ## Mean residual per station
@@ -26,20 +32,32 @@ Residual = station temperature $-$ ERA5. Positive means ERA5 underestimates.
 
 ```{python}
 #| echo: false
-station_mean = pd.read_parquet(PLOT_DATA / "mean_residual_map.parquet")
+residuals_df = pl.read_parquet(DATA / "residuals.parquet")
+residuals_df = residuals_df.drop_nulls()
+station_mean = residuals_df.group_by("STAID").agg(
+    pl.col("residual").mean(), pl.col("lon").first(), pl.col("lat").first()
+)
+
 
 fig = px.scatter_map(
     station_mean,
-    lat="lat", lon="lon", color="mean_residual",
-    color_continuous_scale="RdBu_r", range_color=[-3, 3],
-    zoom=3, center={"lat": 50, "lon": 10},
-    map_style="open-street-map",
-    hover_data=["STAID", "mean_residual"],
+    lat="lat",
+    lon="lon",
+    color="residual",
+    color_continuous_scale="RdBu_r",
+    range_color=[-3, 3],
+    zoom=3,
+    center={"lat": 50, "lon": 10},
+    hover_data=["STAID", "residual"],
+    title="Mean residual per station (all dates)",
 )
 fig.update_traces(marker=dict(size=6))
 fig.update_layout(
-    height=700, width=1000, template="plotly_white",
+    height=700,
+    width=1000,
+    template="plotly_white",
     coloraxis_colorbar_title="WS - ERA5 (°C)",
+    map_style="open-street-map",
 )
 fig.show()
 ```
@@ -50,40 +68,75 @@ Mean residual as a function of each covariate. Each covariate is binned into qua
 
 ```{python}
 #| echo: false
-pdp = pd.read_parquet(PLOT_DATA / "pdp.parquet")
-
-feature_order = ["station_celsius", "tp", "wind", "ndvi", "dist_to_sea_km", "altitude"]
-labels = pdp.drop_duplicates("feature").set_index("feature")["label"].to_dict()
-rgbs = pdp.drop_duplicates("feature").set_index("feature")["rgb"].to_dict()
+features = {
+    "station_celsius": ("Station temp (°C)", "rgb(255,140,0)"),
+    "tp": ("Precipitation (m/day)", "rgb(30,144,255)"),
+    "wind": ("Wind speed (m/s)", "rgb(147,112,219)"),
+    "ndvi": ("NDVI", "rgb(34,139,34)"),
+    "dist_to_sea_km": ("Distance to sea (km)", "rgb(70,130,180)"),
+    "elevation": ("Elevation (m)", "rgb(139,69,19)"),
+}
 
 fig = make_subplots(
-    rows=2, cols=3,
-    subplot_titles=[labels[f] for f in feature_order],
-    horizontal_spacing=0.08, vertical_spacing=0.15,
+    rows=2,
+    cols=3,
+    subplot_titles=[v[0] for v in features.values()],
+    horizontal_spacing=0.08,
+    vertical_spacing=0.15,
 )
 
-for i, feat in enumerate(feature_order):
+for i, (col, (label, rgb)) in enumerate(features.items()):
     row, c = divmod(i, 3)
-    row += 1; c += 1
-    sub = pdp[pdp["feature"] == feat].sort_values("center")
-    rgb = rgbs[feat]
+    row += 1
+    c += 1
     rgba = rgb.replace("rgb(", "rgba(").replace(")", ",0.15)")
 
-    fig.add_trace(go.Scatter(
-        x=np.concatenate([sub["center"].values, sub["center"].values[::-1]]),
-        y=np.concatenate([sub["ci_hi"].values, sub["ci_lo"].values[::-1]]),
-        fill="toself", fillcolor=rgba, line=dict(width=0), showlegend=False, hoverinfo="skip",
-    ), row=row, col=c)
-    fig.add_trace(go.Scatter(
-        x=sub["center"].values, y=sub["mean"].values,
-        mode="lines+markers", marker=dict(size=8, color=rgb),
-        line=dict(color=rgb, width=2), showlegend=False,
-    ), row=row, col=c)
+    df, bins = pdp.bin_features(residuals_df, col, n_bins=5)
+    means, ci_lo, ci_hi = pdp.pdp_cluster_bootstrap(df, "bin", bins, rng=rng)
+
+    centers = pdp.bin_centers(bins, df[col].min(), df[col].max())
+
+    fig.add_trace(
+        go.Scatter(
+            x=np.concatenate([centers, centers[::-1]]),
+            y=np.concatenate([ci_hi, ci_lo[::-1]]),
+            fill="toself",
+            fillcolor=rgba,
+            line=dict(width=0),
+            showlegend=False,
+            hoverinfo="skip",
+        ),
+        row=row,
+        col=c,
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=centers,
+            y=means,
+            mode="lines+markers",
+            marker=dict(size=8, color=rgb),
+            line=dict(color=rgb, width=2),
+            name=label,
+            showlegend=False,
+            hovertemplate=f"{label}: %{{x:.2f}}<br>Mean: %{{y:.3f}} °C<extra></extra>",
+        ),
+        row=row,
+        col=c,
+    )
+
     fig.add_hline(y=0, line_dash="dash", line_color="grey", opacity=0.4, row=row, col=c)
 
-fig.update_layout(height=600, width=1200, template="plotly_white", margin=dict(t=40))
+fig.update_layout(
+    height=600,
+    width=1200,
+    template="plotly_white",
+    title="Partial dependence: mean residual vs covariates (cluster bootstrap 95% CI)",
+    margin=dict(t=80),
+)
 fig.update_yaxes(title_text="Mean residual (°C)", col=1)
 fig.show()
+
 ```
 
 ## DEGURBA
@@ -92,26 +145,82 @@ Mean residual by urbanisation class. Error bars are 95% cluster bootstrap CIs.
 
 ```{python}
 #| echo: false
-deg = pd.read_parquet(PLOT_DATA / "degurba_pdp.parquet")
+degurba_order = [
+    "Water",
+    "Very low density rural",
+    "Low density rural",
+    "Rural cluster",
+    "Suburban",
+    "Semi-dense urban cluster",
+    "Dense urban cluster",
+    "Urban centre",
+]
+degurba_colors = [
+    "rgb(30,144,255)",
+    "rgb(144,238,144)",
+    "rgb(34,139,34)",
+    "rgb(0,100,0)",
+    "rgb(255,165,0)",
+    "rgb(255,140,0)",
+    "rgb(220,20,60)",
+    "rgb(139,0,0)",
+]
 
-fig = go.Figure()
-fig.add_trace(go.Bar(
-    x=deg["degurba_label"], y=deg["mean"],
-    marker_color=deg["color"],
-    error_y=dict(
-        type="data", symmetric=False,
-        array=deg["ci_hi"] - deg["mean"],
-        arrayminus=deg["mean"] - deg["ci_lo"],
-        color="black", thickness=2, width=4,
-    ),
-    showlegend=False,
-    hovertemplate="%{x}<br>Mean: %{y:.3f} °C<extra></extra>",
-))
-fig.add_hline(y=0, line_dash="dash", line_color="grey", opacity=0.4)
-fig.update_layout(
-    height=450, width=800, template="plotly_white",
-    yaxis_title="Mean residual (°C)", xaxis_tickangle=-30,
+means, ci_lo, ci_hi = pdp.pdp_cluster_bootstrap(residuals_df, "degurba_label", degurba_order, rng=rng)
+station_dist = (residuals_df.group_by("degurba_label").len().with_columns(pl.col("degurba_label").cast(pl.Enum(degurba_order))).sort("degurba_label")["len"]/len(residuals_df)).to_numpy()
+
+fig = make_subplots(                                                               
+  rows=2, cols=1,
+  shared_xaxes=True,                                                             
+  row_heights=[0.7, 0.3],                                                        
+  vertical_spacing=0.02,
+)                                                                                  
+                                                                                
+# Top: mean residual bars                                                          
+fig.add_trace(
+  go.Bar(                                                                        
+      x=degurba_order,                                                          
+      y=means,
+      marker_color=degurba_colors[:len(degurba_order)],
+      error_y=dict(
+          type="data",                                                           
+          symmetric=False,
+          array=ci_hi - means,                                                   
+          arrayminus=means - ci_lo,                                             
+          color="black",
+          thickness=2,
+          width=4,
+      ),
+      showlegend=False,
+      hovertemplate="%{x}<br>Mean: %{y:.3f} °C<extra></extra>",                  
+  ),
+  row=1, col=1,                                                                  
+)                                                                                 
+fig.add_hline(y=0, line_dash="dash", line_color="grey", opacity=0.4, row=1, col=1)
+                                                                                 
+# Bottom: normalized station distribution
+fig.add_trace(                                                                     
+  go.Bar(                                                                        
+      x=degurba_order,
+      y=station_dist,                                               
+      marker_color=degurba_colors[:len(degurba_order)],                         
+      showlegend=False,
+      hovertemplate="%{x}<br>Share: %{y:.1%}<extra></extra>",                    
+  ),
+  row=2, col=1,                                                                  
+)                                                                                  
+
+fig.update_layout(                                                                 
+  height=550,                                                                   
+  width=800,
+  template="plotly_white",
+  title="Mean residual per DEGURBA class (cluster bootstrap 95% CI)",
+  margin=dict(t=60),                                                             
 )
+fig.update_yaxes(title_text="Mean residual (°C)", row=1, col=1)                    
+fig.update_yaxes(title_text="Station share", row=2, col=1)                         
+fig.update_xaxes(tickangle=-30, row=2, col=1)
+                                                                                 
 fig.show()
 ```
 
