@@ -8,18 +8,16 @@ import numpy as np
 import polars as pl
 from pypdf import PdfWriter
 
-from era5_analysis import paper_charts, pdp
-from era5_analysis.paper_charts import DEGURBA, FEATURES, MAP_EXTENT, PAIRS
-from era5_analysis.publication import paper_style, save_figure
+from py import paper_charts, pdp
+from py.paper_charts import DEGURBA, FEATURES, MAP_EXTENT, PAIRS
+from py.paths import ROOT
+from py.publication import paper_style, save_figure
 
-ROOT = Path(__file__).resolve().parents[1]
 MISSING_ELEVATION = (-9999, -999)
 
 
 def bin_feature(df, feature, n_bins):
-    frame = df.with_columns(
-        pl.col(feature).qcut(n_bins, allow_duplicates=True).alias("bin")
-    )
+    frame = df.with_columns(pl.col(feature).qcut(n_bins, allow_duplicates=True).alias("bin"))
     bins = sorted(frame["bin"].unique().to_list(), key=lambda b: bounds(b)[0])
     return frame, bins
 
@@ -30,9 +28,11 @@ def bounds(label):
 
 def summarize(df, column, bins, n_boot, seed):
     """Observation means and pointwise station-cluster percentile intervals."""
-    aggregates = df.group_by(column, "STAID").agg(
-        pl.col("residual").sum().alias("total"), pl.len().alias("n")
-    ).sort(column, "STAID")
+    aggregates = (
+        df.group_by(column, "STAID")
+        .agg(pl.col("residual").sum().alias("total"), pl.len().alias("n"))
+        .sort(column, "STAID")
+    )
     rng = np.random.default_rng(seed)
     rows = []
     for label in bins:
@@ -44,15 +44,20 @@ def summarize(df, column, bins, n_boot, seed):
         boot = np.empty(n_boot)
         for start in range(0, n_boot, 64):
             indices = rng.integers(n, size=(min(64, n_boot - start), n))
-            boot[start:start + len(indices)] = (
-                totals[indices].sum(axis=1) / counts[indices].sum(axis=1)
+            boot[start : start + len(indices)] = totals[indices].sum(axis=1) / counts[indices].sum(
+                axis=1
             )
         lo, hi = np.percentile(boot, [2.5, 97.5])
-        rows.append({
-            "bin": str(label), "mean": totals.sum() / counts.sum(),
-            "ci_low": lo, "ci_high": hi,
-            "n_observations": int(counts.sum()), "n_stations": n,
-        })
+        rows.append(
+            {
+                "bin": str(label),
+                "mean": totals.sum() / counts.sum(),
+                "ci_low": lo,
+                "ci_high": hi,
+                "n_observations": int(counts.sum()),
+                "n_stations": n,
+            }
+        )
     return pl.DataFrame(rows)
 
 
@@ -68,10 +73,12 @@ def add_bounds(summary, frame, fx, fy):
     for axis, feature in [("x", fx), ("y", fy)]:
         lo, hi = float(frame[feature].min()), float(frame[feature].max())
         intervals = [bounds(b) for b in summary[f"bin_{axis}"]]
-        columns.extend([
-            pl.Series(f"{axis}_lo", [max(lo, b[0]) for b in intervals]),
-            pl.Series(f"{axis}_hi", [min(hi, b[1]) for b in intervals]),
-        ])
+        columns.extend(
+            [
+                pl.Series(f"{axis}_lo", [max(lo, b[0]) for b in intervals]),
+                pl.Series(f"{axis}_hi", [min(hi, b[1]) for b in intervals]),
+            ]
+        )
     return summary.with_columns(columns)
 
 
@@ -95,15 +102,22 @@ def prepare_tables(df, args, tables):
         frame, _ = bin_feature(frame, fx, args.bins)
         frame = frame.rename({"bin": "bin_x"})
         frame, _ = bin_feature(frame, fy, args.bins)
-        summary = frame.group_by("bin_x", "bin").agg(
-            pl.col("residual").mean(), pl.len().alias("n_observations"),
-            pl.col("STAID").n_unique().alias("n_stations"),
-        ).rename({"bin": "bin_y"})
+        summary = (
+            frame.group_by("bin_x", "bin")
+            .agg(
+                pl.col("residual").mean(),
+                pl.len().alias("n_observations"),
+                pl.col("STAID").n_unique().alias("n_stations"),
+            )
+            .rename({"bin": "bin_y"})
+        )
         add_bounds(summary, frame, fx, fy).sort("bin_x", "bin_y").write_csv(
             tables / f"{fx}_by_{fy}.csv"
         )
     df.group_by("STAID").agg(
-        pl.col("residual").mean(), pl.col("lat").first(), pl.col("lon").first(),
+        pl.col("residual").mean(),
+        pl.col("lat").first(),
+        pl.col("lon").first(),
         pl.len().alias("n_observations"),
     ).sort("STAID").write_csv(tables / "station_means.csv")
 
@@ -116,10 +130,16 @@ def upgrade_bounds(tables, source):
         if "x_lo" not in summary.columns:
             print(f"  Adding numeric bounds to {path.name} from the original input...", flush=True)
             frame = feature_frame(pl.scan_parquet(source).drop_nulls(), [fx, fy])
-            extrema = frame.select(
-                pl.col(fx).min().alias("x_min"), pl.col(fx).max().alias("x_max"),
-                pl.col(fy).min().alias("y_min"), pl.col(fy).max().alias("y_max"),
-            ).collect().row(0)
+            extrema = (
+                frame.select(
+                    pl.col(fx).min().alias("x_min"),
+                    pl.col(fx).max().alias("x_max"),
+                    pl.col(fy).min().alias("y_min"),
+                    pl.col(fy).max().alias("y_max"),
+                )
+                .collect()
+                .row(0)
+            )
             limits = pl.DataFrame({fx: extrema[:2], fy: extrema[2:]})
             add_bounds(summary, limits, fx, fy).write_csv(path)
 
@@ -127,7 +147,7 @@ def upgrade_bounds(tables, source):
 def captions(metadata):
     return [
         "All figures: residual = station minus ERA5 (°C); positive values mean ERA5 is cooler. "
-        f"Complete cases from resid_analysis.py: {metadata['complete_rows']:,} observations, "
+        f"Complete cases from py.notebooks.resid_analysis: {metadata['complete_rows']:,} observations, "
         f"{metadata['stations']:,} stations; {metadata['date_start'][:10]} to "
         f"{metadata['date_end'][:10]}. Means weight observations equally. "
         f"Intervals are pointwise 95% percentile intervals from {metadata['bootstrap']:,} station "
@@ -153,7 +173,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data", type=Path, default=ROOT / "data2/residuals.parquet")
     parser.add_argument("--output", type=Path, default=ROOT / "figures/paper")
-    parser.add_argument("--from-tables", action="store_true", help="Render saved tables without rerunning statistics.")
+    parser.add_argument(
+        "--from-tables",
+        action="store_true",
+        help="Render saved tables without rerunning statistics.",
+    )
     parser.add_argument("--bootstrap", type=int)
     parser.add_argument("--bins", type=int)
     parser.add_argument("--seed", type=int)
@@ -176,7 +200,7 @@ def main():
         metadata = json.loads((args.output / "metadata.json").read_text())
         upgrade_bounds(tables, Path(metadata["data"]))
     else:
-        print("Loading complete cases, matching notebooks/resid_analysis.py...", flush=True)
+        print("Loading complete cases, matching py.notebooks.resid_analysis...", flush=True)
         raw = pl.read_parquet(args.data)
         df = raw.drop_nulls()
         if not len(df) or df.filter(~pl.col("residual").is_finite()).height:
@@ -185,20 +209,34 @@ def main():
             raise ValueError("Expected residual = station temperature minus ERA5.")
         prepare_tables(df, args, tables)
         metadata = {
-            "data": str(args.data.resolve()), "input_rows": len(raw), "complete_rows": len(df),
+            "data": str(args.data.resolve()),
+            "input_rows": len(raw),
+            "complete_rows": len(df),
             "stations": df["STAID"].n_unique(),
-            "date_start": str(df["date"].min()), "date_end": str(df["date"].max()),
+            "date_start": str(df["date"].min()),
+            "date_end": str(df["date"].max()),
             "residual_definition": "station minus ERA5 (degrees Celsius)",
-            "elevation_missing_rows": df.filter(pl.col("elevation").is_in(MISSING_ELEVATION)).height,
+            "elevation_missing_rows": df.filter(
+                pl.col("elevation").is_in(MISSING_ELEVATION)
+            ).height,
             "elevation_excluded_codes": list(MISSING_ELEVATION),
-            "bootstrap": args.bootstrap, "seed": args.seed, "quantile_bins": args.bins,
+            "bootstrap": args.bootstrap,
+            "seed": args.seed,
+            "quantile_bins": args.bins,
         }
-    min_stations = (args.min_stations if args.min_stations is not None
-                    else metadata.get("heatmap_min_stations", 10))
+    min_stations = (
+        args.min_stations
+        if args.min_stations is not None
+        else metadata.get("heatmap_min_stations", 10)
+    )
     if min_stations < 1:
         parser.error("--min-stations must be positive.")
-    metadata.update(renderer="Altair / Vega-Lite / vl-convert", dpi=args.dpi,
-                    figure_width_mm=args.width_mm, heatmap_min_stations=min_stations)
+    metadata.update(
+        renderer="Altair / Vega-Lite / vl-convert",
+        dpi=args.dpi,
+        figure_width_mm=args.width_mm,
+        heatmap_min_stations=min_stations,
+    )
     figure_captions = captions(metadata)
     figures = [
         ("01_covariates", lambda: paper_charts.covariates(tables)),
@@ -209,8 +247,9 @@ def main():
         paper_charts.map_geometry(tables, args.output / ".cartopy")
         figures.append(("04_station_map", lambda: paper_charts.station_map(tables)))
         stations = pl.read_csv(tables / "station_means.csv")
-        shown = stations.filter(pl.col("lon").is_between(*MAP_EXTENT[:2]) &
-                                pl.col("lat").is_between(*MAP_EXTENT[2:])).height
+        shown = stations.filter(
+            pl.col("lon").is_between(*MAP_EXTENT[:2]) & pl.col("lat").is_between(*MAP_EXTENT[2:])
+        ).height
         metadata["map_stations_shown"] = shown
         figure_captions.append(
             f"04_station_map: Mean residual at each station. European window: {shown:,} of "
@@ -224,7 +263,9 @@ def main():
         for name, draw in figures:
             print(f"Rendering {name} with Altair...", flush=True)
             chart = paper_style(draw())
-            metadata["exports"][name] = save_figure(chart, args.output / name, args.dpi, args.width_mm)
+            metadata["exports"][name] = save_figure(
+                chart, args.output / name, args.dpi, args.width_mm
+            )
             book.append(args.output / f"{name}.pdf")
         book.write(args.output / "all_figures.pdf")
     (args.output / "captions.txt").write_text("\n\n".join(figure_captions) + "\n")

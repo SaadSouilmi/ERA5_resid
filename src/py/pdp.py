@@ -31,9 +31,7 @@ def cluster_bootstrap_ci(
         arr[:, 0] = sub_df["sum"]
         arr[:, 1] = sub_df["count"]
 
-        ids = rng.choice(
-            np.arange(arr.shape[0]), size=(n_boot, arr.shape[0]), replace=True
-        )
+        ids = rng.choice(np.arange(arr.shape[0]), size=(n_boot, arr.shape[0]), replace=True)
         samples = arr[ids, :]
         stats = samples.sum(axis=1)
         boot_means[i] = stats[:, 0] / stats[:, 1]
@@ -75,9 +73,13 @@ def pdp_cluster_bootstrap(
         means = df.group_by(bin_col).agg(pl.col("residual").mean())
     else:
         means = df.group_by(bin_col).agg(
-            ((pl.col("residual") * pl.col(weight_col)).sum() / pl.col(weight_col).sum()).alias("residual")
+            ((pl.col("residual") * pl.col(weight_col)).sum() / pl.col(weight_col).sum()).alias(
+                "residual"
+            )
         )
     means = means.with_columns(pl.col(bin_col).cast(pl.Enum(bins))).sort(bin_col)
-    _, ci_lo, ci_hi = cluster_bootstrap_ci(df, bin_col, bins, n_boot, ci, rng, weight_col=weight_col)
+    _, ci_lo, ci_hi = cluster_bootstrap_ci(
+        df, bin_col, bins, n_boot, ci, rng, weight_col=weight_col
+    )
 
     return means["residual"].to_numpy(), ci_lo, ci_hi

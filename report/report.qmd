@@ -11,8 +11,6 @@ format:
 
 ```{python}
 #| echo: false
-from pathlib import Path
-
 import numpy as np
 import pandas as pd
 import polars as pl
@@ -20,10 +18,10 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from era5_analysis import pdp
+from py import pdp
+from py.paths import DATA2 as DATA
 
-DATA = Path("../data2/")
-PLOT_DATA = Path("../data2/plot_data")
+PLOT_DATA = DATA / "plot_data"
 
 rng = np.random.default_rng(1337)
 ```

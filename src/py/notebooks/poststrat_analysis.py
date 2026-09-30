@@ -6,6 +6,7 @@ app = marimo.App(width="medium")
 
 @app.cell
 def _():
+    import itertools
     from pathlib import Path
 
     import geopandas as gpd
@@ -22,8 +23,7 @@ def _():
     from shapely.strtree import STRtree
     from sklearn.linear_model import LinearRegression
 
-    import itertools
-    from era5_analysis import pdp
+    from py import pdp
 
     return (
         LinearRegression,
@@ -47,8 +47,8 @@ def _():
 
 @app.cell
 def _(Path):
-    DATA = Path("/home2/lobib/gen_hack/data/main")
-    DATA2 = Path("/home2/lobib/gen_hack/data2")
+    from py.paths import DATA, DATA2
+
     DEGURBA_TIF = (
         DATA2
         / "GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0"
@@ -165,9 +165,22 @@ def _(
     print(f"Station-level dataframe: {len(station_df)} stations")
 
     _order = ["Water"] + DEGURBA_ORDER
-    _colors = [PALETTE["blue"], PALETTE["orange"], PALETTE["aqua"], PALETTE["yellow"],
-               PALETTE["magenta"], PALETTE["green"], PALETTE["violet"], PALETTE["red"]]
-    _pct = station_df["degurba_label"].value_counts(normalize=True).to_pandas().set_index("degurba_label")["proportion"]
+    _colors = [
+        PALETTE["blue"],
+        PALETTE["orange"],
+        PALETTE["aqua"],
+        PALETTE["yellow"],
+        PALETTE["magenta"],
+        PALETTE["green"],
+        PALETTE["violet"],
+        PALETTE["red"],
+    ]
+    _pct = (
+        station_df["degurba_label"]
+        .value_counts(normalize=True)
+        .to_pandas()
+        .set_index("degurba_label")["proportion"]
+    )
     _y = [float(_pct.get(lbl, 0.0)) for lbl in _order]
 
     fig_degurba_dist = go.Figure(
@@ -183,63 +196,26 @@ def _(
         title="Station distribution across DEGURBA classes",
         width=800,
         height=520,
-        xaxis=dict(title="DEGURBA class", tickangle=-35, gridcolor=GRID_COLOR, linecolor=AXIS_COLOR, tickfont=dict(color=MUTED_INK), title_font=dict(color=MUTED_INK)),
-        yaxis=dict(title="Share of stations", tickformat=".0%", gridcolor=GRID_COLOR, linecolor=AXIS_COLOR, tickfont=dict(color=MUTED_INK), title_font=dict(color=MUTED_INK)),
+        xaxis=dict(
+            title="DEGURBA class",
+            tickangle=-35,
+            gridcolor=GRID_COLOR,
+            linecolor=AXIS_COLOR,
+            tickfont=dict(color=MUTED_INK),
+            title_font=dict(color=MUTED_INK),
+        ),
+        yaxis=dict(
+            title="Share of stations",
+            tickformat=".0%",
+            gridcolor=GRID_COLOR,
+            linecolor=AXIS_COLOR,
+            tickfont=dict(color=MUTED_INK),
+            title_font=dict(color=MUTED_INK),
+        ),
         margin=dict(t=60, b=110),
     )
     mo.vstack([fig_degurba_dist])
     return (station_df,)
-
-
-@app.cell
-def _():
-    return
-
-
-@app.cell
-def _():
-    # residuals_df = pl.read_parquet(RESIDUALS_PARQUET).drop_nulls(
-    #     subset=["residual", "degurba_label", "dist_to_sea_km", "elevation"]
-    # )
-
-    # # dist_to_sea_km is measured against a coastline built from gadm_410_europe.gpkg,
-    # # which only partially covers two countries: Türkiye (European Thrace only,
-    # # lon <= 29.1) and Russia (west of lon 69.07 only). Stations past those bounds
-    # # sit outside the landmass geometry entirely, so their nearest-coastline
-    # # distance doesn't reflect their real nearby coast (unreliable, often inflated).
-    # _n_before = residuals_df["STAID"].n_unique()
-    # residuals_df = residuals_df.filter(
-    #     ~(
-    #         ((pl.col("country") == "Türkiye") & (pl.col("lon") > 29.1))
-    #         | ((pl.col("country") == "Russian Federation") & (pl.col("lon") > 69.07))
-    #     )
-    # )
-    # _n_after = residuals_df["STAID"].n_unique()
-    # print(
-    #     f"Dropped {_n_before - _n_after} stations with unreliable dist_to_sea_km "
-    #     "(Anatolian Türkiye / far-eastern Russia)"
-    # )
-
-    # print(
-    #     f"Loaded {len(residuals_df):,} observations "
-    #     f"· {residuals_df['STAID'].n_unique()} stations"
-    # )
-
-    # station_df = residuals_df.group_by("STAID").agg(
-    #     pl.col("residual").mean(),
-    #     pl.col("elevation").first(),
-    #     pl.col("dist_to_sea_km").first(),
-    #     pl.col("degurba_label").first(),
-    #     pl.col("degurba").first(),
-    #     pl.col("ndvi").mean(),
-    #     pl.col("lat").first(),
-    #     pl.col("lon").first(),
-    #     pl.col("country").first(),
-    #     pl.len().alias("n_obs"),
-    # )
-    # print(f"Station-level dataframe: {len(station_df)} stations")
-    # print(station_df["degurba_label"].value_counts().sort("degurba_label"))
-    return
 
 
 @app.cell
@@ -275,9 +251,7 @@ def _(DEGURBA_LABELS, DEGURBA_ORDER, DEGURBA_TIF, Transformer, np, rasterio):
     _land_counts = {k: v for k, v in _pixel_counts.items() if k != 10}
     _total_land = sum(_land_counts.values())
     pop_degurba = {
-        DEGURBA_LABELS[k]: v / _total_land
-        for k, v in _land_counts.items()
-        if k in DEGURBA_LABELS
+        DEGURBA_LABELS[k]: v / _total_land for k, v in _land_counts.items() if k in DEGURBA_LABELS
     }
     print("\nPopulation proportions (land only):")
     for _label in DEGURBA_ORDER:
@@ -321,7 +295,10 @@ def _(EUROPE_GPKG, Point, STRtree, gpd, np):
 
     # STRtree on coastline segments (MultiLineString → iterate geoms)
     import shapely as _shapely
-    _segments = list(_coastline.geoms) if _coastline.geom_type == "MultiLineString" else [_coastline]
+
+    _segments = (
+        list(_coastline.geoms) if _coastline.geom_type == "MultiLineString" else [_coastline]
+    )
     _tree = STRtree(_segments)
     _sample_pts = [Point(x, y) for x, y in _pts]
     _sample_arr = _shapely.from_wkt([p.wkt for p in _sample_pts])
@@ -370,8 +347,7 @@ def _(
     # --- Panel A: DEGURBA grouped bar chart ---
     _n_total = len(station_df)
     _station_pct_map = (
-        station_df
-        .filter(pl.col("degurba_label") != "Water")
+        station_df.filter(pl.col("degurba_label") != "Water")
         .group_by("degurba_label")
         .agg(pl.len().alias("count"))
         .with_columns((pl.col("count") / _n_total).alias("station_pct"))
@@ -413,8 +389,7 @@ def _(
     # --- Panel B: dist_to_sea overlaid histograms ---
     _rng_b = np.random.default_rng(0)
     _station_dist = (
-        station_df
-        .select(["dist_to_sea_km"])
+        station_df.select(["dist_to_sea_km"])
         .sample(n=min(_MAX_ROWS, len(station_df)), seed=0)
         .to_pandas()["dist_to_sea_km"]
         .clip(upper=800)
@@ -455,8 +430,7 @@ def _(
 
     # --- Panel C: Elevation (stations only) ---
     _elev = (
-        station_df
-        .filter(pl.col("elevation") > -9000)
+        station_df.filter(pl.col("elevation") > -9000)
         .select(["elevation"])
         .sample(n=min(_MAX_ROWS, len(station_df)), seed=0)
         .to_pandas()["elevation"]
@@ -480,19 +454,21 @@ def _(
         margin=dict(t=60, b=60),
     )
 
-    mo.vstack([
-        mo.md(
-            "## Representativeness Analysis\n\n"
-            "Weather stations are **not** a random sample of European land. "
-            "Panel A shows suburban and low-density rural classes are over-represented "
-            "relative to the GHS-SMOD land pixel distribution. "
-            "Panel B confirms stations cluster close to coasts. "
-            "These biases motivate post-stratification and GREG weighting."
-        ),
-        fig_degurba,
-        fig_dist,
-        fig_elev,
-    ])
+    mo.vstack(
+        [
+            mo.md(
+                "## Representativeness Analysis\n\n"
+                "Weather stations are **not** a random sample of European land. "
+                "Panel A shows suburban and low-density rural classes are over-represented "
+                "relative to the GHS-SMOD land pixel distribution. "
+                "Panel B confirms stations cluster close to coasts. "
+                "These biases motivate post-stratification and GREG weighting."
+            ),
+            fig_degurba,
+            fig_dist,
+            fig_elev,
+        ]
+    )
     return
 
 
@@ -512,8 +488,7 @@ def _(DEGURBA_ORDER, mo, pl, pop_degurba, station_df):
     _n_stations = len(_station_land)
 
     _sample_counts = (
-        _station_land
-        .group_by("degurba_label")
+        _station_land.group_by("degurba_label")
         .agg(pl.len().alias("n_s"))
         .to_pandas()
         .set_index("degurba_label")["n_s"]
@@ -521,8 +496,7 @@ def _(DEGURBA_ORDER, mo, pl, pop_degurba, station_df):
     )
 
     _stratum_means = (
-        _station_land
-        .group_by("degurba_label")
+        _station_land.group_by("degurba_label")
         .agg(pl.col("residual").mean().alias("mean_resid"))
         .to_pandas()
         .set_index("degurba_label")["mean_resid"]
@@ -531,10 +505,7 @@ def _(DEGURBA_ORDER, mo, pl, pop_degurba, station_df):
 
     # Naive unweighted mean and post-stratified mean
     y_naive = float(_station_land["residual"].mean())
-    y_poststrat = sum(
-        pop_degurba.get(s, 0.0) * _stratum_means.get(s, 0.0)
-        for s in DEGURBA_ORDER
-    )
+    y_poststrat = sum(pop_degurba.get(s, 0.0) * _stratum_means.get(s, 0.0) for s in DEGURBA_ORDER)
 
     # Per-stratum weights
     strata_weights = {}
@@ -544,10 +515,12 @@ def _(DEGURBA_ORDER, mo, pl, pop_degurba, station_df):
         strata_weights[_s] = _p_pop / _p_sample if _p_sample > 0 else 0.0
 
     # Attach per-station weights
-    _weight_map = pl.DataFrame({
-        "degurba_label": list(strata_weights.keys()),
-        "ps_weight": list(strata_weights.values()),
-    })
+    _weight_map = pl.DataFrame(
+        {
+            "degurba_label": list(strata_weights.keys()),
+            "ps_weight": list(strata_weights.values()),
+        }
+    )
     station_df_weighted = _station_land.join(_weight_map, on="degurba_label", how="left")
 
     print(f"Naive mean residual:           {y_naive:+.4f} °C")
@@ -612,9 +585,7 @@ def _(
 
     # Design matrix
     _dummies = pd.get_dummies(
-        _station_pd["degurba_label"].astype(
-            pd.CategoricalDtype(DEGURBA_ORDER)
-        ),
+        _station_pd["degurba_label"].astype(pd.CategoricalDtype(DEGURBA_ORDER)),
         prefix="deg",
         dtype=float,
     )
@@ -652,7 +623,7 @@ def _(
     print(f"Naive mean:          {y_naive:+.4f} °C")
     print(f"GREG mean:           {y_greg:+.4f} °C")
     print(f"Correction vs naive: {y_greg - y_naive:+.4f} °C")
-    print(f"\nGREG β̂:")
+    print("\nGREG β̂:")
     for _col, _b in zip(list(_dummies.columns) + ["dist_std"], _beta):
         print(f"  {_col:35s}: {_b:+.4f}")
 
@@ -849,7 +820,7 @@ def _(
 
     # Effective sample size: n_eff = (Σ w_i)² / Σ w_i²
     def _eff_n(w: np.ndarray) -> float:
-        return float(w.sum() ** 2 / (w ** 2).sum())
+        return float(w.sum() ** 2 / (w**2).sum())
 
     _ps_w = station_df_greg["ps_weight"].to_numpy()
     _gr_w = station_df_greg["greg_weight"].to_numpy()
@@ -858,22 +829,24 @@ def _(
     _n_eff_gr = _eff_n(_gr_w)
 
     print(f"n               : {_n_total}")
-    print(f"n_eff (post-strat): {_n_eff_ps:.0f}  ({100*_n_eff_ps/_n_total:.1f}% of n)")
-    print(f"n_eff (GREG)      : {_n_eff_gr:.0f}  ({100*_n_eff_gr/_n_total:.1f}% of n)")
+    print(f"n_eff (post-strat): {_n_eff_ps:.0f}  ({100 * _n_eff_ps / _n_total:.1f}% of n)")
+    print(f"n_eff (GREG)      : {_n_eff_gr:.0f}  ({100 * _n_eff_gr / _n_total:.1f}% of n)")
 
-    mo.vstack([
-        results_chart,
-        mo.md(f"""
+    mo.vstack(
+        [
+            results_chart,
+            mo.md(f"""
     | Estimator | n stations | n_eff |
     |-----------|-----------|-------|
     | Naive | {_n_total} | {_n_total} (100%) |
-    | Post-stratified | {_n_total} | {_n_eff_ps:.0f} ({100*_n_eff_ps/_n_total:.1f}%) |
-    | GREG | {_n_total} | {_n_eff_gr:.0f} ({100*_n_eff_gr/_n_total:.1f}%) |
+    | Post-stratified | {_n_total} | {_n_eff_ps:.0f} ({100 * _n_eff_ps / _n_total:.1f}%) |
+    | GREG | {_n_total} | {_n_eff_gr:.0f} ({100 * _n_eff_gr / _n_total:.1f}%) |
 
     n_eff decreases when weights are unequal. Upweighted strata contribute more
     variance, which is the price of correcting the sampling bias.
         """),
-    ])
+        ]
+    )
     return
 
 
@@ -968,16 +941,18 @@ def _(
         margin=dict(t=60, b=90),
     )
 
-    mo.vstack([
-        mo.md("""## Weight Analysis
+    mo.vstack(
+        [
+            mo.md("""## Weight Analysis
 
     **Blue bars** (w < 1): stratum is over-represented in stations — downweighted.
     **Red bars** (w > 1): stratum is under-represented — upweighted.
     A perfectly representative sample would have w = 1 for all strata (dashed line).
         """),
-        fig_prop,
-        fig_weights,
-    ])
+            fig_prop,
+            fig_weights,
+        ]
+    )
     return
 
 
@@ -1024,8 +999,9 @@ def _(PALETTE, mo, px, station_df_greg):
         coloraxis_colorbar=dict(title="w_s", tickformat=".2f"),
     )
 
-    mo.vstack([
-        mo.md("""## Geographic Pattern of the Sampling Correction
+    mo.vstack(
+        [
+            mo.md("""## Geographic Pattern of the Sampling Correction
 
     Stations in very-low-density rural and urban-centre areas receive the highest
     weights (red) because those land types are under-represented in the station
@@ -1033,8 +1009,9 @@ def _(PALETTE, mo, px, station_df_greg):
     of weights reveals which parts of Europe are statistically thin relative to
     their land area in the GHS-SMOD reference.
         """),
-        _fig,
-    ])
+            _fig,
+        ]
+    )
     return
 
 
@@ -1068,20 +1045,27 @@ def _(AXIS_COLOR, GRID_COLOR, MUTED_INK, PALETTE, go, np, pdp):
     Overlays the unweighted (raw sample) curve against the GREG-weighted
     (population-representative) curve, plus a raw-value histogram below.
     """
+
     def _hex_to_rgba(hex_color, alpha):
         h = hex_color.lstrip("#")
-        r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
+        r, g, b = (int(h[i : i + 2], 16) for i in (0, 2, 4))
         return f"rgba({r},{g},{b},{alpha})"
 
-    def make_pdp_and_hist(df, feature, xlabel, n_bins=10, hist_bins=50, log10=False, weight_col="greg_weight"):
+    def make_pdp_and_hist(
+        df, feature, xlabel, n_bins=10, hist_bins=50, log10=False, weight_col="greg_weight"
+    ):
         import polars as _pl
 
         _df = df
         if log10:
-            _df = _df.with_columns(_pl.col(feature).clip(lower_bound=1e-9).log(base=10).alias(feature))
+            _df = _df.with_columns(
+                _pl.col(feature).clip(lower_bound=1e-9).log(base=10).alias(feature)
+            )
 
         df_binned, bins = pdp.bin_features(_df, feature, n_bins=n_bins)
-        means_u, lo_u, hi_u = pdp.pdp_cluster_bootstrap(df_binned, "bin", bins, rng=np.random.default_rng(1337))
+        means_u, lo_u, hi_u = pdp.pdp_cluster_bootstrap(
+            df_binned, "bin", bins, rng=np.random.default_rng(1337)
+        )
         means_w, lo_w, hi_w = pdp.pdp_cluster_bootstrap(
             df_binned, "bin", bins, rng=np.random.default_rng(1337), weight_col=weight_col
         )
@@ -1094,13 +1078,21 @@ def _(AXIS_COLOR, GRID_COLOR, MUTED_INK, PALETTE, go, np, pdp):
             ("GREG-weighted", means_w, lo_w, hi_w, PALETTE["orange"]),
         ]:
             fig.add_scatter(
-                x=centers + centers[::-1], y=list(_hi) + list(_lo[::-1]),
-                fill="toself", fillcolor=_hex_to_rgba(_color, 0.15),
-                line=dict(color="rgba(255,255,255,0)"), hoverinfo="skip", showlegend=False,
+                x=centers + centers[::-1],
+                y=list(_hi) + list(_lo[::-1]),
+                fill="toself",
+                fillcolor=_hex_to_rgba(_color, 0.15),
+                line=dict(color="rgba(255,255,255,0)"),
+                hoverinfo="skip",
+                showlegend=False,
             )
             fig.add_scatter(
-                x=centers, y=_means, mode="lines+markers", name=_name,
-                line=dict(color=_color, width=2), marker=dict(size=7),
+                x=centers,
+                y=_means,
+                mode="lines+markers",
+                name=_name,
+                line=dict(color=_color, width=2),
+                marker=dict(size=7),
                 hovertemplate=f"{_name}<br>{_xlabel}: %{{x:.3g}}<br>mean residual: %{{y:.3f}}<extra></extra>",
             )
         fig.add_hline(y=0, line_dash="dash", line_color=MUTED_INK, opacity=0.6)
@@ -1109,21 +1101,51 @@ def _(AXIS_COLOR, GRID_COLOR, MUTED_INK, PALETTE, go, np, pdp):
             title=f"PDP: residual vs {xlabel}",
             height=340,
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
-            xaxis=dict(title=_xlabel, gridcolor=GRID_COLOR, linecolor=AXIS_COLOR, tickfont=dict(color=MUTED_INK), title_font=dict(color=MUTED_INK)),
-            yaxis=dict(title="Mean residual (°C)", gridcolor=GRID_COLOR, linecolor=AXIS_COLOR, tickfont=dict(color=MUTED_INK), title_font=dict(color=MUTED_INK)),
+            xaxis=dict(
+                title=_xlabel,
+                gridcolor=GRID_COLOR,
+                linecolor=AXIS_COLOR,
+                tickfont=dict(color=MUTED_INK),
+                title_font=dict(color=MUTED_INK),
+            ),
+            yaxis=dict(
+                title="Mean residual (°C)",
+                gridcolor=GRID_COLOR,
+                linecolor=AXIS_COLOR,
+                tickfont=dict(color=MUTED_INK),
+                title_font=dict(color=MUTED_INK),
+            ),
             margin=dict(t=60, b=50),
         )
 
         _series = _df[feature].drop_nulls()
         _sample = _series.sample(n=min(4999, _series.len()), seed=42)
-        hist = go.Figure(go.Histogram(
-            x=_sample.to_numpy(), nbinsx=hist_bins, marker_color=PALETTE["blue"], opacity=0.6, showlegend=False
-        ))
+        hist = go.Figure(
+            go.Histogram(
+                x=_sample.to_numpy(),
+                nbinsx=hist_bins,
+                marker_color=PALETTE["blue"],
+                opacity=0.6,
+                showlegend=False,
+            )
+        )
         hist.update_layout(
             template="plotly_white",
             height=140,
-            xaxis=dict(title=_xlabel, gridcolor=GRID_COLOR, linecolor=AXIS_COLOR, tickfont=dict(color=MUTED_INK), title_font=dict(color=MUTED_INK)),
-            yaxis=dict(title="Count", gridcolor=GRID_COLOR, linecolor=AXIS_COLOR, tickfont=dict(color=MUTED_INK), title_font=dict(color=MUTED_INK)),
+            xaxis=dict(
+                title=_xlabel,
+                gridcolor=GRID_COLOR,
+                linecolor=AXIS_COLOR,
+                tickfont=dict(color=MUTED_INK),
+                title_font=dict(color=MUTED_INK),
+            ),
+            yaxis=dict(
+                title="Count",
+                gridcolor=GRID_COLOR,
+                linecolor=AXIS_COLOR,
+                tickfont=dict(color=MUTED_INK),
+                title_font=dict(color=MUTED_INK),
+            ),
             margin=dict(t=10, b=50),
         )
         return fig, hist
@@ -1146,17 +1168,19 @@ def _(make_pdp_and_hist, mo, residuals_df_weighted):
         _fig, _hist = make_pdp_and_hist(residuals_df_weighted, _feature, _label, log10=_log10)
         _blocks.extend([_fig, _hist])
 
-    mo.vstack([
-        mo.md(
-            "## Partial Dependence Plots: Unweighted vs. GREG-Weighted\n\n"
-            "Each panel overlays the raw (unweighted) mean residual per bin against "
-            "the GREG-weighted mean, which reweights each observation toward the "
-            "population-representative DEGURBA + distance-to-sea mix. Where the two "
-            "curves track closely, the pattern is unlikely to be an artifact of "
-            "station-network composition."
-        ),
-        *_blocks,
-    ])
+    mo.vstack(
+        [
+            mo.md(
+                "## Partial Dependence Plots: Unweighted vs. GREG-Weighted\n\n"
+                "Each panel overlays the raw (unweighted) mean residual per bin against "
+                "the GREG-weighted mean, which reweights each observation toward the "
+                "population-representative DEGURBA + distance-to-sea mix. Where the two "
+                "curves track closely, the pattern is unlikely to be an artifact of "
+                "station-network composition."
+            ),
+            *_blocks,
+        ]
+    )
     return
 
 
@@ -1185,17 +1209,31 @@ def _(
     "tp" (precipitation) before averaging, since it's heavily right-skewed --
     pass it whenever color_feat is similarly skewed.
     """
+
     def make_cross_heatmap(
-        df, feat_x, feat_y, xlabel, ylabel, n_bins=8, weight_col="greg_weight",
-        color_feat="residual", color_title=None, diverging=True, sequential_hue="red",
+        df,
+        feat_x,
+        feat_y,
+        xlabel,
+        ylabel,
+        n_bins=8,
+        weight_col="greg_weight",
+        color_feat="residual",
+        color_title=None,
+        diverging=True,
+        sequential_hue="red",
         log10_color=False,
     ):
         import polars as _pl
 
         _df = df
         if log10_color:
-            _df = _df.with_columns(_pl.col(color_feat).clip(lower_bound=1e-9).log(base=10).alias(color_feat))
-        color_title = color_title or ("Mean residual (°C)" if color_feat == "residual" else f"Mean {color_feat}")
+            _df = _df.with_columns(
+                _pl.col(color_feat).clip(lower_bound=1e-9).log(base=10).alias(color_feat)
+            )
+        color_title = color_title or (
+            "Mean residual (°C)" if color_feat == "residual" else f"Mean {color_feat}"
+        )
         if log10_color:
             color_title = f"{color_title} (log₁₀)"
 
@@ -1208,7 +1246,9 @@ def _(
             out = []
             for b in bins:
                 lo, hi = b.strip("(]").split(", ")
-                out.append((dmin if lo == "-inf" else float(lo), dmax if hi == "inf" else float(hi)))
+                out.append(
+                    (dmin if lo == "-inf" else float(lo), dmax if hi == "inf" else float(hi))
+                )
             return out
 
         edges_x = _parse_edges(bins_x, float(_df[feat_x].min()), float(_df[feat_x].max()))
@@ -1216,17 +1256,23 @@ def _(
         x_labels = [f"{lo:.3g}–{hi:.3g}" for lo, hi in edges_x]
         y_labels = [f"{lo:.3g}–{hi:.3g}" for lo, hi in edges_y]
 
-        full_grid = pd.DataFrame(list(itertools.product(bins_x, bins_y)), columns=["bin_x", "bin_y"])
+        full_grid = pd.DataFrame(
+            list(itertools.product(bins_x, bins_y)), columns=["bin_x", "bin_y"]
+        )
 
         def _grid(weight):
             if weight is None:
                 agg = _df.group_by(["bin_x", "bin_y"]).agg(_pl.col(color_feat).mean().alias("v"))
             else:
                 agg = _df.group_by(["bin_x", "bin_y"]).agg(
-                    ((_pl.col(color_feat) * _pl.col(weight)).sum() / _pl.col(weight).sum()).alias("v")
+                    ((_pl.col(color_feat) * _pl.col(weight)).sum() / _pl.col(weight).sum()).alias(
+                        "v"
+                    )
                 )
             heat = full_grid.merge(agg.to_pandas(), on=["bin_x", "bin_y"], how="left")
-            z = heat.pivot(index="bin_y", columns="bin_x", values="v").reindex(index=bins_y, columns=bins_x)
+            z = heat.pivot(index="bin_y", columns="bin_x", values="v").reindex(
+                index=bins_y, columns=bins_x
+            )
             return z.to_numpy()
 
         z_u = _grid(None)
@@ -1241,23 +1287,42 @@ def _(
             zmin, zmax = float(np.nanmin(_all)), float(np.nanmax(_all))
             scale = [[0.0, "#fcfcfb"], [1.0, PALETTE[sequential_hue]]]
 
-        fig = make_subplots(rows=1, cols=2, subplot_titles=["Unweighted", "GREG-weighted"], horizontal_spacing=0.15)
+        fig = make_subplots(
+            rows=1, cols=2, subplot_titles=["Unweighted", "GREG-weighted"], horizontal_spacing=0.15
+        )
         for _col, _z in enumerate([z_u, z_w], start=1):
             fig.add_trace(
                 go.Heatmap(
-                    z=_z, x=x_labels, y=y_labels, zmin=zmin, zmax=zmax, colorscale=scale,
-                    showscale=(_col == 2), colorbar=dict(title=color_title) if _col == 2 else None,
+                    z=_z,
+                    x=x_labels,
+                    y=y_labels,
+                    zmin=zmin,
+                    zmax=zmax,
+                    colorscale=scale,
+                    showscale=(_col == 2),
+                    colorbar=dict(title=color_title) if _col == 2 else None,
                     hovertemplate=f"{xlabel}: %{{x}}<br>{ylabel}: %{{y}}<br>{color_title}: %{{z:.3f}}<extra></extra>",
                 ),
-                row=1, col=_col,
+                row=1,
+                col=_col,
             )
         fig.update_layout(
-            template="plotly_white", height=420, width=900,
+            template="plotly_white",
+            height=420,
+            width=900,
             title=f"{color_title} — {xlabel} × {ylabel}",
             margin=dict(t=70, b=90),
         )
-        fig.update_xaxes(title=xlabel, tickangle=-40, gridcolor=GRID_COLOR, linecolor=AXIS_COLOR, tickfont=dict(color=MUTED_INK))
-        fig.update_yaxes(title=ylabel, gridcolor=GRID_COLOR, linecolor=AXIS_COLOR, tickfont=dict(color=MUTED_INK))
+        fig.update_xaxes(
+            title=xlabel,
+            tickangle=-40,
+            gridcolor=GRID_COLOR,
+            linecolor=AXIS_COLOR,
+            tickfont=dict(color=MUTED_INK),
+        )
+        fig.update_yaxes(
+            title=ylabel, gridcolor=GRID_COLOR, linecolor=AXIS_COLOR, tickfont=dict(color=MUTED_INK)
+        )
         return fig
 
     return (make_cross_heatmap,)
@@ -1265,19 +1330,29 @@ def _(
 
 @app.cell
 def _(make_cross_heatmap, mo, residuals_df_weighted):
-    _fig_a = make_cross_heatmap(residuals_df_weighted, "elevation", "dist_to_sea_km", "Elevation (m)", "Distance to sea (km)")
-    _fig_b = make_cross_heatmap(residuals_df_weighted, "station_celsius", "wind", "Station temp (°C)", "Wind speed (m/s)")
+    _fig_a = make_cross_heatmap(
+        residuals_df_weighted,
+        "elevation",
+        "dist_to_sea_km",
+        "Elevation (m)",
+        "Distance to sea (km)",
+    )
+    _fig_b = make_cross_heatmap(
+        residuals_df_weighted, "station_celsius", "wind", "Station temp (°C)", "Wind speed (m/s)"
+    )
 
-    mo.vstack([
-        mo.md(
-            "## Cross Heatmaps: Unweighted vs. GREG-Weighted\n\n"
-            "Same idea as the PDPs, in two dimensions. Neither axis below is a GREG "
-            "calibration variable, so a shift between panels is a clean signal that "
-            "station-network composition was affecting the raw pattern."
-        ),
-        _fig_a,
-        _fig_b,
-    ])
+    mo.vstack(
+        [
+            mo.md(
+                "## Cross Heatmaps: Unweighted vs. GREG-Weighted\n\n"
+                "Same idea as the PDPs, in two dimensions. Neither axis below is a GREG "
+                "calibration variable, so a shift between panels is a clean signal that "
+                "station-network composition was affecting the raw pattern."
+            ),
+            _fig_a,
+            _fig_b,
+        ]
+    )
     return
 
 
@@ -1290,30 +1365,38 @@ def _(make_cross_heatmap, mo, residuals_df_weighted):
     matching how it's treated everywhere else in this codebase (heavily
     right-skewed); the other three stay linear, same as resid_analysis.py.
     """
-    _kw = dict(df=residuals_df_weighted, feat_x="elevation", feat_y="dist_to_sea_km",
-               xlabel="Elevation (m)", ylabel="Distance to sea (km)", diverging=False)
+    _kw = dict(
+        df=residuals_df_weighted,
+        feat_x="elevation",
+        feat_y="dist_to_sea_km",
+        xlabel="Elevation (m)",
+        ylabel="Distance to sea (km)",
+        diverging=False,
+    )
 
     _fig_temp = make_cross_heatmap(**_kw, color_feat="station_celsius", sequential_hue="orange")
     _fig_ndvi = make_cross_heatmap(**_kw, color_feat="ndvi", sequential_hue="green")
     _fig_tp = make_cross_heatmap(**_kw, color_feat="tp", sequential_hue="blue", log10_color=True)
     _fig_wind = make_cross_heatmap(**_kw, color_feat="wind", sequential_hue="violet")
 
-    mo.vstack([
-        mo.md(
-            "## Elevation × Distance to Sea, by Covariate: Unweighted vs. GREG-Weighted\n\n"
-            "Same axes as the first heatmap above, but colored by mean station "
-            "temperature, NDVI, precipitation (log₁₀), and wind speed instead of "
-            "residual. These answer a different question than the residual "
-            "heatmaps -- not \"is ERA5 biased here\" but \"what does this part of "
-            "the covariate space actually look like\" -- and the same "
-            "representativeness argument applies: a cell's raw mean can be skewed "
-            "by which DEGURBA classes happen to be sampled within it."
-        ),
-        _fig_temp,
-        _fig_ndvi,
-        _fig_tp,
-        _fig_wind,
-    ])
+    mo.vstack(
+        [
+            mo.md(
+                "## Elevation × Distance to Sea, by Covariate: Unweighted vs. GREG-Weighted\n\n"
+                "Same axes as the first heatmap above, but colored by mean station "
+                "temperature, NDVI, precipitation (log₁₀), and wind speed instead of "
+                "residual. These answer a different question than the residual "
+                'heatmaps -- not "is ERA5 biased here" but "what does this part of '
+                'the covariate space actually look like" -- and the same '
+                "representativeness argument applies: a cell's raw mean can be skewed "
+                "by which DEGURBA classes happen to be sampled within it."
+            ),
+            _fig_temp,
+            _fig_ndvi,
+            _fig_tp,
+            _fig_wind,
+        ]
+    )
     return
 
 
@@ -1354,20 +1437,28 @@ def _(
             out.append((dmin if lo == "-inf" else float(lo), dmax if hi == "inf" else float(hi)))
         return out
 
-    _edges = _parse(_bins_dist, float(_df["dist_to_sea_km"].min()), float(_df["dist_to_sea_km"].max()))
+    _edges = _parse(
+        _bins_dist, float(_df["dist_to_sea_km"].min()), float(_df["dist_to_sea_km"].max())
+    )
     _x_labels = [f"{lo:.3g}–{hi:.3g}" for lo, hi in _edges]
 
-    _full = pd.DataFrame(list(itertools.product(_bins_dist, DEGURBA_ORDER)), columns=["bin_dist", "degurba_label"])
+    _full = pd.DataFrame(
+        list(itertools.product(_bins_dist, DEGURBA_ORDER)), columns=["bin_dist", "degurba_label"]
+    )
 
     def _grid(weight):
         if weight is None:
-            agg = _df.group_by(["bin_dist", "degurba_label"]).agg(pl.col("residual").mean().alias("v"))
+            agg = _df.group_by(["bin_dist", "degurba_label"]).agg(
+                pl.col("residual").mean().alias("v")
+            )
         else:
             agg = _df.group_by(["bin_dist", "degurba_label"]).agg(
                 ((pl.col("residual") * pl.col(weight)).sum() / pl.col(weight).sum()).alias("v")
             )
         heat = _full.merge(agg.to_pandas(), on=["bin_dist", "degurba_label"], how="left")
-        z = heat.pivot(index="degurba_label", columns="bin_dist", values="v").reindex(index=DEGURBA_ORDER, columns=_bins_dist)
+        z = heat.pivot(index="degurba_label", columns="bin_dist", values="v").reindex(
+            index=DEGURBA_ORDER, columns=_bins_dist
+        )
         return z.to_numpy()
 
     _z_u = _grid(None)
@@ -1375,32 +1466,53 @@ def _(
     _abs_max = np.nanmax(np.abs(np.concatenate([_z_u.flatten(), _z_w.flatten()])))
     _scale = [[0.0, PALETTE["blue"]], [0.5, "#f0efec"], [1.0, PALETTE["red"]]]
 
-    fig_dist_degurba = make_subplots(rows=1, cols=2, subplot_titles=["Unweighted", "GREG-weighted"], horizontal_spacing=0.2)
+    fig_dist_degurba = make_subplots(
+        rows=1, cols=2, subplot_titles=["Unweighted", "GREG-weighted"], horizontal_spacing=0.2
+    )
     for _col, _z in enumerate([_z_u, _z_w], start=1):
         fig_dist_degurba.add_trace(
             go.Heatmap(
-                z=_z, x=_x_labels, y=DEGURBA_ORDER, zmin=-_abs_max, zmax=_abs_max, colorscale=_scale,
-                showscale=(_col == 2), colorbar=dict(title="Mean residual (°C)") if _col == 2 else None,
+                z=_z,
+                x=_x_labels,
+                y=DEGURBA_ORDER,
+                zmin=-_abs_max,
+                zmax=_abs_max,
+                colorscale=_scale,
+                showscale=(_col == 2),
+                colorbar=dict(title="Mean residual (°C)") if _col == 2 else None,
                 hovertemplate="dist: %{x}<br>%{y}<br>mean residual: %{z:.3f}<extra></extra>",
             ),
-            row=1, col=_col,
+            row=1,
+            col=_col,
         )
     fig_dist_degurba.update_layout(
-        template="plotly_white", height=420, width=900,
+        template="plotly_white",
+        height=420,
+        width=900,
         title="Distance to sea × DEGURBA class",
         margin=dict(t=70, b=60),
     )
-    fig_dist_degurba.update_xaxes(title="Distance to sea (km)", tickangle=-40, gridcolor=GRID_COLOR, linecolor=AXIS_COLOR, tickfont=dict(color=MUTED_INK))
-    fig_dist_degurba.update_yaxes(gridcolor=GRID_COLOR, linecolor=AXIS_COLOR, tickfont=dict(color=MUTED_INK))
+    fig_dist_degurba.update_xaxes(
+        title="Distance to sea (km)",
+        tickangle=-40,
+        gridcolor=GRID_COLOR,
+        linecolor=AXIS_COLOR,
+        tickfont=dict(color=MUTED_INK),
+    )
+    fig_dist_degurba.update_yaxes(
+        gridcolor=GRID_COLOR, linecolor=AXIS_COLOR, tickfont=dict(color=MUTED_INK)
+    )
 
-    mo.vstack([
-        mo.md(
-            "**Caveat**: both axes here are exactly what GREG calibrates on, so the "
-            "weighted panel answers *which cells dominate the corrected national "
-            "estimate*, not *does the pattern change* -- see the caveat above."
-        ),
-        fig_dist_degurba,
-    ])
+    mo.vstack(
+        [
+            mo.md(
+                "**Caveat**: both axes here are exactly what GREG calibrates on, so the "
+                "weighted panel answers *which cells dominate the corrected national "
+                "estimate*, not *does the pattern change* -- see the caveat above."
+            ),
+            fig_dist_degurba,
+        ]
+    )
     return
 
 

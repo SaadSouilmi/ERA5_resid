@@ -8,28 +8,23 @@ app = marimo.App(width="medium")
 def _():
     from pathlib import Path
 
-    import altair as alt
     import geopandas as gpd
     import numpy as np
     import pandas as pd
-    import polars as pl
     import pycountry
     import rasterio
     import reverse_geocoder as rg
     import xarray as xr
     from rasterio.warp import transform
     from tqdm import tqdm
-    import marimo as mo
-    import plotly.graph_objects as go
-    from plotly.subplots import make_subplots
 
     return Path, gpd, np, pd, pycountry, rasterio, rg, tqdm, transform, xr
 
 
 @app.cell
 def _(Path):
-    DATA = Path("/home2/lobib/gen_hack/data/main")
-    DATA2 = Path("/home2/lobib/gen_hack/data2/")
+    from py.paths import DATA, DATA2
+
     degurba_path = (
         DATA2
         / "GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0/GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0.tif"
@@ -50,9 +45,7 @@ def _(Path, degurba_path, gpd, np, pd, pycountry, rasterio, rg, transform):
     def load_station_data(eca_tx_datafolder: Path) -> pd.DataFrame:
         stations_filepath = eca_tx_datafolder / "stations.txt"
 
-        stations_df = pd.read_csv(
-            stations_filepath, skiprows=17, skipinitialspace=True
-        )
+        stations_df = pd.read_csv(stations_filepath, skiprows=17, skipinitialspace=True)
         stations_df["LAT_decimal"] = stations_df["LAT"].apply(dms_to_decimal)
         stations_df["LON_decimal"] = stations_df["LON"].apply(dms_to_decimal)
         stations_df["country"] = stations_df["CN"].apply(
@@ -61,26 +54,19 @@ def _(Path, degurba_path, gpd, np, pd, pycountry, rasterio, rg, transform):
         stations_df = stations_df.rename(columns={"HGHT": "elevation"})
         stations_df["place"] = [
             dico["name"]
-            for dico in rg.search(
-                list(zip(stations_df["LAT_decimal"], stations_df["LON_decimal"]))
-            )
+            for dico in rg.search(list(zip(stations_df["LAT_decimal"], stations_df["LON_decimal"])))
         ]
 
         stations_gdf = gpd.GeoDataFrame(
             stations_df,
-            geometry=gpd.points_from_xy(
-                stations_df["LON_decimal"], stations_df["LAT_decimal"]
-            ),
+            geometry=gpd.points_from_xy(stations_df["LON_decimal"], stations_df["LAT_decimal"]),
             crs="EPSG:4326",
         ).drop(columns=["LAT", "LON", "LAT_decimal", "LON_decimal"])
 
         print(f"Number of registered stations: {len(stations_gdf)}")
         return stations_gdf
 
-
-    def load_degurba_data(
-        stations_gdf: gpd.GeoDataFrame, deburba_path: Path
-    ) -> gpd.GeoDataFrame:
+    def load_degurba_data(stations_gdf: gpd.GeoDataFrame, deburba_path: Path) -> gpd.GeoDataFrame:
         with rasterio.open(degurba_path) as src:
             nodata = src.nodata
             lons = stations_gdf.geometry.x.values
@@ -93,17 +79,13 @@ def _(Path, degurba_path, gpd, np, pd, pycountry, rasterio, rg, transform):
             for i in range(len(stations_gdf)):
                 row, col = src.index(xs[i], ys[i])
                 if 0 <= row < src.height and 0 <= col < src.width:
-                    val = src.read(
-                        1, window=rasterio.windows.Window(col, row, 1, 1)
-                    )[0, 0]
+                    val = src.read(1, window=rasterio.windows.Window(col, row, 1, 1))[0, 0]
                     degurba_vals.append(np.nan if val == nodata else int(val))
                 else:
                     degurba_vals.append(np.nan)
 
         stations_gdf["degurba"] = degurba_vals
-        print(
-            f"degurba nulls: {stations_gdf['degurba'].isna().sum()} / {len(stations_gdf)}"
-        )
+        print(f"degurba nulls: {stations_gdf['degurba'].isna().sum()} / {len(stations_gdf)}")
 
         DEGURBA_LABELS = {
             10: "Water",
@@ -119,19 +101,18 @@ def _(Path, degurba_path, gpd, np, pd, pycountry, rasterio, rg, transform):
         stations_gdf["degurba_label"] = stations_gdf["degurba"].map(DEGURBA_LABELS)
         return stations_gdf
 
-
     def compute_distance_to_sea_km(
         stations_gdf: gpd.GeoDataFrame, europe_gdf: gpd.GeoDataFrame
     ) -> gpd.GeoDataFrame:
         import shapely
         from shapely import STRtree
 
-        coastline = (
-            europe_gdf.dissolve().to_crs("EPSG:3035").boundary.iloc[0].simplify(500)
-        )
+        coastline = europe_gdf.dissolve().to_crs("EPSG:3035").boundary.iloc[0].simplify(500)
         # Split into per-ring/part geometries so the STRtree can prune candidates
         # before computing exact distances (O(n·log m) instead of O(n·m))
-        segments = list(coastline.geoms) if coastline.geom_type == "MultiLineString" else [coastline]
+        segments = (
+            list(coastline.geoms) if coastline.geom_type == "MultiLineString" else [coastline]
+        )
 
         stations_3035 = stations_gdf.to_crs("EPSG:3035")
         points = stations_3035.geometry.values
@@ -143,7 +124,6 @@ def _(Path, degurba_path, gpd, np, pd, pycountry, rasterio, rg, transform):
         stations_gdf = stations_gdf.copy()
         stations_gdf["dist_to_sea_km"] = distances / 1000
         return stations_gdf
-
 
     return load_degurba_data, load_station_data
 
@@ -163,9 +143,7 @@ def _(Path, np, pd, pycountry, rasterio, tqdm, transform, xr):
         all_lons = xr.DataArray(stations_gdf.geometry.x.values, dims="station")
 
         era5_all_stations = {
-            var: era5_ds[var]
-            .sel(latitude=all_lats, longitude=all_lons, method="nearest")
-            .compute()
+            var: era5_ds[var].sel(latitude=all_lats, longitude=all_lons, method="nearest").compute()
             for var in variables
         }
 
@@ -187,9 +165,9 @@ def _(Path, np, pd, pycountry, rasterio, tqdm, transform, xr):
             nearest_lat = land_lat_vals[nearest]
             nearest_lon = land_lon_vals[nearest]
             for var in variables:
-                era5_all_stations[var][:, station_idx] = era5_ds[var].sel(
-                    latitude=nearest_lat, longitude=nearest_lon
-                ).values
+                era5_all_stations[var][:, station_idx] = (
+                    era5_ds[var].sel(latitude=nearest_lat, longitude=nearest_lon).values
+                )
 
         return era5_all_stations
 
@@ -215,20 +193,23 @@ def _(Path, np, pd, pycountry, rasterio, tqdm, transform, xr):
             time_indices = era5_times.get_indexer(station_df["DATE"])
 
             all_residuals.append(
-                pd.DataFrame({
-                    "STAID": row["STAID"],
-                    "country": row["country"],
-                    "place": row["place"],
-                    "elevation": row["elevation"],
-                    "lon": row["geometry"].x,
-                    "lat": row["geometry"].y,
-                    "date": station_df["DATE"].values,
-                    "station_celsius": station_df["TX_celsius"].values,
-                    "era5_celsius": era5_all_stations["t2m_celsius"].values[time_indices, i],
-                    "residual": station_df["TX_celsius"].values - era5_all_stations["t2m_celsius"].values[time_indices, i],
-                    "tp": era5_all_stations["tp"].values[time_indices, i],
-                    "wind": era5_all_stations["wind"].values[time_indices, i],
-                })
+                pd.DataFrame(
+                    {
+                        "STAID": row["STAID"],
+                        "country": row["country"],
+                        "place": row["place"],
+                        "elevation": row["elevation"],
+                        "lon": row["geometry"].x,
+                        "lat": row["geometry"].y,
+                        "date": station_df["DATE"].values,
+                        "station_celsius": station_df["TX_celsius"].values,
+                        "era5_celsius": era5_all_stations["t2m_celsius"].values[time_indices, i],
+                        "residual": station_df["TX_celsius"].values
+                        - era5_all_stations["t2m_celsius"].values[time_indices, i],
+                        "tp": era5_all_stations["tp"].values[time_indices, i],
+                        "wind": era5_all_stations["wind"].values[time_indices, i],
+                    }
+                )
             )
 
         return pd.concat(all_residuals, ignore_index=True)
@@ -237,7 +218,7 @@ def _(Path, np, pd, pycountry, rasterio, tqdm, transform, xr):
         def quarter_tp(date):
             m, y = date.month, date.year
             if m < 3:
-                return f"{y-1}-12-01_{y}-03-01"
+                return f"{y - 1}-12-01_{y}-03-01"
             elif m < 6:
                 return f"{y}-03-01_{y}-06-01"
             elif m < 9:
@@ -245,7 +226,7 @@ def _(Path, np, pd, pycountry, rasterio, tqdm, transform, xr):
             elif m < 12:
                 return f"{y}-09-01_{y}-12-01"
             else:
-                return f"{y}-12-01_{y+1}-03-01"
+                return f"{y}-12-01_{y + 1}-03-01"
 
         available = sorted(
             [f.stem.replace("ndvi_", "") for f in ndvi_dir.glob("ndvi_*.tif")],
@@ -275,7 +256,11 @@ def _(Path, np, pd, pycountry, rasterio, tqdm, transform, xr):
                 staids = residuals_df.loc[residuals_df["_ndvi_tp"] == tp, "STAID"].unique()
                 lats = sta_lats.reindex(staids).values
                 lons = sta_lons.reindex(staids).values
-                xs, ys = (lons, lats) if src.crs.to_epsg() == 4326 else transform("EPSG:4326", src.crs, lons, lats)
+                xs, ys = (
+                    (lons, lats)
+                    if src.crs.to_epsg() == 4326
+                    else transform("EPSG:4326", src.crs, lons, lats)
+                )
                 for i, staid in enumerate(staids):
                     r, c = src.index(xs[i], ys[i])
                     if 0 <= r < src.height and 0 <= c < src.width:
@@ -310,8 +295,6 @@ def _(Path, np, pd, pycountry, rasterio, tqdm, transform, xr):
 
 @app.cell
 def _(DATA, DATA2, degurba_path, gpd, load_degurba_data, load_station_data):
-    europe_gdf = gpd.read_file(DATA / "gadm_410_europe.gpkg")
-
     stations_gdf = load_station_data(DATA2 / "ECA_blend_tx")
     stations_gdf = load_degurba_data(stations_gdf, degurba_path)
     # stations_gdf = compute_distance_to_sea_km(stations_gdf, europe_gdf)
@@ -357,11 +340,6 @@ def _(
     residuals_df.to_parquet(DATA2 / "residuals.parquet", index=False)
     print(f"Saved {len(residuals_df):,} rows to {DATA2 / 'residuals.parquet'}")
     residuals_df.info()
-    return
-
-
-@app.cell
-def _():
     return
 
 

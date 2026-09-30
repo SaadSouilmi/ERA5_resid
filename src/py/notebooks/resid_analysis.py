@@ -14,14 +14,15 @@ def _():
     import plotly.express as px
     import polars as pl
 
-    from era5_analysis import pdp
+    from py import pdp
 
     return Path, alt, np, pd, pdp, pl, px
 
 
 @app.cell
 def _(Path):
-    DATA2 = Path("/home2/lobib/gen_hack/data2")
+    from py.paths import DATA2
+
     return (DATA2,)
 
 
@@ -84,12 +85,8 @@ def _(alt, np, pd, pdp):
                 _pl.col(feature).clip(lower_bound=1e-9).log(base=10).alias(feature)
             )
         df_binned, bins = pdp.bin_features(residuals_df, feature, n_bins=n_bins)
-        means, ci_lo, ci_hi = pdp.pdp_cluster_bootstrap(
-            df_binned, "bin", bins, rng=rng
-        )
-        centers = pdp.bin_centers(
-            bins, df_binned[feature].min(), df_binned[feature].max()
-        )
+        means, ci_lo, ci_hi = pdp.pdp_cluster_bootstrap(df_binned, "bin", bins, rng=rng)
+        centers = pdp.bin_centers(bins, df_binned[feature].min(), df_binned[feature].max())
 
         feat_min = float(residuals_df[feature].min())
         feat_max = float(residuals_df[feature].max())
@@ -97,9 +94,7 @@ def _(alt, np, pd, pdp):
         if log10:
             xlabel = f"{xlabel} (log₁₀)"
 
-        pdp_df = pd.DataFrame(
-            {"x": centers, "mean": means, "ci_lo": ci_lo, "ci_hi": ci_hi}
-        )
+        pdp_df = pd.DataFrame({"x": centers, "mean": means, "ci_lo": ci_lo, "ci_hi": ci_hi})
 
         zero_rule = (
             alt.Chart(pd.DataFrame({"y": [0]}))
@@ -107,15 +102,23 @@ def _(alt, np, pd, pdp):
             .encode(y="y:Q")
         )
 
-        band = alt.Chart(pdp_df).mark_area(opacity=0.15, color=color).encode(
-            x=alt.X("x:Q", title=xlabel, scale=x_scale),
-            y=alt.Y("ci_lo:Q", title="Mean residual (°C)"),
-            y2=alt.Y2("ci_hi:Q"),
+        band = (
+            alt.Chart(pdp_df)
+            .mark_area(opacity=0.15, color=color)
+            .encode(
+                x=alt.X("x:Q", title=xlabel, scale=x_scale),
+                y=alt.Y("ci_lo:Q", title="Mean residual (°C)"),
+                y2=alt.Y2("ci_hi:Q"),
+            )
         )
 
-        line = alt.Chart(pdp_df).mark_line(color=color, strokeWidth=2).encode(
-            x=alt.X("x:Q", scale=x_scale),
-            y="mean:Q",
+        line = (
+            alt.Chart(pdp_df)
+            .mark_line(color=color, strokeWidth=2)
+            .encode(
+                x=alt.X("x:Q", scale=x_scale),
+                y="mean:Q",
+            )
         )
 
         points = (
@@ -133,9 +136,7 @@ def _(alt, np, pd, pdp):
             )
         )
 
-        pdp_chart = (zero_rule + band + line + points).properties(
-            width=560, height=220
-        )
+        pdp_chart = (zero_rule + band + line + points).properties(width=560, height=220)
 
         # Sample to stay under Altair's row limit; same x domain as PDP
         _series = residuals_df[feature].drop_nulls()
@@ -159,17 +160,13 @@ def _(alt, np, pd, pdp):
 
 @app.cell
 def _(make_pdp_and_hist, residuals_df):
-    make_pdp_and_hist(
-        residuals_df, "station_celsius", "Station temp (°C)", color="#E8851A"
-    )
+    make_pdp_and_hist(residuals_df, "station_celsius", "Station temp (°C)", color="#E8851A")
     return
 
 
 @app.cell
 def _(make_pdp_and_hist, residuals_df):
-    make_pdp_and_hist(
-        residuals_df, "tp", "Precipitation (m/day)", color="#1E90FF", log10=True
-    )
+    make_pdp_and_hist(residuals_df, "tp", "Precipitation (m/day)", color="#1E90FF", log10=True)
     return
 
 
@@ -187,9 +184,7 @@ def _(make_pdp_and_hist, residuals_df):
 
 @app.cell
 def _(make_pdp_and_hist, residuals_df):
-    make_pdp_and_hist(
-        residuals_df, "dist_to_sea_km", "Distance to sea (km)", color="#4682B4"
-    )
+    make_pdp_and_hist(residuals_df, "dist_to_sea_km", "Distance to sea (km)", color="#4682B4")
     return
 
 
@@ -253,9 +248,7 @@ def _(alt, np, pd, pdp, pl, residuals_df):
                 axis=alt.Axis(labelAngle=-30),
             ),
             y=alt.Y("mean:Q", title="Mean residual (°C)"),
-            color=alt.Color(
-                "color:N", scale=None, legend=None
-            ),
+            color=alt.Color("color:N", scale=None, legend=None),
             tooltip=[
                 alt.Tooltip("label:N", title="Class"),
                 alt.Tooltip("mean:Q", title="Mean residual", format=".3f"),
@@ -313,12 +306,24 @@ def _(alt, np, pd, pdp, pl, residuals_df):
 @app.cell
 def _(alt, pd, pdp):
     import itertools as _itertools
+
     import polars as _pl
 
-    def make_cross_heatmap(residuals_df, feat_x, feat_y, xlabel, ylabel, n_bins=8, title="",
-                           color_x="#E8851A", color_y="#4682B4",
-                           color_feat="residual", color_scheme="redblue", color_title="Mean residual (°C)",
-                           diverging=True):
+    def make_cross_heatmap(
+        residuals_df,
+        feat_x,
+        feat_y,
+        xlabel,
+        ylabel,
+        n_bins=8,
+        title="",
+        color_x="#E8851A",
+        color_y="#4682B4",
+        color_feat="residual",
+        color_scheme="redblue",
+        color_title="Mean residual (°C)",
+        diverging=True,
+    ):
         W, H = 360, 300
 
         df, bins_x = pdp.bin_features(residuals_df, feat_x, n_bins=n_bins)
@@ -331,10 +336,12 @@ def _(alt, pd, pdp):
             result = []
             for b in bins:
                 lo, hi = b.strip("(]").split(", ")
-                result.append((
-                    float(data_min) if lo == "-inf" else float(lo),
-                    float(data_max) if hi == "inf" else float(hi),
-                ))
+                result.append(
+                    (
+                        float(data_min) if lo == "-inf" else float(lo),
+                        float(data_max) if hi == "inf" else float(hi),
+                    )
+                )
             return result
 
         edges_x = _parse_edges(bins_x, df[feat_x].min(), df[feat_x].max())
@@ -397,15 +404,24 @@ def _(alt, pd, pdp):
         # Marginal histograms — sampled raw values, same domain as heatmap axes
         _nx = min(4999, residuals_df[feat_x].drop_nulls().len())
         _ny = min(4999, residuals_df[feat_y].drop_nulls().len())
-        x_hist_df = pd.DataFrame({"val": residuals_df[feat_x].drop_nulls().sample(n=_nx, seed=42).to_numpy()})
-        y_hist_df = pd.DataFrame({"val": residuals_df[feat_y].drop_nulls().sample(n=_ny, seed=42).to_numpy()})
+        x_hist_df = pd.DataFrame(
+            {"val": residuals_df[feat_x].drop_nulls().sample(n=_nx, seed=42).to_numpy()}
+        )
+        y_hist_df = pd.DataFrame(
+            {"val": residuals_df[feat_y].drop_nulls().sample(n=_ny, seed=42).to_numpy()}
+        )
 
         top_hist = (
             alt.Chart(x_hist_df)
             .mark_bar(color=color_x, opacity=0.75)
             .encode(
-                alt.X("val:Q", bin=alt.Bin(maxbins=40), title=None, scale=x_scale,
-                      axis=alt.Axis(labels=False, ticks=False)),
+                alt.X(
+                    "val:Q",
+                    bin=alt.Bin(maxbins=40),
+                    title=None,
+                    scale=x_scale,
+                    axis=alt.Axis(labels=False, ticks=False),
+                ),
                 alt.Y("count()", title="N", axis=alt.Axis(tickCount=3)),
             )
             .properties(width=W, height=70)
@@ -415,21 +431,23 @@ def _(alt, pd, pdp):
             alt.Chart(y_hist_df)
             .mark_bar(color=color_y, opacity=0.75)
             .encode(
-                alt.Y("val:Q", bin=alt.Bin(maxbins=40), title=None, scale=y_scale,
-                      axis=alt.Axis(labels=False, ticks=False)),
+                alt.Y(
+                    "val:Q",
+                    bin=alt.Bin(maxbins=40),
+                    title=None,
+                    scale=y_scale,
+                    axis=alt.Axis(labels=False, ticks=False),
+                ),
                 alt.X("count()", title="N", axis=alt.Axis(tickCount=3)),
             )
             .properties(width=70, height=H)
         )
 
-        return (
-            alt.vconcat(
-                top_hist,
-                alt.hconcat(heatmap, right_hist, spacing=4),
-                spacing=2,
-            )
-            .properties(title=title)
-        )
+        return alt.vconcat(
+            top_hist,
+            alt.hconcat(heatmap, right_hist, spacing=4),
+            spacing=2,
+        ).properties(title=title)
 
     return (make_cross_heatmap,)
 
@@ -437,10 +455,14 @@ def _(alt, pd, pdp):
 @app.cell
 def _(make_cross_heatmap, residuals_df):
     make_cross_heatmap(
-        residuals_df, "elevation", "dist_to_sea_km",
-        "Elevation (m)", "Distance to sea (km)",
+        residuals_df,
+        "elevation",
+        "dist_to_sea_km",
+        "Elevation (m)",
+        "Distance to sea (km)",
         title="Elevation x distance to sea",
-        color_x="#8B4513", color_y="#4682B4",
+        color_x="#8B4513",
+        color_y="#4682B4",
     )
     return
 
@@ -451,8 +473,13 @@ def _(alt, pd, pdp, pl, residuals_df):
 
     _W, _H = 360, 300
     _degurba_order = [
-        "Very low density rural", "Low density rural", "Rural cluster",
-        "Suburban", "Semi-dense urban cluster", "Dense urban cluster", "Urban centre",
+        "Very low density rural",
+        "Low density rural",
+        "Rural cluster",
+        "Suburban",
+        "Semi-dense urban cluster",
+        "Dense urban cluster",
+        "Urban centre",
     ]
     _df = residuals_df.filter(pl.col("degurba_label").is_in(_degurba_order))
     _df, _bins_dist = pdp.bin_features(_df, "dist_to_sea_km", n_bins=8)
@@ -463,8 +490,12 @@ def _(alt, pd, pdp, pl, residuals_df):
         res = []
         for b in bins:
             lo, hi = b.strip("(]").split(", ")
-            res.append((float(dmin) if lo == "-inf" else float(lo),
-                        float(dmax) if hi == "inf" else float(hi)))
+            res.append(
+                (
+                    float(dmin) if lo == "-inf" else float(lo),
+                    float(dmax) if hi == "inf" else float(hi),
+                )
+            )
         return res
 
     _edges = _parse(_bins_dist, _df["dist_to_sea_km"].min(), _df["dist_to_sea_km"].max())
@@ -472,7 +503,9 @@ def _(alt, pd, pdp, pl, residuals_df):
     _x_scale = alt.Scale(domain=_x_domain, nice=False, zero=False)
 
     # Complete grid
-    _full = pd.DataFrame(list(_it2.product(_bins_dist, _degurba_order)), columns=["bin_dist", "degurba_label"])
+    _full = pd.DataFrame(
+        list(_it2.product(_bins_dist, _degurba_order)), columns=["bin_dist", "degurba_label"]
+    )
     _heat_df = (
         _df.group_by(["degurba_label", "bin_dist"])
         .agg(pl.col("residual").mean().alias("mean_residual"), pl.len().alias("n"))
@@ -509,13 +542,20 @@ def _(alt, pd, pdp, pl, residuals_df):
 
     # Top histogram: actual dist_to_sea distribution
     _n_dist = min(4999, residuals_df["dist_to_sea_km"].drop_nulls().len())
-    _dist_hist_df = pd.DataFrame({"val": residuals_df["dist_to_sea_km"].drop_nulls().sample(n=_n_dist, seed=42).to_numpy()})
+    _dist_hist_df = pd.DataFrame(
+        {"val": residuals_df["dist_to_sea_km"].drop_nulls().sample(n=_n_dist, seed=42).to_numpy()}
+    )
     _top_hist = (
         alt.Chart(_dist_hist_df)
         .mark_bar(color="#4682B4", opacity=0.75)
         .encode(
-            alt.X("val:Q", bin=alt.Bin(maxbins=40), title=None, scale=_x_scale,
-                  axis=alt.Axis(labels=False, ticks=False)),
+            alt.X(
+                "val:Q",
+                bin=alt.Bin(maxbins=40),
+                title=None,
+                scale=_x_scale,
+                axis=alt.Axis(labels=False, ticks=False),
+            ),
             alt.Y("count()", title="N", axis=alt.Axis(tickCount=3)),
         )
         .properties(width=_W, height=70)
@@ -531,22 +571,25 @@ def _(alt, pd, pdp, pl, residuals_df):
         "Dense urban cluster": "#DC143C",
         "Urban centre": "#8B0000",
     }
-    _degurba_counts = (
-        _df.group_by("degurba_label")
-        .agg(pl.len().alias("count"))
-        .to_pandas()
-    )
+    _degurba_counts = _df.group_by("degurba_label").agg(pl.len().alias("count")).to_pandas()
     _right_hist = (
         alt.Chart(_degurba_counts)
         .mark_bar(opacity=0.85)
         .encode(
-            y=alt.Y("degurba_label:O", sort=_degurba_order, title=None,
-                    axis=alt.Axis(labels=False, ticks=False)),
+            y=alt.Y(
+                "degurba_label:O",
+                sort=_degurba_order,
+                title=None,
+                axis=alt.Axis(labels=False, ticks=False),
+            ),
             x=alt.X("count:Q", title="N", axis=alt.Axis(tickCount=3)),
-            color=alt.Color("degurba_label:N",
-                            scale=alt.Scale(domain=list(_degurba_colors.keys()),
-                                            range=list(_degurba_colors.values())),
-                            legend=None),
+            color=alt.Color(
+                "degurba_label:N",
+                scale=alt.Scale(
+                    domain=list(_degurba_colors.keys()), range=list(_degurba_colors.values())
+                ),
+                legend=None,
+            ),
         )
         .properties(width=70, height=_H)
     )
@@ -562,10 +605,14 @@ def _(alt, pd, pdp, pl, residuals_df):
 @app.cell
 def _(make_cross_heatmap, residuals_df):
     make_cross_heatmap(
-        residuals_df, "station_celsius", "wind",
-        "Station temp (°C)", "Wind speed (m/s)",
+        residuals_df,
+        "station_celsius",
+        "wind",
+        "Station temp (°C)",
+        "Wind speed (m/s)",
         title="Station temperature x wind speed",
-        color_x="#E8851A", color_y="#9370DB",
+        color_x="#E8851A",
+        color_y="#9370DB",
     )
     return
 
@@ -573,10 +620,14 @@ def _(make_cross_heatmap, residuals_df):
 @app.cell
 def _(make_cross_heatmap, residuals_df):
     make_cross_heatmap(
-        residuals_df, "elevation", "wind",
-        "Elevation (m)", "Wind speed (m/s)",
+        residuals_df,
+        "elevation",
+        "wind",
+        "Elevation (m)",
+        "Wind speed (m/s)",
         title="Elevation x wind speed",
-        color_x="#8B4513", color_y="#9370DB",
+        color_x="#8B4513",
+        color_y="#9370DB",
     )
     return
 
@@ -585,28 +636,47 @@ def _(make_cross_heatmap, residuals_df):
 def _(alt, make_cross_heatmap, residuals_df):
     _kw = dict(
         residuals_df=residuals_df,
-        feat_x="elevation", feat_y="dist_to_sea_km",
-        xlabel="Elevation (m)", ylabel="Distance to sea (km)",
-        color_x="#8B4513", color_y="#4682B4",
+        feat_x="elevation",
+        feat_y="dist_to_sea_km",
+        xlabel="Elevation (m)",
+        ylabel="Distance to sea (km)",
+        color_x="#8B4513",
+        color_y="#4682B4",
         diverging=False,
     )
     alt.vconcat(
         alt.hconcat(
-            make_cross_heatmap(**_kw, title="Mean station temperature",
-                               color_feat="station_celsius", color_scheme="plasma",
-                               color_title="Mean station temp (°C)"),
-            make_cross_heatmap(**_kw, title="Mean NDVI",
-                               color_feat="ndvi", color_scheme="greens",
-                               color_title="Mean NDVI"),
+            make_cross_heatmap(
+                **_kw,
+                title="Mean station temperature",
+                color_feat="station_celsius",
+                color_scheme="plasma",
+                color_title="Mean station temp (°C)",
+            ),
+            make_cross_heatmap(
+                **_kw,
+                title="Mean NDVI",
+                color_feat="ndvi",
+                color_scheme="greens",
+                color_title="Mean NDVI",
+            ),
             spacing=20,
         ).resolve_scale(color="independent"),
         alt.hconcat(
-            make_cross_heatmap(**_kw, title="Mean precipitation",
-                               color_feat="tp", color_scheme="blues",
-                               color_title="Mean precipitation (m/day)"),
-            make_cross_heatmap(**_kw, title="Mean wind speed",
-                               color_feat="wind", color_scheme="purples",
-                               color_title="Mean wind (m/s)"),
+            make_cross_heatmap(
+                **_kw,
+                title="Mean precipitation",
+                color_feat="tp",
+                color_scheme="blues",
+                color_title="Mean precipitation (m/day)",
+            ),
+            make_cross_heatmap(
+                **_kw,
+                title="Mean wind speed",
+                color_feat="wind",
+                color_scheme="purples",
+                color_title="Mean wind (m/s)",
+            ),
             spacing=20,
         ).resolve_scale(color="independent"),
         spacing=30,

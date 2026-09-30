@@ -8,9 +8,9 @@ Research project quantifying how accurate ERA5-Land reanalysis temperature data 
 
 ```bash
 uv run python <script>          # always use uv, not python3
-uv run marimo edit notebooks/resid_analysis.py     # main analysis
-uv run marimo edit notebooks/poststrat_analysis.py # post-stratification
-uv run marimo edit notebooks/temp_resid.py         # pipeline (needs raw data)
+uv run marimo edit src/py/notebooks/resid_analysis.py     # main analysis
+uv run marimo edit src/py/notebooks/poststrat_analysis.py # post-stratification
+uv run marimo edit src/py/notebooks/temp_resid.py         # pipeline (needs raw data)
 ```
 
 ## Data layout
@@ -31,14 +31,14 @@ The heavy raw data (ERA5 netCDFs, station text files, Sentinel-2 NDVI rasters) l
 | `STAID` | Weather station ID |
 | `date` | Observation date |
 | `station_celsius` | Observed station temperature (°C) |
-| `residual` | ERA5 minus station temperature (bias) |
+| `residual` | Station minus ERA5 temperature (bias) |
 | `tp` | Total precipitation (daily mean) |
 | `u10`, `v10` | Wind components |
 | `ndvi` | Quarterly Sentinel-2 NDVI at station location |
 | `dist_to_sea_km` | Distance to nearest coastline |
 | `degurba_label` | Urbanization class from GHS-SMOD (Water / Very low density rural / Low density rural / Rural cluster / Suburban / Semi-dense urban cluster / Dense urban cluster / Urban centre) |
 
-## Current notebooks (in `notebooks/`)
+## Current notebooks (in `src/py/notebooks/`)
 
 All active work is in **marimo** (`.py`) notebooks — run with `uv run marimo edit <file>`:
 

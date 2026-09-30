@@ -16,15 +16,30 @@ def paper_style(chart):
         chart.configure(background="white", font=FONT, padding=8)
         .configure_view(stroke=None)
         .configure_axis(
-            labelFont=FONT, titleFont=FONT, labelFontSize=10, titleFontSize=11,
-            titleFontWeight="normal", titlePadding=10, labelPadding=5,
-            domainColor="#444444", domainWidth=0.7, tickColor="#444444",
-            tickWidth=0.7, tickSize=4, gridColor="#e5e5e5", gridWidth=0.5,
-            labelColor="#222222", titleColor="#222222",
+            labelFont=FONT,
+            titleFont=FONT,
+            labelFontSize=10,
+            titleFontSize=11,
+            titleFontWeight="normal",
+            titlePadding=10,
+            labelPadding=5,
+            domainColor="#444444",
+            domainWidth=0.7,
+            tickColor="#444444",
+            tickWidth=0.7,
+            tickSize=4,
+            gridColor="#e5e5e5",
+            gridWidth=0.5,
+            labelColor="#222222",
+            titleColor="#222222",
         )
         .configure_legend(
-            labelFont=FONT, titleFont=FONT, labelFontSize=10, titleFontSize=11,
-            titleFontWeight="normal", gradientThickness=10,
+            labelFont=FONT,
+            titleFont=FONT,
+            labelFontSize=10,
+            titleFontSize=11,
+            titleFontWeight="normal",
+            gradientThickness=10,
         )
         .configure_title(font=FONT, fontSize=12, anchor="start", offset=10)
     )
@@ -46,7 +61,9 @@ def save_figure(chart, stem, dpi=600, width_mm=DOUBLE_COLUMN_MM):
     stem.with_suffix(".svg").write_text(svg)
     # vl-convert exports unitless SVG dimensions as points (72 per inch).
     render_svg = svg.replace(f'width="{width_mm}mm"', f'width="{width_mm / 25.4 * 72}"', 1)
-    render_svg = render_svg.replace(f'height="{height_mm}mm"', f'height="{height_mm / 25.4 * 72}"', 1)
+    render_svg = render_svg.replace(
+        f'height="{height_mm}mm"', f'height="{height_mm / 25.4 * 72}"', 1
+    )
     stem.with_suffix(".pdf").write_bytes(vlc.svg_to_pdf(render_svg))
     stem.with_suffix(".png").write_bytes(vlc.svg_to_png(render_svg, ppi=dpi))
     return {"width_mm": width_mm, "height_mm": height_mm, "dpi": dpi}

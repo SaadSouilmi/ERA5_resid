@@ -14,6 +14,7 @@ docs/
 .venv
 .python-install/
 .ipynb_checkpoints/
+__marimo__/
 data2/residuals.parquet
 docs_/
 figures/paper/.cartopy/

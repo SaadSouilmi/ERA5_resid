@@ -2,19 +2,48 @@
 
 [![View Report](https://img.shields.io/badge/View%20Report-GitHub%20Pages-blue?style=for-the-badge)](https://saadsouilmi.github.io/ERA5_resid/)
 
+## Python layout
+
+Active Python code lives in `src/py`: analysis modules at the package root,
+entry points in `py.scripts`, Marimo apps in `py.notebooks`, and tests in
+`py.tests`. Shared data paths come from `py.paths`.
+
+```bash
+uv sync
+uv run marimo edit src/py/notebooks/resid_analysis.py
+uv run marimo edit src/py/notebooks/poststrat_analysis.py
+uv run python -m py.scripts.build_poststrat_report
+tests/run.sh all
+```
+
+Tests use plain functions and `Run`/`Expect*` helpers. Run one suite with
+`tests/run.sh pdp`, `tests/run.sh publication`, or `tests/run.sh layout`.
+Run lint and notebook checks with:
+
+```bash
+uv run ruff check src/py
+uv run marimo check src/py/notebooks/*.py
+```
+
+The Jupyter notebooks under `notebooks/` retain their historical code and
+outputs. Use commit `5ee9293` to recover the previous package layout for those
+notebooks. The raw-data pipeline is `src/py/notebooks/temp_resid.py` and requires
+the source datasets in `data/main/`. Generated HTML reports default to
+`/home2/lobib/research-reports/saad.souilmi/`.
+
 ## Publication figures
 
 Generate the main residual-analysis figures with
 [Altair](https://altair-viz.github.io/) and `vl-convert`:
 
 ```bash
-uv run python scripts/build_paper_figures.py
+uv run python -m py.scripts.build_paper_figures
 ```
 
 To change styling using the saved data, without rerunning the bootstrap:
 
 ```bash
-uv run python scripts/build_paper_figures.py --from-tables
+uv run python -m py.scripts.build_paper_figures --from-tables
 ```
 
 Outputs in `figures/paper/`:
@@ -30,13 +59,13 @@ Outputs in `figures/paper/`:
 The figures have a fixed 180 mm width, serif text, embedded PDF fonts, editable
 SVG text and a white background. SVG text uses DejaVu Serif; install that font
 when editing on another machine. Chart builders live in
-`src/era5_analysis/paper_charts.py`; styling and export helpers live in
-`src/era5_analysis/publication.py`. The same charts display directly in Marimo:
+`src/py/paper_charts.py`; styling and export helpers live in
+`src/py/publication.py`. The same charts display directly in Marimo:
 
 ```python
 from pathlib import Path
-from era5_analysis.paper_charts import covariates
-from era5_analysis.publication import paper_style, save_figure
+from py.paper_charts import covariates
+from py.publication import paper_style, save_figure
 
 chart = paper_style(covariates(Path("figures/paper/tables")))
 save_figure(chart, "figures/paper/custom", width_mm=180)
