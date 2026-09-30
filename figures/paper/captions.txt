@@ -1,0 +1,9 @@
+All figures: residual = station minus ERA5 (°C); positive values mean ERA5 is cooler. Complete cases from resid_analysis.py: 9,856,181 observations, 5,664 stations; 2020-01-01 to 2025-08-31. Means weight observations equally. Intervals are pointwise 95% percentile intervals from 1,000 station bootstrap resamples within each bin, retaining all observations from sampled stations. They do not account for dependence between different stations.
+
+01_covariates: Binned mean residuals, with quantile bins and shaded confidence intervals. Points use bin midpoints, bounded by observed extrema; connecting lines guide the eye. These are descriptive conditional means, not model-based partial dependence. Precipitation uses log10(max(tp, 1e-9)) in metres. Elevation excludes −9999 (the documented missing-value code) and treats −999 as missing too (4,477 observations in total). Duplicate quantile boundaries are merged.
+
+02_urbanization: Observation-weighted mean residuals and station-bootstrap confidence intervals by land urbanization class. Water is excluded. Numbers give distinct stations.
+
+03_interactions: Mean residuals in joint quantile bins, drawn at their numeric boundaries. Both panels share a symmetric colour scale centred on zero. Grey cells have fewer than 10 stations or no data. Elevation excludes −9999 and −999. The panels describe associations, not causal interactions.
+
+04_station_map: Mean residual at each station. European window: 5,654 of 5,664 stations, 25°W–45°E and 34–72°N. Stations outside the window are omitted from this map only. Lambert conformal projection; Natural Earth 1:50m land, coastline and national boundaries. Colours saturate beyond ±3°C; the endpoint labels indicate saturation.

@@ -4,6 +4,7 @@ version = "0.1.0"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "altair>=6.1.0",
     "cartopy>=0.25.0",
     "cftime>=1.6.5",
     "contextily>=1.7.0",
@@ -23,6 +24,7 @@ dependencies = [
     "jupyterlab>=4.5.1",
     "jupyterlab-code-formatter>=3.0.2",
     "libpysal>=4.13.0",
+    "marimo>=0.23.8",
     "matplotlib>=3.10.8",
     "netcdf4>=1.7.3",
     "numpy==2.3.0",
@@ -31,6 +33,7 @@ dependencies = [
     "polars>=1.36.1",
     "pyarrow>=23.0.1",
     "pycountry>=26.2.16",
+    "pypdf>=6.19.0",
     "python-lsp-server[all]>=1.14.0",
     "rasterio>=1.4.4",
     "reverse-geocoder>=1.5.1",
@@ -43,6 +46,8 @@ dependencies = [
     "shapely>=2.1.2",
     "statsmodels>=0.14.6",
     "tqdm>=4.67.1",
+    "vega-datasets>=0.9.0",
+    "vl-convert-python>=1.9.0.post1",
     "xarray>=2025.12.0",
 ]
 
@@ -52,3 +57,6 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/era5_analysis"]
+
+[tool.marimo.runtime]
+output_max_bytes = 100_000_000

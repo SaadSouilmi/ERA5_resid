@@ -16,3 +16,4 @@ docs/
 .ipynb_checkpoints/
 data2/residuals.parquet
 docs_/
+figures/paper/.cartopy/

@@ -9,11 +9,18 @@ def cluster_bootstrap_ci(
     n_boot=1000,
     ci=95,
     rng: np.random.Generator = None,
+    weight_col: str = None,
 ):
-    """Cluster bootstrap at station level: resample STAIDs, compute mean residual per bin."""
-    station_bin = df.group_by("STAID", bin_col).agg(
-        pl.col("residual").sum().alias("sum"), pl.col("residual").count().alias("count")
-    )
+    """Cluster bootstrap at station level: resample STAIDs, compute (weighted) mean residual per bin."""
+    if weight_col is None:
+        station_bin = df.group_by("STAID", bin_col).agg(
+            pl.col("residual").sum().alias("sum"), pl.col("residual").count().alias("count")
+        )
+    else:
+        station_bin = df.group_by("STAID", bin_col).agg(
+            (pl.col("residual") * pl.col(weight_col)).sum().alias("sum"),
+            pl.col(weight_col).sum().alias("count"),
+        )
 
     n_bins = len(bins)
     boot_means = np.zeros((n_bins, n_boot))
@@ -61,11 +68,16 @@ def bin_features(df: pl.DataFrame, feature: str, n_bins: int = 5):
 
 
 def pdp_cluster_bootstrap(
-    df, bin_col, bins, n_boot=1000, ci=95, rng: np.random.Generator = None
+    df, bin_col, bins, n_boot=1000, ci=95, rng: np.random.Generator = None, weight_col: str = None
 ):
-    """Bin feature into quantiles, compute mean residual + cluster bootstrap 95% CI."""
-    means = df.group_by(bin_col).agg(pl.col("residual").mean())
+    """Bin feature into quantiles, compute (weighted) mean residual + cluster bootstrap 95% CI."""
+    if weight_col is None:
+        means = df.group_by(bin_col).agg(pl.col("residual").mean())
+    else:
+        means = df.group_by(bin_col).agg(
+            ((pl.col("residual") * pl.col(weight_col)).sum() / pl.col(weight_col).sum()).alias("residual")
+        )
     means = means.with_columns(pl.col(bin_col).cast(pl.Enum(bins))).sort(bin_col)
-    _, ci_lo, ci_hi = cluster_bootstrap_ci(df, bin_col, bins, n_boot, ci, rng)
+    _, ci_lo, ci_hi = cluster_bootstrap_ci(df, bin_col, bins, n_boot, ci, rng, weight_col=weight_col)
 
     return means["residual"].to_numpy(), ci_lo, ci_hi

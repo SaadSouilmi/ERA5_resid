@@ -5,6 +5,8 @@ format:
     toc: false
     page-layout: full
     css: style.css
+    self-contained: true
+    html-math-method: mathjax
 ---
 
 ```{python}
@@ -26,9 +28,48 @@ PLOT_DATA = Path("../data2/plot_data")
 rng = np.random.default_rng(1337)
 ```
 
+We use the **ECA&D** (European Climate Assessment & Dataset) `ECA_blend_tx` dataset,     
+which provides daily maximum temperature (TX) observations from weather stations across  
+Europe and surrounding regions.                                                          
+                                                                                       
+Each station has:                                                                        
+- **STAID**: unique station identifier                                                   
+- **STANAME**: station name (typically the city or site name)                            
+- **CN**: ISO 3166-1 alpha-2 country code                                                
+- **LAT / LON**: station location in degrees (converted from DMS format)                 
+- **HGHT**: elevation in meters                                                          
+
+Temperature observations are stored in individual files (`TX_STAID######.txt`), one per  
+station, with:
+- **DATE**: observation date (YYYYMMDD)                                                  
+- **TX**: daily maximum temperature in 0.1°C (−9999 = missing)
+- **Q_TX**: quality flag (0 = valid, 1 = suspect, 9 = missing)                           
+                                                                                       
+The dataset covers **8,572 stations** from 61 countries, with records going back to the  
+19th century for some stations. We filter to quality-flagged valid observations only     
+(`Q_TX == 0`).
+
+We use **ERA5-Land** daily statistics from the Copernicus Climate Data Store (CDS),      
+covering 2020–2025. ERA5-Land is a reanalysis product that reconstructs atmospheric
+conditions on a regular ~9 km grid.                                                      
+
+The following variables are loaded:
+- **t2m**: daily maximum 2m air temperature (K, converted to °C)
+- **tp**: daily mean total precipitation (m)                                             
+- **u10 / v10**: daily mean 10m wind components (m/s), combined into wind speed magnitude \( = \sqrt{u_{10}^2 + v_{10}^2}\)
+
+For each weather station, we align its daily TX observations with the ERA5 time series   
+extracted at its location and compute the **residual** (bias):
+                                                                                       
+$$\varepsilon = T_{\text{station}} - T_{\text{ERA5}}$$                                
+
+We also join the ERA5 covariates (precipitation, wind speed) for each station and date,  
+which will be used later to investigate what meteorological conditions drive larger
+errors.
+
 ## Mean residual per station
 
-Residual = station temperature $-$ ERA5. Positive means ERA5 underestimates.
+We plot below the average residual $\varepsilon$ per weather station for all available dates:
 
 ```{python}
 #| echo: false

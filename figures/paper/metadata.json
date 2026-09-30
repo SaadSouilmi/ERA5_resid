@@ -1,0 +1,44 @@
+{
+  "data": "/home2/lobib/gen_hack/data2/residuals.parquet",
+  "input_rows": 10467039,
+  "complete_rows": 9856181,
+  "stations": 5664,
+  "date_start": "2020-01-01 00:00:00",
+  "date_end": "2025-08-31 00:00:00",
+  "residual_definition": "station minus ERA5 (degrees Celsius)",
+  "elevation_missing_rows": 4477,
+  "elevation_excluded_codes": [
+    -9999,
+    -999
+  ],
+  "bootstrap": 1000,
+  "seed": 1337,
+  "quantile_bins": 10,
+  "heatmap_min_stations": 10,
+  "dpi": 600,
+  "figure_width_mm": 180,
+  "map_stations_shown": 5654,
+  "renderer": "Altair / Vega-Lite / vl-convert",
+  "exports": {
+    "01_covariates": {
+      "width_mm": 180,
+      "height_mm": 149.84126984126985,
+      "dpi": 600
+    },
+    "02_urbanization": {
+      "width_mm": 180,
+      "height_mm": 103.9245283018868,
+      "dpi": 600
+    },
+    "03_interactions": {
+      "width_mm": 180,
+      "height_mm": 99.32088285229202,
+      "dpi": 600
+    },
+    "04_station_map": {
+      "width_mm": 180,
+      "height_mm": 110.76923076923077,
+      "dpi": 600
+    }
+  }
+}

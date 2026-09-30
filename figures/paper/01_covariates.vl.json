@@ -1,0 +1,2800 @@
+{
+  "config": {
+    "view": {
+      "continuousWidth": 300,
+      "continuousHeight": 300,
+      "stroke": null
+    },
+    "axis": {
+      "domainColor": "#444444",
+      "domainWidth": 0.7,
+      "gridColor": "#e5e5e5",
+      "gridWidth": 0.5,
+      "labelColor": "#222222",
+      "labelFont": "DejaVu Serif",
+      "labelFontSize": 10,
+      "labelPadding": 5,
+      "tickColor": "#444444",
+      "tickSize": 4,
+      "tickWidth": 0.7,
+      "titleColor": "#222222",
+      "titleFont": "DejaVu Serif",
+      "titleFontSize": 11,
+      "titleFontWeight": "normal",
+      "titlePadding": 10
+    },
+    "background": "white",
+    "font": "DejaVu Serif",
+    "legend": {
+      "gradientThickness": 10,
+      "labelFont": "DejaVu Serif",
+      "labelFontSize": 10,
+      "titleFont": "DejaVu Serif",
+      "titleFontSize": 11,
+      "titleFontWeight": "normal"
+    },
+    "padding": 8,
+    "title": {
+      "anchor": "start",
+      "font": "DejaVu Serif",
+      "fontSize": 12,
+      "offset": 10
+    }
+  },
+  "vconcat": [
+    {
+      "hconcat": [
+        {
+          "layer": [
+            {
+              "data": {
+                "values": [
+                  {
+                    "zero": 0
+                  }
+                ]
+              },
+              "mark": {
+                "type": "rule",
+                "color": "#888888",
+                "strokeDash": [
+                  4,
+                  4
+                ],
+                "strokeWidth": 0.7
+              },
+              "encoding": {
+                "y": {
+                  "field": "zero",
+                  "title": "Mean residual (\u00b0C)",
+                  "type": "quantitative"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 2.2]",
+                    "mean": 0.7231401723427425,
+                    "ci_low": 0.6151776229055036,
+                    "ci_high": 0.8199456440723015,
+                    "n_observations": 1005319,
+                    "n_stations": 4717,
+                    "x": -19.65
+                  },
+                  {
+                    "bin": "(2.2, 6.3]",
+                    "mean": 0.9489732408574622,
+                    "ci_low": 0.8819740432522095,
+                    "ci_high": 1.0141259496238786,
+                    "n_observations": 987071,
+                    "n_stations": 5251,
+                    "x": 4.25
+                  },
+                  {
+                    "bin": "(6.3, 9.5]",
+                    "mean": 1.1233079158729802,
+                    "ci_low": 1.0620247153471651,
+                    "ci_high": 1.1831742567999715,
+                    "n_observations": 969972,
+                    "n_stations": 5509,
+                    "x": 7.9
+                  },
+                  {
+                    "bin": "(9.5, 12.5]",
+                    "mean": 1.306796317960412,
+                    "ci_low": 1.250017892085686,
+                    "ci_high": 1.3571264260210774,
+                    "n_observations": 1001473,
+                    "n_stations": 5571,
+                    "x": 11.0
+                  },
+                  {
+                    "bin": "(12.5, 15.3]",
+                    "mean": 1.4881072360180994,
+                    "ci_low": 1.4369508218165994,
+                    "ci_high": 1.537148494913108,
+                    "n_observations": 996862,
+                    "n_stations": 5599,
+                    "x": 13.9
+                  },
+                  {
+                    "bin": "(15.3, 17.9]",
+                    "mean": 1.6481518929969712,
+                    "ci_low": 1.6028617497985205,
+                    "ci_high": 1.6917592232921652,
+                    "n_observations": 958003,
+                    "n_stations": 5590,
+                    "x": 16.6
+                  },
+                  {
+                    "bin": "(17.9, 20.7]",
+                    "mean": 1.8110224303892926,
+                    "ci_low": 1.7683242888723363,
+                    "ci_high": 1.8592222745128484,
+                    "n_observations": 997347,
+                    "n_stations": 5585,
+                    "x": 19.299999999999997
+                  },
+                  {
+                    "bin": "(20.7, 23.9]",
+                    "mean": 2.0606669808522193,
+                    "ci_low": 2.0136506811246777,
+                    "ci_high": 2.105113784318346,
+                    "n_observations": 982849,
+                    "n_stations": 5564,
+                    "x": 22.299999999999997
+                  },
+                  {
+                    "bin": "(23.9, 28.2]",
+                    "mean": 2.281102601589328,
+                    "ci_low": 2.2313968319514874,
+                    "ci_high": 2.33399941602043,
+                    "n_observations": 988357,
+                    "n_stations": 5512,
+                    "x": 26.049999999999997
+                  },
+                  {
+                    "bin": "(28.2, inf]",
+                    "mean": 2.3259812555326023,
+                    "ci_low": 2.2560613549370827,
+                    "ci_high": 2.3955039106449147,
+                    "n_observations": 968928,
+                    "n_stations": 5227,
+                    "x": 44.05
+                  }
+                ]
+              },
+              "mark": {
+                "type": "area",
+                "color": "#0072B2",
+                "opacity": 0.18
+              },
+              "encoding": {
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Station temperature (\u00b0C)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": true,
+                    "labels": true,
+                    "tickCount": 5,
+                    "ticks": true
+                  },
+                  "field": "ci_low",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": "Mean residual (\u00b0C)",
+                  "type": "quantitative"
+                },
+                "y2": {
+                  "field": "ci_high"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 2.2]",
+                    "mean": 0.7231401723427425,
+                    "ci_low": 0.6151776229055036,
+                    "ci_high": 0.8199456440723015,
+                    "n_observations": 1005319,
+                    "n_stations": 4717,
+                    "x": -19.65
+                  },
+                  {
+                    "bin": "(2.2, 6.3]",
+                    "mean": 0.9489732408574622,
+                    "ci_low": 0.8819740432522095,
+                    "ci_high": 1.0141259496238786,
+                    "n_observations": 987071,
+                    "n_stations": 5251,
+                    "x": 4.25
+                  },
+                  {
+                    "bin": "(6.3, 9.5]",
+                    "mean": 1.1233079158729802,
+                    "ci_low": 1.0620247153471651,
+                    "ci_high": 1.1831742567999715,
+                    "n_observations": 969972,
+                    "n_stations": 5509,
+                    "x": 7.9
+                  },
+                  {
+                    "bin": "(9.5, 12.5]",
+                    "mean": 1.306796317960412,
+                    "ci_low": 1.250017892085686,
+                    "ci_high": 1.3571264260210774,
+                    "n_observations": 1001473,
+                    "n_stations": 5571,
+                    "x": 11.0
+                  },
+                  {
+                    "bin": "(12.5, 15.3]",
+                    "mean": 1.4881072360180994,
+                    "ci_low": 1.4369508218165994,
+                    "ci_high": 1.537148494913108,
+                    "n_observations": 996862,
+                    "n_stations": 5599,
+                    "x": 13.9
+                  },
+                  {
+                    "bin": "(15.3, 17.9]",
+                    "mean": 1.6481518929969712,
+                    "ci_low": 1.6028617497985205,
+                    "ci_high": 1.6917592232921652,
+                    "n_observations": 958003,
+                    "n_stations": 5590,
+                    "x": 16.6
+                  },
+                  {
+                    "bin": "(17.9, 20.7]",
+                    "mean": 1.8110224303892926,
+                    "ci_low": 1.7683242888723363,
+                    "ci_high": 1.8592222745128484,
+                    "n_observations": 997347,
+                    "n_stations": 5585,
+                    "x": 19.299999999999997
+                  },
+                  {
+                    "bin": "(20.7, 23.9]",
+                    "mean": 2.0606669808522193,
+                    "ci_low": 2.0136506811246777,
+                    "ci_high": 2.105113784318346,
+                    "n_observations": 982849,
+                    "n_stations": 5564,
+                    "x": 22.299999999999997
+                  },
+                  {
+                    "bin": "(23.9, 28.2]",
+                    "mean": 2.281102601589328,
+                    "ci_low": 2.2313968319514874,
+                    "ci_high": 2.33399941602043,
+                    "n_observations": 988357,
+                    "n_stations": 5512,
+                    "x": 26.049999999999997
+                  },
+                  {
+                    "bin": "(28.2, inf]",
+                    "mean": 2.3259812555326023,
+                    "ci_low": 2.2560613549370827,
+                    "ci_high": 2.3955039106449147,
+                    "n_observations": 968928,
+                    "n_stations": 5227,
+                    "x": 44.05
+                  }
+                ]
+              },
+              "mark": {
+                "type": "line",
+                "color": "#0072B2",
+                "strokeWidth": 1.5
+              },
+              "encoding": {
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Station temperature (\u00b0C)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": true,
+                    "labels": true,
+                    "tickCount": 5,
+                    "ticks": true
+                  },
+                  "field": "mean",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": "Mean residual (\u00b0C)",
+                  "type": "quantitative"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 2.2]",
+                    "mean": 0.7231401723427425,
+                    "ci_low": 0.6151776229055036,
+                    "ci_high": 0.8199456440723015,
+                    "n_observations": 1005319,
+                    "n_stations": 4717,
+                    "x": -19.65
+                  },
+                  {
+                    "bin": "(2.2, 6.3]",
+                    "mean": 0.9489732408574622,
+                    "ci_low": 0.8819740432522095,
+                    "ci_high": 1.0141259496238786,
+                    "n_observations": 987071,
+                    "n_stations": 5251,
+                    "x": 4.25
+                  },
+                  {
+                    "bin": "(6.3, 9.5]",
+                    "mean": 1.1233079158729802,
+                    "ci_low": 1.0620247153471651,
+                    "ci_high": 1.1831742567999715,
+                    "n_observations": 969972,
+                    "n_stations": 5509,
+                    "x": 7.9
+                  },
+                  {
+                    "bin": "(9.5, 12.5]",
+                    "mean": 1.306796317960412,
+                    "ci_low": 1.250017892085686,
+                    "ci_high": 1.3571264260210774,
+                    "n_observations": 1001473,
+                    "n_stations": 5571,
+                    "x": 11.0
+                  },
+                  {
+                    "bin": "(12.5, 15.3]",
+                    "mean": 1.4881072360180994,
+                    "ci_low": 1.4369508218165994,
+                    "ci_high": 1.537148494913108,
+                    "n_observations": 996862,
+                    "n_stations": 5599,
+                    "x": 13.9
+                  },
+                  {
+                    "bin": "(15.3, 17.9]",
+                    "mean": 1.6481518929969712,
+                    "ci_low": 1.6028617497985205,
+                    "ci_high": 1.6917592232921652,
+                    "n_observations": 958003,
+                    "n_stations": 5590,
+                    "x": 16.6
+                  },
+                  {
+                    "bin": "(17.9, 20.7]",
+                    "mean": 1.8110224303892926,
+                    "ci_low": 1.7683242888723363,
+                    "ci_high": 1.8592222745128484,
+                    "n_observations": 997347,
+                    "n_stations": 5585,
+                    "x": 19.299999999999997
+                  },
+                  {
+                    "bin": "(20.7, 23.9]",
+                    "mean": 2.0606669808522193,
+                    "ci_low": 2.0136506811246777,
+                    "ci_high": 2.105113784318346,
+                    "n_observations": 982849,
+                    "n_stations": 5564,
+                    "x": 22.299999999999997
+                  },
+                  {
+                    "bin": "(23.9, 28.2]",
+                    "mean": 2.281102601589328,
+                    "ci_low": 2.2313968319514874,
+                    "ci_high": 2.33399941602043,
+                    "n_observations": 988357,
+                    "n_stations": 5512,
+                    "x": 26.049999999999997
+                  },
+                  {
+                    "bin": "(28.2, inf]",
+                    "mean": 2.3259812555326023,
+                    "ci_low": 2.2560613549370827,
+                    "ci_high": 2.3955039106449147,
+                    "n_observations": 968928,
+                    "n_stations": 5227,
+                    "x": 44.05
+                  }
+                ]
+              },
+              "mark": {
+                "type": "point",
+                "color": "#0072B2",
+                "filled": true,
+                "size": 25
+              },
+              "encoding": {
+                "tooltip": [
+                  {
+                    "field": "x",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "mean",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "ci_low",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "ci_high",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "n_stations",
+                    "type": "quantitative"
+                  }
+                ],
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Station temperature (\u00b0C)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": true,
+                    "labels": true,
+                    "tickCount": 5,
+                    "ticks": true
+                  },
+                  "field": "mean",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": "Mean residual (\u00b0C)",
+                  "type": "quantitative"
+                }
+              }
+            }
+          ],
+          "height": 150,
+          "title": "(a)",
+          "width": 155
+        },
+        {
+          "layer": [
+            {
+              "data": {
+                "values": [
+                  {
+                    "zero": 0
+                  }
+                ]
+              },
+              "mark": {
+                "type": "rule",
+                "color": "#888888",
+                "strokeDash": [
+                  4,
+                  4
+                ],
+                "strokeWidth": 0.7
+              },
+              "encoding": {
+                "y": {
+                  "field": "zero",
+                  "title": null,
+                  "type": "quantitative"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, -6.21710729598999]",
+                    "mean": 1.6490799463771937,
+                    "ci_low": 1.6031997587047044,
+                    "ci_high": 1.6929976980003332,
+                    "n_observations": 985746,
+                    "n_stations": 5610,
+                    "x": -7.608553647994995
+                  },
+                  {
+                    "bin": "(-6.21710729598999, -5.220770359039307]",
+                    "mean": 1.5636007418735602,
+                    "ci_low": 1.51999966285177,
+                    "ci_high": 1.6047183814495307,
+                    "n_observations": 985491,
+                    "n_stations": 5623,
+                    "x": -5.718938827514648
+                  },
+                  {
+                    "bin": "(-5.220770359039307, -4.443393230438232]",
+                    "mean": 1.5090742641139727,
+                    "ci_low": 1.4658597791312509,
+                    "ci_high": 1.5507725417058573,
+                    "n_observations": 985618,
+                    "n_stations": 5624,
+                    "x": -4.8320817947387695
+                  },
+                  {
+                    "bin": "(-4.443393230438232, -3.949406862258911]",
+                    "mean": 1.5190123778610491,
+                    "ci_low": 1.4761025757421906,
+                    "ci_high": 1.5641923159357847,
+                    "n_observations": 985618,
+                    "n_stations": 5624,
+                    "x": -4.196400046348572
+                  },
+                  {
+                    "bin": "(-3.949406862258911, -3.5832412242889404]",
+                    "mean": 1.5217253486607139,
+                    "ci_low": 1.473142798410001,
+                    "ci_high": 1.569294446753843,
+                    "n_observations": 985620,
+                    "n_stations": 5622,
+                    "x": -3.766324043273926
+                  },
+                  {
+                    "bin": "(-3.5832412242889404, -3.2755839824676514]",
+                    "mean": 1.540845058988325,
+                    "ci_low": 1.4902312744491504,
+                    "ci_high": 1.586862654234832,
+                    "n_observations": 985621,
+                    "n_stations": 5626,
+                    "x": -3.429412603378296
+                  },
+                  {
+                    "bin": "(-3.2755839824676514, -2.9862213134765625]",
+                    "mean": 1.5349576055947634,
+                    "ci_low": 1.4841388858647755,
+                    "ci_high": 1.5858273728195451,
+                    "n_observations": 985613,
+                    "n_stations": 5617,
+                    "x": -3.130902647972107
+                  },
+                  {
+                    "bin": "(-2.9862213134765625, -2.695535898208618]",
+                    "mean": 1.539991367963425,
+                    "ci_low": 1.4829453035396916,
+                    "ci_high": 1.5946502570394485,
+                    "n_observations": 985618,
+                    "n_stations": 5624,
+                    "x": -2.8408786058425903
+                  },
+                  {
+                    "bin": "(-2.695535898208618, -2.383561134338379]",
+                    "mean": 1.5721149019278176,
+                    "ci_low": 1.5094632378837018,
+                    "ci_high": 1.6376245975989636,
+                    "n_observations": 985619,
+                    "n_stations": 5619,
+                    "x": -2.5395485162734985
+                  },
+                  {
+                    "bin": "(-2.383561134338379, inf]",
+                    "mean": 1.7393920180066842,
+                    "ci_low": 1.6632974503591118,
+                    "ci_high": 1.8151550312879887,
+                    "n_observations": 985617,
+                    "n_stations": 5613,
+                    "x": -1.6706480979919434
+                  }
+                ]
+              },
+              "mark": {
+                "type": "area",
+                "color": "#0072B2",
+                "opacity": 0.18
+              },
+              "encoding": {
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Precipitation (m; log\u2081\u2080)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": false,
+                    "labels": false,
+                    "tickCount": 5,
+                    "ticks": false
+                  },
+                  "field": "ci_low",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": null,
+                  "type": "quantitative"
+                },
+                "y2": {
+                  "field": "ci_high"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, -6.21710729598999]",
+                    "mean": 1.6490799463771937,
+                    "ci_low": 1.6031997587047044,
+                    "ci_high": 1.6929976980003332,
+                    "n_observations": 985746,
+                    "n_stations": 5610,
+                    "x": -7.608553647994995
+                  },
+                  {
+                    "bin": "(-6.21710729598999, -5.220770359039307]",
+                    "mean": 1.5636007418735602,
+                    "ci_low": 1.51999966285177,
+                    "ci_high": 1.6047183814495307,
+                    "n_observations": 985491,
+                    "n_stations": 5623,
+                    "x": -5.718938827514648
+                  },
+                  {
+                    "bin": "(-5.220770359039307, -4.443393230438232]",
+                    "mean": 1.5090742641139727,
+                    "ci_low": 1.4658597791312509,
+                    "ci_high": 1.5507725417058573,
+                    "n_observations": 985618,
+                    "n_stations": 5624,
+                    "x": -4.8320817947387695
+                  },
+                  {
+                    "bin": "(-4.443393230438232, -3.949406862258911]",
+                    "mean": 1.5190123778610491,
+                    "ci_low": 1.4761025757421906,
+                    "ci_high": 1.5641923159357847,
+                    "n_observations": 985618,
+                    "n_stations": 5624,
+                    "x": -4.196400046348572
+                  },
+                  {
+                    "bin": "(-3.949406862258911, -3.5832412242889404]",
+                    "mean": 1.5217253486607139,
+                    "ci_low": 1.473142798410001,
+                    "ci_high": 1.569294446753843,
+                    "n_observations": 985620,
+                    "n_stations": 5622,
+                    "x": -3.766324043273926
+                  },
+                  {
+                    "bin": "(-3.5832412242889404, -3.2755839824676514]",
+                    "mean": 1.540845058988325,
+                    "ci_low": 1.4902312744491504,
+                    "ci_high": 1.586862654234832,
+                    "n_observations": 985621,
+                    "n_stations": 5626,
+                    "x": -3.429412603378296
+                  },
+                  {
+                    "bin": "(-3.2755839824676514, -2.9862213134765625]",
+                    "mean": 1.5349576055947634,
+                    "ci_low": 1.4841388858647755,
+                    "ci_high": 1.5858273728195451,
+                    "n_observations": 985613,
+                    "n_stations": 5617,
+                    "x": -3.130902647972107
+                  },
+                  {
+                    "bin": "(-2.9862213134765625, -2.695535898208618]",
+                    "mean": 1.539991367963425,
+                    "ci_low": 1.4829453035396916,
+                    "ci_high": 1.5946502570394485,
+                    "n_observations": 985618,
+                    "n_stations": 5624,
+                    "x": -2.8408786058425903
+                  },
+                  {
+                    "bin": "(-2.695535898208618, -2.383561134338379]",
+                    "mean": 1.5721149019278176,
+                    "ci_low": 1.5094632378837018,
+                    "ci_high": 1.6376245975989636,
+                    "n_observations": 985619,
+                    "n_stations": 5619,
+                    "x": -2.5395485162734985
+                  },
+                  {
+                    "bin": "(-2.383561134338379, inf]",
+                    "mean": 1.7393920180066842,
+                    "ci_low": 1.6632974503591118,
+                    "ci_high": 1.8151550312879887,
+                    "n_observations": 985617,
+                    "n_stations": 5613,
+                    "x": -1.6706480979919434
+                  }
+                ]
+              },
+              "mark": {
+                "type": "line",
+                "color": "#0072B2",
+                "strokeWidth": 1.5
+              },
+              "encoding": {
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Precipitation (m; log\u2081\u2080)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": false,
+                    "labels": false,
+                    "tickCount": 5,
+                    "ticks": false
+                  },
+                  "field": "mean",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": null,
+                  "type": "quantitative"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, -6.21710729598999]",
+                    "mean": 1.6490799463771937,
+                    "ci_low": 1.6031997587047044,
+                    "ci_high": 1.6929976980003332,
+                    "n_observations": 985746,
+                    "n_stations": 5610,
+                    "x": -7.608553647994995
+                  },
+                  {
+                    "bin": "(-6.21710729598999, -5.220770359039307]",
+                    "mean": 1.5636007418735602,
+                    "ci_low": 1.51999966285177,
+                    "ci_high": 1.6047183814495307,
+                    "n_observations": 985491,
+                    "n_stations": 5623,
+                    "x": -5.718938827514648
+                  },
+                  {
+                    "bin": "(-5.220770359039307, -4.443393230438232]",
+                    "mean": 1.5090742641139727,
+                    "ci_low": 1.4658597791312509,
+                    "ci_high": 1.5507725417058573,
+                    "n_observations": 985618,
+                    "n_stations": 5624,
+                    "x": -4.8320817947387695
+                  },
+                  {
+                    "bin": "(-4.443393230438232, -3.949406862258911]",
+                    "mean": 1.5190123778610491,
+                    "ci_low": 1.4761025757421906,
+                    "ci_high": 1.5641923159357847,
+                    "n_observations": 985618,
+                    "n_stations": 5624,
+                    "x": -4.196400046348572
+                  },
+                  {
+                    "bin": "(-3.949406862258911, -3.5832412242889404]",
+                    "mean": 1.5217253486607139,
+                    "ci_low": 1.473142798410001,
+                    "ci_high": 1.569294446753843,
+                    "n_observations": 985620,
+                    "n_stations": 5622,
+                    "x": -3.766324043273926
+                  },
+                  {
+                    "bin": "(-3.5832412242889404, -3.2755839824676514]",
+                    "mean": 1.540845058988325,
+                    "ci_low": 1.4902312744491504,
+                    "ci_high": 1.586862654234832,
+                    "n_observations": 985621,
+                    "n_stations": 5626,
+                    "x": -3.429412603378296
+                  },
+                  {
+                    "bin": "(-3.2755839824676514, -2.9862213134765625]",
+                    "mean": 1.5349576055947634,
+                    "ci_low": 1.4841388858647755,
+                    "ci_high": 1.5858273728195451,
+                    "n_observations": 985613,
+                    "n_stations": 5617,
+                    "x": -3.130902647972107
+                  },
+                  {
+                    "bin": "(-2.9862213134765625, -2.695535898208618]",
+                    "mean": 1.539991367963425,
+                    "ci_low": 1.4829453035396916,
+                    "ci_high": 1.5946502570394485,
+                    "n_observations": 985618,
+                    "n_stations": 5624,
+                    "x": -2.8408786058425903
+                  },
+                  {
+                    "bin": "(-2.695535898208618, -2.383561134338379]",
+                    "mean": 1.5721149019278176,
+                    "ci_low": 1.5094632378837018,
+                    "ci_high": 1.6376245975989636,
+                    "n_observations": 985619,
+                    "n_stations": 5619,
+                    "x": -2.5395485162734985
+                  },
+                  {
+                    "bin": "(-2.383561134338379, inf]",
+                    "mean": 1.7393920180066842,
+                    "ci_low": 1.6632974503591118,
+                    "ci_high": 1.8151550312879887,
+                    "n_observations": 985617,
+                    "n_stations": 5613,
+                    "x": -1.6706480979919434
+                  }
+                ]
+              },
+              "mark": {
+                "type": "point",
+                "color": "#0072B2",
+                "filled": true,
+                "size": 25
+              },
+              "encoding": {
+                "tooltip": [
+                  {
+                    "field": "x",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "mean",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "ci_low",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "ci_high",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "n_stations",
+                    "type": "quantitative"
+                  }
+                ],
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Precipitation (m; log\u2081\u2080)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": false,
+                    "labels": false,
+                    "tickCount": 5,
+                    "ticks": false
+                  },
+                  "field": "mean",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": null,
+                  "type": "quantitative"
+                }
+              }
+            }
+          ],
+          "height": 150,
+          "title": "(b)",
+          "width": 155
+        },
+        {
+          "layer": [
+            {
+              "data": {
+                "values": [
+                  {
+                    "zero": 0
+                  }
+                ]
+              },
+              "mark": {
+                "type": "rule",
+                "color": "#888888",
+                "strokeDash": [
+                  4,
+                  4
+                ],
+                "strokeWidth": 0.7
+              },
+              "encoding": {
+                "y": {
+                  "field": "zero",
+                  "title": null,
+                  "type": "quantitative"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 0.5370084643363953]",
+                    "mean": 2.2844589540363867,
+                    "ci_low": 2.1489578196229386,
+                    "ci_high": 2.4121182722528736,
+                    "n_observations": 985620,
+                    "n_stations": 5604,
+                    "x": 0.2686719674820779
+                  },
+                  {
+                    "bin": "(0.5370084643363953, 0.8630458116531372]",
+                    "mean": 1.9169622535295265,
+                    "ci_low": 1.830364952665761,
+                    "ci_high": 2.004670813965504,
+                    "n_observations": 985617,
+                    "n_stations": 5611,
+                    "x": 0.7000271379947662
+                  },
+                  {
+                    "bin": "(0.8630458116531372, 1.178737998008728]",
+                    "mean": 1.7714398335627644,
+                    "ci_low": 1.70357445383273,
+                    "ci_high": 1.841804796723742,
+                    "n_observations": 985618,
+                    "n_stations": 5616,
+                    "x": 1.0208919048309326
+                  },
+                  {
+                    "bin": "(1.178737998008728, 1.5028386116027832]",
+                    "mean": 1.7042719147305108,
+                    "ci_low": 1.6471759258159653,
+                    "ci_high": 1.7652139849415254,
+                    "n_observations": 985618,
+                    "n_stations": 5624,
+                    "x": 1.3407883048057556
+                  },
+                  {
+                    "bin": "(1.5028386116027832, 1.8503015041351318]",
+                    "mean": 1.623633106566917,
+                    "ci_low": 1.5715072021215375,
+                    "ci_high": 1.6738142413264754,
+                    "n_observations": 985618,
+                    "n_stations": 5603,
+                    "x": 1.6765700578689575
+                  },
+                  {
+                    "bin": "(1.8503015041351318, 2.241529941558838]",
+                    "mean": 1.4995633693712167,
+                    "ci_low": 1.4523925349984435,
+                    "ci_high": 1.5473610079101054,
+                    "n_observations": 985618,
+                    "n_stations": 5544,
+                    "x": 2.045915722846985
+                  },
+                  {
+                    "bin": "(2.241529941558838, 2.711193561553955]",
+                    "mean": 1.3643292877284643,
+                    "ci_low": 1.3293105469710935,
+                    "ci_high": 1.400597952974465,
+                    "n_observations": 985618,
+                    "n_stations": 5424,
+                    "x": 2.4763617515563965
+                  },
+                  {
+                    "bin": "(2.711193561553955, 3.343255043029785]",
+                    "mean": 1.2567016450246873,
+                    "ci_low": 1.2240585283482313,
+                    "ci_high": 1.2913449606592329,
+                    "n_observations": 985618,
+                    "n_stations": 5268,
+                    "x": 3.02722430229187
+                  },
+                  {
+                    "bin": "(3.343255043029785, 4.412636756896973]",
+                    "mean": 1.1722023820294731,
+                    "ci_low": 1.1417498878019374,
+                    "ci_high": 1.2039270065767733,
+                    "n_observations": 985621,
+                    "n_stations": 5103,
+                    "x": 3.877945899963379
+                  },
+                  {
+                    "bin": "(4.412636756896973, inf]",
+                    "mean": 1.0962404716845724,
+                    "ci_low": 1.056888269916887,
+                    "ci_high": 1.1380576872235222,
+                    "n_observations": 985615,
+                    "n_stations": 4710,
+                    "x": 12.5948805809021
+                  }
+                ]
+              },
+              "mark": {
+                "type": "area",
+                "color": "#0072B2",
+                "opacity": 0.18
+              },
+              "encoding": {
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Wind speed (m s\u207b\u00b9)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": false,
+                    "labels": false,
+                    "tickCount": 5,
+                    "ticks": false
+                  },
+                  "field": "ci_low",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": null,
+                  "type": "quantitative"
+                },
+                "y2": {
+                  "field": "ci_high"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 0.5370084643363953]",
+                    "mean": 2.2844589540363867,
+                    "ci_low": 2.1489578196229386,
+                    "ci_high": 2.4121182722528736,
+                    "n_observations": 985620,
+                    "n_stations": 5604,
+                    "x": 0.2686719674820779
+                  },
+                  {
+                    "bin": "(0.5370084643363953, 0.8630458116531372]",
+                    "mean": 1.9169622535295265,
+                    "ci_low": 1.830364952665761,
+                    "ci_high": 2.004670813965504,
+                    "n_observations": 985617,
+                    "n_stations": 5611,
+                    "x": 0.7000271379947662
+                  },
+                  {
+                    "bin": "(0.8630458116531372, 1.178737998008728]",
+                    "mean": 1.7714398335627644,
+                    "ci_low": 1.70357445383273,
+                    "ci_high": 1.841804796723742,
+                    "n_observations": 985618,
+                    "n_stations": 5616,
+                    "x": 1.0208919048309326
+                  },
+                  {
+                    "bin": "(1.178737998008728, 1.5028386116027832]",
+                    "mean": 1.7042719147305108,
+                    "ci_low": 1.6471759258159653,
+                    "ci_high": 1.7652139849415254,
+                    "n_observations": 985618,
+                    "n_stations": 5624,
+                    "x": 1.3407883048057556
+                  },
+                  {
+                    "bin": "(1.5028386116027832, 1.8503015041351318]",
+                    "mean": 1.623633106566917,
+                    "ci_low": 1.5715072021215375,
+                    "ci_high": 1.6738142413264754,
+                    "n_observations": 985618,
+                    "n_stations": 5603,
+                    "x": 1.6765700578689575
+                  },
+                  {
+                    "bin": "(1.8503015041351318, 2.241529941558838]",
+                    "mean": 1.4995633693712167,
+                    "ci_low": 1.4523925349984435,
+                    "ci_high": 1.5473610079101054,
+                    "n_observations": 985618,
+                    "n_stations": 5544,
+                    "x": 2.045915722846985
+                  },
+                  {
+                    "bin": "(2.241529941558838, 2.711193561553955]",
+                    "mean": 1.3643292877284643,
+                    "ci_low": 1.3293105469710935,
+                    "ci_high": 1.400597952974465,
+                    "n_observations": 985618,
+                    "n_stations": 5424,
+                    "x": 2.4763617515563965
+                  },
+                  {
+                    "bin": "(2.711193561553955, 3.343255043029785]",
+                    "mean": 1.2567016450246873,
+                    "ci_low": 1.2240585283482313,
+                    "ci_high": 1.2913449606592329,
+                    "n_observations": 985618,
+                    "n_stations": 5268,
+                    "x": 3.02722430229187
+                  },
+                  {
+                    "bin": "(3.343255043029785, 4.412636756896973]",
+                    "mean": 1.1722023820294731,
+                    "ci_low": 1.1417498878019374,
+                    "ci_high": 1.2039270065767733,
+                    "n_observations": 985621,
+                    "n_stations": 5103,
+                    "x": 3.877945899963379
+                  },
+                  {
+                    "bin": "(4.412636756896973, inf]",
+                    "mean": 1.0962404716845724,
+                    "ci_low": 1.056888269916887,
+                    "ci_high": 1.1380576872235222,
+                    "n_observations": 985615,
+                    "n_stations": 4710,
+                    "x": 12.5948805809021
+                  }
+                ]
+              },
+              "mark": {
+                "type": "line",
+                "color": "#0072B2",
+                "strokeWidth": 1.5
+              },
+              "encoding": {
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Wind speed (m s\u207b\u00b9)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": false,
+                    "labels": false,
+                    "tickCount": 5,
+                    "ticks": false
+                  },
+                  "field": "mean",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": null,
+                  "type": "quantitative"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 0.5370084643363953]",
+                    "mean": 2.2844589540363867,
+                    "ci_low": 2.1489578196229386,
+                    "ci_high": 2.4121182722528736,
+                    "n_observations": 985620,
+                    "n_stations": 5604,
+                    "x": 0.2686719674820779
+                  },
+                  {
+                    "bin": "(0.5370084643363953, 0.8630458116531372]",
+                    "mean": 1.9169622535295265,
+                    "ci_low": 1.830364952665761,
+                    "ci_high": 2.004670813965504,
+                    "n_observations": 985617,
+                    "n_stations": 5611,
+                    "x": 0.7000271379947662
+                  },
+                  {
+                    "bin": "(0.8630458116531372, 1.178737998008728]",
+                    "mean": 1.7714398335627644,
+                    "ci_low": 1.70357445383273,
+                    "ci_high": 1.841804796723742,
+                    "n_observations": 985618,
+                    "n_stations": 5616,
+                    "x": 1.0208919048309326
+                  },
+                  {
+                    "bin": "(1.178737998008728, 1.5028386116027832]",
+                    "mean": 1.7042719147305108,
+                    "ci_low": 1.6471759258159653,
+                    "ci_high": 1.7652139849415254,
+                    "n_observations": 985618,
+                    "n_stations": 5624,
+                    "x": 1.3407883048057556
+                  },
+                  {
+                    "bin": "(1.5028386116027832, 1.8503015041351318]",
+                    "mean": 1.623633106566917,
+                    "ci_low": 1.5715072021215375,
+                    "ci_high": 1.6738142413264754,
+                    "n_observations": 985618,
+                    "n_stations": 5603,
+                    "x": 1.6765700578689575
+                  },
+                  {
+                    "bin": "(1.8503015041351318, 2.241529941558838]",
+                    "mean": 1.4995633693712167,
+                    "ci_low": 1.4523925349984435,
+                    "ci_high": 1.5473610079101054,
+                    "n_observations": 985618,
+                    "n_stations": 5544,
+                    "x": 2.045915722846985
+                  },
+                  {
+                    "bin": "(2.241529941558838, 2.711193561553955]",
+                    "mean": 1.3643292877284643,
+                    "ci_low": 1.3293105469710935,
+                    "ci_high": 1.400597952974465,
+                    "n_observations": 985618,
+                    "n_stations": 5424,
+                    "x": 2.4763617515563965
+                  },
+                  {
+                    "bin": "(2.711193561553955, 3.343255043029785]",
+                    "mean": 1.2567016450246873,
+                    "ci_low": 1.2240585283482313,
+                    "ci_high": 1.2913449606592329,
+                    "n_observations": 985618,
+                    "n_stations": 5268,
+                    "x": 3.02722430229187
+                  },
+                  {
+                    "bin": "(3.343255043029785, 4.412636756896973]",
+                    "mean": 1.1722023820294731,
+                    "ci_low": 1.1417498878019374,
+                    "ci_high": 1.2039270065767733,
+                    "n_observations": 985621,
+                    "n_stations": 5103,
+                    "x": 3.877945899963379
+                  },
+                  {
+                    "bin": "(4.412636756896973, inf]",
+                    "mean": 1.0962404716845724,
+                    "ci_low": 1.056888269916887,
+                    "ci_high": 1.1380576872235222,
+                    "n_observations": 985615,
+                    "n_stations": 4710,
+                    "x": 12.5948805809021
+                  }
+                ]
+              },
+              "mark": {
+                "type": "point",
+                "color": "#0072B2",
+                "filled": true,
+                "size": 25
+              },
+              "encoding": {
+                "tooltip": [
+                  {
+                    "field": "x",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "mean",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "ci_low",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "ci_high",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "n_stations",
+                    "type": "quantitative"
+                  }
+                ],
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Wind speed (m s\u207b\u00b9)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": false,
+                    "labels": false,
+                    "tickCount": 5,
+                    "ticks": false
+                  },
+                  "field": "mean",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": null,
+                  "type": "quantitative"
+                }
+              }
+            }
+          ],
+          "height": 150,
+          "title": "(c)",
+          "width": 155
+        }
+      ],
+      "spacing": 16
+    },
+    {
+      "hconcat": [
+        {
+          "layer": [
+            {
+              "data": {
+                "values": [
+                  {
+                    "zero": 0
+                  }
+                ]
+              },
+              "mark": {
+                "type": "rule",
+                "color": "#888888",
+                "strokeDash": [
+                  4,
+                  4
+                ],
+                "strokeWidth": 0.7
+              },
+              "encoding": {
+                "y": {
+                  "field": "zero",
+                  "title": "Mean residual (\u00b0C)",
+                  "type": "quantitative"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 0.04724409448818889]",
+                    "mean": 1.5533277130960776,
+                    "ci_low": 1.410587668733664,
+                    "ci_high": 1.7028683157397988,
+                    "n_observations": 993682,
+                    "n_stations": 1610,
+                    "x": -0.46850393700787407
+                  },
+                  {
+                    "bin": "(0.04724409448818889, 0.1811023622047243]",
+                    "mean": 1.6727936324492954,
+                    "ci_low": 1.581510772485308,
+                    "ci_high": 1.7735466091869063,
+                    "n_observations": 1038271,
+                    "n_stations": 2499,
+                    "x": 0.1141732283464566
+                  },
+                  {
+                    "bin": "(0.1811023622047243, 0.26771653543307083]",
+                    "mean": 1.5580433272874106,
+                    "ci_low": 1.4752805391532788,
+                    "ci_high": 1.6348567815370207,
+                    "n_observations": 994901,
+                    "n_stations": 2831,
+                    "x": 0.22440944881889757
+                  },
+                  {
+                    "bin": "(0.26771653543307083, 0.3385826771653544]",
+                    "mean": 1.532318413335106,
+                    "ci_low": 1.4497338859950522,
+                    "ci_high": 1.6117462774587195,
+                    "n_observations": 916211,
+                    "n_stations": 2991,
+                    "x": 0.3031496062992126
+                  },
+                  {
+                    "bin": "(0.3385826771653544, 0.40944881889763773]",
+                    "mean": 1.493068686906064,
+                    "ci_low": 1.4256789730333683,
+                    "ci_high": 1.5643907977871598,
+                    "n_observations": 986308,
+                    "n_stations": 3255,
+                    "x": 0.37401574803149606
+                  },
+                  {
+                    "bin": "(0.40944881889763773, 0.4803149606299213]",
+                    "mean": 1.5185037973385003,
+                    "ci_low": 1.4492644004644801,
+                    "ci_high": 1.5819012320917496,
+                    "n_observations": 1046801,
+                    "n_stations": 3376,
+                    "x": 0.4448818897637795
+                  },
+                  {
+                    "bin": "(0.4803149606299213, 0.5433070866141732]",
+                    "mean": 1.5441894319430425,
+                    "ci_low": 1.4804758492180434,
+                    "ci_high": 1.609767172266378,
+                    "n_observations": 949300,
+                    "n_stations": 3214,
+                    "x": 0.5118110236220472
+                  },
+                  {
+                    "bin": "(0.5433070866141732, 0.6141732283464567]",
+                    "mean": 1.572012313080861,
+                    "ci_low": 1.504088755936508,
+                    "ci_high": 1.6428603726386777,
+                    "n_observations": 1018351,
+                    "n_stations": 3075,
+                    "x": 0.5787401574803149
+                  },
+                  {
+                    "bin": "(0.6141732283464567, 0.6929133858267718]",
+                    "mean": 1.600619612331423,
+                    "ci_low": 1.5251714394021156,
+                    "ci_high": 1.6739412192368548,
+                    "n_observations": 971108,
+                    "n_stations": 2681,
+                    "x": 0.6535433070866142
+                  },
+                  {
+                    "bin": "(0.6929133858267718, inf]",
+                    "mean": 1.6430014816724345,
+                    "ci_low": 1.55404264333093,
+                    "ci_high": 1.738286414820133,
+                    "n_observations": 941248,
+                    "n_stations": 2041,
+                    "x": 0.8188976377952757
+                  }
+                ]
+              },
+              "mark": {
+                "type": "area",
+                "color": "#0072B2",
+                "opacity": 0.18
+              },
+              "encoding": {
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "NDVI",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": true,
+                    "labels": true,
+                    "tickCount": 5,
+                    "ticks": true
+                  },
+                  "field": "ci_low",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": "Mean residual (\u00b0C)",
+                  "type": "quantitative"
+                },
+                "y2": {
+                  "field": "ci_high"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 0.04724409448818889]",
+                    "mean": 1.5533277130960776,
+                    "ci_low": 1.410587668733664,
+                    "ci_high": 1.7028683157397988,
+                    "n_observations": 993682,
+                    "n_stations": 1610,
+                    "x": -0.46850393700787407
+                  },
+                  {
+                    "bin": "(0.04724409448818889, 0.1811023622047243]",
+                    "mean": 1.6727936324492954,
+                    "ci_low": 1.581510772485308,
+                    "ci_high": 1.7735466091869063,
+                    "n_observations": 1038271,
+                    "n_stations": 2499,
+                    "x": 0.1141732283464566
+                  },
+                  {
+                    "bin": "(0.1811023622047243, 0.26771653543307083]",
+                    "mean": 1.5580433272874106,
+                    "ci_low": 1.4752805391532788,
+                    "ci_high": 1.6348567815370207,
+                    "n_observations": 994901,
+                    "n_stations": 2831,
+                    "x": 0.22440944881889757
+                  },
+                  {
+                    "bin": "(0.26771653543307083, 0.3385826771653544]",
+                    "mean": 1.532318413335106,
+                    "ci_low": 1.4497338859950522,
+                    "ci_high": 1.6117462774587195,
+                    "n_observations": 916211,
+                    "n_stations": 2991,
+                    "x": 0.3031496062992126
+                  },
+                  {
+                    "bin": "(0.3385826771653544, 0.40944881889763773]",
+                    "mean": 1.493068686906064,
+                    "ci_low": 1.4256789730333683,
+                    "ci_high": 1.5643907977871598,
+                    "n_observations": 986308,
+                    "n_stations": 3255,
+                    "x": 0.37401574803149606
+                  },
+                  {
+                    "bin": "(0.40944881889763773, 0.4803149606299213]",
+                    "mean": 1.5185037973385003,
+                    "ci_low": 1.4492644004644801,
+                    "ci_high": 1.5819012320917496,
+                    "n_observations": 1046801,
+                    "n_stations": 3376,
+                    "x": 0.4448818897637795
+                  },
+                  {
+                    "bin": "(0.4803149606299213, 0.5433070866141732]",
+                    "mean": 1.5441894319430425,
+                    "ci_low": 1.4804758492180434,
+                    "ci_high": 1.609767172266378,
+                    "n_observations": 949300,
+                    "n_stations": 3214,
+                    "x": 0.5118110236220472
+                  },
+                  {
+                    "bin": "(0.5433070866141732, 0.6141732283464567]",
+                    "mean": 1.572012313080861,
+                    "ci_low": 1.504088755936508,
+                    "ci_high": 1.6428603726386777,
+                    "n_observations": 1018351,
+                    "n_stations": 3075,
+                    "x": 0.5787401574803149
+                  },
+                  {
+                    "bin": "(0.6141732283464567, 0.6929133858267718]",
+                    "mean": 1.600619612331423,
+                    "ci_low": 1.5251714394021156,
+                    "ci_high": 1.6739412192368548,
+                    "n_observations": 971108,
+                    "n_stations": 2681,
+                    "x": 0.6535433070866142
+                  },
+                  {
+                    "bin": "(0.6929133858267718, inf]",
+                    "mean": 1.6430014816724345,
+                    "ci_low": 1.55404264333093,
+                    "ci_high": 1.738286414820133,
+                    "n_observations": 941248,
+                    "n_stations": 2041,
+                    "x": 0.8188976377952757
+                  }
+                ]
+              },
+              "mark": {
+                "type": "line",
+                "color": "#0072B2",
+                "strokeWidth": 1.5
+              },
+              "encoding": {
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "NDVI",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": true,
+                    "labels": true,
+                    "tickCount": 5,
+                    "ticks": true
+                  },
+                  "field": "mean",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": "Mean residual (\u00b0C)",
+                  "type": "quantitative"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 0.04724409448818889]",
+                    "mean": 1.5533277130960776,
+                    "ci_low": 1.410587668733664,
+                    "ci_high": 1.7028683157397988,
+                    "n_observations": 993682,
+                    "n_stations": 1610,
+                    "x": -0.46850393700787407
+                  },
+                  {
+                    "bin": "(0.04724409448818889, 0.1811023622047243]",
+                    "mean": 1.6727936324492954,
+                    "ci_low": 1.581510772485308,
+                    "ci_high": 1.7735466091869063,
+                    "n_observations": 1038271,
+                    "n_stations": 2499,
+                    "x": 0.1141732283464566
+                  },
+                  {
+                    "bin": "(0.1811023622047243, 0.26771653543307083]",
+                    "mean": 1.5580433272874106,
+                    "ci_low": 1.4752805391532788,
+                    "ci_high": 1.6348567815370207,
+                    "n_observations": 994901,
+                    "n_stations": 2831,
+                    "x": 0.22440944881889757
+                  },
+                  {
+                    "bin": "(0.26771653543307083, 0.3385826771653544]",
+                    "mean": 1.532318413335106,
+                    "ci_low": 1.4497338859950522,
+                    "ci_high": 1.6117462774587195,
+                    "n_observations": 916211,
+                    "n_stations": 2991,
+                    "x": 0.3031496062992126
+                  },
+                  {
+                    "bin": "(0.3385826771653544, 0.40944881889763773]",
+                    "mean": 1.493068686906064,
+                    "ci_low": 1.4256789730333683,
+                    "ci_high": 1.5643907977871598,
+                    "n_observations": 986308,
+                    "n_stations": 3255,
+                    "x": 0.37401574803149606
+                  },
+                  {
+                    "bin": "(0.40944881889763773, 0.4803149606299213]",
+                    "mean": 1.5185037973385003,
+                    "ci_low": 1.4492644004644801,
+                    "ci_high": 1.5819012320917496,
+                    "n_observations": 1046801,
+                    "n_stations": 3376,
+                    "x": 0.4448818897637795
+                  },
+                  {
+                    "bin": "(0.4803149606299213, 0.5433070866141732]",
+                    "mean": 1.5441894319430425,
+                    "ci_low": 1.4804758492180434,
+                    "ci_high": 1.609767172266378,
+                    "n_observations": 949300,
+                    "n_stations": 3214,
+                    "x": 0.5118110236220472
+                  },
+                  {
+                    "bin": "(0.5433070866141732, 0.6141732283464567]",
+                    "mean": 1.572012313080861,
+                    "ci_low": 1.504088755936508,
+                    "ci_high": 1.6428603726386777,
+                    "n_observations": 1018351,
+                    "n_stations": 3075,
+                    "x": 0.5787401574803149
+                  },
+                  {
+                    "bin": "(0.6141732283464567, 0.6929133858267718]",
+                    "mean": 1.600619612331423,
+                    "ci_low": 1.5251714394021156,
+                    "ci_high": 1.6739412192368548,
+                    "n_observations": 971108,
+                    "n_stations": 2681,
+                    "x": 0.6535433070866142
+                  },
+                  {
+                    "bin": "(0.6929133858267718, inf]",
+                    "mean": 1.6430014816724345,
+                    "ci_low": 1.55404264333093,
+                    "ci_high": 1.738286414820133,
+                    "n_observations": 941248,
+                    "n_stations": 2041,
+                    "x": 0.8188976377952757
+                  }
+                ]
+              },
+              "mark": {
+                "type": "point",
+                "color": "#0072B2",
+                "filled": true,
+                "size": 25
+              },
+              "encoding": {
+                "tooltip": [
+                  {
+                    "field": "x",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "mean",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "ci_low",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "ci_high",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "n_stations",
+                    "type": "quantitative"
+                  }
+                ],
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "NDVI",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": true,
+                    "labels": true,
+                    "tickCount": 5,
+                    "ticks": true
+                  },
+                  "field": "mean",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": "Mean residual (\u00b0C)",
+                  "type": "quantitative"
+                }
+              }
+            }
+          ],
+          "height": 150,
+          "title": "(d)",
+          "width": 155
+        },
+        {
+          "layer": [
+            {
+              "data": {
+                "values": [
+                  {
+                    "zero": 0
+                  }
+                ]
+              },
+              "mark": {
+                "type": "rule",
+                "color": "#888888",
+                "strokeDash": [
+                  4,
+                  4
+                ],
+                "strokeWidth": 0.7
+              },
+              "encoding": {
+                "y": {
+                  "field": "zero",
+                  "title": null,
+                  "type": "quantitative"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 0.663926877711889]",
+                    "mean": 1.6639657161228418,
+                    "ci_low": 1.5324567578725368,
+                    "ci_high": 1.8015135029761549,
+                    "n_observations": 986262,
+                    "n_stations": 522,
+                    "x": 0.3322260283657694
+                  },
+                  {
+                    "bin": "(0.663926877711889, 4.098659199737776]",
+                    "mean": 1.7099107662235622,
+                    "ci_low": 1.5603838313943046,
+                    "ci_high": 1.8591544983961625,
+                    "n_observations": 985927,
+                    "n_stations": 562,
+                    "x": 2.3812930387248326
+                  },
+                  {
+                    "bin": "(4.098659199737776, 14.692279881573944]",
+                    "mean": 1.8050290905837558,
+                    "ci_low": 1.6338524252555833,
+                    "ci_high": 1.974067087198567,
+                    "n_observations": 986412,
+                    "n_stations": 624,
+                    "x": 9.39546954065586
+                  },
+                  {
+                    "bin": "(14.692279881573944, 29.42524090854216]",
+                    "mean": 2.0348950870844678,
+                    "ci_low": 1.8318865315725108,
+                    "ci_high": 2.219318176506081,
+                    "n_observations": 984747,
+                    "n_stations": 629,
+                    "x": 22.05876039505805
+                  },
+                  {
+                    "bin": "(29.42524090854216, 47.249500639028334]",
+                    "mean": 1.602889088684105,
+                    "ci_low": 1.4438616420800172,
+                    "ci_high": 1.7759662381864283,
+                    "n_observations": 984856,
+                    "n_stations": 594,
+                    "x": 38.337370773785246
+                  },
+                  {
+                    "bin": "(47.249500639028334, 69.9057186141752]",
+                    "mean": 1.593096221605114,
+                    "ci_low": 1.4172693942323196,
+                    "ci_high": 1.750111263790278,
+                    "n_observations": 985961,
+                    "n_stations": 574,
+                    "x": 58.57760962660177
+                  },
+                  {
+                    "bin": "(69.9057186141752, 100.6063579216577]",
+                    "mean": 1.5831609212802196,
+                    "ci_low": 1.4433183616259444,
+                    "ci_high": 1.7397638859800049,
+                    "n_observations": 986495,
+                    "n_stations": 540,
+                    "x": 85.25603826791645
+                  },
+                  {
+                    "bin": "(100.6063579216577, 157.69612686978894]",
+                    "mean": 1.406013219264987,
+                    "ci_low": 1.2771673217141442,
+                    "ci_high": 1.5433188308536046,
+                    "n_observations": 984331,
+                    "n_stations": 517,
+                    "x": 129.15124239572333
+                  },
+                  {
+                    "bin": "(157.69612686978894, 231.97878757690304]",
+                    "mean": 1.1442887278543734,
+                    "ci_low": 1.0277788344382348,
+                    "ci_high": 1.2691352921460275,
+                    "n_observations": 986016,
+                    "n_stations": 524,
+                    "x": 194.837457223346
+                  },
+                  {
+                    "bin": "(231.97878757690304, inf]",
+                    "mean": 1.1464445955168585,
+                    "ci_low": 1.0484975092370998,
+                    "ci_high": 1.245589109798369,
+                    "n_observations": 985174,
+                    "n_stations": 578,
+                    "x": 401.3418568467396
+                  }
+                ]
+              },
+              "mark": {
+                "type": "area",
+                "color": "#0072B2",
+                "opacity": 0.18
+              },
+              "encoding": {
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Distance to sea (km)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": false,
+                    "labels": false,
+                    "tickCount": 5,
+                    "ticks": false
+                  },
+                  "field": "ci_low",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": null,
+                  "type": "quantitative"
+                },
+                "y2": {
+                  "field": "ci_high"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 0.663926877711889]",
+                    "mean": 1.6639657161228418,
+                    "ci_low": 1.5324567578725368,
+                    "ci_high": 1.8015135029761549,
+                    "n_observations": 986262,
+                    "n_stations": 522,
+                    "x": 0.3322260283657694
+                  },
+                  {
+                    "bin": "(0.663926877711889, 4.098659199737776]",
+                    "mean": 1.7099107662235622,
+                    "ci_low": 1.5603838313943046,
+                    "ci_high": 1.8591544983961625,
+                    "n_observations": 985927,
+                    "n_stations": 562,
+                    "x": 2.3812930387248326
+                  },
+                  {
+                    "bin": "(4.098659199737776, 14.692279881573944]",
+                    "mean": 1.8050290905837558,
+                    "ci_low": 1.6338524252555833,
+                    "ci_high": 1.974067087198567,
+                    "n_observations": 986412,
+                    "n_stations": 624,
+                    "x": 9.39546954065586
+                  },
+                  {
+                    "bin": "(14.692279881573944, 29.42524090854216]",
+                    "mean": 2.0348950870844678,
+                    "ci_low": 1.8318865315725108,
+                    "ci_high": 2.219318176506081,
+                    "n_observations": 984747,
+                    "n_stations": 629,
+                    "x": 22.05876039505805
+                  },
+                  {
+                    "bin": "(29.42524090854216, 47.249500639028334]",
+                    "mean": 1.602889088684105,
+                    "ci_low": 1.4438616420800172,
+                    "ci_high": 1.7759662381864283,
+                    "n_observations": 984856,
+                    "n_stations": 594,
+                    "x": 38.337370773785246
+                  },
+                  {
+                    "bin": "(47.249500639028334, 69.9057186141752]",
+                    "mean": 1.593096221605114,
+                    "ci_low": 1.4172693942323196,
+                    "ci_high": 1.750111263790278,
+                    "n_observations": 985961,
+                    "n_stations": 574,
+                    "x": 58.57760962660177
+                  },
+                  {
+                    "bin": "(69.9057186141752, 100.6063579216577]",
+                    "mean": 1.5831609212802196,
+                    "ci_low": 1.4433183616259444,
+                    "ci_high": 1.7397638859800049,
+                    "n_observations": 986495,
+                    "n_stations": 540,
+                    "x": 85.25603826791645
+                  },
+                  {
+                    "bin": "(100.6063579216577, 157.69612686978894]",
+                    "mean": 1.406013219264987,
+                    "ci_low": 1.2771673217141442,
+                    "ci_high": 1.5433188308536046,
+                    "n_observations": 984331,
+                    "n_stations": 517,
+                    "x": 129.15124239572333
+                  },
+                  {
+                    "bin": "(157.69612686978894, 231.97878757690304]",
+                    "mean": 1.1442887278543734,
+                    "ci_low": 1.0277788344382348,
+                    "ci_high": 1.2691352921460275,
+                    "n_observations": 986016,
+                    "n_stations": 524,
+                    "x": 194.837457223346
+                  },
+                  {
+                    "bin": "(231.97878757690304, inf]",
+                    "mean": 1.1464445955168585,
+                    "ci_low": 1.0484975092370998,
+                    "ci_high": 1.245589109798369,
+                    "n_observations": 985174,
+                    "n_stations": 578,
+                    "x": 401.3418568467396
+                  }
+                ]
+              },
+              "mark": {
+                "type": "line",
+                "color": "#0072B2",
+                "strokeWidth": 1.5
+              },
+              "encoding": {
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Distance to sea (km)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": false,
+                    "labels": false,
+                    "tickCount": 5,
+                    "ticks": false
+                  },
+                  "field": "mean",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": null,
+                  "type": "quantitative"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 0.663926877711889]",
+                    "mean": 1.6639657161228418,
+                    "ci_low": 1.5324567578725368,
+                    "ci_high": 1.8015135029761549,
+                    "n_observations": 986262,
+                    "n_stations": 522,
+                    "x": 0.3322260283657694
+                  },
+                  {
+                    "bin": "(0.663926877711889, 4.098659199737776]",
+                    "mean": 1.7099107662235622,
+                    "ci_low": 1.5603838313943046,
+                    "ci_high": 1.8591544983961625,
+                    "n_observations": 985927,
+                    "n_stations": 562,
+                    "x": 2.3812930387248326
+                  },
+                  {
+                    "bin": "(4.098659199737776, 14.692279881573944]",
+                    "mean": 1.8050290905837558,
+                    "ci_low": 1.6338524252555833,
+                    "ci_high": 1.974067087198567,
+                    "n_observations": 986412,
+                    "n_stations": 624,
+                    "x": 9.39546954065586
+                  },
+                  {
+                    "bin": "(14.692279881573944, 29.42524090854216]",
+                    "mean": 2.0348950870844678,
+                    "ci_low": 1.8318865315725108,
+                    "ci_high": 2.219318176506081,
+                    "n_observations": 984747,
+                    "n_stations": 629,
+                    "x": 22.05876039505805
+                  },
+                  {
+                    "bin": "(29.42524090854216, 47.249500639028334]",
+                    "mean": 1.602889088684105,
+                    "ci_low": 1.4438616420800172,
+                    "ci_high": 1.7759662381864283,
+                    "n_observations": 984856,
+                    "n_stations": 594,
+                    "x": 38.337370773785246
+                  },
+                  {
+                    "bin": "(47.249500639028334, 69.9057186141752]",
+                    "mean": 1.593096221605114,
+                    "ci_low": 1.4172693942323196,
+                    "ci_high": 1.750111263790278,
+                    "n_observations": 985961,
+                    "n_stations": 574,
+                    "x": 58.57760962660177
+                  },
+                  {
+                    "bin": "(69.9057186141752, 100.6063579216577]",
+                    "mean": 1.5831609212802196,
+                    "ci_low": 1.4433183616259444,
+                    "ci_high": 1.7397638859800049,
+                    "n_observations": 986495,
+                    "n_stations": 540,
+                    "x": 85.25603826791645
+                  },
+                  {
+                    "bin": "(100.6063579216577, 157.69612686978894]",
+                    "mean": 1.406013219264987,
+                    "ci_low": 1.2771673217141442,
+                    "ci_high": 1.5433188308536046,
+                    "n_observations": 984331,
+                    "n_stations": 517,
+                    "x": 129.15124239572333
+                  },
+                  {
+                    "bin": "(157.69612686978894, 231.97878757690304]",
+                    "mean": 1.1442887278543734,
+                    "ci_low": 1.0277788344382348,
+                    "ci_high": 1.2691352921460275,
+                    "n_observations": 986016,
+                    "n_stations": 524,
+                    "x": 194.837457223346
+                  },
+                  {
+                    "bin": "(231.97878757690304, inf]",
+                    "mean": 1.1464445955168585,
+                    "ci_low": 1.0484975092370998,
+                    "ci_high": 1.245589109798369,
+                    "n_observations": 985174,
+                    "n_stations": 578,
+                    "x": 401.3418568467396
+                  }
+                ]
+              },
+              "mark": {
+                "type": "point",
+                "color": "#0072B2",
+                "filled": true,
+                "size": 25
+              },
+              "encoding": {
+                "tooltip": [
+                  {
+                    "field": "x",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "mean",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "ci_low",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "ci_high",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "n_stations",
+                    "type": "quantitative"
+                  }
+                ],
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Distance to sea (km)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": false,
+                    "labels": false,
+                    "tickCount": 5,
+                    "ticks": false
+                  },
+                  "field": "mean",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": null,
+                  "type": "quantitative"
+                }
+              }
+            }
+          ],
+          "height": 150,
+          "title": "(e)",
+          "width": 155
+        },
+        {
+          "layer": [
+            {
+              "data": {
+                "values": [
+                  {
+                    "zero": 0
+                  }
+                ]
+              },
+              "mark": {
+                "type": "rule",
+                "color": "#888888",
+                "strokeDash": [
+                  4,
+                  4
+                ],
+                "strokeWidth": 0.7
+              },
+              "encoding": {
+                "y": {
+                  "field": "zero",
+                  "title": null,
+                  "type": "quantitative"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 8]",
+                    "mean": 1.2400957728525983,
+                    "ci_low": 1.1356035072656154,
+                    "ci_high": 1.3529682572148447,
+                    "n_observations": 1024927,
+                    "n_stations": 556,
+                    "x": -7.0
+                  },
+                  {
+                    "bin": "(8, 26]",
+                    "mean": 1.4927704391742156,
+                    "ci_low": 1.3744151916975043,
+                    "ci_high": 1.615427357992606,
+                    "n_observations": 994825,
+                    "n_stations": 528,
+                    "x": 17.0
+                  },
+                  {
+                    "bin": "(26, 62]",
+                    "mean": 1.6041945936577755,
+                    "ci_low": 1.4884871927805594,
+                    "ci_high": 1.716034231637055,
+                    "n_observations": 937125,
+                    "n_stations": 525,
+                    "x": 44.0
+                  },
+                  {
+                    "bin": "(62, 112]",
+                    "mean": 1.5071434788012548,
+                    "ci_low": 1.4115555467578857,
+                    "ci_high": 1.6017740529981181,
+                    "n_observations": 996107,
+                    "n_stations": 570,
+                    "x": 87.0
+                  },
+                  {
+                    "bin": "(112, 179]",
+                    "mean": 1.5077913587459617,
+                    "ci_low": 1.4211067655854275,
+                    "ci_high": 1.6056297613728074,
+                    "n_observations": 974544,
+                    "n_stations": 571,
+                    "x": 145.5
+                  },
+                  {
+                    "bin": "(179, 280]",
+                    "mean": 1.6356943514716253,
+                    "ci_low": 1.5293654748654315,
+                    "ci_high": 1.7395514923764381,
+                    "n_observations": 985065,
+                    "n_stations": 594,
+                    "x": 229.5
+                  },
+                  {
+                    "bin": "(280, 420]",
+                    "mean": 1.6217069296299103,
+                    "ci_low": 1.514272894418176,
+                    "ci_high": 1.7309120968746623,
+                    "n_observations": 984067,
+                    "n_stations": 572,
+                    "x": 350.0
+                  },
+                  {
+                    "bin": "(420, 600]",
+                    "mean": 1.9367147315220976,
+                    "ci_low": 1.796904840952495,
+                    "ci_high": 2.0896455024764653,
+                    "n_observations": 989160,
+                    "n_stations": 576,
+                    "x": 510.0
+                  },
+                  {
+                    "bin": "(600, 873]",
+                    "mean": 2.102059921072823,
+                    "ci_low": 1.9045415051322887,
+                    "ci_high": 2.3029656390445905,
+                    "n_observations": 981264,
+                    "n_stations": 574,
+                    "x": 736.5
+                  },
+                  {
+                    "bin": "(873, inf]",
+                    "mean": 1.0578055451616635,
+                    "ci_low": 0.7903234026525069,
+                    "ci_high": 1.3266511091366853,
+                    "n_observations": 984620,
+                    "n_stations": 594,
+                    "x": 2155.0
+                  }
+                ]
+              },
+              "mark": {
+                "type": "area",
+                "color": "#0072B2",
+                "opacity": 0.18
+              },
+              "encoding": {
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Elevation (m)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": false,
+                    "labels": false,
+                    "tickCount": 5,
+                    "ticks": false
+                  },
+                  "field": "ci_low",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": null,
+                  "type": "quantitative"
+                },
+                "y2": {
+                  "field": "ci_high"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 8]",
+                    "mean": 1.2400957728525983,
+                    "ci_low": 1.1356035072656154,
+                    "ci_high": 1.3529682572148447,
+                    "n_observations": 1024927,
+                    "n_stations": 556,
+                    "x": -7.0
+                  },
+                  {
+                    "bin": "(8, 26]",
+                    "mean": 1.4927704391742156,
+                    "ci_low": 1.3744151916975043,
+                    "ci_high": 1.615427357992606,
+                    "n_observations": 994825,
+                    "n_stations": 528,
+                    "x": 17.0
+                  },
+                  {
+                    "bin": "(26, 62]",
+                    "mean": 1.6041945936577755,
+                    "ci_low": 1.4884871927805594,
+                    "ci_high": 1.716034231637055,
+                    "n_observations": 937125,
+                    "n_stations": 525,
+                    "x": 44.0
+                  },
+                  {
+                    "bin": "(62, 112]",
+                    "mean": 1.5071434788012548,
+                    "ci_low": 1.4115555467578857,
+                    "ci_high": 1.6017740529981181,
+                    "n_observations": 996107,
+                    "n_stations": 570,
+                    "x": 87.0
+                  },
+                  {
+                    "bin": "(112, 179]",
+                    "mean": 1.5077913587459617,
+                    "ci_low": 1.4211067655854275,
+                    "ci_high": 1.6056297613728074,
+                    "n_observations": 974544,
+                    "n_stations": 571,
+                    "x": 145.5
+                  },
+                  {
+                    "bin": "(179, 280]",
+                    "mean": 1.6356943514716253,
+                    "ci_low": 1.5293654748654315,
+                    "ci_high": 1.7395514923764381,
+                    "n_observations": 985065,
+                    "n_stations": 594,
+                    "x": 229.5
+                  },
+                  {
+                    "bin": "(280, 420]",
+                    "mean": 1.6217069296299103,
+                    "ci_low": 1.514272894418176,
+                    "ci_high": 1.7309120968746623,
+                    "n_observations": 984067,
+                    "n_stations": 572,
+                    "x": 350.0
+                  },
+                  {
+                    "bin": "(420, 600]",
+                    "mean": 1.9367147315220976,
+                    "ci_low": 1.796904840952495,
+                    "ci_high": 2.0896455024764653,
+                    "n_observations": 989160,
+                    "n_stations": 576,
+                    "x": 510.0
+                  },
+                  {
+                    "bin": "(600, 873]",
+                    "mean": 2.102059921072823,
+                    "ci_low": 1.9045415051322887,
+                    "ci_high": 2.3029656390445905,
+                    "n_observations": 981264,
+                    "n_stations": 574,
+                    "x": 736.5
+                  },
+                  {
+                    "bin": "(873, inf]",
+                    "mean": 1.0578055451616635,
+                    "ci_low": 0.7903234026525069,
+                    "ci_high": 1.3266511091366853,
+                    "n_observations": 984620,
+                    "n_stations": 594,
+                    "x": 2155.0
+                  }
+                ]
+              },
+              "mark": {
+                "type": "line",
+                "color": "#0072B2",
+                "strokeWidth": 1.5
+              },
+              "encoding": {
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Elevation (m)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": false,
+                    "labels": false,
+                    "tickCount": 5,
+                    "ticks": false
+                  },
+                  "field": "mean",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": null,
+                  "type": "quantitative"
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "bin": "(-inf, 8]",
+                    "mean": 1.2400957728525983,
+                    "ci_low": 1.1356035072656154,
+                    "ci_high": 1.3529682572148447,
+                    "n_observations": 1024927,
+                    "n_stations": 556,
+                    "x": -7.0
+                  },
+                  {
+                    "bin": "(8, 26]",
+                    "mean": 1.4927704391742156,
+                    "ci_low": 1.3744151916975043,
+                    "ci_high": 1.615427357992606,
+                    "n_observations": 994825,
+                    "n_stations": 528,
+                    "x": 17.0
+                  },
+                  {
+                    "bin": "(26, 62]",
+                    "mean": 1.6041945936577755,
+                    "ci_low": 1.4884871927805594,
+                    "ci_high": 1.716034231637055,
+                    "n_observations": 937125,
+                    "n_stations": 525,
+                    "x": 44.0
+                  },
+                  {
+                    "bin": "(62, 112]",
+                    "mean": 1.5071434788012548,
+                    "ci_low": 1.4115555467578857,
+                    "ci_high": 1.6017740529981181,
+                    "n_observations": 996107,
+                    "n_stations": 570,
+                    "x": 87.0
+                  },
+                  {
+                    "bin": "(112, 179]",
+                    "mean": 1.5077913587459617,
+                    "ci_low": 1.4211067655854275,
+                    "ci_high": 1.6056297613728074,
+                    "n_observations": 974544,
+                    "n_stations": 571,
+                    "x": 145.5
+                  },
+                  {
+                    "bin": "(179, 280]",
+                    "mean": 1.6356943514716253,
+                    "ci_low": 1.5293654748654315,
+                    "ci_high": 1.7395514923764381,
+                    "n_observations": 985065,
+                    "n_stations": 594,
+                    "x": 229.5
+                  },
+                  {
+                    "bin": "(280, 420]",
+                    "mean": 1.6217069296299103,
+                    "ci_low": 1.514272894418176,
+                    "ci_high": 1.7309120968746623,
+                    "n_observations": 984067,
+                    "n_stations": 572,
+                    "x": 350.0
+                  },
+                  {
+                    "bin": "(420, 600]",
+                    "mean": 1.9367147315220976,
+                    "ci_low": 1.796904840952495,
+                    "ci_high": 2.0896455024764653,
+                    "n_observations": 989160,
+                    "n_stations": 576,
+                    "x": 510.0
+                  },
+                  {
+                    "bin": "(600, 873]",
+                    "mean": 2.102059921072823,
+                    "ci_low": 1.9045415051322887,
+                    "ci_high": 2.3029656390445905,
+                    "n_observations": 981264,
+                    "n_stations": 574,
+                    "x": 736.5
+                  },
+                  {
+                    "bin": "(873, inf]",
+                    "mean": 1.0578055451616635,
+                    "ci_low": 0.7903234026525069,
+                    "ci_high": 1.3266511091366853,
+                    "n_observations": 984620,
+                    "n_stations": 594,
+                    "x": 2155.0
+                  }
+                ]
+              },
+              "mark": {
+                "type": "point",
+                "color": "#0072B2",
+                "filled": true,
+                "size": 25
+              },
+              "encoding": {
+                "tooltip": [
+                  {
+                    "field": "x",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "mean",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "ci_low",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "ci_high",
+                    "type": "quantitative"
+                  },
+                  {
+                    "field": "n_stations",
+                    "type": "quantitative"
+                  }
+                ],
+                "x": {
+                  "axis": {
+                    "grid": false,
+                    "tickCount": 4
+                  },
+                  "field": "x",
+                  "scale": {
+                    "zero": false
+                  },
+                  "title": "Elevation (m)",
+                  "type": "quantitative"
+                },
+                "y": {
+                  "axis": {
+                    "domain": false,
+                    "labels": false,
+                    "tickCount": 5,
+                    "ticks": false
+                  },
+                  "field": "mean",
+                  "scale": {
+                    "domain": [
+                      -0.14472709633517242,
+                      2.556845368588046
+                    ],
+                    "nice": false
+                  },
+                  "title": null,
+                  "type": "quantitative"
+                }
+              }
+            }
+          ],
+          "height": 150,
+          "title": "(f)",
+          "width": 155
+        }
+      ],
+      "spacing": 16
+    }
+  ],
+  "spacing": 26,
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json"
+}
