@@ -1,0 +1,12 @@
+{
+  "name": "LaTeX Codespace",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "james-yu.latex-workshop"
+      ]
+    }
+  },
+  "updateContentCommand": "sudo apt update && sudo apt install -y texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-fonts-extra texlive-bibtex-extra biber"
+}

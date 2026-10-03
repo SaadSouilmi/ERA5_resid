@@ -5,7 +5,7 @@
 \usepackage{newcent}
 \usepackage[scaled=1.1]{newtxmath}
 \usepackage{graphicx}
-\graphicspath{ {./images/} }
+\graphicspath{ {./images/} {./figures/} }
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{booktabs}
 \usepackage{caption}
@@ -583,7 +583,7 @@ is recomputed within each tercile.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{european-map.png}
+\includegraphics[width=0.85\textwidth]{figures/paper/04_station_map.pdf}
 \caption{Mean residual per station, $\bar r_i = T_i^{-1}\sum_t r_{it}$,
 all dates pooled. Positive (red) values indicate that the rescaled
 product underestimates station temperature.}
@@ -604,7 +604,7 @@ variable}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{sensitivities.png}
+\includegraphics[width=\textwidth]{figures/paper/01_covariates.pdf}
 \caption{Partial dependence of the mean residual on each of six
 covariates: station temperature, precipitation, wind speed, NDVI,
 distance to the sea, and elevation. Covariates are binned into
@@ -672,7 +672,7 @@ variability that individual mountain stations do not experience
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{images/degurba.png}
+\includegraphics[width=0.85\textwidth]{figures/paper/02_urbanization.pdf}
 \caption{Mean residual per DEGURBA urbanisation class (top), with
 station share per class (bottom). Error bars are 95\% station-clustered
 bootstrap confidence intervals.}
@@ -700,7 +700,7 @@ distance to sea) and land-use / built-environment (urbanisation class).
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.8\textwidth]{joined-effects.png}
+\includegraphics[width=0.8\textwidth]{figures/paper/03_interactions.pdf}
 \caption{Partial dependence of the mean residual on station temperature,
 stratified by wind-speed tercile. Shaded bands are 95\% station-clustered
 bootstrap confidence intervals.}
