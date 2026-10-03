@@ -74,59 +74,59 @@
             "values": [
               {
                 "bin": "Very low density rural",
-                "mean": 1.2233847619272407,
-                "ci_low": 1.1314613978086616,
-                "ci_high": 1.31437276557156,
-                "n_observations": 3514982,
-                "n_stations": 2110
+                "mean": 1.1402367877002064,
+                "ci_low": 1.0294370925957521,
+                "ci_high": 1.2580420837292965,
+                "n_observations": 2532936,
+                "n_stations": 1641
               },
               {
                 "bin": "Low density rural",
-                "mean": 1.6969655577005467,
-                "ci_low": 1.6197506243623008,
-                "ci_high": 1.7738814670218508,
-                "n_observations": 2912790,
-                "n_stations": 1622
+                "mean": 1.741399676014075,
+                "ci_low": 1.6488369625840562,
+                "ci_high": 1.8319257957660275,
+                "n_observations": 2205318,
+                "n_stations": 1314
               },
               {
                 "bin": "Rural cluster",
-                "mean": 2.0674141525501986,
-                "ci_low": 1.8877190820284282,
-                "ci_high": 2.2502617095251813,
-                "n_observations": 774427,
-                "n_stations": 450
+                "mean": 2.1302951054270975,
+                "ci_low": 1.9213196394143304,
+                "ci_high": 2.339211363510479,
+                "n_observations": 537064,
+                "n_stations": 338
               },
               {
                 "bin": "Suburban",
-                "mean": 1.6974595683134555,
-                "ci_low": 1.5927405051286134,
-                "ci_high": 1.8139224983837818,
-                "n_observations": 1002786,
-                "n_stations": 550
+                "mean": 1.7541867227824834,
+                "ci_low": 1.6270188999619568,
+                "ci_high": 1.8778402368028726,
+                "n_observations": 712167,
+                "n_stations": 433
               },
               {
                 "bin": "Semi-dense urban cluster",
-                "mean": 2.718346295920771,
-                "ci_low": 2.262795695987851,
-                "ci_high": 3.2400163322849274,
-                "n_observations": 156261,
-                "n_stations": 91
+                "mean": 2.703768070807393,
+                "ci_low": 2.1740194495686658,
+                "ci_high": 3.301406866667386,
+                "n_observations": 102984,
+                "n_stations": 66
               },
               {
                 "bin": "Dense urban cluster",
-                "mean": 1.9087000470024185,
-                "ci_low": 1.764120830305491,
-                "ci_high": 2.0653553474084685,
-                "n_observations": 512965,
-                "n_stations": 313
+                "mean": 1.9923757982848458,
+                "ci_low": 1.799811966975434,
+                "ci_high": 2.2138975814287183,
+                "n_observations": 320232,
+                "n_stations": 227
               },
               {
                 "bin": "Urban centre",
-                "mean": 1.5701872246311819,
-                "ci_low": 1.4759185804137043,
-                "ci_high": 1.670549922134629,
-                "n_observations": 829059,
-                "n_stations": 449
+                "mean": 1.7168088239495185,
+                "ci_low": 1.5893567066508039,
+                "ci_high": 1.8511385045401207,
+                "n_observations": 516376,
+                "n_stations": 312
               }
             ]
           },
@@ -141,7 +141,7 @@
               "scale": {
                 "domain": [
                   -0.1,
-                  3.3400163322849274
+                  3.401406866667386
                 ]
               },
               "title": "Mean residual (\u00b0C)",
@@ -176,59 +176,59 @@
             "values": [
               {
                 "bin": "Very low density rural",
-                "mean": 1.2233847619272407,
-                "ci_low": 1.1314613978086616,
-                "ci_high": 1.31437276557156,
-                "n_observations": 3514982,
-                "n_stations": 2110
+                "mean": 1.1402367877002064,
+                "ci_low": 1.0294370925957521,
+                "ci_high": 1.2580420837292965,
+                "n_observations": 2532936,
+                "n_stations": 1641
               },
               {
                 "bin": "Low density rural",
-                "mean": 1.6969655577005467,
-                "ci_low": 1.6197506243623008,
-                "ci_high": 1.7738814670218508,
-                "n_observations": 2912790,
-                "n_stations": 1622
+                "mean": 1.741399676014075,
+                "ci_low": 1.6488369625840562,
+                "ci_high": 1.8319257957660275,
+                "n_observations": 2205318,
+                "n_stations": 1314
               },
               {
                 "bin": "Rural cluster",
-                "mean": 2.0674141525501986,
-                "ci_low": 1.8877190820284282,
-                "ci_high": 2.2502617095251813,
-                "n_observations": 774427,
-                "n_stations": 450
+                "mean": 2.1302951054270975,
+                "ci_low": 1.9213196394143304,
+                "ci_high": 2.339211363510479,
+                "n_observations": 537064,
+                "n_stations": 338
               },
               {
                 "bin": "Suburban",
-                "mean": 1.6974595683134555,
-                "ci_low": 1.5927405051286134,
-                "ci_high": 1.8139224983837818,
-                "n_observations": 1002786,
-                "n_stations": 550
+                "mean": 1.7541867227824834,
+                "ci_low": 1.6270188999619568,
+                "ci_high": 1.8778402368028726,
+                "n_observations": 712167,
+                "n_stations": 433
               },
               {
                 "bin": "Semi-dense urban cluster",
-                "mean": 2.718346295920771,
-                "ci_low": 2.262795695987851,
-                "ci_high": 3.2400163322849274,
-                "n_observations": 156261,
-                "n_stations": 91
+                "mean": 2.703768070807393,
+                "ci_low": 2.1740194495686658,
+                "ci_high": 3.301406866667386,
+                "n_observations": 102984,
+                "n_stations": 66
               },
               {
                 "bin": "Dense urban cluster",
-                "mean": 1.9087000470024185,
-                "ci_low": 1.764120830305491,
-                "ci_high": 2.0653553474084685,
-                "n_observations": 512965,
-                "n_stations": 313
+                "mean": 1.9923757982848458,
+                "ci_low": 1.799811966975434,
+                "ci_high": 2.2138975814287183,
+                "n_observations": 320232,
+                "n_stations": 227
               },
               {
                 "bin": "Urban centre",
-                "mean": 1.5701872246311819,
-                "ci_low": 1.4759185804137043,
-                "ci_high": 1.670549922134629,
-                "n_observations": 829059,
-                "n_stations": 449
+                "mean": 1.7168088239495185,
+                "ci_low": 1.5893567066508039,
+                "ci_high": 1.8511385045401207,
+                "n_observations": 516376,
+                "n_stations": 312
               }
             ]
           },
@@ -266,7 +266,7 @@
               "scale": {
                 "domain": [
                   -0.1,
-                  3.3400163322849274
+                  3.401406866667386
                 ]
               },
               "title": "Mean residual (\u00b0C)",
@@ -302,59 +302,59 @@
         "values": [
           {
             "bin": "Very low density rural",
-            "mean": 1.2233847619272407,
-            "ci_low": 1.1314613978086616,
-            "ci_high": 1.31437276557156,
-            "n_observations": 3514982,
-            "n_stations": 2110
+            "mean": 1.1402367877002064,
+            "ci_low": 1.0294370925957521,
+            "ci_high": 1.2580420837292965,
+            "n_observations": 2532936,
+            "n_stations": 1641
           },
           {
             "bin": "Low density rural",
-            "mean": 1.6969655577005467,
-            "ci_low": 1.6197506243623008,
-            "ci_high": 1.7738814670218508,
-            "n_observations": 2912790,
-            "n_stations": 1622
+            "mean": 1.741399676014075,
+            "ci_low": 1.6488369625840562,
+            "ci_high": 1.8319257957660275,
+            "n_observations": 2205318,
+            "n_stations": 1314
           },
           {
             "bin": "Rural cluster",
-            "mean": 2.0674141525501986,
-            "ci_low": 1.8877190820284282,
-            "ci_high": 2.2502617095251813,
-            "n_observations": 774427,
-            "n_stations": 450
+            "mean": 2.1302951054270975,
+            "ci_low": 1.9213196394143304,
+            "ci_high": 2.339211363510479,
+            "n_observations": 537064,
+            "n_stations": 338
           },
           {
             "bin": "Suburban",
-            "mean": 1.6974595683134555,
-            "ci_low": 1.5927405051286134,
-            "ci_high": 1.8139224983837818,
-            "n_observations": 1002786,
-            "n_stations": 550
+            "mean": 1.7541867227824834,
+            "ci_low": 1.6270188999619568,
+            "ci_high": 1.8778402368028726,
+            "n_observations": 712167,
+            "n_stations": 433
           },
           {
             "bin": "Semi-dense urban cluster",
-            "mean": 2.718346295920771,
-            "ci_low": 2.262795695987851,
-            "ci_high": 3.2400163322849274,
-            "n_observations": 156261,
-            "n_stations": 91
+            "mean": 2.703768070807393,
+            "ci_low": 2.1740194495686658,
+            "ci_high": 3.301406866667386,
+            "n_observations": 102984,
+            "n_stations": 66
           },
           {
             "bin": "Dense urban cluster",
-            "mean": 1.9087000470024185,
-            "ci_low": 1.764120830305491,
-            "ci_high": 2.0653553474084685,
-            "n_observations": 512965,
-            "n_stations": 313
+            "mean": 1.9923757982848458,
+            "ci_low": 1.799811966975434,
+            "ci_high": 2.2138975814287183,
+            "n_observations": 320232,
+            "n_stations": 227
           },
           {
             "bin": "Urban centre",
-            "mean": 1.5701872246311819,
-            "ci_low": 1.4759185804137043,
-            "ci_high": 1.670549922134629,
-            "n_observations": 829059,
-            "n_stations": 449
+            "mean": 1.7168088239495185,
+            "ci_low": 1.5893567066508039,
+            "ci_high": 1.8511385045401207,
+            "n_observations": 516376,
+            "n_stations": 312
           }
         ]
       },

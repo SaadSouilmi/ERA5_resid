@@ -1,0 +1,7 @@
+year,sampled_station_days,temperaturemax_absolute_error,temperature_mismatches,windmax_absolute_error,wind_mismatches,tpmax_absolute_error,tp_mismatches
+2020,1827751,0.0,0,0.0,0,0.0,0
+2021,1853792,0.0,0,0.0,0,0.0,0
+2022,1818528,0.0,0,0.0,0,0.0,0
+2023,1816149,0.0,0,0.0,0,0.0,0
+2024,1700672,0.0,0,0.0,0,0.0,0
+2025,1007898,0.0,0,0.0,0,0.0,0

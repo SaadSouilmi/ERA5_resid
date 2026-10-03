@@ -1,0 +1,85 @@
+{
+  "input": "/home2/lobib/gen_hack/data2/residuals.parquet",
+  "input_sha256": "cb172ba533937ac58b5d75ca4f210e6329131256d7c87e8bd8b59d6a83edadff",
+  "output": "/home2/lobib/gen_hack/data2/residuals_cleaned.parquet",
+  "input_rows": 10467039,
+  "input_stations": 6064,
+  "duplicate_station_dates": 0,
+  "source_quality_mismatches": 0,
+  "era5_checked_station_days": 240384,
+  "era5_value_mismatches": 0,
+  "outside_grid_rows": 442249,
+  "outside_grid_stations": 354,
+  "outside_grid_complete_case_rows": 68452,
+  "missing_elevation_rows": 4477,
+  "previous_year_ndvi_rows_input": 2804753,
+  "previous_year_ndvi_rows_retained_as_missing": 2782504,
+  "cleaned_rows": 10024790,
+  "cleaned_stations": 5710,
+  "temperature_review_rows": 673,
+  "temperature_review_stations": 68,
+  "retained_matches_over_25km_stations": 76,
+  "original_complete_case_mean": 1.5689804548253357,
+  "cleaned_mean": 1.561514905828967,
+  "cleaned_mean_without_review_flags_sensitivity_only": 1.560266828296959,
+  "feature_samples": [
+    {
+      "feature": "station_celsius",
+      "observations": 10024790,
+      "stations": 5710,
+      "first_date": "2020-01-01 00:00:00",
+      "last_date": "2025-08-31 00:00:00"
+    },
+    {
+      "feature": "tp",
+      "observations": 10024790,
+      "stations": 5710,
+      "first_date": "2020-01-01 00:00:00",
+      "last_date": "2025-08-31 00:00:00"
+    },
+    {
+      "feature": "wind",
+      "observations": 10024790,
+      "stations": 5710,
+      "first_date": "2020-01-01 00:00:00",
+      "last_date": "2025-08-31 00:00:00"
+    },
+    {
+      "feature": "ndvi",
+      "observations": 7005225,
+      "stations": 5463,
+      "first_date": "2020-01-01 00:00:00",
+      "last_date": "2023-11-30 00:00:00"
+    },
+    {
+      "feature": "dist_to_sea_km",
+      "observations": 9895167,
+      "stations": 5642,
+      "first_date": "2020-01-01 00:00:00",
+      "last_date": "2025-08-31 00:00:00"
+    },
+    {
+      "feature": "elevation",
+      "observations": 10020313,
+      "stations": 5706,
+      "first_date": "2020-01-01 00:00:00",
+      "last_date": "2025-08-31 00:00:00"
+    }
+  ],
+  "status": "Processing fixes applied; source-temperature and spatial-representativeness review remains open.",
+  "findings": [
+    "The input parquet is preserved. No station temperatures were clipped, sign-flipped or silently discarded using ERA5 residuals. Review flags use temperature >50\u00b0C or |residual| >20\u00b0C as screening rules, not validated quality-control exclusions.",
+    "Both temperature series are daily maxima: ECA&D TX (tenths of \u00b0C, Q_TX=0) and 0.1\u00b0 ERA5-Land daily maximum of hourly 2 m temperature (Kelvin minus 273.15). The provider guide and NetCDF history identify these products; they are not daily mean temperatures or a separately bias-adjusted Kayrros temperature product.",
+    "The ERA5 centre grid runs from 25\u00b0W to 40.9\u00b0E and 35\u00b0N to 69.9\u00b0N. Stations beyond its half-cell footprint were previously snapped to an edge or distant land point; those rows are now excluded. Reconstructed legacy grid locations and geodesic distances are saved for review. In-domain land fallback can still be distant and used Euclidean degrees; coastal representativeness needs sensitivity analysis.",
+    "Elevation -9999 and -999 are now missing. Analyses select finite values only for the covariates they need. Previously, drop_nulls() removed rows solely because NDVI was unavailable and retained numeric elevation sentinels.",
+    "Only the NDVI raster covering the observation's actual quarter is used. Supplied rasters cover December 2019 through November 2023. Values copied from an earlier year are now missing rather than presented as contemporaneous measurements; later temperature observations remain available to other plots. NDVI scaling 0..254 to -1..1 and nodata=255 agree with the provider guide.",
+    "Saved station coastal distances match the cache by STAID. The raw pipeline's positional assignment was fragile and is replaced with an ID join plus coordinate checks. Distances from the truncated GADM Europe polygon are missing for known unsupported territories. Polygon boundaries may also include inland water or truncation edges, so this is not a fully validated ocean-coast distance product.",
+    "The files label precipitation in metres, and the provider guide describes daily mean hourly precipitation. Their metadata does not establish an unambiguous daily accumulation window. The plots now label it a precipitation proxy in metres; a mm/day claim needs the original accumulation/deaccumulation recipe. No factor of 24 or date shift was guessed.",
+    "Wind is sqrt(mean(u10)^2 + mean(v10)^2), the magnitude of the daily mean vector. It is not the daily mean of hourly wind-speed magnitudes. Plot labels now distinguish these quantities.",
+    "All saved TX records were checked against the original source values and valid quality flags. Yet stations 25881 and 26079 contain repeated values near 59.9\u00b0C, and station 25885 contains negative summer readings in Italy. These examples persist in the newer release. They require source-series review, not residual-based automatic trimming. The WMO verified continental record is 48.8\u00b0C in Sicily in 2021.",
+    "The draft's numerical tables and claims describe the previous analysis and must be refreshed after quality review. It also describes wind terciles although the active notebook shows joint quantile heatmaps; its calm/strong-wind numerical example contradicts its prose. Station clustering preserves within-station records, but does not model correlation between distinct nearby stations. Binned conditional means are descriptive associations, not model-based partial dependence or causal effects.",
+    "ECA&D observation-day windows differ by source. ERA5 metadata uses a zero-hour shift, so calendar-date joins alone do not prove matching 24-hour windows. Blended series can also borrow observations from nearby stations; SOUID provenance matters for interpreting station-cluster uncertainty.",
+    "Post-stratification is exploratory: the DEGURBA pixel crop, GADM land population and station footprint differ. Its GREG point estimate uses observation-count-weighted regression while displayed calibration weights follow an unweighted matrix formula. This audit does not establish that they target one consistent estimator."
+  ],
+  "cleaned_data_sha256": "e833a311a3efa4780696e90f7684f270784eb8959a880119228c6afa2c1d3682"
+}

@@ -1,0 +1,6 @@
+{
+  "residuals_cleaned.parquet": "e833a311a3efa4780696e90f7684f270784eb8959a880119228c6afa2c1d3682",
+  "clean/observation_sources.parquet": "6864ab942721b7601f192bbc0fd5c731bdff7649552549b55b285a279ff2e7e1",
+  "clean/era5_full_checks.csv": "c96ca702dc77c59ae6939d55e711bb3ec76f4c9f588ddd7de50f04b99e87a7cc",
+  "clean/station_source_files.csv": "ab6d3a9a988f978c314ef44239bb3b1b289154abab8b36cebe92d2658838be6f"
+}

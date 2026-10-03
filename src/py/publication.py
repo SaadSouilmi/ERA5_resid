@@ -1,23 +1,23 @@
 """Altair publication styling and fixed-width vector exports."""
 
-import json
+import json as Json
 from pathlib import Path
-from xml.etree import ElementTree as ET
+from xml.etree import ElementTree as Et
 
-import vl_convert as vlc
+import vl_convert as Vlc
 
-BLUE = "#0072B2"
-FONT = "DejaVu Serif"
-DOUBLE_COLUMN_MM = 180
+Blue = "#0072B2"
+Font = "DejaVu Serif"
+DoubleColumnMm = 180
 
 
-def paper_style(chart):
+def PaperStyle(Chart):
     return (
-        chart.configure(background="white", font=FONT, padding=8)
+        Chart.configure(background="white", font=Font, padding=8)
         .configure_view(stroke=None)
         .configure_axis(
-            labelFont=FONT,
-            titleFont=FONT,
+            labelFont=Font,
+            titleFont=Font,
             labelFontSize=10,
             titleFontSize=11,
             titleFontWeight="normal",
@@ -34,36 +34,46 @@ def paper_style(chart):
             titleColor="#222222",
         )
         .configure_legend(
-            labelFont=FONT,
-            titleFont=FONT,
+            labelFont=Font,
+            titleFont=Font,
             labelFontSize=10,
             titleFontSize=11,
             titleFontWeight="normal",
             gradientThickness=10,
         )
-        .configure_title(font=FONT, fontSize=12, anchor="start", offset=10)
+        .configure_title(font=Font, fontSize=12, anchor="start", offset=10)
     )
 
 
-def save_figure(chart, stem, dpi=600, width_mm=DOUBLE_COLUMN_MM):
+def SaveFigure(Chart, Stem, Dpi=600, WidthMm=DoubleColumnMm, Formats=("svg", "pdf", "png")):
     """Save the Altair spec and SVG/PDF/PNG at an exact physical width."""
-    stem = Path(stem)
-    stem.parent.mkdir(parents=True, exist_ok=True)
-    spec = chart.to_dict()
-    stem.with_suffix(".vl.json").write_text(json.dumps(spec, indent=2) + "\n")
-    svg = vlc.vegalite_to_svg(spec)
-    root = ET.fromstring(svg)
-    _, _, width, height = map(float, root.attrib["viewBox"].split())
-    height_mm = width_mm * height / width
+    Stem = Path(Stem)
+    Stem.parent.mkdir(parents=True, exist_ok=True)
+    Spec = Chart.to_dict()
+    Stem.with_suffix(".vl.json").write_text(Json.dumps(Spec, indent=2) + "\n")
+    Svg = Vlc.vegalite_to_svg(Spec)
+    Root = Et.fromstring(Svg)
+    _, _, Width, Height = map(float, Root.attrib["viewBox"].split())
+    HeightMm = WidthMm * Height / Width
     # Preserve the viewBox while setting physical dimensions for all formats.
-    svg = svg.replace(f'width="{root.attrib["width"]}"', f'width="{width_mm}mm"', 1)
-    svg = svg.replace(f'height="{root.attrib["height"]}"', f'height="{height_mm}mm"', 1)
-    stem.with_suffix(".svg").write_text(svg)
+    Svg = Svg.replace(f'width="{Root.attrib["width"]}"', f'width="{WidthMm}mm"', 1)
+    Svg = Svg.replace(f'height="{Root.attrib["height"]}"', f'height="{HeightMm}mm"', 1)
+    if "svg" in Formats:
+        Stem.with_suffix(".svg").write_text(Svg)
     # vl-convert exports unitless SVG dimensions as points (72 per inch).
-    render_svg = svg.replace(f'width="{width_mm}mm"', f'width="{width_mm / 25.4 * 72}"', 1)
-    render_svg = render_svg.replace(
-        f'height="{height_mm}mm"', f'height="{height_mm / 25.4 * 72}"', 1
-    )
-    stem.with_suffix(".pdf").write_bytes(vlc.svg_to_pdf(render_svg))
-    stem.with_suffix(".png").write_bytes(vlc.svg_to_png(render_svg, ppi=dpi))
-    return {"width_mm": width_mm, "height_mm": height_mm, "dpi": dpi}
+    RenderSvg = Svg.replace(f'width="{WidthMm}mm"', f'width="{WidthMm / 25.4 * 72}"', 1)
+    RenderSvg = RenderSvg.replace(f'height="{HeightMm}mm"', f'height="{HeightMm / 25.4 * 72}"', 1)
+    if "pdf" in Formats:
+        Stem.with_suffix(".pdf").write_bytes(Vlc.svg_to_pdf(RenderSvg))
+    if "png" in Formats:
+        Stem.with_suffix(".png").write_bytes(Vlc.svg_to_png(RenderSvg, ppi=Dpi))
+    return {"width_mm": WidthMm, "height_mm": HeightMm, "dpi": Dpi}
+
+
+def ExportNotebookFigure(Chart, Notebook, Name):
+    from py.paths import ProjectRoot
+
+    Stem = ProjectRoot / "figures/notebooks" / Notebook / Name
+    SaveFigure(Chart, Stem, Formats=("pdf",))
+    print(f"Saved {Stem.with_suffix('.pdf')}")
+    return Chart

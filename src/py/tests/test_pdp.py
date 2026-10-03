@@ -1,16 +1,16 @@
-import math
+import math as Math
 
-import numpy as np
-import polars as pl
+import numpy as Np
+import polars as Pl
 
-from py import pdp
-from py.scripts.build_paper_figures import bin_feature, feature_frame, summarize
+from py import pdp as Pdp
+from py.scripts.build_paper_figures import BinFeature, FeatureFrame, Summarize
 
 from .check import Expect, ExpectClose, ExpectEqual, Run
 
 
 def StationData():
-    return pl.DataFrame(
+    return Pl.DataFrame(
         {
             "STAID": [1, 1, 1, 2],
             "residual": [1.0, 1.0, 1.0, 5.0],
@@ -21,8 +21,8 @@ def StationData():
 
 
 def ObservationWeightedMean():
-    Means, Low, High = pdp.pdp_cluster_bootstrap(
-        StationData(), "group", ["rural"], n_boot=1000, rng=np.random.default_rng(42)
+    Means, Low, High = Pdp.PdpClusterBootstrap(
+        StationData(), "group", ["rural"], NBoot=1000, Rng=Np.random.default_rng(42)
     )
     ExpectClose(Means[0], 2.0)
     ExpectClose(Low[0], 1.0)
@@ -30,32 +30,32 @@ def ObservationWeightedMean():
 
 
 def WeightedStationBootstrap():
-    Means, _, _ = pdp.pdp_cluster_bootstrap(
+    Means, _, _ = Pdp.PdpClusterBootstrap(
         StationData(),
         "group",
         ["rural"],
-        n_boot=1000,
-        rng=np.random.default_rng(42),
-        weight_col="weight",
+        NBoot=1000,
+        Rng=Np.random.default_rng(42),
+        WeightCol="weight",
     )
     ExpectClose(Means[0], 3.0)
     Count = 10000
-    Samples, _, _ = pdp.cluster_bootstrap_ci(
+    Samples, _, _ = Pdp.ClusterBootstrapCi(
         StationData(),
         "group",
         ["rural"],
-        n_boot=Count,
-        rng=np.random.default_rng(42),
-        weight_col="weight",
+        NBoot=Count,
+        Rng=Np.random.default_rng(42),
+        WeightCol="weight",
     )
     # Two equally sampled stations give values 1, 3, 3, 5; variance is 2.
-    Sigma = math.sqrt(2 / Count)
+    Sigma = Math.sqrt(2 / Count)
     Expect(abs(Samples.mean() - 3.0) < 5 * Sigma, "bootstrap mean outside five sigmas")
 
 
 def PublicationBootstrapIsReproducible():
-    Forward = summarize(StationData(), "group", ["rural"], 1000, 42)
-    Reverse = summarize(StationData().reverse(), "group", ["rural"], 1000, 42)
+    Forward = Summarize(StationData(), "group", ["rural"], 1000, 42)
+    Reverse = Summarize(StationData().reverse(), "group", ["rural"], 1000, 42)
     Expect(Forward.equals(Reverse), "row order changed the publication estimates")
     ExpectClose(Forward["mean"][0], 2.0)
     ExpectEqual(Forward["n_observations"][0], 4)
@@ -63,17 +63,17 @@ def PublicationBootstrapIsReproducible():
 
 
 def QuantilesHandleTiesAndFiniteEndpoints():
-    Frame = pl.DataFrame({"feature": [0.0, 0.0, 0.0, 1.0]})
-    _, Bins = bin_feature(Frame, "feature", 10)
-    Centers = pdp.bin_centers(Bins, 0.0, 1.0)
-    Expect(all(math.isfinite(Value) for Value in Centers), "non-finite bin center")
+    Frame = Pl.DataFrame({"feature": [0.0, 0.0, 0.0, 1.0]})
+    _, Bins = BinFeature(Frame, "feature", 10)
+    Centers = Pdp.BinCenters(Bins, 0.0, 1.0)
+    Expect(all(Math.isfinite(Value) for Value in Centers), "non-finite bin center")
     Expect(all(0 <= Value <= 1 for Value in Centers), "bin center outside input range")
 
 
 def ElevationCodesAreExcludedLocally():
-    Frame = pl.DataFrame({"elevation": [-9999, -999, -10, 500], "wind": [1.0, 2.0, 3.0, 4.0]})
-    ExpectEqual(feature_frame(Frame, ["elevation"])["elevation"].to_list(), [-10, 500])
-    ExpectEqual(feature_frame(Frame, ["wind"]).height, 4)
+    Frame = Pl.DataFrame({"elevation": [-9999, -999, -10, 500], "wind": [1.0, 2.0, 3.0, 4.0]})
+    ExpectEqual(FeatureFrame(Frame, ["elevation"])["elevation"].to_list(), [-10, 500])
+    ExpectEqual(FeatureFrame(Frame, ["wind"]).height, 4)
 
 
 def Main():

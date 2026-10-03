@@ -1,0 +1,835 @@
+\documentclass[a4paper,12pt,leqno]{article}
+
+\usepackage{amssymb,amsmath,amsfonts}
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage{newcent}
+\usepackage[scaled=1.1]{newtxmath}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage[pdfencoding=auto]{hyperref}
+
+\usepackage[backend=biber, style=alphabetic]{biblatex}
+\addbibresource{downscaling.bib}
+
+% ===========================================================================
+% NOTE TO SAAD (delete this block once resolved) -- three AI drafts of this
+% paper were produced independently from the repo and the hackathon brief.
+% They agree almost verbatim on the "Related work" section (good sign: that
+% part reflects what the team actually wrote/curated) but they REPORT
+% DIFFERENT NUMBERS for the same quantities (e.g. the temperature PDP range
+% is variously "0.7 to 2.3", "0.8 to 2.3", "<1.0 to >2.3" across the three
+% drafts). None of those numbers came from your actual notebooks -- they are
+% each model's plausible-sounding guess. I have NOT picked one arbitrarily;
+% every quantitative claim below is left as a [TK: ...] placeholder for you
+% to fill from the real pipeline output (the report at
+% https://saadsouilmi.github.io/ERA5_resid/). Please do not let a number
+% survive into the final paper unless it came from that pipeline.
+% ===========================================================================
+
+\title{Where ERA5 Underestimates Temperature: A Pan-European,
+Station-Level Diagnostic from GenHack'25}
+\author{Saad So\underline{u}ilmi\footnote{TODO: confirm spelling/ordering of
+author surname (GitHub handle is ``SaadSouilmi''; all three drafts wrote
+``Soulimi'' -- please double check before submission).},
+Imene Ben Rejeb-Mzah, Antoine Bezat, Anna Creti,\\
+Charles-Albert Lehalle, Mengda Li, Gauthier Vermandel, Thomas Watteau}
+\date{Printed the \today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+% TODO (Saad): tighten to ~150-200 words once the numbers below are filled
+% in and the results section is final.
+Rescaled reanalysis temperature fields -- gridded products such as ERA5
+that assimilate, interpolate, and bias-adjust weather-station records --
+are treated as ground truth by a large body of downstream research in
+climate economics, energy modelling, agriculture, and impact assessment.
+They are, however, only an approximation of local air temperature, and
+their accuracy is neither spatially uniform nor uniform across weather
+regimes. Only a handful of studies have characterised these inaccuracies,
+mostly over specific regions and mostly using elevation as the sole
+explanatory variable. The GenHack'25 hackathon at \'Ecole Polytechnique,
+with technical support from Kayrros, gave several hundred students the
+opportunity to study this discrepancy over Europe, with most teams
+focusing on a specific region. In this paper we recode, harmonise, and
+extend the teams' collective findings into a single, reproducible
+pipeline run at the scale of the whole of Europe. Using station
+temperature as the reference and the ERA5 (or rescaled) product as the
+candidate field, we define station-level residuals and characterise
+their structure with quantile-binned partial dependence profiles and
+station-clustered bootstrap inference. We find that: (i)~on average, the
+rescaled product \emph{underestimates} station temperature by roughly
+[TK: X to Y]$^\circ$C; (ii)~the underestimation grows monotonically with
+temperature itself; (iii)~it decreases with distance to the sea beyond a
+short coastal band; (iv)~it increases with elevation, consistent with
+earlier regional studies; (v)~precipitation and NDVI show at most a
+minor effect at continental scale; and (vi)~wind speed strongly damps
+the bias, with a pronounced temperature$\times$wind interaction whereby
+calm conditions amplify the warm-temperature underestimation. We discuss
+the implications of these diagnostics for statistical and
+machine-learning downscaling.
+\end{abstract}
+
+\paragraph{Acknowledgment to students.} Special thanks to all GenHack'25
+participating teams, whose regional analyses and empirical insights are
+the raw material of this paper, and in particular to the winning teams
+[TK: list team names/affiliations]. We are also grateful to Kayrros for
+technical support, infrastructure, and geospatial data provision, and to
+\'Ecole Polytechnique for hosting the hackathon.
+
+% ===========================================================================
+\section{Introduction}
+\label{sec:intro}
+
+A large fraction of quantitative climate research -- in climate
+econometrics, energy-demand modelling, crop-yield estimation,
+epidemiological exposure studies, hydrology, and extreme-event
+attribution -- does not consume raw climate-model output but
+\emph{rescaled} temperature fields: gridded reconstructions of
+near-surface air temperature obtained by assimilating, interpolating, and
+bias-adjusting weather-station records into a background field such as
+ERA5 \parencite{TODO:era5_hersbach2020}. These fields are treated,
+implicitly, as ground truth, either because station coverage is sparse in
+the region of interest or simply because a gridded product is easier to
+merge with other geospatial covariates. This substitution is convenient
+but it is an approximation: ERA5 temperature is the output of a
+data-assimilating physical model at $\sim$0.25\textdegree{} resolution,
+not a direct observation, and there is no reason to expect its error to
+be uniform in space, in time, or across weather regimes.
+
+Surprisingly little is known about the spatial and statistical structure
+of this error. A small number of studies have identified systematic
+biases in mountainous terrain, where elevation and sub-grid orographic
+variability degrade the match between the reanalysis grid cell and the
+station it represents
+\parencite{satyapragyan2026bias,sebbar2023ml_downscaling,jacobs2024filling,nogueira2022assessment,zou2022performance},
+and in urban areas, where the urban heat island signal is only partially
+resolved by the reanalysis grid
+\parencite{jacobs2024filling,nogueira2022assessment,zou2022performance}.
+These studies are regional and variable-specific: each identifies one or
+two explanatory covariates (elevation, urban land cover) over one region,
+and to our knowledge no study has, to date, mapped the ERA5-to-station
+discrepancy jointly across the full set of plausible covariates
+(temperature, precipitation, wind, distance to the sea, vegetation,
+urbanisation class) at the scale of an entire continent. A systematic,
+Europe-wide characterisation of \emph{where, when, and why} rescaled
+temperatures depart from station measurements has been missing.
+
+The GenHack'25 hackathon at \'Ecole Polytechnique, with technical support
+from Kayrros, offered a natural route to fill part of this gap.
+Several hundred students, working in teams and given paired
+station--product temperature data, were asked to identify the drivers of
+the discrepancy. Because the problem decomposes naturally by region, most
+teams produced analyses of geographically restricted subsets, using
+heterogeneous -- and sometimes mutually inconsistent -- methodologies.
+Individually, these projects vary in scope, method, and rigour, as is
+expected from a hackathon. Collectively, however, they converged on a
+recurring, cross-team narrative: the discrepancy is not noise, it has a
+sign, and a handful of covariates recur as explanatory across very
+different regions. This paper takes that collective observation
+seriously. We do not report on individual team submissions; instead, we
+recode the teams' findings into a single, consistent diagnostic pipeline
+-- partial dependence of the residual on each covariate, with
+cluster-bootstrap confidence intervals resampled by station -- and re-run
+it at the scale of the whole of Europe, rather than region by region, to
+check which of the teams' regional findings hold up, and with what
+strength, once pooled.
+
+\paragraph{Contributions.}
+\begin{enumerate}
+    \item We assemble a harmonised European dataset of paired station and
+    ERA5 (rescaled-product) temperatures [TK: period, number of stations,
+    number of station-days], together with geospatial covariates:
+    elevation, distance to the sea, NDVI, DEGURBA urbanisation class,
+    precipitation, and wind speed.
+    \item We define the station--product residual and characterise its
+    marginal and conditional structure through quantile-binned partial
+    dependence profiles, with cluster-bootstrap confidence intervals that
+    respect the spatial (station-level) dependence of the data
+    (Section~\ref{sec:data}).
+    \item We report, at pan-European scale, the marginal association
+    between the residual and six covariates -- station temperature,
+    precipitation, wind speed, NDVI, distance to the sea, and elevation
+    -- together with a DEGURBA urbanisation breakdown
+    (Section~\ref{sec:results}): a systematic underestimation by the
+    rescaled product, an amplification of the bias at high temperature
+    and low wind, an elevation effect consistent with the regional
+    literature, a coastal effect, and no more than a minor role for
+    precipitation and vegetation at this scale.
+    \item We document a temperature$\times$wind interaction whereby the
+    warm-temperature underestimation is strongly amplified under low wind
+    and largely damped under high wind, a result not, to our knowledge,
+    previously reported at continental scale.
+    \item We draw consequences for statistical and machine-learning
+    downscaling, arguing that the residual structure documented here
+    defines a natural target for bias-aware and residual-based
+    downscaling models (Section~\ref{sec:discussion}).
+\end{enumerate}
+
+The full analysis pipeline is available as open-source code
+\cite{souilmi_era5_resid_github} [TK: add Zenodo DOI if/when archived].
+
+% ===========================================================================
+\section{Related work}
+\label{sec:related}
+
+\subsection{Downscaling and rescaling: task definition}
+
+Climate downscaling refers to the construction of local or
+high-resolution climate information from coarse predictors. In the usual
+supervised formulation, we observe a coarse atmospheric or land-surface
+field \(x_L\) on a grid \(G_L\), optional high-resolution static or
+dynamic covariates \(a_H\) on a finer grid \(G_H\), and a target field
+\(y_H\) on \(G_H\). The target may be a regional climate model
+simulation, a reanalysis product, a satellite product, or
+station-interpolated observations. The learning problem is therefore not
+merely image enlargement, but estimation of the conditional law
+\[
+    p(y_H \mid x_L, a_H, t, s),
+\]
+where \(t\) denotes time and seasonality and \(s\) denotes geographical
+context. The coarse field should often be recoverable by applying a known
+aggregation operator \(A\) to the high-resolution output, i.e.
+\(A(y_H) \approx x_L\). This ``coarse consistency'' requirement
+distinguishes climate downscaling from generic super-resolution and is
+central when the output will be used for risk analysis, hydrology,
+infrastructure planning, agriculture, or extreme-event attribution.
+
+Two related but distinct tasks are commonly grouped under downscaling.
+The first is \emph{statistical climate downscaling}: learning the
+relationship between large-scale predictors and local climate
+quantities, often with bias correction, quantile mapping, or weather
+typing. The second is \emph{spatial super-resolution}: mapping a
+low-resolution field to a high-resolution gridded field, frequently
+conditioned on topography, land cover, vegetation indices, coast
+distance, or surface radiative variables. Modern machine-learning papers
+often combine both: they super-resolve a coarse field while also
+correcting systematic biases and generating plausible small-scale
+variability
+\parencite{maraun2018statistical_downscaling,labeurthre2024overview_downscaling}.
+
+The present paper is complementary to this literature: rather than
+proposing a new downscaling method, we characterise the \emph{errors of
+an existing rescaled product} that downstream studies routinely treat as
+observations. In the language above, our object of study is the
+discrepancy between the target \(y_H\) (station temperature) and the
+rescaled estimate \(\hat y_H\) over the station network.
+
+\subsection{Documented biases between reanalysis and station temperature}
+\label{sec:related-bias}
+
+The idea that reanalysis temperature departs from station temperature in
+a structured, covariate-dependent way is not new, but the existing
+evidence is fragmented across a handful of region- and variable-specific
+studies. In mountainous terrain, elevation and sub-grid topographic
+heterogeneity have been repeatedly flagged as drivers of the discrepancy
+\parencite{satyapragyan2026bias}, and terrain-aware downscaling work over
+mountain regions shows that adding elevation-related covariates
+materially improves the match to station data -- itself indirect evidence
+that elevation is doing real explanatory work in the raw
+reanalysis-station gap \parencite{sebbar2023ml_downscaling}. In cities,
+several studies report that reanalysis products under-resolve the urban
+heat island and that the resulting bias correlates with built-up land
+cover or urbanisation intensity
+\parencite{jacobs2024filling,nogueira2022assessment,zou2022performance}.
+Beyond these two covariates, we are not aware of prior work that jointly
+considers wind, precipitation, vegetation, and sea proximity as
+explanatory variables for the same residual, nor of prior work that does
+so at continental scale with quantified, station-clustered uncertainty --
+which is the gap this paper addresses.
+
+\subsection{Modern machine-learning downscaling for climate}
+\label{sec:related-ml}
+
+\subsubsection{From statistical models to deterministic deep learning}
+
+Classical statistical methods remain important because they make the
+assumptions of the task explicit. Linear or generalized linear transfer
+functions, analog methods, quantile mapping, random forests, and other
+machine-learning regressors link local climate variables to large-scale
+circulation and surface predictors. They are comparatively interpretable
+and inexpensive, but their success depends on stationarity assumptions:
+the relation learned from historical data must remain valid under future
+climate states. Their treatment of spatial coherence and extremes is also
+limited unless explicitly modelled. For instance, recent applications to
+ERA5-Land temperature over mountains show that adding terrain-aware
+covariates can substantially improve local predictions, while also
+exposing the sensitivity of downscaling errors to elevation and surface
+heterogeneity \parencite{sebbar2023ml_downscaling}. Broader evaluations of
+statistical downscaling for climate projections similarly emphasize that
+no single method dominates across variables, seasons, regions, and
+extreme-event metrics
+\parencite{hernanz2022statistical_downscaling,tabari2021downscaling_drought}.
+
+Deep learning reframes downscaling as a representation-learning problem.
+Early super-resolution approaches such as DeepSD adapted convolutional
+neural networks to climate grids, learning an end-to-end map from coarse
+fields and auxiliary topographic information to high-resolution
+precipitation or temperature \parencite{vandal2017deepsd}. U-Net,
+residual networks, dense blocks, and encoder-decoder architectures then
+became natural choices because they mix large-scale context with local
+detail. These deterministic networks are strong baselines: they are fast
+at inference time, easy to train with mean-square or mean-absolute
+losses, and often improve RMSE and MAE. However, regression losses
+encourage conditional averages. The resulting fields may look smooth,
+understate extremes, and lose fine-scale spectral power even when
+pointwise scores are good. This is a key limitation for climate-risk
+applications, where the distribution and spatial organization of rare
+events matter as much as the conditional mean.
+
+\subsubsection{Attention mechanisms and auxiliary geospatial information}
+
+Attention mechanisms address a specific weakness of plain convolutional
+downscalers: not all covariates are equally informative everywhere. In
+land surface temperature downscaling, for example, vegetation, water,
+built-up area, slope, aspect, and surface reflectance may explain
+different parts of the temperature signal depending on season and local
+geography. The Attention Mechanism U-Net (AMUN) of
+\textcite{li2025attention_downscaling} is a useful example. The method
+uses Google Earth Engine to assemble ERA5-Land LST and seven
+high-resolution auxiliary factors over China, then learns to downscale
+hourly monthly-mean LST from \(0.1^\circ\) to \(0.01^\circ\). Its Global
+Multi-Factor Cross-Attention module recalibrates the interaction between
+coarse LST and auxiliary features; a feature-fusion residual dense block
+extracts multilevel LST features; and a U-Net decoder reconstructs the
+fine field. In simulated and real experiments, the model reports
+substantially lower RMSE than a random-forest baseline.
+
+This line of work is relevant beyond LST because it points to a general
+design principle: downscaling models should learn \emph{where} and
+\emph{when} to trust each explanatory variable. Orography may dominate
+mountain temperature gradients, NDVI and land cover may dominate surface
+heat contrasts, and large-scale humidity and winds may control
+precipitation organization. Attention layers, cross-attention between
+low-resolution climate states and high-resolution covariate maps, and
+channel-wise gating are therefore natural tools for geophysical
+downscaling. Their limitation is that they typically produce a single
+best estimate unless combined with a probabilistic output layer or a
+generative model. Our own diagnostic (Section~\ref{sec:results}) can be
+read as the descriptive counterpart to this design principle: before
+choosing which covariates a downscaling network should attend to, one
+should establish which covariates actually correlate with the raw
+reanalysis-station gap, and by how much -- which is exactly what the
+partial-dependence analysis below provides.
+
+\subsubsection{Generative downscaling: GANs, diffusion, and consistency
+models}
+
+Generative models are attractive for climate downscaling because the
+target is intrinsically one-to-many. A coarse grid cell can correspond to
+many plausible fine-scale temperature or precipitation patterns.
+Conditional generative adversarial networks (GANs) were among the first
+deep generative approaches used for climate and weather super-resolution.
+They can sharpen fields and recover small-scale structure; examples
+include adversarial super-resolution of wind and solar fields
+\parencite{stengel2020adversarial_super_resolution}, precipitation
+forecast correction and downscaling with CorrectorGAN
+\parencite{price2022correctorgan}, and physically constrained GANs for
+precipitation fields \parencite{hess2022physically_constrained_gan}. Their
+drawbacks are familiar: adversarial training may be unstable,
+probabilistic calibration is difficult, and physically meaningful
+constraints must be added carefully.
+
+Diffusion and score-based models provide a more explicit probabilistic
+framework. Denoising diffusion models learn to reverse a noising process,
+while score-based stochastic differential equation formulations learn a
+time-dependent score field that transports noise into data
+\parencite{ho2020ddpm,song2021score_sde}. In conditional downscaling, the
+model samples \(y_H\) from noise while conditioning on \(x_L\), static
+covariates, and possibly an initial deterministic estimate. The study
+\emph{Generative Diffusion-based Downscaling for Climate} demonstrates
+this idea in an idealized ERA5 experiment, recovering \(0.25^\circ\)
+fields from \(2^\circ\) inputs and showing better fine-scale accuracy
+than a standard U-Net, especially in spectral diagnostics
+\parencite{watt2024diffusion_downscaling}. This is important because
+spectral performance measures whether the model restores the spatial
+scales that interpolation and deterministic regression tend to erase.
+
+Recent diffusion papers also explore efficiency and physical realism.
+Latent diffusion reduces computational cost by operating in a compressed
+representation; \textcite{tomasi2025latent_diffusion_downscaling} use
+this strategy to mimic kilometer-scale COSMO5.0\_CLM9 regional climate
+simulations, asking whether AI can approximate aspects of dynamical
+downscaling. Residual corrective diffusion models decompose the problem
+into a deterministic mean prediction followed by a diffusion model for
+the residual. This is the idea behind CorrDiff, which downscales
+\(25\,\mathrm{km}\) reanalysis inputs to \(2\,\mathrm{km}\) regional
+weather-model outputs over Taiwan, sharpening fronts and typhoons while
+recovering realistic spectra and distributions
+\parencite{mardani2025corrdiff}. A related direction replaces long
+diffusion sampling chains with consistency models, which can generate
+high-resolution samples in fewer steps. \textcite{hess2025consistency_downscaling}
+show that such models can perform fast, scale-adaptive, uncertainty-aware
+ESM downscaling and can generalize across Earth system model inputs
+without retraining.
+
+\subsubsection{Flow matching as an emerging alternative}
+
+Flow matching is a recent generative paradigm that learns a
+continuous-time velocity field transporting a simple base distribution
+into the data distribution \parencite{lipman2023flow_matching}. For
+downscaling, it has two attractive features. First, inference can be
+formulated as solving an ordinary differential equation rather than
+running many stochastic denoising steps, which may reduce sampling cost.
+Second, physical constraints such as re-aggregation consistency, water
+conservation, or humidity bounds can be expressed as penalties or
+projection steps along the learned flow.
+
+The first climate and weather applications are appearing quickly. A 2026
+study uses residual flow matching to super-resolve coarse-resolution
+weather forecasts, training only on reanalysis data and evaluating
+whether re-coarsened outputs remain consistent with the original forecast
+trajectory \parencite{delefosse2026flow_matching_weather}. Another 2026
+study proposes physics-constrained adaptive flow matching for climate
+downscaling, adding soft conservation constraints for precipitation and
+humidity and evaluating a \(63\,\mathrm{km}\) to \(6.3\,\mathrm{km}\)
+Central Europe task across multiple variables
+\parencite{debeire2026physics_constrained_flow_matching}. These papers are
+new, but they suggest that flow matching may be a useful successor or
+complement to diffusion when fast sampling, ensemble generation, and
+physical consistency must be balanced.
+
+\subsubsection{Positioning of the present paper}
+\label{sec:related-diagnostics}
+
+The literature reviewed above is almost entirely \emph{corrective}: it
+asks how to build a model that maps ERA5 (or another coarse field) onto
+station-quality temperature. It is largely silent on the simpler, prior,
+\emph{descriptive} question that motivates this paper: where and under
+what conditions is the raw reanalysis-station gap largest, and which
+easily available covariates predict it? Answering that question well is
+what determines, in practice, which covariates a downscaling network such
+as AMUN should be given, and where a residual-diffusion or
+flow-matching correction such as CorrDiff is likely to matter most. To
+our knowledge, no prior work provides a unified, Europe-wide,
+covariate-level diagnostic of station--rescaled-product residuals with
+uncertainty quantification that accounts for spatial clustering of
+stations; we view the two literatures as complementary, with this paper
+supplying the covariate-level diagnosis that the downscaling literature
+currently takes largely as given.
+
+% ===========================================================================
+\section{Data, hackathon design, and methodology}
+\label{sec:data}
+
+\subsection{The GenHack'25 hackathon}
+
+% TODO (Saad): confirm exact numbers (participants, teams, regions,
+% dates) and add them here.
+GenHack'25 was organised at \'Ecole Polytechnique, with Kayrros
+providing technical support on data access and the geospatial processing
+pipeline. Several hundred students, organised in teams, were given a
+common task: identify and characterise the discrepancy between ERA5 2m
+temperature and co-located weather-station observations. Teams were free
+to choose their region of interest and their modelling approach; in
+practice, most teams focused on a specific European country or
+sub-region rather than on the continent as a whole. This paper does not
+report on individual team submissions; instead, it distils the
+covariates that recurred as explanatory across teams into a single,
+consistent pipeline, and re-runs that pipeline over the whole of the
+teams' combined domain, i.e.\ continental Europe.
+
+\subsection{Data}
+
+\begin{itemize}
+\item \textbf{Target.} Station-observed 2m air temperature from
+% TODO (Saad): name the station network(s) used, e.g. ECA\&D / national
+% met services, and the time period covered.
+[TK: station network], matched to the nearest ERA5 grid cell.
+\item \textbf{Reference.} ERA5 reanalysis 2m temperature
+\parencite{TODO:era5_hersbach2020} at the matched grid cell and
+timestamp. [TK: confirm whether the ``rescaled'' product used is raw
+ERA5, ERA5-Land, or a Kayrros-provided bias-adjusted product -- the
+three drafts of this paper disagreed on this point and it should be
+stated unambiguously once, here.]
+\item \textbf{Residual.} $r_{it} = T^{\text{station}}_{it} -
+T^{\text{ERA5}}_{it}$ for station $i$ at date $t$, so that $r_{it}>0$
+means ERA5 (or the rescaled product) \emph{underestimates} station
+temperature.
+\item \textbf{Covariates.} Station temperature, precipitation (ERA5,
+mm/day), wind speed (ERA5, m/s), NDVI, distance to the sea (km),
+elevation (m), and DEGURBA degree-of-urbanisation class (water; very
+low density rural; low density rural; rural cluster; suburban;
+semi-dense urban cluster; dense urban cluster; urban centre).
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Descriptive statistics for continuous variables.}
+\label{tab:desc_continuous}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Variable & Nulls & Mean & Std & P05 & P25 & P50 & P75 & P95 \\
+\midrule
+era5\_celsius & 0 & 14 & 9.7 & -2.2 & 6.7 & 14 & 20 & 29 \\
+residual & 0 & 1.6 & 2.5 & -2.1 & 0.25 & 1.4 & 2.7 & 5.8 \\
+wind & 0 & 2.2 & 1.7 & 0.35 & 1.00 & 1.9 & 3.0 & 5.5 \\
+dist\_to\_sea\_km & 0 & 83 & 94 & 0.21 & 8.4 & 47 & 130 & 280 \\
+elevation & 0 & 340 & 420 & 4.0 & 42 & 180 & 500 & 1100 \\
+ndvi & 0 & 0.39 & 0.25 & -0.024 & 0.23 & 0.41 & 0.58 & 0.75 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Distribution across DEGURBA urbanization classes.}
+\label{tab:desc_degurba}
+\begin{tabular}{llrrrr}
+\toprule
+Code & Label & Obs Count & Obs (\%) & Station Count & Station (\%) \\
+\midrule
+10 & Water & 152,911 & 1.6\% & 79 & 1.4\% \\
+11 & Very low density rural & 3,514,982 & 36\% & 2,110 & 37\% \\
+12 & Low density rural & 2,912,790 & 30\% & 1,622 & 29\% \\
+13 & Rural cluster & 774,427 & 7.9\% & 450 & 7.9\% \\
+21 & Suburban & 1,002,786 & 10.0\% & 550 & 9.7\% \\
+22 & Semi-dense urban cluster & 156,261 & 1.6\% & 91 & 1.6\% \\
+23 & Dense urban cluster & 512,965 & 5.2\% & 313 & 5.5\% \\
+30 & Urban centre & 829,059 & 8.4\% & 449 & 7.9\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Top 10 countries by weather station coverage.}
+\label{tab:desc_country_top10}
+\begin{tabular}{lrrrr}
+\toprule
+Country & Station Count & Station (\%) & Obs Count & Obs (\%) \\
+\midrule
+Italy & 1,047 & 18\% & 1,365,458 & 14\% \\
+Spain & 923 & 16\% & 1,777,964 & 18\% \\
+Norway & 703 & 12\% & 1,266,064 & 13\% \\
+Germany & 655 & 12\% & 1,317,796 & 13\% \\
+Austria & 597 & 11\% & 1,008,176 & 10.0\% \\
+Sweden & 424 & 7.5\% & 836,831 & 8.5\% \\
+Finland & 292 & 5.2\% & 573,328 & 5.8\% \\
+Hungary & 166 & 2.9\% & 314,484 & 3.2\% \\
+Poland & 145 & 2.6\% & 266,229 & 2.7\% \\
+Ukraine & 115 & 2.0\% & 75,371 & 0.76\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Data summary: number of stations, observations, time span, and covariate coverage.}
+\label{tab:data-summary}
+\begin{tabular}{lc}
+\toprule
+Quantity & Value \\
+\midrule
+Number of stations & 5,664 \\
+Number of station-days & 9,856,181 \\
+Time period & 2020-01-01 to 2025-08-31 \\
+Countries covered & 34 \\
+Residual $r_{it}$, mean (sd) & 1.6 (2.5) $^\circ$C \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Methodology}
+\label{sec:methods}
+
+\paragraph{Covariate profiles.} For each covariate $X_j$, we estimate the
+partial dependence of the mean residual $\mathbb{E}[r \mid X_j]$ by
+binning $X_j$ into quantiles and computing the mean residual within each
+bin. This is a descriptive device: it does not impose a functional form
+and is directly interpretable, at the cost of not controlling for other
+covariates -- a limitation we return to in Section~\ref{sec:discussion}.
+% TODO (Saad): confirm whether this is a *univariate* binned mean, or a
+% partial-dependence profile extracted from a fitted multivariate model
+% (e.g. gradient boosting) marginalising over the other covariates. The
+% two have different causal interpretations and the methods section must
+% say which one was used.
+
+\paragraph{Inference.} Because residuals from the same station are
+serially correlated and stations are spatially clustered, uncertainty is
+quantified with a cluster bootstrap: stations (not observations) are
+resampled with replacement, $B=1000$ replications, and we report 95\%
+percentile confidence intervals for all profiled means and class means.
+Clustering the resampling by station, rather than by observation,
+respects the two-level structure of the data (dates nested in stations)
+without imposing a parametric correlation model. The same procedure is
+applied to the DEGURBA class breakdown (Section~\ref{sec:results-degurba}).
+
+\paragraph{Interactions.} For the temperature$\times$wind interaction
+(Section~\ref{sec:results-interaction}), observations are additionally
+stratified into wind-speed terciles ([TK: confirm cut points, e.g.\ low
+$\le 1.2\,\mathrm{m/s}$; mid $1.2$--$2.4\,\mathrm{m/s}$; high
+$>2.4\,\mathrm{m/s}$]) before the temperature partial-dependence profile
+is recomputed within each tercile.
+
+% ===========================================================================
+\section{Results}
+\label{sec:results}
+
+\subsection{ERA5 underestimates station temperature on average}
+\label{sec:results-map}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{european-map.png}
+\caption{Mean residual per station, $\bar r_i = T_i^{-1}\sum_t r_{it}$,
+all dates pooled. Positive (red) values indicate that the rescaled
+product underestimates station temperature.}
+\label{fig:map}
+\end{figure}
+
+Across the pooled European station network, the mean residual is
+positive: station temperature exceeds the co-located ERA5 temperature on
+average. This is not a local artefact: the bias is spatially widespread
+rather than confined to a handful of stations or countries, with 90\% of stations showing a positive mean residual and an unweighted
+sample mean of $\bar r_i \approx 1.5^\circ$C, though the magnitude
+varies substantially by region -- largest in Albania, Bosnia and Herzegovina, Montenegro,
+smallest, occasionally negative, in Russian Federation, Denmark, Netherlands.(Figure~\ref{fig:map}).
+
+\subsection{Station temperature itself is a first-order explanatory
+variable}
+\label{sec:results-temperature}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{sensitivities.png}
+\caption{Partial dependence of the mean residual on each of six
+covariates: station temperature, precipitation, wind speed, NDVI,
+distance to the sea, and elevation. Covariates are binned into
+quantiles; shaded bands are 95\% confidence intervals from a
+station-clustered bootstrap ($B=1000$).}
+\label{fig:pdp}
+\end{figure}
+
+The partial dependence of the mean residual on station temperature is
+close to monotonically increasing (Figure~\ref{fig:pdp}, top left): the
+underestimation is smallest at low station temperatures and largest at
+high station temperatures, rising from approximately $0.84\,^\circ$C at
+$-20\,^\circ$C to $2.3\,^\circ$C at $+40\,^\circ$C. In other words, the
+rescaled product's cold bias worsens precisely on the warmest days --
+the opposite of what one would want for downstream applications
+sensitive to heat extremes (heatwave detection, energy demand, crop
+stress).
+
+\subsection{Precipitation and NDVI show at most a minor effect}
+\label{sec:results-precip}
+
+The partial dependence of the residual on precipitation is close to flat, with confidence
+bands that overlap substantially across the observed range (0.001
+–1.3 mm/day, with mean residual hovering between 1.5 and 1.6~\text{°C}, 95\% CI [1.5, 1.7]~\text{°C}) (Figure 2, top centre). We therefore report no more than a minor precipitation effect at
+continental scale – a statement about the observed range rather than an absence of
+physical effect. The partial dependence on NDVI is likewise close to flat across its observed range (-0.40–0.78, mean residual between 1.5 and 1.6~\text{°C}), with substantially overlapping confidence bands (Figure 2, bottom left);
+any effect is below the detection threshold of the current sample.
+% TODO (Saad): decide between "no detectable effect" and "small effect"
+% based on whether a formal test (e.g. comparing bin means against a
+% null of no association) supports a genuine, if modest, relationship;
+% see Section~\ref{sec:discussion}. Do not let this wording drift
+% between sections in the final draft.
+
+\subsection{Wind speed strongly damps the underestimation}
+\label{sec:results-wind}
+
+Wind speed is the covariate with the clearest monotonic marginal
+association in the panel (Figure~\ref{fig:pdp}, top right): the residual
+falls steadily as wind speed increases, from its largest values at
+near-calm conditions to roughly half that magnitude at the highest
+observed wind speeds (from $\sim 2.1^\circ$C to $\sim 1.1^\circ$C).
+
+\subsection{Distance to the sea and elevation}
+\label{sec:results-geo}
+
+The residual decreases with distance to the sea beyond a short coastal
+band, though the profile is not monotonic over its full range: mean
+underestimation initially rises from 1.69°C (at ~2 km) to 1.92°C (at ~17 km)
+before declining steadily further inland to $1.15^\circ$C at $\sim 364$ km
+(Figure~\ref{fig:pdp}, bottom centre).
+Elevation shows the expected sign given prior regional findings
+\parencite{satyapragyan2026bias,sebbar2023ml_downscaling}: the
+underestimation increases with elevation (rising from $1.34^\circ$C at $\sim 8$ m to $1.65^\circ$C at
+$\sim 352$ m), consistent with the rescaled
+product's coarse grid cells averaging over sub-grid topographic
+variability that individual mountain stations do not experience
+(Figure~\ref{fig:pdp}, bottom right).
+% TODO (Saad): flag and, if possible, explain any near-coast feature
+% rather than smoothing over it -- check station counts per bin, since
+% it may be a sample-size artefact rather than a genuine coastal effect.
+
+
+\subsection{Degree of urbanisation}
+\label{sec:results-degurba}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{images/degurba.png}
+\caption{Mean residual per DEGURBA urbanisation class (top), with
+station share per class (bottom). Error bars are 95\% station-clustered
+bootstrap confidence intervals.}
+\label{fig:degurba}
+\end{figure}
+
+Stations classified as semi-dense or dense urban clusters show
+noticeably higher mean residuals than stations classified as water or
+very-low-density rural, with rural-cluster and suburban stations
+occupying an intermediate position; the residual peaks in semi-dense
+urban clusters at approximately $+2.55^\circ$C and remains elevated in
+the densest classes (Figure~\ref{fig:degurba}). Because the residual is
+positive in \emph{all} classes, urbanisation amplifies but does not
+solely explain the underestimation. Two readings are compatible with
+this pattern: the rescaled product under-represents the urban heat
+signal measured by stations, and/or station siting in built environments
+warms the reference relative to the grid-cell average. Our design cannot
+separate these two components; we flag this as a priority for follow-up
+work. Together with the elevation result, this points to two largely
+distinct geographic drivers of the residual: topographic (elevation,
+distance to sea) and land-use / built-environment (urbanisation class).
+
+\subsection{A temperature$\times$wind interaction}
+\label{sec:results-interaction}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{joined-effects.png}
+\caption{Partial dependence of the mean residual on station temperature,
+stratified by wind-speed tercile. Shaded bands are 95\% station-clustered
+bootstrap confidence intervals.}
+\label{fig:interaction}
+\end{figure}
+
+Stratifying the station-temperature partial dependence profile by
+wind-speed tercile reveals that the temperature effect documented in
+Section~\ref{sec:results-temperature} is not uniform
+(Figure~\ref{fig:interaction}): under low wind, the underestimation
+rises sharply with station temperature and reaches its largest values in
+the sample; under high wind, the same temperature range produces a much
+flatter, substantially smaller residual. At low station temperatures the
+three wind terciles are close to indistinguishable; the gap opens up
+specifically as temperature rises, reaching $\sim 1.8^\circ$C
+under calm conditions versus $\sim 2.8^\circ$C under strong wind] at the
+warmest temperatures. This is consistent with a physical mechanism in
+which low wind favours a stable near-surface boundary layer that the
+rescaled product's coarser vertical/horizontal resolution does not fully
+resolve, so that the model's warm-day bias is largest precisely when
+vertical mixing is weakest. The amplification of the bias by stagnant
+boundary layers is, jointly with the urbanisation gradient, the most
+physical signal in the data: both point to unresolved surface-layer
+processes rather than to a uniform calibration offset.
+
+
+\begin{table}[htbp]
+\centering
+\caption{Summary of marginal associations between covariates and the residual.}
+\label{tab:results-summary}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lccc}
+\toprule
+Covariate & Direction of association & Approx.\ range ($^\circ$C) & Detectable? \\
+\midrule
+Station temperature & Increasing & 0.84--2.3 & Yes (strong) \\
+Wind speed & Decreasing & 1.1--2.1 & Yes (strong) \\
+Distance to sea & Decreasing (non-monotonic near coast) & 1.1--1.9 & Yes \\
+DEGURBA (urban $>$ rural) & Increasing with density & 1.1--2.55 & Yes (weak)\\
+Elevation & Increasing & 1.3--1.7 & Yes (weaker) \\
+Precipitation & None / negligible & 1.5--1.6 & No \\
+NDVI & None / negligible & 1.5--1.6 & No \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+% ===========================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Interpretation and threats to validity.}
+Several caveats qualify the results above. \emph{(i) Magnitude.} A mean
+underestimation on the order of [TK]$^\circ$C is large relative to
+published reanalysis biases over Europe; part of it may reflect
+processing artefacts rather than genuine product error -- elevation
+mismatch between station and grid cell, differing averaging windows, or
+station screening. We regard artefact checks as a precondition for
+downstream use of these estimates [TK: report artefact checks, or move
+to an appendix]. \emph{(ii) Univariate profiles and confounding by
+pooling.} The results in Section~\ref{sec:results} are, as currently
+implemented, marginal (univariate) associations between the residual and
+each covariate taken separately. Several of these covariates are
+themselves correlated -- mountain stations tend to be further from the
+sea and less urbanised, for instance -- so a univariate profile can
+partly reflect the influence of a correlated covariate rather than the
+one being plotted. A joint model (e.g.\ a multivariate regression, or a
+fitted gradient-boosting model with true multivariate partial
+dependence) would let each covariate's effect be interpreted holding the
+others fixed, which is a meaningfully stronger claim than what
+Table~\ref{tab:results-summary} currently supports. All profiles also
+pool dates, so the temperature profile in particular partly reflects the
+seasonal cycle; station fixed effects or deseasonalised residuals would
+isolate within-station variation [TK: add a mixed-model specification if
+time allows]. \emph{(iii) Reference ambiguity.} Station thermometers and
+grid cells average different spatial footprints; over cities and coasts,
+part of the residual measures representativeness rather than accuracy.
+\emph{(iv) Statistical significance of ``minor'' effects.} The
+precipitation and NDVI effects are visually small and their confidence
+bands largely overlap across bins; before describing either as
+``minor but noticeable'' in the final text, a formal test against a null
+of no association is advisable.
+
+More substantively, the two strongest results in this analysis -- the
+wind-speed effect and the temperature$\times$wind interaction -- deserve
+to be stated as clearly among the paper's central conclusions
+(Section~\ref{sec:intro}), since they are, on the evidence gathered here,
+at least as strong as the elevation effect that originally motivated
+this line of work. The interaction result in particular offers a
+candidate physical mechanism (near-surface stability under low wind)
+that ties several of the other findings together and gives the paper a
+sharper, more specific contribution than a list of marginal associations.
+
+\paragraph{Consequences for downscaling.}
+The diagnostics of Section~\ref{sec:results} define a natural empirical
+target for downscaling research in the sense of
+Section~\ref{sec:related-diagnostics}: the conditional structure of the
+residual -- its dependence on temperature, wind, elevation, distance to
+sea, and urban class, and its spatial clustering -- is precisely the
+component that a residual-based or bias-aware downscaling model should
+learn. The strong temperature$\times$wind interaction further suggests
+that dynamic covariates (boundary-layer state) carry information that
+static covariate sets (topography, land cover, NDVI) do not. Finally,
+our results caution against treating rescaled products as ground truth
+in the training and evaluation of downscaling models: doing so transfers
+the biases documented here into the learned model.
+
+% ===========================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+Using the collective output of the GenHack'25 hackathon recoded into a
+single European pipeline, we characterised the errors of a rescaled
+reanalysis temperature product against weather stations. The product
+underestimates station temperature on average; the underestimation grows
+with temperature itself, with elevation, and towards the coast, and is
+strongly amplified by low wind and by urbanisation. Precipitation and
+vegetation show at most a minor effect at continental scale. These
+conclusions delineate where rescaled temperatures can be trusted and
+provide an empirical error model for downstream uncertainty
+quantification. Users of ERA5-type temperature in downstream models
+should, at minimum, be aware that the error grows with temperature and
+shrinks with wind speed; future downscaling or bias-correction models
+(Section~\ref{sec:related-ml}) should treat wind speed and DEGURBA class
+as first-class conditioning covariates alongside the more commonly used
+elevation. Planned extensions include deseasonalised within-station
+inference, artefact controls, a joint (multivariate) specification of
+the covariate effects, and the separation of station-siting from product
+bias in urban areas.
+
+\printbibliography
+
+\end{document}

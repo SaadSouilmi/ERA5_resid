@@ -1,22 +1,22 @@
 """Altair figures built from saved publication tables."""
 
-import json
+import json as Json
 from pathlib import Path
 
-import altair as alt
-import polars as pl
+import altair as Alt
+import polars as Pl
 
-from py.publication import BLUE
+from py.publication import Blue
 
-FEATURES = {
+FeatureLabels = {
     "station_celsius": "Station temperature (°C)",
-    "tp": "Precipitation (m; log₁₀)",
-    "wind": "Wind speed (m s⁻¹)",
-    "ndvi": "NDVI",
+    "tp": "Precipitation proxy (m; log₁₀)",
+    "wind": "Mean wind vector (m s⁻¹)",
+    "ndvi": "NDVI (incl. extrapolation)",
     "dist_to_sea_km": "Distance to sea (km)",
     "elevation": "Elevation (m)",
 }
-DEGURBA = [
+DegurbaClasses = [
     "Very low density rural",
     "Low density rural",
     "Rural cluster",
@@ -25,154 +25,159 @@ DEGURBA = [
     "Dense urban cluster",
     "Urban centre",
 ]
-PAIRS = [("station_celsius", "wind"), ("elevation", "dist_to_sea_km")]
-MAP_EXTENT = (-25, 45, 34, 72)
+FeaturePairs = [("station_celsius", "wind"), ("elevation", "dist_to_sea_km")]
+MapExtent = (-25, 45, 34, 72)
 
 
-def data(frame):
-    return alt.Data(values=frame.to_dicts())
+def Data(Frame):
+    return Alt.Data(values=Frame.to_dicts())
 
 
-def zero_rule(vertical=False, title=None):
-    rule = alt.Chart(alt.Data(values=[{"zero": 0}])).mark_rule(
+def ZeroRule(Vertical=False, Title=None):
+    Rule = Alt.Chart(Alt.Data(values=[{"zero": 0}])).mark_rule(
         color="#888888",
         strokeDash=[4, 4],
         strokeWidth=0.7,
     )
     return (
-        rule.encode(x=alt.X("zero:Q", title=title))
-        if vertical
-        else rule.encode(y=alt.Y("zero:Q", title=title))
+        Rule.encode(x=Alt.X("zero:Q", title=Title))
+        if Vertical
+        else Rule.encode(y=Alt.Y("zero:Q", title=Title))
     )
 
 
-def covariates(tables):
-    summaries = [pl.read_csv(tables / f"covariate_{f}.csv") for f in FEATURES]
-    low = min(0, min(frame["ci_low"].min() for frame in summaries))
-    high = max(0, max(frame["ci_high"].max() for frame in summaries))
-    pad = max((high - low) * 0.06, 0.1)
-    scale = alt.Scale(domain=[low - pad, high + pad], nice=False)
-    panels = []
-    for i, ((feature, label), frame) in enumerate(zip(FEATURES.items(), summaries)):
-        base = alt.Chart(data(frame)).encode(
-            x=alt.X(
+def Covariates(Tables):
+    Summaries = [Pl.read_csv(Tables / f"covariate_{F}.csv") for F in FeatureLabels]
+    Low = min(0, min(Frame["ci_low"].min() for Frame in Summaries))
+    High = max(0, max(Frame["ci_high"].max() for Frame in Summaries))
+    Pad = max((High - Low) * 0.06, 0.1)
+    Scale = Alt.Scale(domain=[Low - Pad, High + Pad], nice=False)
+    Panels = []
+    for Index, ((Feature, Label), Frame) in enumerate(zip(FeatureLabels.items(), Summaries)):
+        Base = Alt.Chart(Data(Frame)).encode(
+            x=Alt.X(
                 "x:Q",
-                title=label,
-                scale=alt.Scale(zero=False),
-                axis=alt.Axis(grid=False, tickCount=4),
+                title=Label,
+                scale=Alt.Scale(zero=False),
+                axis=Alt.Axis(grid=False, tickCount=4),
             ),
         )
-        ylabel = "Mean residual (°C)" if i % 3 == 0 else None
-        yaxis = alt.Axis(tickCount=5, labels=i % 3 == 0, ticks=i % 3 == 0, domain=i % 3 == 0)
-        y = alt.Y("mean:Q", title=ylabel, scale=scale, axis=yaxis)
-        band = base.mark_area(color=BLUE, opacity=0.18).encode(
-            y=alt.Y("ci_low:Q", title=ylabel, scale=scale, axis=yaxis),
+        Ylabel = "Mean residual (°C)" if Index % 3 == 0 else None
+        Yaxis = Alt.Axis(
+            tickCount=5, labels=Index % 3 == 0, ticks=Index % 3 == 0, domain=Index % 3 == 0
+        )
+        Y = Alt.Y("mean:Q", title=Ylabel, scale=Scale, axis=Yaxis)
+        Band = Base.mark_area(color=Blue, opacity=0.18).encode(
+            y=Alt.Y("ci_low:Q", title=Ylabel, scale=Scale, axis=Yaxis),
             y2="ci_high:Q",
         )
-        line = base.mark_line(color=BLUE, strokeWidth=1.5).encode(y=y)
-        points = base.mark_point(color=BLUE, filled=True, size=25).encode(
-            y=y,
+        Line = Base.mark_line(color=Blue, strokeWidth=1.5).encode(y=Y)
+        Points = Base.mark_point(color=Blue, filled=True, size=25).encode(
+            y=Y,
             tooltip=["x:Q", "mean:Q", "ci_low:Q", "ci_high:Q", "n_stations:Q"],
         )
-        panels.append(
-            (zero_rule(title=ylabel) + band + line + points).properties(
+        Panels.append(
+            (ZeroRule(Title=Ylabel) + Band + Line + Points).properties(
                 width=155,
                 height=150,
-                title=f"({chr(97 + i)})",
+                title=f"({chr(97 + Index)})",
             )
         )
-    return alt.vconcat(
-        alt.hconcat(*panels[:3], spacing=16),
-        alt.hconcat(*panels[3:], spacing=16),
+    return Alt.vconcat(
+        Alt.hconcat(*Panels[:3], spacing=16),
+        Alt.hconcat(*Panels[3:], spacing=16),
         spacing=26,
     )
 
 
-def urbanization(tables):
-    frame = pl.read_csv(tables / "urbanization.csv")
-    y = alt.Y(
-        "bin:N", sort=DEGURBA, title=None, axis=alt.Axis(labelLimit=220, ticks=False, domain=False)
+def Urbanization(Tables):
+    Frame = Pl.read_csv(Tables / "urbanization.csv")
+    Y = Alt.Y(
+        "bin:N",
+        sort=DegurbaClasses,
+        title=None,
+        axis=Alt.Axis(labelLimit=220, ticks=False, domain=False),
     )
-    base = alt.Chart(data(frame)).encode(y=y)
-    xscale = alt.Scale(domain=[min(0, frame["ci_low"].min()) - 0.1, frame["ci_high"].max() + 0.1])
-    intervals = base.mark_rule(color=BLUE, strokeWidth=1.6).encode(
-        x=alt.X("ci_low:Q", title="Mean residual (°C)", scale=xscale),
+    Base = Alt.Chart(Data(Frame)).encode(y=Y)
+    Xscale = Alt.Scale(domain=[min(0, Frame["ci_low"].min()) - 0.1, Frame["ci_high"].max() + 0.1])
+    Intervals = Base.mark_rule(color=Blue, strokeWidth=1.6).encode(
+        x=Alt.X("ci_low:Q", title="Mean residual (°C)", scale=Xscale),
         x2="ci_high:Q",
     )
-    points = base.mark_point(color=BLUE, filled=True, size=40).encode(
-        x=alt.X("mean:Q", title="Mean residual (°C)", scale=xscale),
+    Points = Base.mark_point(color=Blue, filled=True, size=40).encode(
+        x=Alt.X("mean:Q", title="Mean residual (°C)", scale=Xscale),
         tooltip=["bin:N", "mean:Q", "ci_low:Q", "ci_high:Q", "n_stations:Q"],
     )
-    plot = (zero_rule(True, "Mean residual (°C)") + intervals + points).properties(
+    Plot = (ZeroRule(True, "Mean residual (°C)") + Intervals + Points).properties(
         width=310, height=230
     )
-    counts = (
-        base.mark_text(align="right", fontSize=10)
+    Counts = (
+        Base.mark_text(align="right", fontSize=10)
         .encode(
-            y=alt.Y("bin:N", sort=DEGURBA, axis=None),
-            x=alt.value(55),
-            text=alt.Text("n_stations:Q", format=","),
+            y=Alt.Y("bin:N", sort=DegurbaClasses, axis=None),
+            x=Alt.value(55),
+            text=Alt.Text("n_stations:Q", format=","),
         )
         .properties(
             width=55,
             height=230,
-            title=alt.Title("Stations", fontSize=10, fontWeight="normal", anchor="end"),
+            title=Alt.Title("Stations", fontSize=10, fontWeight="normal", anchor="end"),
         )
     )
-    return alt.hconcat(plot, counts, spacing=12).resolve_scale(y="shared")
+    return Alt.hconcat(Plot, Counts, spacing=12).resolve_scale(y="shared")
 
 
-def interactions(tables, min_stations=10):
-    frames = [pl.read_csv(tables / f"{x}_by_{y}.csv") for x, y in PAIRS]
-    vmax = max(
+def Interactions(Tables, MinStations=10):
+    Frames = [Pl.read_csv(Tables / f"{X}_by_{Y}.csv") for X, Y in FeaturePairs]
+    Vmax = max(
         [0.01]
         + [
-            f.filter(pl.col("n_stations") >= min_stations)["residual"].abs().max() or 0
-            for f in frames
+            F.filter(Pl.col("n_stations") >= MinStations)["residual"].abs().max() or 0
+            for F in Frames
         ]
     )
-    panels = []
-    for i, ((fx, fy), frame) in enumerate(zip(PAIRS, frames)):
+    Panels = []
+    for Index, ((Fx, Fy), Frame) in enumerate(zip(FeaturePairs, Frames)):
         # Complete the grid so absent cells have the same grey as sparse cells.
-        xs = frame.select("bin_x", "x_lo", "x_hi").unique()
-        ys = frame.select("bin_y", "y_lo", "y_hi").unique()
-        frame = (
-            xs.join(ys, how="cross")
-            .join(frame, on=xs.columns + ys.columns, how="left")
+        Xs = Frame.select("bin_x", "x_lo", "x_hi").unique()
+        Ys = Frame.select("bin_y", "y_lo", "y_hi").unique()
+        Frame = (
+            Xs.join(Ys, how="cross")
+            .join(Frame, on=Xs.columns + Ys.columns, how="left")
             .sort("y_lo", "x_lo")
         )
-        chart = (
-            alt.Chart(data(frame))
+        Chart = (
+            Alt.Chart(Data(Frame))
             .mark_rect()
             .encode(
-                x=alt.X(
+                x=Alt.X(
                     "x_lo:Q",
-                    title=FEATURES[fx],
-                    scale=alt.Scale(zero=False, nice=False),
-                    axis=alt.Axis(grid=False, tickCount=4),
+                    title=FeatureLabels[Fx],
+                    scale=Alt.Scale(zero=False, nice=False),
+                    axis=Alt.Axis(grid=False, tickCount=4),
                 ),
                 x2="x_hi:Q",
-                y=alt.Y(
+                y=Alt.Y(
                     "y_lo:Q",
-                    title=FEATURES[fy],
-                    scale=alt.Scale(zero=False, nice=False),
-                    axis=alt.Axis(grid=False, tickCount=4),
+                    title=FeatureLabels[Fy],
+                    scale=Alt.Scale(zero=False, nice=False),
+                    axis=Alt.Axis(grid=False, tickCount=4),
                 ),
                 y2="y_hi:Q",
-                color=alt.condition(
-                    f"isValid(datum.residual) && datum.n_stations >= {min_stations}",
-                    alt.Color(
+                color=Alt.condition(
+                    f"isValid(datum.residual) && datum.n_stations >= {MinStations}",
+                    Alt.Color(
                         "residual:Q",
                         title="Mean residual (°C)",
-                        scale=alt.Scale(scheme="redblue", reverse=True, domain=[-vmax, vmax]),
-                        legend=alt.Legend(
+                        scale=Alt.Scale(scheme="redblue", reverse=True, domain=[-Vmax, Vmax]),
+                        legend=Alt.Legend(
                             orient="bottom",
                             gradientLength=220,
                             direction="horizontal",
                             titleOrient="bottom",
                         ),
                     ),
-                    alt.value("#ebebeb"),
+                    Alt.value("#ebebeb"),
                 ),
                 tooltip=[
                     "x_lo:Q",
@@ -184,72 +189,72 @@ def interactions(tables, min_stations=10):
                     "n_stations:Q",
                 ],
             )
-            .properties(width=225, height=190, title=f"({chr(97 + i)})")
+            .properties(width=225, height=190, title=f"({chr(97 + Index)})")
         )
-        panels.append(chart)
-    return alt.hconcat(*panels, spacing=30).resolve_scale(color="shared")
+        Panels.append(Chart)
+    return Alt.hconcat(*Panels, spacing=30).resolve_scale(color="shared")
 
 
-def map_geometry(tables, cache):
+def MapGeometry(Tables, Cache):
     """Cache clipped Natural Earth geometry alongside the figure data."""
-    import cartopy
-    import geopandas as gpd
-    from cartopy.io import shapereader
-    from shapely.geometry import box
+    import cartopy as Cartopy
+    import geopandas as Gpd
+    from cartopy.io import shapereader as Shapereader
+    from shapely.geometry import box as Box
 
-    cartopy.config["data_dir"] = Path(cache)
-    extent = box(MAP_EXTENT[0], MAP_EXTENT[2], MAP_EXTENT[1], MAP_EXTENT[3])
-    for name, category in [
+    Cartopy.config["data_dir"] = Path(Cache)
+    Extent = Box(MapExtent[0], MapExtent[2], MapExtent[1], MapExtent[3])
+    for Name, Category in [
         ("land", "physical"),
         ("coastline", "physical"),
         ("admin_0_boundary_lines_land", "cultural"),
     ]:
-        output = tables / f"map_{name}.geojson"
-        if not output.exists():
-            source = shapereader.natural_earth("50m", category, name)
-            frame = gpd.read_file(source, bbox=extent.bounds)[["geometry"]]
-            frame = frame.clip(extent)
-            output.write_text(frame.to_json(drop_id=True))
+        Output = Tables / f"map_{Name}.geojson"
+        if not Output.exists():
+            Source = Shapereader.natural_earth("50m", Category, Name)
+            Frame = Gpd.read_file(Source, bbox=Extent.bounds)[["geometry"]]
+            Frame = Frame.clip(Extent)
+            Output.write_text(Frame.to_json(drop_id=True))
 
 
-def station_map(tables):
-    frame = pl.read_csv(tables / "station_means.csv").filter(
-        pl.col("lon").is_between(*MAP_EXTENT[:2]) & pl.col("lat").is_between(*MAP_EXTENT[2:])
+def StationMap(Tables):
+    Frame = Pl.read_csv(Tables / "station_means.csv").filter(
+        Pl.col("lon").is_between(*MapExtent[:2]) & Pl.col("lat").is_between(*MapExtent[2:])
     )
-    layers = []
-    for name, fill, stroke, width in [
+    Layers = []
+    for Name, Fill, Stroke, Width in [
         ("land", "#f5f4ef", None, 0),
         ("coastline", None, "#777777", 0.4),
         ("admin_0_boundary_lines_land", None, "#aaaaaa", 0.3),
     ]:
-        features = json.loads((tables / f"map_{name}.geojson").read_text())["features"]
-        layers.append(
-            alt.Chart(alt.Data(values=features)).mark_geoshape(
-                fill=fill,
-                stroke=stroke,
-                strokeWidth=width,
+        Features = Json.loads((Tables / f"map_{Name}.geojson").read_text())["features"]
+        Layers.append(
+            Alt.Chart(Alt.Data(values=Features)).mark_geoshape(
+                fill=Fill,
+                stroke=Stroke,
+                strokeWidth=Width,
                 clip=True,
             )
         )
-    layers.append(
-        alt.Chart(alt.graticule(step=[10, 10])).mark_geoshape(
+    Layers.append(
+        Alt.Chart(Alt.graticule(step=[10, 10])).mark_geoshape(
             stroke="#cccccc",
             strokeWidth=0.3,
             strokeDash=[2, 2],
             clip=True,
         )
     )
-    layers.append(
-        alt.Chart(data(frame))
+    Layers.append(
+        Alt.Chart(Data(Frame))
         .mark_circle(size=8, opacity=1, clip=True)
         .encode(
             longitude="lon:Q",
             latitude="lat:Q",
-            color=alt.Color(
+            color=Alt.Color(
                 "residual:Q",
                 title="Mean residual (°C)",
-                scale=alt.Scale(scheme="redblue", reverse=True, domain=[-3, 3], clamp=True),
-                legend=alt.Legend(
+                scale=Alt.Scale(scheme="redblue", reverse=True, domain=[-3, 3], clamp=True),
+                legend=Alt.Legend(
                     gradientLength=220,
                     values=[-3, -2, -1, 0, 1, 2, 3],
                     labelExpr="datum.value == -3 ? '≤ −3' : datum.value == 3 ? '≥ 3' : datum.label",
@@ -258,22 +263,22 @@ def station_map(tables):
             tooltip=["STAID:Q", "residual:Q", "n_observations:Q"],
         )
     )
-    bounds = {
+    Bounds = {
         "type": "Feature",
         "properties": {},
         "geometry": {
             "type": "MultiPoint",
-            "coordinates": [[lon, lat] for lon in range(-25, 46, 5) for lat in (34, 72)],
+            "coordinates": [[Lon, Lat] for Lon in range(-25, 46, 5) for Lat in (34, 72)],
         },
     }
     return (
-        alt.layer(*layers)
+        Alt.layer(*Layers)
         .project(
             type="conicConformal",
             parallels=[33, 45],
             rotate=[-12, 0, 0],
             center=[0, 53],
-            fit=bounds,
+            fit=Bounds,
         )
-        .properties(width=470, height=360, view=alt.ViewConfig(fill="#f2f6f8", stroke=None))
+        .properties(width=470, height=360, view=Alt.ViewConfig(fill="#f2f6f8", stroke=None))
     )

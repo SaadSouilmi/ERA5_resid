@@ -1,7 +1,7 @@
-import math
-import os
-import sys
-import traceback
+import math as Math
+import os as Os
+import sys as Sys
+import traceback as Traceback
 
 GlobalFailCount = 0
 GlobalPassCount = 0
@@ -10,7 +10,7 @@ GlobalCase = ""
 
 
 def Color(Text, Code, Stream):
-    if Stream.isatty() and "NO_COLOR" not in os.environ:
+    if Stream.isatty() and "NO_COLOR" not in Os.environ:
         return f"\033[{Code}m{Text}\033[0m"
     return Text
 
@@ -18,7 +18,7 @@ def Color(Text, Code, Stream):
 def Fail(Message):
     global GlobalCheckFailCount
     GlobalCheckFailCount += 1
-    print(Color(f"    {GlobalCase}: {Message}", 31, sys.stderr), file=sys.stderr, flush=True)
+    print(Color(f"    {GlobalCase}: {Message}", 31, Sys.stderr), file=Sys.stderr, flush=True)
 
 
 def Expect(Condition, Message):
@@ -32,7 +32,7 @@ def ExpectEqual(Actual, Expected):
 
 
 def ExpectClose(Actual, Expected, *, RelTol=1e-7, AbsTol=0.0):
-    if not math.isclose(Actual, Expected, rel_tol=RelTol, abs_tol=AbsTol):
+    if not Math.isclose(Actual, Expected, rel_tol=RelTol, abs_tol=AbsTol):
         Fail(f"expected {Expected!r}, got {Actual!r}; RelTol={RelTol:g}, AbsTol={AbsTol:g}")
 
 
@@ -54,20 +54,20 @@ def Run(Fn):
     try:
         Fn()
     except Exception as Error:
-        Frame = traceback.extract_tb(Error.__traceback__)[-1]
+        Frame = Traceback.extract_tb(Error.__traceback__)[-1]
         Fail(f"{type(Error).__name__}: {Error} ({Frame.filename}:{Frame.lineno})")
     if GlobalCheckFailCount == Before:
         GlobalPassCount += 1
-        print(Color(f"PASS {GlobalCase}", 32, sys.stdout), flush=True)
+        print(Color(f"PASS {GlobalCase}", 32, Sys.stdout), flush=True)
     else:
         GlobalFailCount += 1
-        print(Color(f"FAIL {GlobalCase}", 31, sys.stdout), flush=True)
+        print(Color(f"FAIL {GlobalCase}", 31, Sys.stdout), flush=True)
 
 
 def Summary(*, SuiteErrors=0):
-    Passed = Color(f"{GlobalPassCount} passed", 32, sys.stdout)
-    Failed = Color(f"{GlobalFailCount} failed", 31 if GlobalFailCount else 32, sys.stdout)
+    Passed = Color(f"{GlobalPassCount} passed", 32, Sys.stdout)
+    Failed = Color(f"{GlobalFailCount} failed", 31 if GlobalFailCount else 32, Sys.stdout)
     print(f"\n{GlobalPassCount + GlobalFailCount} tests: {Passed}, {Failed}", flush=True)
     if SuiteErrors:
-        print(Color(f"{SuiteErrors} suite errors", 31, sys.stdout), flush=True)
+        print(Color(f"{SuiteErrors} suite errors", 31, Sys.stdout), flush=True)
     return min(GlobalFailCount + SuiteErrors, 255)

@@ -9,9 +9,19 @@ modules live directly in that directory. Scripts and Marimo notebooks live in
 Use `py.paths` for repository paths. Run computational work in a dedicated tmux
 session and remove the session when the command finishes.
 
-The old Jupyter notebooks under `notebooks/` are historical records. Do not
-rewrite their analyses or regenerate their outputs during routine refactoring.
-The last pre-refactor state is commit `5ee9293`.
+Historical Jupyter notebooks, Quarto reports and the duplicate standalone
+post-stratification exporter have been retired. Recover historical analyses from
+Git history; the last pre-refactor state is commit `5ee9293`. Do not restore old
+outputs as current results. Active entry points are listed in README.md.
+
+## Python naming
+
+Use PascalCase for functions, arguments, variables, constants and import aliases
+throughout `src/py`. Keep module and package filenames in snake_case. Preserve
+Python special names and Marimo's generated `marimo`, `app`, `_` and
+`__generated_with` names. Retain the leading underscore on private notebook
+variables, for example `_Frame`. External API names, keyword arguments, data
+columns, serialized keys and command-line flags retain their required spelling.
 
 ## Python tests
 
@@ -30,3 +40,28 @@ Publication figures use Altair, saved source tables and vector exports. Preserve
 statistical estimates when changing presentation. Generated HTML reports go in
 `/home2/lobib/research-reports/saad.souilmi` unless the user specifies another path.
 For HTML reports, read `~/.codex/html_reports_style.md`.
+
+`paper.tex` is the working draft. The supplied comparison is ECA&D daily maximum
+temperature versus ERA5-Land daily maximum temperature. Preserve the original
+`data2/residuals.parquet`; the audited copy is `data2/residuals_cleaned.parquet`.
+`py.scripts.audit_cleaning` records unresolved quality and methodology issues in
+`data2/cleaning_audit/`. `py.scripts.export_notebooks` exports the active notebooks
+and their Altair PDFs. Treat these as review outputs until the audit's open
+scientific questions are resolved; do not silently clip flagged temperatures.
+
+The current analysis input is `data2/clean/analysis.parquet`, built by
+`py.scripts.build_clean_dataset`. The conservative temperature baseline excludes
+station series flagged by station-only screening, land-fallback matches,
+source-location mismatches and repeated source observations. Screening thresholds
+are provisional and explicit; do not select observations by ERA5 residual size.
+The user authorizes seasonal NDVI extrapolation: use the latest earlier raster
+from the same season, preserving source dates, lag and an extrapolation flag.
+Keep temperature pairs separate from covariates, and preserve observation-window
+metadata plus the UTC-window subset. Notebook and paper-figure exports use the
+main screened sample with per-feature covariate availability; their manifests
+identify the input hashes. Regenerate them after rebuilding the dataset.
+
+`py.notebooks.cleaning_process` documents the selection in execution order and
+checks the saved release. Export it with `py.scripts.export_notebooks cleaning_process`.
+Large datasets and rasters stay local and ignored; commit compact audit CSV/JSON
+files, source tables and vector figures. HTML outputs stay in ReportsDirectory.

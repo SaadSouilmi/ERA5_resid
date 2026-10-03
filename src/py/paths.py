@@ -1,9 +1,12 @@
 """Shared repository and output paths."""
 
+import os as Os
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-DATA = ROOT / "data/main"
-DATA2 = ROOT / "data2"
-FIGURES = ROOT / "figures/paper"
-REPORTS = Path("/home2/lobib/research-reports/saad.souilmi")
+ProjectRoot = Path(__file__).resolve().parents[2]
+RawDataDirectory = ProjectRoot / "data/main"
+AnalysisDataDirectory = ProjectRoot / "data2"
+FiguresDirectory = ProjectRoot / "figures/paper"
+ReportsDirectory = Path(
+    Os.environ.get("ERA5_REPORTS_DIR", "/home2/lobib/research-reports/saad.souilmi")
+).expanduser()

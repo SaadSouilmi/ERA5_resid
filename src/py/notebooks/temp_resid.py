@@ -8,86 +8,105 @@ app = marimo.App(width="medium")
 def _():
     from pathlib import Path
 
-    import geopandas as gpd
-    import numpy as np
-    import pandas as pd
-    import pycountry
-    import rasterio
-    import reverse_geocoder as rg
-    import xarray as xr
-    from rasterio.warp import transform
-    from tqdm import tqdm
+    import geopandas as Gpd
+    import marimo as Mo
+    import numpy as Np
+    import pandas as Pd
+    import pycountry as Pycountry
+    import rasterio as Rasterio
+    import reverse_geocoder as Rg
+    import xarray as Xr
+    from rasterio.warp import transform as Transform
+    from tqdm import tqdm as Tqdm
 
-    return Path, gpd, np, pd, pycountry, rasterio, rg, tqdm, transform, xr
+    from py.cleaning import AttachStationDistances, GridExtent, LoadResiduals
+
+    return (
+        Path,
+        Gpd,
+        Mo,
+        Np,
+        Pd,
+        Pycountry,
+        Rasterio,
+        Rg,
+        Tqdm,
+        Transform,
+        Xr,
+        AttachStationDistances,
+        GridExtent,
+        LoadResiduals,
+    )
 
 
 @app.cell
-def _(Path):
-    from py.paths import DATA, DATA2
+def _(Path, Mo):
+    from py.paths import AnalysisDataDirectory, RawDataDirectory
 
-    degurba_path = (
-        DATA2
+    DegurbaPath = (
+        AnalysisDataDirectory
         / "GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0/GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0.tif"
     )
-    return DATA, DATA2, degurba_path
+    Rebuild = bool(Mo.cli_args().get("rebuild", False))
+    return RawDataDirectory, AnalysisDataDirectory, DegurbaPath, Rebuild
 
 
 @app.cell
-def _(Path, degurba_path, gpd, np, pd, pycountry, rasterio, rg, transform):
-    def dms_to_decimal(dms_str):
+def _(Path, DegurbaPath, Gpd, Np, Pd, Pycountry, Rasterio, Rg, Transform):
+    def DmsToDecimal(DmsStr):
         """Convert DMS string (+DD:MM:SS) to decimal degrees."""
-        dms_str = dms_str.strip()
-        sign = 1 if dms_str[0] == "+" else -1
-        dms_str = dms_str[1:]
-        parts = dms_str.split(":")
-        return sign * (float(parts[0]) + float(parts[1]) / 60 + float(parts[2]) / 3600)
+        DmsStr = DmsStr.strip()
+        Sign = 1 if DmsStr[0] == "+" else -1
+        DmsStr = DmsStr[1:]
+        Parts = DmsStr.split(":")
+        return Sign * (float(Parts[0]) + float(Parts[1]) / 60 + float(Parts[2]) / 3600)
 
-    def load_station_data(eca_tx_datafolder: Path) -> pd.DataFrame:
-        stations_filepath = eca_tx_datafolder / "stations.txt"
+    def LoadStationData(EcaTxDatafolder: Path) -> Pd.DataFrame:
+        StationsFilepath = EcaTxDatafolder / "stations.txt"
 
-        stations_df = pd.read_csv(stations_filepath, skiprows=17, skipinitialspace=True)
-        stations_df["LAT_decimal"] = stations_df["LAT"].apply(dms_to_decimal)
-        stations_df["LON_decimal"] = stations_df["LON"].apply(dms_to_decimal)
-        stations_df["country"] = stations_df["CN"].apply(
-            lambda x: pycountry.countries.get(alpha_2=x.rstrip(" ")).name
+        StationsDf = Pd.read_csv(StationsFilepath, skiprows=17, skipinitialspace=True)
+        StationsDf["LAT_decimal"] = StationsDf["LAT"].apply(DmsToDecimal)
+        StationsDf["LON_decimal"] = StationsDf["LON"].apply(DmsToDecimal)
+        StationsDf["country"] = StationsDf["CN"].apply(
+            lambda X: Pycountry.countries.get(alpha_2=X.rstrip(" ")).name
         )
-        stations_df = stations_df.rename(columns={"HGHT": "elevation"})
-        stations_df["place"] = [
-            dico["name"]
-            for dico in rg.search(list(zip(stations_df["LAT_decimal"], stations_df["LON_decimal"])))
+        StationsDf = StationsDf.rename(columns={"HGHT": "elevation"})
+        StationsDf["place"] = [
+            Dico["name"]
+            for Dico in Rg.search(list(zip(StationsDf["LAT_decimal"], StationsDf["LON_decimal"])))
         ]
 
-        stations_gdf = gpd.GeoDataFrame(
-            stations_df,
-            geometry=gpd.points_from_xy(stations_df["LON_decimal"], stations_df["LAT_decimal"]),
+        StationsGdf = Gpd.GeoDataFrame(
+            StationsDf,
+            geometry=Gpd.points_from_xy(StationsDf["LON_decimal"], StationsDf["LAT_decimal"]),
             crs="EPSG:4326",
         ).drop(columns=["LAT", "LON", "LAT_decimal", "LON_decimal"])
 
-        print(f"Number of registered stations: {len(stations_gdf)}")
-        return stations_gdf
+        print(f"Number of registered stations: {len(StationsGdf)}")
+        return StationsGdf
 
-    def load_degurba_data(stations_gdf: gpd.GeoDataFrame, deburba_path: Path) -> gpd.GeoDataFrame:
-        with rasterio.open(degurba_path) as src:
-            nodata = src.nodata
-            lons = stations_gdf.geometry.x.values
-            lats = stations_gdf.geometry.y.values
+    def LoadDegurbaData(StationsGdf: Gpd.GeoDataFrame, DegurbaRaster: Path) -> Gpd.GeoDataFrame:
+        with Rasterio.open(DegurbaRaster) as Src:
+            Nodata = Src.nodata
+            Lons = StationsGdf.geometry.x.values
+            Lats = StationsGdf.geometry.y.values
 
             # Reproject station coords from WGS84 to the raster CRS (Mollweide)
-            xs, ys = transform("EPSG:4326", src.crs, lons, lats)
+            Xs, Ys = Transform("EPSG:4326", Src.crs, Lons, Lats)
 
-            degurba_vals = []
-            for i in range(len(stations_gdf)):
-                row, col = src.index(xs[i], ys[i])
-                if 0 <= row < src.height and 0 <= col < src.width:
-                    val = src.read(1, window=rasterio.windows.Window(col, row, 1, 1))[0, 0]
-                    degurba_vals.append(np.nan if val == nodata else int(val))
+            DegurbaVals = []
+            for Index in range(len(StationsGdf)):
+                Row, Col = Src.index(Xs[Index], Ys[Index])
+                if 0 <= Row < Src.height and 0 <= Col < Src.width:
+                    Val = Src.read(1, window=Rasterio.windows.Window(Col, Row, 1, 1))[0, 0]
+                    DegurbaVals.append(Np.nan if Val == Nodata else int(Val))
                 else:
-                    degurba_vals.append(np.nan)
+                    DegurbaVals.append(Np.nan)
 
-        stations_gdf["degurba"] = degurba_vals
-        print(f"degurba nulls: {stations_gdf['degurba'].isna().sum()} / {len(stations_gdf)}")
+        StationsGdf["degurba"] = DegurbaVals
+        print(f"degurba nulls: {StationsGdf['degurba'].isna().sum()} / {len(StationsGdf)}")
 
-        DEGURBA_LABELS = {
+        DegurbaLabels = {
             10: "Water",
             11: "Very low density rural",
             12: "Low density rural",
@@ -98,248 +117,233 @@ def _(Path, degurba_path, gpd, np, pd, pycountry, rasterio, rg, transform):
             30: "Urban centre",
         }
 
-        stations_gdf["degurba_label"] = stations_gdf["degurba"].map(DEGURBA_LABELS)
-        return stations_gdf
+        StationsGdf["degurba_label"] = StationsGdf["degurba"].map(DegurbaLabels)
+        return StationsGdf
 
-    def compute_distance_to_sea_km(
-        stations_gdf: gpd.GeoDataFrame, europe_gdf: gpd.GeoDataFrame
-    ) -> gpd.GeoDataFrame:
-        import shapely
+    def ComputeDistanceToSeaKm(
+        StationsGdf: Gpd.GeoDataFrame, EuropeGdf: Gpd.GeoDataFrame
+    ) -> Gpd.GeoDataFrame:
+        import shapely as Shapely
         from shapely import STRtree
 
-        coastline = europe_gdf.dissolve().to_crs("EPSG:3035").boundary.iloc[0].simplify(500)
+        Coastline = EuropeGdf.dissolve().to_crs("EPSG:3035").boundary.iloc[0].simplify(500)
         # Split into per-ring/part geometries so the STRtree can prune candidates
         # before computing exact distances (O(n·log m) instead of O(n·m))
-        segments = (
-            list(coastline.geoms) if coastline.geom_type == "MultiLineString" else [coastline]
+        Segments = (
+            list(Coastline.geoms) if Coastline.geom_type == "MultiLineString" else [Coastline]
         )
 
-        stations_3035 = stations_gdf.to_crs("EPSG:3035")
-        points = stations_3035.geometry.values
+        Stations3035 = StationsGdf.to_crs("EPSG:3035")
+        Points = Stations3035.geometry.values
 
-        tree = STRtree(segments)
-        nearest_idx = tree.nearest(points)
-        distances = shapely.distance(points, np.array(segments, dtype=object)[nearest_idx])
+        Tree = STRtree(Segments)
+        NearestIdx = Tree.nearest(Points)
+        Distances = Shapely.distance(Points, Np.array(Segments, dtype=object)[NearestIdx])
 
-        stations_gdf = stations_gdf.copy()
-        stations_gdf["dist_to_sea_km"] = distances / 1000
-        return stations_gdf
+        StationsGdf = StationsGdf.copy()
+        StationsGdf["dist_to_sea_km"] = Distances / 1000
+        return StationsGdf
 
-    return load_degurba_data, load_station_data
+    return LoadDegurbaData, LoadStationData
 
 
 @app.cell
-def _(Path, np, pd, pycountry, rasterio, tqdm, transform, xr):
-    def load_era5_data(era5_dir: Path) -> xr.Dataset:
-        era5_files = sorted(era5_dir.glob("*.nc"))
-        era5_ds = xr.open_mfdataset(era5_files, combine="by_coords", join="inner")
-        era5_ds["t2m_celsius"] = era5_ds["t2m"] - 273.15
-        era5_ds["wind"] = np.sqrt(era5_ds["u10"] ** 2 + era5_ds["v10"] ** 2)
-        return era5_ds
+def _(Path, Np, Pd, Pycountry, Rasterio, Tqdm, Transform, Xr):
+    def LoadEra5Data(Era5Dir: Path) -> Xr.Dataset:
+        Era5Files = sorted(Era5Dir.glob("*.nc"))
+        Era5Ds = Xr.open_mfdataset(Era5Files, combine="by_coords", join="inner")
+        Era5Ds["t2m_celsius"] = Era5Ds["t2m"] - 273.15
+        Era5Ds["wind"] = Np.sqrt(Era5Ds["u10"] ** 2 + Era5Ds["v10"] ** 2)
+        return Era5Ds
 
-    def extract_era5_at_stations(era5_ds, stations_gdf):
-        variables = ["t2m_celsius", "tp", "wind"]
-        all_lats = xr.DataArray(stations_gdf.geometry.y.values, dims="station")
-        all_lons = xr.DataArray(stations_gdf.geometry.x.values, dims="station")
+    def ExtractEra5AtStations(Era5Ds, StationsGdf):
+        from sklearn.neighbors import BallTree
 
-        era5_all_stations = {
-            var: era5_ds[var].sel(latitude=all_lats, longitude=all_lons, method="nearest").compute()
-            for var in variables
+        Variables = ["t2m_celsius", "tp", "wind"]
+        AllLats = Xr.DataArray(StationsGdf.geometry.y.values, dims="station")
+        AllLons = Xr.DataArray(StationsGdf.geometry.x.values, dims="station")
+
+        Era5AllStations = {
+            Var: Era5Ds[Var].sel(latitude=AllLats, longitude=AllLons, method="nearest").compute()
+            for Var in Variables
         }
 
-        nan_mask = era5_all_stations["t2m_celsius"].isnull().all(dim="valid_time")
-        nan_indices = np.where(nan_mask.values)[0]
-        print(f"Stations with no ERA5 data: {len(nan_indices)}")
+        NanMask = Era5AllStations["t2m_celsius"].isnull().all(dim="valid_time")
+        NanIndices = Np.where(NanMask.values)[0]
+        print(f"Stations with no ERA5 data: {len(NanIndices)}")
 
-        sample = era5_ds["t2m_celsius"].isel(valid_time=0).compute()
-        land_points = sample.stack(point=("latitude", "longitude"))
-        valid = land_points.notnull().values
-        land_lat_vals = land_points.latitude.values[valid]
-        land_lon_vals = land_points.longitude.values[valid]
+        Sample = Era5Ds["t2m_celsius"].isel(valid_time=0).compute()
+        LandPoints = Sample.stack(point=("latitude", "longitude"))
+        Valid = LandPoints.notnull().values
+        LandLatVals = LandPoints.latitude.values[Valid]
+        LandLonVals = LandPoints.longitude.values[Valid]
+        LandTree = BallTree(
+            Np.radians(Np.column_stack([LandLatVals, LandLonVals])), metric="haversine"
+        )
 
-        for station_idx in tqdm(nan_indices, colour="green"):
-            slat = stations_gdf.geometry.y.values[station_idx]
-            slon = stations_gdf.geometry.x.values[station_idx]
-            dists = (land_lat_vals - slat) ** 2 + (land_lon_vals - slon) ** 2
-            nearest = np.argmin(dists)
-            nearest_lat = land_lat_vals[nearest]
-            nearest_lon = land_lon_vals[nearest]
-            for var in variables:
-                era5_all_stations[var][:, station_idx] = (
-                    era5_ds[var].sel(latitude=nearest_lat, longitude=nearest_lon).values
+        for StationIdx in Tqdm(NanIndices, colour="green"):
+            Slat = StationsGdf.geometry.y.values[StationIdx]
+            Slon = StationsGdf.geometry.x.values[StationIdx]
+            _, NearestIndex = LandTree.query(Np.radians([[Slat, Slon]]), k=1)
+            Nearest = NearestIndex[0, 0]
+            NearestLat = LandLatVals[Nearest]
+            NearestLon = LandLonVals[Nearest]
+            for Var in Variables:
+                Era5AllStations[Var][:, StationIdx] = (
+                    Era5Ds[Var].sel(latitude=NearestLat, longitude=NearestLon).values
                 )
 
-        return era5_all_stations
+        return Era5AllStations
 
-    def compute_residuals(stations_gdf, era5_all_stations, era5_ds, eca_tx_datafolder: Path):
-        all_residuals = []
-        era5_times = pd.DatetimeIndex(era5_ds.valid_time.values)
+    def ComputeResiduals(StationsGdf, Era5AllStations, Era5Ds, EcaTxDatafolder: Path):
+        AllResiduals = []
+        Era5Times = Pd.DatetimeIndex(Era5Ds.valid_time.values)
 
-        for i, (_, row) in tqdm(
-            enumerate(stations_gdf.iterrows()), total=len(stations_gdf), colour="green"
+        for Index, (_, Row) in Tqdm(
+            enumerate(StationsGdf.iterrows()), total=len(StationsGdf), colour="green"
         ):
-            filepath = eca_tx_datafolder / f"TX_STAID{row['STAID']:06d}.txt"
-            if not filepath.exists():
+            Filepath = EcaTxDatafolder / f"TX_STAID{Row['STAID']:06d}.txt"
+            if not Filepath.exists():
                 continue
 
-            station_df = pd.read_csv(filepath, skiprows=20, skipinitialspace=True)
-            station_df = station_df[station_df["Q_TX"] == 0].copy()
-            station_df["DATE"] = pd.to_datetime(station_df["DATE"], format="%Y%m%d")
-            station_df = station_df[station_df["DATE"].isin(era5_times)]
-            if len(station_df) == 0:
+            StationDf = Pd.read_csv(Filepath, skiprows=20, skipinitialspace=True)
+            StationDf = StationDf[(StationDf["Q_TX"] == 0) & (StationDf["TX"] != -9999)].copy()
+            StationDf["DATE"] = Pd.to_datetime(StationDf["DATE"], format="%Y%m%d")
+            StationDf = StationDf[StationDf["DATE"].isin(Era5Times)]
+            if StationDf["DATE"].duplicated().any():
+                raise ValueError(f"Duplicate dates at station {Row['STAID']}")
+            if len(StationDf) == 0:
                 continue
 
-            station_df["TX_celsius"] = station_df["TX"] / 10.0
-            time_indices = era5_times.get_indexer(station_df["DATE"])
+            StationDf["TX_celsius"] = StationDf["TX"] / 10.0
+            TimeIndices = Era5Times.get_indexer(StationDf["DATE"])
 
-            all_residuals.append(
-                pd.DataFrame(
+            AllResiduals.append(
+                Pd.DataFrame(
                     {
-                        "STAID": row["STAID"],
-                        "country": row["country"],
-                        "place": row["place"],
-                        "elevation": row["elevation"],
-                        "lon": row["geometry"].x,
-                        "lat": row["geometry"].y,
-                        "date": station_df["DATE"].values,
-                        "station_celsius": station_df["TX_celsius"].values,
-                        "era5_celsius": era5_all_stations["t2m_celsius"].values[time_indices, i],
-                        "residual": station_df["TX_celsius"].values
-                        - era5_all_stations["t2m_celsius"].values[time_indices, i],
-                        "tp": era5_all_stations["tp"].values[time_indices, i],
-                        "wind": era5_all_stations["wind"].values[time_indices, i],
+                        "STAID": Row["STAID"],
+                        "country": Row["country"],
+                        "place": Row["place"],
+                        "elevation": Row["elevation"],
+                        "lon": Row["geometry"].x,
+                        "lat": Row["geometry"].y,
+                        "date": StationDf["DATE"].values,
+                        "station_celsius": StationDf["TX_celsius"].values,
+                        "era5_celsius": Era5AllStations["t2m_celsius"].values[TimeIndices, Index],
+                        "residual": StationDf["TX_celsius"].values
+                        - Era5AllStations["t2m_celsius"].values[TimeIndices, Index],
+                        "tp": Era5AllStations["tp"].values[TimeIndices, Index],
+                        "wind": Era5AllStations["wind"].values[TimeIndices, Index],
                     }
                 )
             )
 
-        return pd.concat(all_residuals, ignore_index=True)
+        return Pd.concat(AllResiduals, ignore_index=True)
 
-    def add_ndvi(residuals_df, stations_gdf, ndvi_dir: Path):
-        def quarter_tp(date):
-            m, y = date.month, date.year
-            if m < 3:
-                return f"{y - 1}-12-01_{y}-03-01"
-            elif m < 6:
-                return f"{y}-03-01_{y}-06-01"
-            elif m < 9:
-                return f"{y}-06-01_{y}-09-01"
-            elif m < 12:
-                return f"{y}-09-01_{y}-12-01"
-            else:
-                return f"{y}-12-01_{y + 1}-03-01"
+    def AddNdvi(ResidualsDf, StationsGdf, NdviDir: Path):
+        import polars as Pl
 
-        available = sorted(
-            [f.stem.replace("ndvi_", "") for f in ndvi_dir.glob("ndvi_*.tif")],
-            reverse=True,
+        from py.covariates import AddSeasonalNdvi
+
+        return AddSeasonalNdvi(Pl.from_pandas(ResidualsDf), NdviDir).to_pandas()
+
+    def AddCountryCode(ResidualsDf):
+        ResidualsDf = ResidualsDf.copy()
+        ResidualsDf["country_code"] = ResidualsDf["country"].apply(
+            lambda X: Pycountry.countries.get(name=X).alpha_3
         )
-
-        def resolve_quarter(date):
-            for years_back in range(6):
-                tp = quarter_tp(date - pd.DateOffset(years=years_back))
-                if tp in available:
-                    return tp
-            return None
-
-        sta_lats = stations_gdf.set_index("STAID")["geometry"].apply(lambda g: g.y)
-        sta_lons = stations_gdf.set_index("STAID")["geometry"].apply(lambda g: g.x)
-
-        residuals_df = residuals_df.copy()
-        residuals_df["_ndvi_tp"] = residuals_df["date"].apply(resolve_quarter)
-
-        lookup = {}
-        for tp in tqdm(residuals_df["_ndvi_tp"].unique(), colour="green"):
-            path = ndvi_dir / f"ndvi_{tp}.tif"
-            if not path.exists():
-                continue
-            with rasterio.open(path) as src:
-                nodata = src.nodata
-                staids = residuals_df.loc[residuals_df["_ndvi_tp"] == tp, "STAID"].unique()
-                lats = sta_lats.reindex(staids).values
-                lons = sta_lons.reindex(staids).values
-                xs, ys = (
-                    (lons, lats)
-                    if src.crs.to_epsg() == 4326
-                    else transform("EPSG:4326", src.crs, lons, lats)
-                )
-                for i, staid in enumerate(staids):
-                    r, c = src.index(xs[i], ys[i])
-                    if 0 <= r < src.height and 0 <= c < src.width:
-                        val = src.read(1, window=rasterio.windows.Window(c, r, 1, 1))[0, 0]
-                        lookup[(staid, tp)] = np.nan if val == nodata else val / 254 * 2 - 1
-                    else:
-                        lookup[(staid, tp)] = np.nan
-
-        residuals_df["ndvi"] = [
-            lookup.get((s, t), np.nan)
-            for s, t in zip(residuals_df["STAID"], residuals_df["_ndvi_tp"])
-        ]
-        residuals_df.drop(columns="_ndvi_tp", inplace=True)
-        print(f"NDVI nulls: {residuals_df['ndvi'].isna().sum()} / {len(residuals_df)}")
-        return residuals_df
-
-    def add_country_code(residuals_df):
-        residuals_df = residuals_df.copy()
-        residuals_df["country_code"] = residuals_df["country"].apply(
-            lambda x: pycountry.countries.get(name=x).alpha_3
-        )
-        return residuals_df
+        return ResidualsDf
 
     return (
-        add_country_code,
-        add_ndvi,
-        compute_residuals,
-        extract_era5_at_stations,
-        load_era5_data,
+        AddCountryCode,
+        AddNdvi,
+        ComputeResiduals,
+        ExtractEra5AtStations,
+        LoadEra5Data,
     )
 
 
 @app.cell
-def _(DATA, DATA2, degurba_path, gpd, load_degurba_data, load_station_data):
-    stations_gdf = load_station_data(DATA2 / "ECA_blend_tx")
-    stations_gdf = load_degurba_data(stations_gdf, degurba_path)
-    # stations_gdf = compute_distance_to_sea_km(stations_gdf, europe_gdf)
-    return (stations_gdf,)
+def _(RawDataDirectory, DegurbaPath, LoadDegurbaData, LoadStationData, Rebuild, GridExtent):
+    StationsGdf = None
+    if Rebuild:
+        StationsGdf = LoadStationData(RawDataDirectory / "ECA_blend_tx")
+        StationsGdf = StationsGdf[
+            StationsGdf.geometry.x.between(*GridExtent[:2])
+            & StationsGdf.geometry.y.between(*GridExtent[2:])
+        ].copy()
+        StationsGdf = LoadDegurbaData(StationsGdf, DegurbaPath)
+    return (StationsGdf,)
 
 
 @app.cell
-def _(DATA2, pd, stations_gdf):
-    stations_df = pd.read_csv(DATA2 / "stations_data.csv")
-    stations_gdf["dist_to_sea_km"] = stations_df["dist_to_sea_km"]
-    return
+def _(AnalysisDataDirectory, Pd, StationsGdf, AttachStationDistances, Rebuild):
+    StationsWithDistances = None
+    if Rebuild:
+        StationsDf = Pd.read_csv(AnalysisDataDirectory / "stations_data.csv")
+        StationsWithDistances = AttachStationDistances(StationsGdf, StationsDf)
+    return (StationsWithDistances,)
 
 
 @app.cell
-def _(DATA, extract_era5_at_stations, load_era5_data, stations_gdf):
-    era5_ds = load_era5_data(DATA / "derived-era5-land-daily-statistics")
-    era5_all_stations = extract_era5_at_stations(era5_ds, stations_gdf)
-    return era5_all_stations, era5_ds
+def _(RawDataDirectory, ExtractEra5AtStations, LoadEra5Data, StationsWithDistances, Rebuild):
+    Era5Ds, Era5AllStations = None, None
+    if Rebuild:
+        Era5Ds = LoadEra5Data(RawDataDirectory / "derived-era5-land-daily-statistics")
+        Era5AllStations = ExtractEra5AtStations(Era5Ds, StationsWithDistances)
+    return Era5AllStations, Era5Ds
 
 
 @app.cell
 def _(
-    DATA,
-    DATA2,
-    add_country_code,
-    add_ndvi,
-    compute_residuals,
-    era5_all_stations,
-    era5_ds,
-    stations_gdf,
+    RawDataDirectory,
+    AnalysisDataDirectory,
+    AddCountryCode,
+    AddNdvi,
+    ComputeResiduals,
+    Era5AllStations,
+    Era5Ds,
+    StationsWithDistances,
+    Rebuild,
+    LoadResiduals,
+    Mo,
 ):
-    residuals_df = compute_residuals(
-        stations_gdf, era5_all_stations, era5_ds, DATA / "ECA_blend_tx"
-    )
-    residuals_df = residuals_df.merge(
-        stations_gdf[["STAID", "dist_to_sea_km", "degurba", "degurba_label"]],
-        on="STAID",
-        how="left",
-    )
-    residuals_df = add_ndvi(residuals_df, stations_gdf, DATA / "sentinel2_ndvi")
-    residuals_df = add_country_code(residuals_df)
+    if Rebuild:
+        ResidualsDf = ComputeResiduals(
+            StationsWithDistances, Era5AllStations, Era5Ds, RawDataDirectory / "ECA_blend_tx"
+        )
+        ResidualsDf = ResidualsDf.merge(
+            StationsWithDistances[["STAID", "dist_to_sea_km", "degurba", "degurba_label"]],
+            on="STAID",
+            how="left",
+            validate="many_to_one",
+        )
+        ResidualsDf = AddNdvi(
+            ResidualsDf, StationsWithDistances, RawDataDirectory / "sentinel2_ndvi"
+        )
+        ResidualsDf = AddCountryCode(ResidualsDf)
+        ResidualsDf.to_parquet(AnalysisDataDirectory / "residuals_rebuilt.parquet", index=False)
+        print(f"Saved {len(ResidualsDf):,} rebuilt rows; original parquet preserved.")
+    else:
+        ResidualsDf = LoadResiduals()
+        print(
+            f"{len(ResidualsDf):,} conservatively screened rows, {ResidualsDf['STAID'].n_unique():,} stations"
+        )
+        print(ResidualsDf.null_count())
+        print(f"Extrapolated NDVI values: {ResidualsDf['ndvi_is_extrapolated'].sum():,}")
+    Mo.md("""## Data preparation
 
-    residuals_df.to_parquet(DATA2 / "residuals.parquet", index=False)
-    print(f"Saved {len(residuals_df):,} rows to {DATA2 / 'residuals.parquet'}")
-    residuals_df.info()
+    This export reads `data2/clean/analysis.parquet`. Original observations remain in `data2/residuals.parquet`.
+    Use the notebook's `rebuild` CLI flag to explicitly rebuild the raw inputs into
+    `data2/residuals_rebuilt.parquet`. The rebuild uses geodesic nearest-land matching;
+    the conservative analysis table excludes nearest-land substitutions.
+
+    The clean build validates all saved station-day values, screens station series,
+    traces source observations, and recalculates covariates. NDVI carries the latest
+    matching season forward when unavailable, with explicit provenance and diagnostics.
+    Observation windows remain labelled; a UTC-day subset is saved separately.
+    See the clean dataset methods for the screening policy and remaining limitations.
+    """)
     return
 
 

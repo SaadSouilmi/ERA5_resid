@@ -8,93 +8,98 @@ app = marimo.App(width="medium")
 def _():
     from pathlib import Path
 
-    import altair as alt
-    import geopandas as gpd
-    import marimo as mo
-    import numpy as np
-    import pandas as pd
-    import plotly.graph_objects as go
-    import pycountry
-    import rasterio
-    import reverse_geocoder as rg
-    from plotly.subplots import make_subplots
-    from rasterio.warp import transform
+    import altair as Alt
+    import geopandas as Gpd
+    import marimo as Mo
+    import numpy as Np
+    import pandas as Pd
+    import plotly.graph_objects as Go
+    import pycountry as Pycountry
+    import rasterio as Rasterio
+    import reverse_geocoder as Rg
+    from plotly.subplots import make_subplots as MakeSubplots
+    from rasterio.warp import transform as Transform
+
+    from py.publication import ExportNotebookFigure
+
+    _ = Alt.data_transformers.disable_max_rows()
 
     return (
+        ExportNotebookFigure,
         Path,
-        alt,
-        go,
-        gpd,
-        make_subplots,
-        mo,
-        np,
-        pd,
-        pycountry,
-        rasterio,
-        rg,
-        transform,
+        Alt,
+        Go,
+        Gpd,
+        MakeSubplots,
+        Mo,
+        Np,
+        Pd,
+        Pycountry,
+        Rasterio,
+        Rg,
+        Transform,
     )
 
 
 @app.cell
 def _(Path):
-    from py.paths import DATA, DATA2
+    from py.paths import AnalysisDataDirectory, RawDataDirectory
 
-    degurba_path = (
-        DATA2
+    DegurbaPath = (
+        AnalysisDataDirectory
         / "GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0/GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0.tif"
     )
-    return DATA, DATA2, degurba_path
+    return RawDataDirectory, AnalysisDataDirectory, DegurbaPath
 
 
 @app.cell
-def _(Path, degurba_path, gpd, np, pd, pycountry, rasterio, rg, transform):
-    def load_station_data(eca_tx_datafolder: Path) -> pd.DataFrame:
-        stations_filepath = eca_tx_datafolder / "stations.txt"
+def _(Path, DegurbaPath, Gpd, Np, Pd, Pycountry, Rasterio, Rg, Transform):
+    def LoadStationData(EcaTxDatafolder: Path) -> Pd.DataFrame:
+        StationsFilepath = EcaTxDatafolder / "stations.txt"
 
-        stations_df = pd.read_csv(stations_filepath, skiprows=17, skipinitialspace=True)
-        stations_df["LAT_decimal"] = stations_df["LAT"].apply(dms_to_decimal)
-        stations_df["LON_decimal"] = stations_df["LON"].apply(dms_to_decimal)
-        stations_df["country"] = stations_df["CN"].apply(
-            lambda x: pycountry.countries.get(alpha_2=x.rstrip(" ")).name
+        StationsDf = Pd.read_csv(StationsFilepath, skiprows=17, skipinitialspace=True)
+        StationsDf["LAT_decimal"] = StationsDf["LAT"].apply(DmsToDecimal)
+        StationsDf["LON_decimal"] = StationsDf["LON"].apply(DmsToDecimal)
+        StationsDf["country"] = StationsDf["CN"].apply(
+            lambda X: Pycountry.countries.get(alpha_2=X.rstrip(" ")).name
         )
-        stations_df = stations_df.rename(columns={"HGHT": "elevation"})
-        stations_df["place"] = [
-            dico["name"]
-            for dico in rg.search(list(zip(stations_df["LAT_decimal"], stations_df["LON_decimal"])))
+        StationsDf = StationsDf.rename(columns={"HGHT": "elevation"})
+        StationsDf["place"] = [
+            Dico["name"]
+            for Dico in Rg.search(list(zip(StationsDf["LAT_decimal"], StationsDf["LON_decimal"])))
         ]
 
-        stations_gdf = gpd.GeoDataFrame(
-            stations_df,
-            geometry=gpd.points_from_xy(stations_df["LON_decimal"], stations_df["LAT_decimal"]),
+        StationsGdf = Gpd.GeoDataFrame(
+            StationsDf,
+            geometry=Gpd.points_from_xy(StationsDf["LON_decimal"], StationsDf["LAT_decimal"]),
             crs="EPSG:4326",
         ).drop(columns=["LAT", "LON", "LAT_decimal", "LON_decimal"])
 
-        print(f"Number of registered stations: {len(stations_gdf)}")
-        return stations_gdf
+        print(f"Number of registered stations: {len(StationsGdf)}")
+        return StationsGdf
 
-    def load_degurba_data(stations_gdf: gpd.GeoDataFrame, deburba_path: Path) -> gpd.GeoDataFrame:
-        with rasterio.open(degurba_path) as src:
-            nodata = src.nodata
-            lons = stations_gdf.geometry.x.values
-            lats = stations_gdf.geometry.y.values
+    def LoadDegurbaData(StationsGdf: Gpd.GeoDataFrame, DegurbaRaster: Path) -> Gpd.GeoDataFrame:
+        with Rasterio.open(DegurbaRaster) as Src:
+            Nodata = Src.nodata
+            Lons = StationsGdf.geometry.x.values
+            Lats = StationsGdf.geometry.y.values
 
             # Reproject station coords from WGS84 to the raster CRS (Mollweide)
-            xs, ys = transform("EPSG:4326", src.crs, lons, lats)
+            Xs, Ys = Transform("EPSG:4326", Src.crs, Lons, Lats)
 
-            degurba_vals = []
-            for i in range(len(stations_gdf)):
-                row, col = src.index(xs[i], ys[i])
-                if 0 <= row < src.height and 0 <= col < src.width:
-                    val = src.read(1, window=rasterio.windows.Window(col, row, 1, 1))[0, 0]
-                    degurba_vals.append(np.nan if val == nodata else int(val))
+            DegurbaVals = []
+            for Index in range(len(StationsGdf)):
+                Row, Col = Src.index(Xs[Index], Ys[Index])
+                if 0 <= Row < Src.height and 0 <= Col < Src.width:
+                    Val = Src.read(1, window=Rasterio.windows.Window(Col, Row, 1, 1))[0, 0]
+                    DegurbaVals.append(Np.nan if Val == Nodata else int(Val))
                 else:
-                    degurba_vals.append(np.nan)
+                    DegurbaVals.append(Np.nan)
 
-        stations_gdf["degurba"] = degurba_vals
-        print(f"degurba nulls: {stations_gdf['degurba'].isna().sum()} / {len(stations_gdf)}")
+        StationsGdf["degurba"] = DegurbaVals
+        print(f"degurba nulls: {StationsGdf['degurba'].isna().sum()} / {len(StationsGdf)}")
 
-        DEGURBA_LABELS = {
+        DegurbaLabels = {
             10: "Water",
             11: "Very low density rural",
             12: "Low density rural",
@@ -105,171 +110,180 @@ def _(Path, degurba_path, gpd, np, pd, pycountry, rasterio, rg, transform):
             30: "Urban centre",
         }
 
-        stations_gdf["degurba_label"] = stations_gdf["degurba"].map(DEGURBA_LABELS)
-        return stations_gdf
+        StationsGdf["degurba_label"] = StationsGdf["degurba"].map(DegurbaLabels)
+        return StationsGdf
 
-    def compute_distance_to_sea_km(
-        stations_gdf: gpd.GeoDataFrame, europe_gdf: gpd.GeoDataFrame
-    ) -> gpd.GeoDataFrame:
-        coastline = europe_gdf.dissolve().to_crs("EPSG:3035").boundary.iloc[0].simplify(1000)
-        stations_3035 = stations_gdf.to_crs("EPSG:3035")
-        stations_gdf["dist_to_sea_km"] = stations_3035.geometry.distance(coastline) / 1000
-        return stations_gdf
+    def ComputeDistanceToSeaKm(
+        StationsGdf: Gpd.GeoDataFrame, EuropeGdf: Gpd.GeoDataFrame
+    ) -> Gpd.GeoDataFrame:
+        Coastline = EuropeGdf.dissolve().to_crs("EPSG:3035").boundary.iloc[0].simplify(1000)
+        Stations3035 = StationsGdf.to_crs("EPSG:3035")
+        StationsGdf["dist_to_sea_km"] = Stations3035.geometry.distance(Coastline) / 1000
+        return StationsGdf
 
-    return load_degurba_data, load_station_data
+    return LoadDegurbaData, LoadStationData
 
 
 @app.cell
-def _(DATA, DATA2, degurba_path, gpd, load_degurba_data, load_station_data):
-    stations_gdf = load_station_data(DATA2 / "ECA_homblend_tx")
-    stations_gdf = load_degurba_data(stations_gdf, degurba_path)
+def _(RawDataDirectory, AnalysisDataDirectory, DegurbaPath, Gpd, LoadDegurbaData, LoadStationData):
+    StationsGdf = LoadStationData(AnalysisDataDirectory / "ECA_homblend_tx")
+    StationsGdf = LoadDegurbaData(StationsGdf, DegurbaPath)
     # stations_gdf = compute_distance_to_sea_km(stations_gdf, europe_gdf)
 
-    stations_gdf_old = load_station_data(DATA / "ECA_blend_tx")
-    stations_gdf_old = load_degurba_data(stations_gdf_old, degurba_path)
+    StationsGdfOld = LoadStationData(RawDataDirectory / "ECA_blend_tx")
+    StationsGdfOld = LoadDegurbaData(StationsGdfOld, DegurbaPath)
     # stations_gdf_old = compute_distance_to_sea_km(stations_gdf_old, europe_gdf)
-    return stations_gdf, stations_gdf_old
+    return StationsGdf, StationsGdfOld
 
 
 @app.cell
-def _(go, make_subplots, mo, stations_gdf, stations_gdf_old):
-    fig = make_subplots(
+def _(Go, MakeSubplots, Mo, StationsGdf, StationsGdfOld):
+    Fig = MakeSubplots(
         rows=1,
         cols=2,
         specs=[[{"type": "map"}, {"type": "map"}]],
         subplot_titles=["New stations (data2)", "Old stations (data/main)"],
     )
 
-    for _gdf, _col in [(stations_gdf, 1), (stations_gdf_old, 2)]:
-        fig.add_trace(
-            go.Scattermap(
-                lat=_gdf.geometry.y,
-                lon=_gdf.geometry.x,
+    for _Gdf, _Col in [(StationsGdf, 1), (StationsGdfOld, 2)]:
+        Fig.add_trace(
+            Go.Scattermap(
+                lat=_Gdf.geometry.y,
+                lon=_Gdf.geometry.x,
                 mode="markers",
                 marker=dict(size=4),
-                text=_gdf["STAID"].astype(str),
+                text=_Gdf["STAID"].astype(str),
             ),
             row=1,
-            col=_col,
+            col=_Col,
         )
 
-    fig.update_layout(
+    Fig.update_layout(
         height=500,
         map=dict(zoom=2, center={"lat": 50, "lon": 10}),
         map2=dict(zoom=2, center={"lat": 50, "lon": 10}),
         showlegend=False,
     )
 
-    mo.vstack(
+    Mo.vstack(
         [
-            mo.md(
+            Mo.md(
                 "## Station coverage\nGeographic distribution of ECA&D weather stations for the new (`data2`) and old (`data/main`) datasets. Each point is one station."
             ),
-            fig,
+            Fig,
         ]
     )
     return
 
 
 @app.cell
-def _(go, mo, stations_gdf, stations_gdf_old):
-    new_ids = set(stations_gdf["STAID"])
-    old_ids = set(stations_gdf_old["STAID"])
-    only_new = new_ids - old_ids
-    only_old = old_ids - new_ids
-    shared = new_ids & old_ids
+def _(Go, Mo, StationsGdf, StationsGdfOld):
+    NewIds = set(StationsGdf["STAID"])
+    OldIds = set(StationsGdfOld["STAID"])
+    OnlyNew = NewIds - OldIds
+    OnlyOld = OldIds - NewIds
+    Shared = NewIds & OldIds
 
-    gdf_only_new = stations_gdf[stations_gdf["STAID"].isin(only_new)]
-    gdf_only_old = stations_gdf_old[stations_gdf_old["STAID"].isin(only_old)]
-    gdf_shared = stations_gdf[stations_gdf["STAID"].isin(shared)]
+    GdfOnlyNew = StationsGdf[StationsGdf["STAID"].isin(OnlyNew)]
+    GdfOnlyOld = StationsGdfOld[StationsGdfOld["STAID"].isin(OnlyOld)]
+    GdfShared = StationsGdf[StationsGdf["STAID"].isin(Shared)]
 
-    fig_overlap = go.Figure()
-    for _gdf, _name, _color in [
-        (gdf_shared, "Shared", "steelblue"),
-        (gdf_only_new, "Only in new", "green"),
-        (gdf_only_old, "Only in old", "red"),
+    FigOverlap = Go.Figure()
+    for _Gdf, _Name, _Color in [
+        (GdfShared, "Shared", "steelblue"),
+        (GdfOnlyNew, "Only in new", "green"),
+        (GdfOnlyOld, "Only in old", "red"),
     ]:
-        fig_overlap.add_trace(
-            go.Scattermap(
-                lat=_gdf.geometry.y,
-                lon=_gdf.geometry.x,
+        FigOverlap.add_trace(
+            Go.Scattermap(
+                lat=_Gdf.geometry.y,
+                lon=_Gdf.geometry.x,
                 mode="markers",
-                marker=dict(size=5, color=_color),
-                name=_name,
-                text=_gdf["STAID"].astype(str),
+                marker=dict(size=5, color=_Color),
+                name=_Name,
+                text=_Gdf["STAID"].astype(str),
             )
         )
 
-    fig_overlap.update_layout(
+    FigOverlap.update_layout(
         height=550,
         map=dict(zoom=2, center={"lat": 50, "lon": 10}),
         title="Station overlap: new vs old dataset",
         legend=dict(orientation="h"),
     )
 
-    mo.vstack(
+    Mo.vstack(
         [
-            mo.md(
-                f"## Dataset overlap\nComparing station IDs across datasets: **{len(shared):,} shared**, **{len(only_new):,} only in new** (green), **{len(only_old):,} only in old** (red). New dataset has same coverage plus some new stations. New stations in Ireland are not covered by ERA5 so not much use."
+            Mo.md(
+                f"## Dataset overlap\nComparing station IDs across datasets: **{len(Shared):,} shared**, **{len(OnlyNew):,} only in new** (green), **{len(OnlyOld):,} only in old** (red). New dataset has same coverage plus some new stations. New stations in Ireland are not covered by ERA5 so not much use."
             ),
-            fig_overlap,
+            FigOverlap,
         ]
     )
     return
 
 
 @app.cell
-def _(alt, mo, np, pd, stations_gdf, stations_gdf_old):
+def _(Alt, Mo, Np, Pd, StationsGdf, StationsGdfOld, ExportNotebookFigure):
     from sklearn.neighbors import BallTree
 
-    def nnd_km(gdf):
-        coords = np.radians(np.column_stack([gdf.geometry.y.values, gdf.geometry.x.values]))
-        tree = BallTree(coords, metric="haversine")
-        dists, _ = tree.query(coords, k=2)
-        return dists[:, 1] * 6371
+    def NndKm(Gdf):
+        Coords = Np.radians(Np.column_stack([Gdf.geometry.y.values, Gdf.geometry.x.values]))
+        Tree = BallTree(Coords, metric="haversine")
+        Dists, _ = Tree.query(Coords, k=2)
+        return Dists[:, 1] * 6371
 
-    nnd_new = nnd_km(stations_gdf)
-    nnd_old = nnd_km(stations_gdf_old)
+    NndNew = NndKm(StationsGdf)
+    NndOld = NndKm(StationsGdfOld)
 
-    nnd_df = pd.concat(
+    NndDf = Pd.concat(
         [
-            pd.DataFrame(
+            Pd.DataFrame(
                 {
-                    "log_nnd_km": np.log10(nnd_new),
-                    "dataset": f"New (mean={nnd_new.mean():.1f}km, std={nnd_new.std():.1f}km)",
+                    "log_nnd_km": Np.log10(
+                        NndNew, where=NndNew > 0, out=Np.full_like(NndNew, Np.nan)
+                    ),
+                    "dataset": f"New (mean={NndNew.mean():.1f}km, std={NndNew.std():.1f}km)",
                 }
             ),
-            pd.DataFrame(
+            Pd.DataFrame(
                 {
-                    "log_nnd_km": np.log10(nnd_old),
-                    "dataset": f"Old (mean={nnd_old.mean():.1f}km, std={nnd_old.std():.1f}km)",
+                    "log_nnd_km": Np.log10(
+                        NndOld, where=NndOld > 0, out=Np.full_like(NndOld, Np.nan)
+                    ),
+                    "dataset": f"Old (mean={NndOld.mean():.1f}km, std={NndOld.std():.1f}km)",
                 }
             ),
         ]
     )
-    nnd_df["weight"] = nnd_df.groupby("dataset")["log_nnd_km"].transform(lambda x: 1 / len(x))
-
-    nnd_chart = (
-        alt.Chart(nnd_df)
-        .mark_bar(opacity=0.6)
-        .encode(
-            alt.X(
-                "log_nnd_km:Q",
-                bin=alt.Bin(maxbins=80),
-                title="log₁₀ Distance to nearest station (km)",
-            ),
-            alt.Y("sum(weight):Q", stack=None, title="Proportion"),
-            alt.Color("dataset:N"),
-        )
-        .properties(width=600, height=300)
+    NndDf["weight"] = NndDf.groupby("dataset")["log_nnd_km"].transform(lambda X: 1 / len(X))
+    print(
+        f"Co-located stations omitted from logarithmic axis: {(NndNew == 0).sum()} new, {(NndOld == 0).sum()} old"
     )
 
-    mo.vstack(
+    NndChart = ExportNotebookFigure(
+        Alt.Chart(NndDf)
+        .mark_bar(opacity=0.6)
+        .encode(
+            Alt.X(
+                "log_nnd_km:Q",
+                bin=Alt.Bin(maxbins=80),
+                title="log₁₀ Distance to nearest station (km)",
+            ),
+            Alt.Y("sum(weight):Q", stack=None, title="Proportion"),
+            Alt.Color("dataset:N"),
+        )
+        .properties(width=600, height=300),
+        Notebook="data_comparison",
+        Name="nearest_station_distance",
+    )
+
+    Mo.vstack(
         [
-            mo.md("""## Spatial uniformity
+            Mo.md("""## Spatial uniformity
 
         For each station, we compute the distance to its closest neighbor. A more uniform dataset has a tighter, higher-mean distribution. Both datasets have seemingly the same distribution."""),
-            mo.ui.altair_chart(nnd_chart),
+            Mo.ui.altair_chart(NndChart),
         ]
     )
     return
@@ -277,16 +291,17 @@ def _(alt, mo, np, pd, stations_gdf, stations_gdf_old):
 
 @app.cell
 def _(
-    alt,
-    degurba_path,
-    mo,
-    pd,
-    rasterio,
-    stations_gdf,
-    stations_gdf_old,
-    transform,
+    Alt,
+    DegurbaPath,
+    Mo,
+    Pd,
+    Rasterio,
+    StationsGdf,
+    StationsGdfOld,
+    Transform,
+    ExportNotebookFigure,
 ):
-    DEGURBA_LABELS = {
+    DegurbaLabels = {
         10: "Water",
         11: "Very low density rural",
         12: "Low density rural",
@@ -297,81 +312,83 @@ def _(
         30: "Urban centre",
     }
 
-    europe_lons = [-25, 45, 45, -25]
-    europe_lats = [35, 35, 72, 72]
-    with rasterio.open(degurba_path) as src:
-        xs, ys = transform("EPSG:4326", src.crs, europe_lons, europe_lats)
-        rows, cols = zip(*[src.index(x, y) for x, y in zip(xs, ys)])
-        window = rasterio.windows.Window(
-            max(0, min(cols)),
-            max(0, min(rows)),
-            min(src.width, max(cols)) - max(0, min(cols)),
-            min(src.height, max(rows)) - max(0, min(rows)),
+    EuropeLons = [-25, 45, 45, -25]
+    EuropeLats = [35, 35, 72, 72]
+    with Rasterio.open(DegurbaPath) as Src:
+        Xs, Ys = Transform("EPSG:4326", Src.crs, EuropeLons, EuropeLats)
+        Rows, Cols = zip(*[Src.index(X, Y) for X, Y in zip(Xs, Ys)])
+        Window = Rasterio.windows.Window(
+            max(0, min(Cols)),
+            max(0, min(Rows)),
+            min(Src.width, max(Cols)) - max(0, min(Cols)),
+            min(Src.height, max(Rows)) - max(0, min(Rows)),
         )
-        data = src.read(1, window=window)
-        nodata = src.nodata
-        data = data[(data != nodata) & (data > 0)]
+        Data = Src.read(1, window=Window)
+        Nodata = Src.nodata
+        Data = Data[(Data != Nodata) & (Data > 0)]
 
-    europe_dist = {label: int((data == code).sum()) for code, label in DEGURBA_LABELS.items()}
+    EuropeDist = {Label: int((Data == Code).sum()) for Code, Label in DegurbaLabels.items()}
 
-    def degurba_dist(df):
-        counts = df["degurba_label"].value_counts()
-        return dict(zip(counts.index, counts.values))
+    def DegurbaDist(Df):
+        Counts = Df["degurba_label"].value_counts()
+        return dict(zip(Counts.index, Counts.values))
 
-    all_labels = list(DEGURBA_LABELS.values())
-    non_water_labels = [label for label in all_labels if label != "Water"]
+    AllLabels = list(DegurbaLabels.values())
+    NonWaterLabels = [Label for Label in AllLabels if Label != "Water"]
 
-    def normalize(d, lbls):
-        total = sum(d.get(label, 0) for label in lbls)
-        return [d.get(label, 0) / total * 100 for label in lbls]
+    def Normalize(D, Lbls):
+        Total = sum(D.get(Label, 0) for Label in Lbls)
+        return [D.get(Label, 0) / Total * 100 for Label in Lbls]
 
-    rows_list = (
+    RowsList = (
         [
-            {"label": label, "pct": p, "dataset": "New"}
-            for label, p in zip(all_labels, normalize(degurba_dist(stations_gdf), all_labels))
+            {"label": Label, "pct": P, "dataset": "New"}
+            for Label, P in zip(AllLabels, Normalize(DegurbaDist(StationsGdf), AllLabels))
         ]
         + [
-            {"label": label, "pct": p, "dataset": "Old"}
-            for label, p in zip(all_labels, normalize(degurba_dist(stations_gdf_old), all_labels))
+            {"label": Label, "pct": P, "dataset": "Old"}
+            for Label, P in zip(AllLabels, Normalize(DegurbaDist(StationsGdfOld), AllLabels))
         ]
         + [
-            {"label": label, "pct": p, "dataset": "Europe"}
-            for label, p in zip(non_water_labels, normalize(europe_dist, non_water_labels))
+            {"label": Label, "pct": P, "dataset": "Europe"}
+            for Label, P in zip(NonWaterLabels, Normalize(EuropeDist, NonWaterLabels))
         ]
     )
-    degurba_df = pd.DataFrame(rows_list)
+    DegurbaDf = Pd.DataFrame(RowsList)
 
-    degurba_chart = (
-        alt.Chart(degurba_df)
+    DegurbaChart = ExportNotebookFigure(
+        Alt.Chart(DegurbaDf)
         .mark_bar()
         .encode(
-            alt.X("label:N", title=None, axis=alt.Axis(labelAngle=-30, labelAlign="right")),
-            alt.Y("pct:Q", title="% of total"),
-            alt.Color("dataset:N"),
-            alt.XOffset("dataset:N"),
+            Alt.X("label:N", title=None, axis=Alt.Axis(labelAngle=-30, labelAlign="right")),
+            Alt.Y("pct:Q", title="% of total"),
+            Alt.Color("dataset:N"),
+            Alt.XOffset("dataset:N"),
         )
-        .properties(width=500, height=300)
+        .properties(width=500, height=300),
+        Notebook="data_comparison",
+        Name="degurba_distribution",
     )
 
-    mo.vstack(
+    Mo.vstack(
         [
-            mo.md("""## DEGURBA distribution
+            Mo.md("""## DEGURBA distribution
 
         We removed Water from Europe's distribution, otherwise it dominates without giving much insight."""),
-            mo.ui.altair_chart(degurba_chart),
+            Mo.ui.altair_chart(DegurbaChart),
         ]
     )
     return
 
 
 @app.function
-def dms_to_decimal(dms_str):
+def DmsToDecimal(DmsStr):
     """Convert DMS string (+DD:MM:SS) to decimal degrees."""
-    dms_str = dms_str.strip()
-    sign = 1 if dms_str[0] == "+" else -1
-    dms_str = dms_str[1:]
-    parts = dms_str.split(":")
-    return sign * (float(parts[0]) + float(parts[1]) / 60 + float(parts[2]) / 3600)
+    DmsStr = DmsStr.strip()
+    Sign = 1 if DmsStr[0] == "+" else -1
+    DmsStr = DmsStr[1:]
+    Parts = DmsStr.split(":")
+    return Sign * (float(Parts[0]) + float(Parts[1]) / 60 + float(Parts[2]) / 3600)
 
 
 if __name__ == "__main__":

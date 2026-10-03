@@ -1,20 +1,39 @@
-# Python-generated files
+# Python environments and generated files
 __pycache__/
 *.py[oc]
 build/
 dist/
 wheels/
 *.egg-info
-
-# Virtual environments
-.venv
-data/
-docs/
-.virtual_documents/
-.venv
+.venv/
+.venv.before-cleanup/
+.ruff_cache/
 .python-install/
+.virtual_documents/
 .ipynb_checkpoints/
 __marimo__/
-data2/residuals.parquet
-docs_/
+
+# Local datasets; keep compact cleaning evidence under version control.
+/data/
+/data2/*
+!/data2/clean/
+/data2/clean/*
+!/data2/clean/*.csv
+!/data2/clean/*.json
+!/data2/cleaning_audit/
+/data2/cleaning_audit/*
+!/data2/cleaning_audit/*.csv
+!/data2/cleaning_audit/*.json
+
+# Retired local work and generated HTML are not publication sources.
+/notebooks/
+/notebooks_v0/
+/notebooks_v1/
+/report/
+/report.html
+/docs/
+/docs_/
+/scripts/
+/figures/*.html
+/figures/archive/
 figures/paper/.cartopy/

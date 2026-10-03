@@ -1,0 +1,74 @@
+{
+  "input": "/home2/lobib/gen_hack/data2/residuals_cleaned.parquet",
+  "input_sha256": "e833a311a3efa4780696e90f7684f270784eb8959a880119228c6afa2c1d3682",
+  "raw_input_sha256": "cb172ba533937ac58b5d75ca4f210e6329131256d7c87e8bd8b59d6a83edadff",
+  "output": "/home2/lobib/gen_hack/data2/clean/analysis.parquet",
+  "cleaned_data_sha256": "9c6aa07f0b786d9e66ab5f3f4fda9f56b106eee45711d8fa0c8197f771d47561",
+  "input_rows": 10024790,
+  "cleaned_rows": 6958414,
+  "cleaned_stations": 4217,
+  "quarantined_stations": 55,
+  "source_flagged_observations": 313,
+  "utc_aligned_rows": 3528147,
+  "utc_aligned_stations": 2154,
+  "ndvi_observed_rows": 4927797,
+  "ndvi_extrapolated_rows": 1873268,
+  "ndvi_missing_rows": 157349,
+  "mean_residual": 1.580802312082038,
+  "status": "Conservative screened release; mixed observation windows remain explicit, with a UTC subset available.",
+  "exclusions": [
+    {
+      "exclusion_reason": "era5_land_fallback",
+      "len": 948022
+    },
+    {
+      "exclusion_reason": "reused_source_observation",
+      "len": 951766
+    },
+    {
+      "exclusion_reason": "source_location_grid_mismatch",
+      "len": 1093595
+    },
+    {
+      "exclusion_reason": "station_series_quarantined",
+      "len": 72993
+    }
+  ],
+  "ndvi_backtest": [
+    {
+      "years_carried": 1,
+      "station_seasons": 40237,
+      "mae": 0.07297999510381302,
+      "rmse": 0.10810034035378308,
+      "mean_error_observed_minus_proxy": -0.004314006440971104
+    },
+    {
+      "years_carried": 2,
+      "station_seasons": 26418,
+      "mae": 0.07123334543436442,
+      "rmse": 0.1047040812485649,
+      "mean_error_observed_minus_proxy": -0.004744438741659678
+    }
+  ],
+  "findings": [
+    "The original and processing-cleaned inputs are preserved. This release adds conservative station-only screening, source provenance, and separately recalculated covariates. Quarantine is a reproducible review policy, not a claim that every excluded reading is erroneous.",
+    "Station-only review flags use TX outside [-60,50] Celsius, an isolated >20 Celsius jump against both adjacent calendar days, or >20 Celsius disagreement with at least three same-day neighbours. Screening operates on unique source-days, at actual source coordinates. Up to ten distinct locations are selected among the 64 closest, 15\u2013100 km away and within 300 m elevation. Missing neighbours do not imply a passed spatial check. These are provisional thresholds, not a calibrated QC algorithm. All series sharing a flagged observation source are quarantined. ERA5 residuals do not select exclusions.",
+    "The conservative table excludes nearest-land substitutions and observations whose source coordinates select another ERA5 grid cell. Repeated (SOUID,date) observations are retained once, choosing the smallest eligible STAID deterministically. Distinct source identifiers can still describe related instruments; this is not proof of independent stations.",
+    "The supplied sources.txt uses identifiers 100000 higher than participant-observation files, while synoptic identifiers match directly. This offset was inferred from unique within-station matches across the supplied release; it is recorded explicitly, and ambiguous matches fail. Raw SOUID and matched metadata identifiers are both preserved. Provider confirmation of the identifier convention would strengthen provenance.",
+    "All retained input temperatures, precipitation proxies and mean-vector wind magnitudes were compared with the supplied daily ERA5 files on every saved station-day. Station temperatures were checked against original TX and Q_TX=0. This validates extraction and arithmetic, not the original instrument or upstream ERA5 aggregation.",
+    "Observation windows are retained per source. temperature_pairs_utc.parquet restricts to documented TX3/TX21 00\u201300 UTC windows. The broader table has mixed windows; it cannot support a claim of identical daily intervals. ERA5 maxima are maxima of hourly samples, while station sampling frequencies differ.",
+    "NDVI uses its actual seasonal raster when present; otherwise it carries forward the latest earlier raster for the same season. Every value records the raster filename, dates, years carried and method. Spatial nodata stays missing. This extrapolates a seasonal vegetation pattern and does not represent measured future vegetation or a guarantee of exact periodicity.",
+    "NDVI backtests compare observed station-season values with values one or two years earlier. The binned residual sensitivity table compares observed-only versus observed-plus-extrapolated samples; differences also reflect year and sample composition, not just imputation error.",
+    "DEGURBA is resampled in the raster CRS using the 2020 GHS-SMOD classification. Coast distance uses global Natural Earth 1:10 million ocean coastline instead of truncated country boundaries, excluding its Caspian Sea ring. It is an approximate geographic covariate: generalized coastline, omitted small islands and nearest-point projection limit fine coastal interpretation.",
+    "NDVI, DEGURBA, elevation and coast distance refer to the observation source location, including borrowed observations. Nominal station coordinates and source coordinates are both retained. A nominal station's source and covariates may change over time, so downstream station-level aggregation needs that distinction.",
+    "Wind is sqrt(mean(u10)^2+mean(v10)^2) in m/s. Precipitation retains the supplied daily-mean proxy in metres; a daily total cannot be recovered defensibly without the upstream accumulation recipe. Covariate missingness does not remove otherwise valid temperature pairs.",
+    "Notebook and figure manifests record the dataset used for each export. Regenerate exports after rebuilding this dataset and verify the input hashes. Paper claims and post-stratification methods require review on the chosen sample."
+  ],
+  "artifacts": {
+    "/home2/lobib/gen_hack/data2/clean/temperature_pairs.parquet": "8e3e01ce4ea44378825db5f0152230498259bfc84aba88e1a1ec543c9dc69e40",
+    "/home2/lobib/gen_hack/data2/clean/temperature_pairs_utc.parquet": "82c59fba8e824c269ba1993d048477ae618235c8108d1e92cdc0f803f4485d48",
+    "/home2/lobib/gen_hack/data2/clean/analysis.parquet": "9c6aa07f0b786d9e66ab5f3f4fda9f56b106eee45711d8fa0c8197f771d47561",
+    "/home2/lobib/gen_hack/data2/clean/excluded_pairs.parquet": "9e403503fbcfd4f353b4f909d09dcb3739df7150eb7a5ea63841724bce752967",
+    "/home2/lobib/gen_hack/data2/clean/observation_sources.parquet": "6864ab942721b7601f192bbc0fd5c731bdff7649552549b55b285a279ff2e7e1"
+  }
+}

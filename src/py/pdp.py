@@ -1,85 +1,86 @@
-import numpy as np
-import polars as pl
+import numpy as Np
+import polars as Pl
+
+from py.cleaning import FeatureRows
 
 
-def cluster_bootstrap_ci(
-    df: pl.DataFrame,
-    bin_col: str,
-    bins: list,
-    n_boot=1000,
-    ci=95,
-    rng: np.random.Generator = None,
-    weight_col: str = None,
+def ClusterBootstrapCi(
+    Df: Pl.DataFrame,
+    BinCol: str,
+    Bins: list,
+    NBoot=1000,
+    Ci=95,
+    Rng: Np.random.Generator = None,
+    WeightCol: str = None,
 ):
     """Cluster bootstrap at station level: resample STAIDs, compute (weighted) mean residual per bin."""
-    if weight_col is None:
-        station_bin = df.group_by("STAID", bin_col).agg(
-            pl.col("residual").sum().alias("sum"), pl.col("residual").count().alias("count")
+    if WeightCol is None:
+        StationBin = Df.group_by("STAID", BinCol).agg(
+            Pl.col("residual").sum().alias("sum"), Pl.col("residual").count().alias("count")
         )
     else:
-        station_bin = df.group_by("STAID", bin_col).agg(
-            (pl.col("residual") * pl.col(weight_col)).sum().alias("sum"),
-            pl.col(weight_col).sum().alias("count"),
+        StationBin = Df.group_by("STAID", BinCol).agg(
+            (Pl.col("residual") * Pl.col(WeightCol)).sum().alias("sum"),
+            Pl.col(WeightCol).sum().alias("count"),
         )
 
-    n_bins = len(bins)
-    boot_means = np.zeros((n_bins, n_boot))
+    NBins = len(Bins)
+    BootMeans = Np.zeros((NBins, NBoot))
 
-    for i, b in enumerate(bins):
-        sub_df = station_bin.filter(station_bin[bin_col].eq(b))
-        arr = np.zeros((sub_df["STAID"].n_unique(), 2))
-        arr[:, 0] = sub_df["sum"]
-        arr[:, 1] = sub_df["count"]
+    for Index, B in enumerate(Bins):
+        SubDf = StationBin.filter(StationBin[BinCol].eq(B))
+        Arr = Np.zeros((SubDf["STAID"].n_unique(), 2))
+        Arr[:, 0] = SubDf["sum"]
+        Arr[:, 1] = SubDf["count"]
 
-        ids = rng.choice(np.arange(arr.shape[0]), size=(n_boot, arr.shape[0]), replace=True)
-        samples = arr[ids, :]
-        stats = samples.sum(axis=1)
-        boot_means[i] = stats[:, 0] / stats[:, 1]
+        Ids = Rng.choice(Np.arange(Arr.shape[0]), size=(NBoot, Arr.shape[0]), replace=True)
+        Samples = Arr[Ids, :]
+        Stats = Samples.sum(axis=1)
+        BootMeans[Index] = Stats[:, 0] / Stats[:, 1]
 
-    pct_lo = (100 - ci) / 2
-    pct_hi = 100 - pct_lo
-    ci_hi = np.percentile(boot_means, pct_hi, axis=1)
-    ci_lo = np.percentile(boot_means, pct_lo, axis=1)
+    PctLo = (100 - Ci) / 2
+    PctHi = 100 - PctLo
+    CiHi = Np.percentile(BootMeans, PctHi, axis=1)
+    CiLo = Np.percentile(BootMeans, PctLo, axis=1)
 
-    return boot_means, ci_lo, ci_hi
-
-
-def bin_centers(bins, data_min, data_max):
-    centers = []
-    for b in bins:
-        lo, hi = b.strip("(]").split(", ")
-        lo = data_min if lo == "-inf" else float(lo)
-        hi = data_max if hi == "inf" else float(hi)
-        centers.append((lo + hi) / 2)
-
-    return centers
+    return BootMeans, CiLo, CiHi
 
 
-def bin_features(df: pl.DataFrame, feature: str, n_bins: int = 5):
-    df = df.with_columns(pl.col(feature).qcut(n_bins).alias("bin"))
-    bins = sorted(
-        df["bin"].drop_nulls().unique().to_list(),
-        key=lambda b: float(b.strip("(]").split(", ")[0].replace("-inf", "-999999")),
+def BinCenters(Bins, DataMin, DataMax):
+    Centers = []
+    for B in Bins:
+        Lo, Hi = B.strip("(]").split(", ")
+        Lo = DataMin if Lo == "-inf" else float(Lo)
+        Hi = DataMax if Hi == "inf" else float(Hi)
+        Centers.append((Lo + Hi) / 2)
+
+    return Centers
+
+
+def BinFeatures(Df: Pl.DataFrame, Feature: str, NBins: int = 5):
+    Df = FeatureRows(Df, [Feature])
+    Df = Df.with_columns(Pl.col(Feature).qcut(NBins, allow_duplicates=True).alias("bin"))
+    Bins = sorted(
+        Df["bin"].drop_nulls().unique().to_list(),
+        key=lambda B: float(B.strip("(]").split(", ")[0].replace("-inf", "-999999")),
     )
 
-    return df, bins
+    return Df, Bins
 
 
-def pdp_cluster_bootstrap(
-    df, bin_col, bins, n_boot=1000, ci=95, rng: np.random.Generator = None, weight_col: str = None
+def PdpClusterBootstrap(
+    Df, BinCol, Bins, NBoot=1000, Ci=95, Rng: Np.random.Generator = None, WeightCol: str = None
 ):
     """Bin feature into quantiles, compute (weighted) mean residual + cluster bootstrap 95% CI."""
-    if weight_col is None:
-        means = df.group_by(bin_col).agg(pl.col("residual").mean())
+    if WeightCol is None:
+        Means = Df.group_by(BinCol).agg(Pl.col("residual").mean())
     else:
-        means = df.group_by(bin_col).agg(
-            ((pl.col("residual") * pl.col(weight_col)).sum() / pl.col(weight_col).sum()).alias(
+        Means = Df.group_by(BinCol).agg(
+            ((Pl.col("residual") * Pl.col(WeightCol)).sum() / Pl.col(WeightCol).sum()).alias(
                 "residual"
             )
         )
-    means = means.with_columns(pl.col(bin_col).cast(pl.Enum(bins))).sort(bin_col)
-    _, ci_lo, ci_hi = cluster_bootstrap_ci(
-        df, bin_col, bins, n_boot, ci, rng, weight_col=weight_col
-    )
+    Means = Means.with_columns(Pl.col(BinCol).cast(Pl.Enum(Bins))).sort(BinCol)
+    _, CiLo, CiHi = ClusterBootstrapCi(Df, BinCol, Bins, NBoot, Ci, Rng, WeightCol=WeightCol)
 
-    return means["residual"].to_numpy(), ci_lo, ci_hi
+    return Means["residual"].to_numpy(), CiLo, CiHi
