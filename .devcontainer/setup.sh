@@ -18,3 +18,9 @@ sudo apt install -y \
 echo "Configuring Git LFS..."
 git lfs install
 # git lfs uninstall
+
+echo "Installing uv..."
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Ensure uv is added to the shell profile for future terminal sessions
+echo 'export PATH="$HOME/.local/bin:$PATH""' >> ~/.bashrc
