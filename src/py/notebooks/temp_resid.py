@@ -47,7 +47,9 @@ def _(Path, Mo):
         AnalysisDataDirectory
         / "GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0/GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0.tif"
     )
-    Rebuild = bool(Mo.cli_args().get("rebuild", False))
+    CliArgs = Mo.cli_args()
+    RebuildValue = CliArgs.get("rebuild")
+    Rebuild = "rebuild" in CliArgs and RebuildValue not in (False, "false", "False")
     return RawDataDirectory, AnalysisDataDirectory, DegurbaPath, Rebuild
 
 
