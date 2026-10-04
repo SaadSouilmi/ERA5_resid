@@ -4,7 +4,12 @@ import importlib as Importlib
 import io as Io
 import re as Re
 
-from py.paths import AnalysisDataDirectory, ProjectRoot
+from py.paths import (
+    AnalysisDataDirectory,
+    FiguresDirectory,
+    NotebookFiguresDirectory,
+    ProjectRoot,
+)
 
 from .check import Expect, ExpectEqual, Run
 
@@ -12,6 +17,8 @@ from .check import Expect, ExpectEqual, Run
 def RepositoryPathsDoNotDependOnWorkingDirectory():
     Expect((ProjectRoot / "pyproject.toml").is_file(), "root does not point to the project")
     ExpectEqual(AnalysisDataDirectory, ProjectRoot / "data2")
+    ExpectEqual(FiguresDirectory, ProjectRoot / "paper/figures/paper")
+    ExpectEqual(NotebookFiguresDirectory, ProjectRoot / "paper/figures/notebooks")
 
 
 def ScriptsImportWithoutRunningAnalysis():

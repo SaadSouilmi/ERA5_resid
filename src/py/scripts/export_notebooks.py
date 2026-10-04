@@ -8,7 +8,13 @@ import subprocess as Subprocess
 
 from pypdf import PdfWriter
 
-from py.paths import AnalysisDataDirectory, ProjectRoot, RawDataDirectory, ReportsDirectory
+from py.paths import (
+    AnalysisDataDirectory,
+    NotebookFiguresDirectory,
+    ProjectRoot,
+    RawDataDirectory,
+    ReportsDirectory,
+)
 from py.report_style import StyleHtml
 
 NotebookNames = (
@@ -67,7 +73,7 @@ def Main():
         Pending.write_text(StyleHtml(Pending.read_text()))
         Target = Output / f"{Name}.html"
         Pending.replace(Target)
-        Pdfs = sorted((ProjectRoot / "figures/notebooks" / Name).glob("*.pdf"))
+        Pdfs = sorted((NotebookFiguresDirectory / Name).glob("*.pdf"))
         Manifest = Json.loads(ManifestFile.read_text()) if ManifestFile.exists() else {}
         Manifest[Name] = {
             "html": str(Target),
@@ -124,7 +130,7 @@ def Main():
         "</ul>"
         + PdfLink
         + "<p>PDFs and their self-contained Vega-Lite source data are saved in <code>"
-        + str(ProjectRoot / "figures/notebooks")
+        + str(NotebookFiguresDirectory)
         + "</code>.</p></body></html>"
     )
     (Output / "index.html").write_text(StyleHtml(Index))

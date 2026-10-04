@@ -628,7 +628,7 @@ def _(Mo, Summary):
     For the figures, see the [notebook index](index.html). Post-stratification remains
     exploratory: population domains, source aggregation and calibration-weight consistency
     need separate methodological review. Cleaning alone does not resolve those choices
-    or automatically update the numerical claims in `paper.tex`.
+    or automatically update the numerical claims in `paper/paper.tex`.
     """)
     return
 

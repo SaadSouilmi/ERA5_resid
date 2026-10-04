@@ -12,7 +12,7 @@ from pypdf import PdfWriter
 from py import paper_charts as PaperCharts
 from py import pdp as Pdp
 from py.paper_charts import DegurbaClasses, FeatureLabels, FeaturePairs, MapExtent
-from py.paths import AnalysisDataDirectory, ProjectRoot
+from py.paths import AnalysisDataDirectory, FiguresDirectory
 from py.publication import PaperStyle, SaveFigure
 
 MissingElevation = (-9999, -999)
@@ -200,7 +200,7 @@ def Main():
     Parser.add_argument(
         "--data", dest="Data", type=Path, default=AnalysisDataDirectory / "clean/analysis.parquet"
     )
-    Parser.add_argument("--output", dest="Output", type=Path, default=ProjectRoot / "figures/paper")
+    Parser.add_argument("--output", dest="Output", type=Path, default=FiguresDirectory)
     Parser.add_argument(
         "--from-tables",
         dest="FromTables",

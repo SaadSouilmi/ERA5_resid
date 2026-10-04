@@ -71,9 +71,9 @@ def SaveFigure(Chart, Stem, Dpi=600, WidthMm=DoubleColumnMm, Formats=("svg", "pd
 
 
 def ExportNotebookFigure(Chart, Notebook, Name):
-    from py.paths import ProjectRoot
+    from py.paths import NotebookFiguresDirectory
 
-    Stem = ProjectRoot / "figures/notebooks" / Notebook / Name
+    Stem = NotebookFiguresDirectory / Notebook / Name
     SaveFigure(Chart, Stem, Formats=("pdf",))
     print(f"Saved {Stem.with_suffix('.pdf')}")
     return Chart

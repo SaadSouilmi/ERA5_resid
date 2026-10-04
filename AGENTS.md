@@ -41,7 +41,7 @@ statistical estimates when changing presentation. Generated HTML reports go in
 `/home2/lobib/research-reports/saad.souilmi` unless the user specifies another path.
 For HTML reports, read `~/.codex/html_reports_style.md`.
 
-`paper.tex` is the working draft. The supplied comparison is ECA&D daily maximum
+`paper/paper.tex` is the working draft. The supplied comparison is ECA&D daily maximum
 temperature versus ERA5-Land daily maximum temperature. Preserve the original
 `data2/residuals.parquet`; the audited copy is `data2/residuals_cleaned.parquet`.
 `py.scripts.audit_cleaning` records unresolved quality and methodology issues in

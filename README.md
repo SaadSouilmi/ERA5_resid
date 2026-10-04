@@ -2,7 +2,7 @@
 
 Compare ECA&D station daily maximum temperature with ERA5-Land daily maximum
 temperature across Europe. Residual = station minus ERA5, in °C.
-The working paper is `paper.tex`.
+The working paper is `paper/paper.tex`.
 
 ## Current dataset
 
@@ -102,7 +102,7 @@ Export manifests identify notebook source and input hashes. The cleaning noteboo
 also records the audit files used in its export.
 
 Individual Altair PDFs and self-contained Vega-Lite specifications are saved in
-`figures/notebooks/`, grouped by notebook. The specifications contain the exact
+`paper/figures/notebooks/`, grouped by notebook. The specifications contain the exact
 plotted data. Other interactive figures remain in their HTML notebooks.
 
 The optional raw rebuild writes `data2/residuals_rebuilt.parquet`:
@@ -115,7 +115,7 @@ Review that output before adopting it as a replacement input.
 
 ## Publication figures
 
-`figures/paper/` contains:
+`paper/figures/paper/` contains:
 
 - `01_covariates`: binned residual means and 95% station-bootstrap intervals.
 - `02_urbanization`: residual means by land urbanization class.
@@ -160,6 +160,6 @@ Tracked historical files remain in Git history; `5ee9293` is the last pre-refact
 checkpoint. A hash-verified local archive also preserves uncommitted historical
 work at `/home2/lobib/research-reports/saad.souilmi/archives/deprecated_repo_20261003.tar.gz`.
 The pre-cleaning figures are retained locally in
-`figures/archive/before_cleaned_graphs_20261003.tar.gz`.
+`paper/figures/archive/before_cleaned_graphs_20261003.tar.gz`.
 The nested report worktree is kept locally and ignored, rather than altering its
 separate Git state.

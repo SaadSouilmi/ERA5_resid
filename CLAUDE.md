@@ -4,7 +4,7 @@ Read AGENTS.md for repository conventions and README.md for the current workflow
 
 This project compares European ECA&D daily maximum temperature with ERA5-Land
 daily maximum temperature. Residual means station minus ERA5, in degrees Celsius.
-The working draft is `paper.tex`.
+The working draft is `paper/paper.tex`.
 
 The current analysis input is `data2/clean/analysis.parquet`, with its release
 manifest in `data2/clean/summary.json`. The original `data2/residuals.parquet`

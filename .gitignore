@@ -34,9 +34,9 @@ __marimo__/
 /docs/
 /docs_/
 /scripts/
-/figures/*.html
-/figures/archive/
-figures/paper/.cartopy/
+/paper/figures/*.html
+/paper/figures/archive/
+/paper/figures/paper/.cartopy/
 
 # latex tmporary files
 *.aux
