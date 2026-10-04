@@ -37,3 +37,22 @@ __marimo__/
 /figures/*.html
 /figures/archive/
 figures/paper/.cartopy/
+
+# latex tmporary files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*.bcf
+*.run.xml
+*.blg
+*.fdb_latexmk
+*.synctex.gz
