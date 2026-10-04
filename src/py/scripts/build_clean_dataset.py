@@ -131,13 +131,29 @@ def Main():
         help="Reuse provenance and full ERA5 checks completed for the current processing-cleaned input",
     )
     Args = Parser.parse_args()
-    Output = AnalysisDataDirectory / "clean"
-    Output.mkdir(exist_ok=True)
-    Audit = Json.loads((AnalysisDataDirectory / "cleaning_audit/summary.json").read_text())
+    AuditFile = AnalysisDataDirectory / "cleaning_audit/summary.json"
     RawFile, InputFile = (
         AnalysisDataDirectory / "residuals.parquet",
         AnalysisDataDirectory / "residuals_cleaned.parquet",
     )
+    GridMatchesFile = AnalysisDataDirectory / "cleaning_audit/station_grid_matches.csv"
+    MissingFiles = [
+        File for File in (RawFile, InputFile, AuditFile, GridMatchesFile) if not File.is_file()
+    ]
+    if MissingFiles:
+        Missing = "\n".join(
+            f"  {File.relative_to(AnalysisDataDirectory.parent)}" for File in MissingFiles
+        )
+        Parser.error(
+            "required local inputs are missing:\n"
+            f"{Missing}\n"
+            "These data are not included in a Git clone or installed by uv. Restore the "
+            "original data files listed in README.md, including data2/residuals.parquet, "
+            "then run `uv run python -m py.scripts.audit_cleaning` before this build."
+        )
+    Output = AnalysisDataDirectory / "clean"
+    Output.mkdir(exist_ok=True)
+    Audit = Json.loads(AuditFile.read_text())
     if (
         Digest(RawFile) != Audit["input_sha256"]
         or Digest(InputFile) != Audit["cleaned_data_sha256"]

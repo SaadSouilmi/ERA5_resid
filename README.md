@@ -65,6 +65,19 @@ restore the saved Parquet files and the source datasets at these paths:
 | `data/main/gadm_410_europe.gpkg` | Boundary data required by the exploratory post-stratification notebook. |
 | `data2/ECA_homblend_tx/stations.txt` | Alternative station metadata for `data_comparison.py`. |
 
+These files are not fetched by `uv sync` and are not present in a plain Git clone.
+The clean-dataset build requires `data2/residuals.parquet` and the source files
+above. Once they are restored, run the processing audit before building:
+
+```bash
+uv run python -m py.scripts.audit_cleaning
+uv run python -m py.scripts.build_clean_dataset
+```
+
+The audit creates `data2/residuals_cleaned.parquet` and the audit manifest used
+by the clean-dataset builder. Do not substitute `residuals_rebuilt.parquet`
+without reviewing its notebook export first.
+
 The raw rebuild notebook also uses `data2/stations_data.csv` for a validated
 station-distance join. Exact source-file hashes are saved in
 `data2/clean/*_source_files.csv`. Natural Earth coastline data is downloaded by
