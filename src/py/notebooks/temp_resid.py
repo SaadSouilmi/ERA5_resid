@@ -333,10 +333,12 @@ def _(
         print(f"Extrapolated NDVI values: {ResidualsDf['ndvi_is_extrapolated'].sum():,}")
     Mo.md("""## Data preparation
 
-    This export reads `data2/clean/analysis.parquet`. Original observations remain in `data2/residuals.parquet`.
-    Use the notebook's `rebuild` CLI flag to explicitly rebuild the raw inputs into
-    `data2/residuals_rebuilt.parquet`. The rebuild uses geodesic nearest-land matching;
-    the conservative analysis table excludes nearest-land substitutions.
+    This export reads `data2/clean/analysis.parquet`. Use the notebook's `rebuild` CLI
+    flag to create the candidate `data2/residuals_rebuilt.parquet`. Review this export
+    before adopting it. To use it in a new processing audit, copy it to
+    `data2/residuals.parquet` only after review (back up any existing input first), then
+    run `uv run python -m py.scripts.audit_cleaning`. The rebuild uses geodesic
+    nearest-land matching; the conservative analysis table excludes nearest-land substitutions.
 
     The clean build validates all saved station-day values, screens station series,
     traces source observations, and recalculates covariates. NDVI carries the latest

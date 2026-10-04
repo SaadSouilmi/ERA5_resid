@@ -147,9 +147,9 @@ def Main():
         Parser.error(
             "required local inputs are missing:\n"
             f"{Missing}\n"
-            "These data are not included in a Git clone or installed by uv. Restore the "
-            "original data files listed in README.md, including data2/residuals.parquet, "
-            "then run `uv run python -m py.scripts.audit_cleaning` before this build."
+            "These files are not included in a Git clone or installed by uv. Generate or "
+            "restore data2/residuals.parquet using the data setup steps in README.md, then "
+            "run `uv run python -m py.scripts.audit_cleaning` before this build."
         )
     Output = AnalysisDataDirectory / "clean"
     Output.mkdir(exist_ok=True)

@@ -42,8 +42,10 @@ statistical estimates when changing presentation. Generated HTML reports go in
 For HTML reports, read `~/.codex/html_reports_style.md`.
 
 `paper/paper.tex` is the working draft. The supplied comparison is ECA&D daily maximum
-temperature versus ERA5-Land daily maximum temperature. Preserve the original
-`data2/residuals.parquet`; the audited copy is `data2/residuals_cleaned.parquet`.
+temperature versus ERA5-Land daily maximum temperature. The selected
+`data2/residuals.parquet` input may be generated as `residuals_rebuilt.parquet`
+by `py.notebooks.temp_resid` and adopted after review; the audited copy is
+`data2/residuals_cleaned.parquet`.
 `py.scripts.audit_cleaning` records unresolved quality and methodology issues in
 `data2/cleaning_audit/`. `py.scripts.export_notebooks` exports the active notebooks
 and their Altair PDFs. Treat these as review outputs until the audit's open

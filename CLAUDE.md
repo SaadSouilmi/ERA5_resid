@@ -7,8 +7,9 @@ daily maximum temperature. Residual means station minus ERA5, in degrees Celsius
 The working draft is `paper/paper.tex`.
 
 The current analysis input is `data2/clean/analysis.parquet`, with its release
-manifest in `data2/clean/summary.json`. The original `data2/residuals.parquet`
-is preserved locally as an input, not used directly by current analyses.
+manifest in `data2/clean/summary.json`. `data2/residuals.parquet` is the selected
+raw input; `py.notebooks.temp_resid` can create a reviewed replacement candidate
+at `data2/residuals_rebuilt.parquet`.
 
 Start with `src/py/notebooks/cleaning_process.py` for the implemented cleaning
 policy, sequential selection counts, provenance checks and NDVI extrapolation.

@@ -144,11 +144,17 @@ def Main():
         help="Reuse a completed station-by-station source audit CSV",
     )
     Args = Parser.parse_args()
+    Source = AnalysisDataDirectory / "residuals.parquet"
+    if not Source.is_file():
+        Parser.error(
+            f"required input is missing: {Source}\n"
+            "Generate data2/residuals_rebuilt.parquet with the temp_resid notebook, review "
+            "its export, then copy it to data2/residuals.parquet as described in README.md."
+        )
     Output = ReportsDirectory / "era5-notebooks"
     Output.mkdir(parents=True, exist_ok=True)
     Audit = AnalysisDataDirectory / "cleaning_audit"
     Audit.mkdir(parents=True, exist_ok=True)
-    Source = AnalysisDataDirectory / "residuals.parquet"
     Frame = Pl.read_parquet(Source)
     Quality = Pl.read_csv(Args.SourceCheck) if Args.SourceCheck else VerifySources(Frame)
     Expected = Frame.group_by("STAID").len().rename({"len": "expected_rows"})

@@ -190,7 +190,9 @@ def _(Audit, Mo):
     Mo.md(f"""
     ## Before selection: validate values and identities
 
-    The supplied table is `data2/residuals.parquet`. The first audit checks for duplicate
+    The selected input is `data2/residuals.parquet`. It may be generated as
+    `data2/residuals_rebuilt.parquet` by the `temp_resid` notebook; review that output
+    before copying it over this input and starting a new audit. The first audit checks for duplicate
     `(STAID, date)` pairs, finite temperatures and coordinates, and
     `residual = station_celsius - era5_celsius`. There were
     **{Audit["duplicate_station_dates"]:,} duplicate station-days** in this input.
@@ -595,7 +597,7 @@ def _(Mo, Summary):
 
     | File under `data2/` | Role |
     |:---|:---|
-    | `residuals.parquet` | Preserved supplied input. |
+    | `residuals.parquet` | Selected input for the processing audit. |
     | `residuals_cleaned.parquet` | Intermediate processing audit output. |
     | `clean/temperature_pairs.parquet` | Main screened temperature pairs. |
     | `clean/temperature_pairs_utc.parquet` | Optional aligned-window subset. |

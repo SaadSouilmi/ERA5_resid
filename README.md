@@ -8,8 +8,8 @@ The working paper is `paper/paper.tex`.
 
 Analyses use `data2/clean/analysis.parquet`: 6,958,414 screened station-day pairs
 at 4,217 nominal station IDs, from 2020-01-01 to 2025-08-31. The original
-`data2/residuals.parquet` remains unchanged. Release counts, limitations and hashes
-are in [summary.json](data2/clean/summary.json).
+selected input is `data2/residuals.parquet`. Release counts, limitations and
+hashes are in [summary.json](data2/clean/summary.json).
 
 The cleaning pipeline checks saved station values against TX/Q_TX, validates
 ERA5 extraction against all supplied in-grid daily values, excludes substituted
@@ -55,7 +55,7 @@ restore the saved Parquet files and the source datasets at these paths:
 
 | Path | Contents |
 |:---|:---|
-| `data2/residuals.parquet` | Preserved supplied station–ERA5 pairs. |
+| `data2/residuals.parquet` | Selected station–ERA5 pairs; generate or restore before auditing. |
 | `data2/residuals_cleaned.parquet` | Intermediate audit output. |
 | `data2/clean/*.parquet` | Screened pairs, UTC subset, covariates, exclusions and observation provenance. |
 | `data/main/ECA_blend_tx/` | Original station observations, station metadata and source metadata. |
@@ -64,22 +64,29 @@ restore the saved Parquet files and the source datasets at these paths:
 | `data2/GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0/` | GHS-SMOD 2020 urbanization raster. |
 | `data/main/gadm_410_europe.gpkg` | Boundary data required by the exploratory post-stratification notebook. |
 | `data2/ECA_homblend_tx/stations.txt` | Alternative station metadata for `data_comparison.py`. |
+| `data2/stations_data.csv` | Validated station-distance data required by the raw rebuild notebook. |
 
 These files are not fetched by `uv sync` and are not present in a plain Git clone.
-The clean-dataset build requires `data2/residuals.parquet` and the source files
-above. Once they are restored, run the processing audit before building:
+The raw rebuild notebook creates a candidate `data2/residuals_rebuilt.parquet`
+from the station, ERA5 and covariate sources above. Review the notebook export
+before adopting that candidate: it uses geodesic nearest-land matching, and the
+cleaning pipeline treats substituted land cells differently.
+
+Generate and review the candidate, then explicitly copy it to the input path
+before starting the processing audit:
 
 ```bash
+uv run marimo export html src/py/notebooks/temp_resid.py -o /tmp/temp_resid.html -- --rebuild
+# Review /tmp/temp_resid.html, then confirm this replacement (back up any existing input first).
+cp -i data2/residuals_rebuilt.parquet data2/residuals.parquet
 uv run python -m py.scripts.audit_cleaning
 uv run python -m py.scripts.build_clean_dataset
 ```
 
-The audit creates `data2/residuals_cleaned.parquet` and the audit manifest used
-by the clean-dataset builder. Do not substitute `residuals_rebuilt.parquet`
-without reviewing its notebook export first.
-
-The raw rebuild notebook also uses `data2/stations_data.csv` for a validated
-station-distance join. Exact source-file hashes are saved in
+The `cp -i` step prompts before replacing an existing input. Confirm only after
+reviewing the candidate and preserving any input you need to keep. The audit
+creates `data2/residuals_cleaned.parquet` and the audit manifest used by the
+clean-dataset builder. Exact source-file hashes are saved in
 `data2/clean/*_source_files.csv`. Natural Earth coastline data is downloaded by
 the cleaning builder when absent. Do not substitute different source releases
 without rebuilding and reviewing the audit.
@@ -90,7 +97,15 @@ sources above. Paper figures can be restyled from committed tables without raw d
 
 ## Cleaning and exports
 
-Run computational work in a dedicated tmux session, which ends with its command:
+Run computational work in a dedicated tmux session, which ends with its command.
+For a raw rebuild, first run the export in tmux:
+
+```bash
+tmux new-session -s era5-residuals 'uv run marimo export html src/py/notebooks/temp_resid.py -o /tmp/temp_resid.html -- --rebuild'
+```
+
+Review `/tmp/temp_resid.html` and adopt the candidate with the interactive copy
+shown above. Then start the audit, clean build and exports:
 
 ```bash
 tmux new-session -s era5-audit 'uv run python -m py.scripts.audit_cleaning'
@@ -117,14 +132,6 @@ also records the audit files used in its export.
 Individual Altair PDFs and self-contained Vega-Lite specifications are saved in
 `paper/figures/notebooks/`, grouped by notebook. The specifications contain the exact
 plotted data. Other interactive figures remain in their HTML notebooks.
-
-The optional raw rebuild writes `data2/residuals_rebuilt.parquet`:
-
-```bash
-uv run marimo export html src/py/notebooks/temp_resid.py -o /tmp/temp_resid.html -- --rebuild
-```
-
-Review that output before adopting it as a replacement input.
 
 ## Publication figures
 
