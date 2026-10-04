@@ -8,5 +8,5 @@
       ]
     }
   },
-  "updateContentCommand": "sudo apt update && sudo apt install -y texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-fonts-extra texlive-bibtex-extra biber"
+  "updateContentCommand": "bash .devcontainer/setup.sh"
 }
