@@ -1,4 +1,4 @@
-"""Altair figures built from saved publication tables."""
+"""Publication figures and the notebook's Plotly station map."""
 
 import json as Json
 from pathlib import Path
@@ -282,3 +282,77 @@ def StationMap(Tables):
         )
         .properties(width=470, height=360, view=Alt.ViewConfig(fill="#f2f6f8", stroke=None))
     )
+
+
+async def ExportNotebookStationMap(Frame):
+    import math as Math
+
+    import plotly.express as Px
+
+    from py.paths import NotebookFiguresDirectory
+    from py.publication import ExportNotebookPlotlyFigure, Font
+
+    Directory = NotebookFiguresDirectory / "resid_analysis"
+    Tables = Directory / "tables"
+    Tables.mkdir(parents=True, exist_ok=True)
+    Stations = (
+        Frame.group_by("STAID")
+        .agg(
+            Pl.col("residual").mean(),
+            Pl.col("lat").first(),
+            Pl.col("lon").first(),
+            Pl.col("place").first(),
+            Pl.col("country").first(),
+            Pl.len().alias("n_observations"),
+        )
+        .sort("STAID")
+    )
+    Stations.write_csv(Tables / "station_means.csv")
+    West, East = Stations["lon"].min(), Stations["lon"].max()
+    South, North = Stations["lat"].min(), Stations["lat"].max()
+    SouthY, NorthY = [
+        Math.asinh(Math.tan(Math.radians(Latitude))) / (2 * Math.pi) for Latitude in (South, North)
+    ]
+    MapWidth, Padding = 800, 24
+    LongitudeSpan = (East - West) / 360
+    Height = MapWidth
+    Zoom = Math.log2((MapWidth - 2 * Padding) / (512 * max(LongitudeSpan, NorthY - SouthY)))
+    Center = {
+        "lat": Math.degrees(Math.atan(Math.sinh(Math.pi * (SouthY + NorthY)))),
+        "lon": (West + East) / 2,
+    }
+    Figure = Px.scatter_map(
+        Stations,
+        lat="lat",
+        lon="lon",
+        color="residual",
+        color_continuous_scale="RdBu_r",
+        range_color=[-3, 3],
+        zoom=Zoom,
+        center=Center,
+        hover_data=["STAID", "place", "country", "residual", "n_observations"],
+    )
+    Figure.update_traces(
+        lat=Stations["lat"].to_list(),
+        lon=Stations["lon"].to_list(),
+        marker={"size": 6, "color": Stations["residual"].to_list()},
+    )
+    Figure.update_layout(
+        width=MapWidth + 120,
+        height=Height,
+        margin={"l": 0, "r": 120, "t": 0, "b": 0, "autoexpand": False},
+        template="plotly_white",
+        font={"family": Font, "size": 19},
+        map_style="open-street-map",
+        coloraxis_colorbar={
+            "title": {"text": "Mean<br>residual<br>(°C)"},
+            "thickness": 22,
+            "len": 0.85,
+            "x": 1.01,
+            "xanchor": "left",
+            "tickvals": [-3, -2, -1, 0, 1, 2, 3],
+            "ticktext": ["≤ −3", "−2", "−1", "0", "1", "2", "≥ 3"],
+        },
+        meta={"export_width_mm": 180, "map_dpi": 900, "station_padding_px": Padding},
+    )
+    return await ExportNotebookPlotlyFigure(Figure, "resid_analysis", "station_map", Dpi=900)

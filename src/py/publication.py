@@ -1,4 +1,4 @@
-"""Altair publication styling and fixed-width vector exports."""
+"""Publication styling and fixed-width Altair and Plotly exports."""
 
 import json as Json
 from pathlib import Path
@@ -77,3 +77,58 @@ def ExportNotebookFigure(Chart, Notebook, Name):
     SaveFigure(Chart, Stem, Formats=("pdf",))
     print(f"Saved {Stem.with_suffix('.pdf')}")
     return Chart
+
+
+async def ExportNotebookPlotlyFigure(Figure, Notebook, Name, Dpi=600, WidthMm=DoubleColumnMm):
+    import tempfile as Tempfile
+
+    import kaleido as Kaleido
+    import plotly as Plotly
+
+    from py.paths import NotebookFiguresDirectory
+
+    Stem = NotebookFiguresDirectory / Notebook / Name
+    Stem.parent.mkdir(parents=True, exist_ok=True)
+    Width, Height = Figure.layout.width, Figure.layout.height
+    PixelRatio = WidthMm / 25.4 * Dpi / Width
+    with Tempfile.TemporaryDirectory(prefix="era5-plotly-") as Temporary:
+        Script = Path(Plotly.__file__).parent / "package_data/plotly.min.js"
+        if max(Width, Height) * PixelRatio > 4096:
+            # MapLibre's default canvas cap silently downsamples high-resolution exports.
+            Javascript = Script.read_text()
+            Default = "maxCanvasSize:[4096,4096]"
+            if Javascript.count(Default) != 1:
+                raise ValueError(
+                    "Plotly's MapLibre canvas option changed; review high-resolution export"
+                )
+            Script = Path(Temporary) / "plotly.js"
+            Script.write_text(Javascript.replace(Default, "maxCanvasSize:[8192,8192]"))
+        async with Kaleido.Kaleido(
+            plotlyjs=Script,
+            mathjax=False,
+            headers={"X-Requested-With": "ERA5_resid/Plotly"},
+            timeout=300,
+        ) as Renderer:
+            # Kaleido's image scale alone does not increase MapLibre's canvas resolution.
+            for Tab in Renderer.tabs.values():
+                await Tab.send_command(
+                    "Emulation.setDeviceMetricsOverride",
+                    {
+                        "width": Width,
+                        "height": Height,
+                        "deviceScaleFactor": PixelRatio,
+                        "mobile": False,
+                    },
+                )
+            Svg = (await Renderer.calc_fig(Figure, opts={"format": "svg", "scale": 1})).decode()
+    Root = Et.fromstring(Svg)
+    # Convert at the target size; resizing Chrome's PDF can distort its colourbar pattern.
+    Svg = Svg.replace(f'width="{Root.attrib["width"]}"', f'width="{WidthMm / 25.4 * 72}"', 1)
+    Svg = Svg.replace(
+        f'height="{Root.attrib["height"]}"', f'height="{WidthMm / 25.4 * 72 * Height / Width}"', 1
+    )
+    Stem.with_suffix(".pdf").write_bytes(Vlc.svg_to_pdf(Svg))
+    Figure.write_json(Stem.with_suffix(".plotly.json"), pretty=True)
+    Stem.with_suffix(".vl.json").unlink(missing_ok=True)
+    print(f"Saved {Stem.with_suffix('.pdf')}")
+    return Figure

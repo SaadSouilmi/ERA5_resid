@@ -1,0 +1,54 @@
+season_start,origin,source_seasons,station_days,order
+2024-03-01,New satellite pilot,8,736,2
+2021-03-01,Missing,75,6781,3
+2022-09-01,Old observed,3767,321409,0
+2025-06-01,Old carried forward,3065,212614,1
+2025-03-01,Old carried forward,3204,279939,1
+2023-09-01,Old observed,3563,303940,0
+2024-03-01,Missing,133,7017,3
+2024-03-01,Old carried forward,3549,294059,1
+2022-06-01,Missing,75,6706,3
+2023-03-01,Missing,86,7455,3
+2021-09-01,Missing,75,6722,3
+2025-03-01,New satellite pilot,10,786,2
+2022-09-01,Missing,77,6791,3
+2019-12-01,Missing,98,5697,3
+2024-06-01,New satellite pilot,10,918,2
+2020-03-01,Missing,76,6745,3
+2024-12-01,New satellite pilot,5,418,2
+2020-09-01,Missing,76,6726,3
+2020-12-01,Old observed,3686,311691,0
+2023-09-01,Missing,87,6620,3
+2025-06-01,New satellite pilot,9,703,2
+2021-03-01,Old observed,3591,324367,0
+2024-09-01,New satellite pilot,9,758,2
+2020-03-01,Old observed,3556,309589,0
+2024-12-01,Missing,155,9000,3
+2021-12-01,Missing,98,8607,3
+2022-03-01,Old observed,3468,305799,0
+2023-12-01,Old carried forward,3348,285668,1
+2020-06-01,Old observed,3561,320725,0
+2020-12-01,Missing,142,8067,3
+2025-06-01,Missing,53,560,3
+2024-09-01,Old carried forward,3090,261601,1
+2019-12-01,Old observed,3542,203129,0
+2021-06-01,Old observed,3596,323507,0
+2022-12-01,Old observed,3547,309869,0
+2021-06-01,Missing,78,7043,3
+2024-12-01,Old carried forward,3241,257431,1
+2020-06-01,Missing,75,6781,3
+2022-06-01,Old observed,3481,309453,0
+2025-03-01,Missing,56,4996,3
+2023-12-01,Missing,102,9161,3
+2023-06-01,Missing,86,6732,3
+2023-12-01,New satellite pilot,3,243,2
+2024-06-01,Old carried forward,3196,277394,1
+2020-09-01,Old observed,3666,317891,0
+2023-03-01,Old observed,3528,317890,0
+2024-06-01,Missing,123,6623,3
+2021-12-01,Old observed,3853,310020,0
+2023-06-01,Old observed,3543,317744,0
+2021-09-01,Old observed,3611,320774,0
+2024-09-01,Missing,126,6516,3
+2022-03-01,Missing,75,6808,3
+2022-12-01,Missing,104,9195,3

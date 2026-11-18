@@ -1,0 +1,694 @@
+{
+  "config": {
+    "view": {
+      "continuousWidth": 300,
+      "continuousHeight": 300,
+      "stroke": null
+    },
+    "axis": {
+      "domainColor": "#444444",
+      "domainWidth": 0.7,
+      "gridColor": "#e5e5e5",
+      "gridWidth": 0.5,
+      "labelColor": "#222222",
+      "labelFont": "DejaVu Serif",
+      "labelFontSize": 10,
+      "labelPadding": 5,
+      "tickColor": "#444444",
+      "tickSize": 4,
+      "tickWidth": 0.7,
+      "titleColor": "#222222",
+      "titleFont": "DejaVu Serif",
+      "titleFontSize": 11,
+      "titleFontWeight": "normal",
+      "titlePadding": 10
+    },
+    "background": "white",
+    "font": "DejaVu Serif",
+    "legend": {
+      "gradientThickness": 10,
+      "labelFont": "DejaVu Serif",
+      "labelFontSize": 10,
+      "titleFont": "DejaVu Serif",
+      "titleFontSize": 11,
+      "titleFontWeight": "normal"
+    },
+    "padding": 8,
+    "title": {
+      "anchor": "start",
+      "font": "DejaVu Serif",
+      "fontSize": 12,
+      "offset": 10
+    }
+  },
+  "data": {
+    "values": [
+      {
+        "bin_start": -0.8,
+        "origin": "Old observed",
+        "source_seasons": 1,
+        "bin_end": -0.75,
+        "order": 0
+      },
+      {
+        "bin_start": -0.8,
+        "origin": "Old carried forward",
+        "source_seasons": 2,
+        "bin_end": -0.75,
+        "order": 1
+      },
+      {
+        "bin_start": -0.75,
+        "origin": "Old observed",
+        "source_seasons": 2,
+        "bin_end": -0.7,
+        "order": 0
+      },
+      {
+        "bin_start": -0.7000000000000001,
+        "origin": "Old observed",
+        "source_seasons": 1,
+        "bin_end": -0.65,
+        "order": 0
+      },
+      {
+        "bin_start": -0.7000000000000001,
+        "origin": "Old carried forward",
+        "source_seasons": 2,
+        "bin_end": -0.65,
+        "order": 1
+      },
+      {
+        "bin_start": -0.65,
+        "origin": "Old observed",
+        "source_seasons": 5,
+        "bin_end": -0.6,
+        "order": 0
+      },
+      {
+        "bin_start": -0.6000000000000001,
+        "origin": "Old observed",
+        "source_seasons": 6,
+        "bin_end": -0.55,
+        "order": 0
+      },
+      {
+        "bin_start": -0.6000000000000001,
+        "origin": "Old carried forward",
+        "source_seasons": 4,
+        "bin_end": -0.55,
+        "order": 1
+      },
+      {
+        "bin_start": -0.55,
+        "origin": "Old observed",
+        "source_seasons": 7,
+        "bin_end": -0.5,
+        "order": 0
+      },
+      {
+        "bin_start": -0.5,
+        "origin": "Old observed",
+        "source_seasons": 7,
+        "bin_end": -0.45,
+        "order": 0
+      },
+      {
+        "bin_start": -0.5,
+        "origin": "Old carried forward",
+        "source_seasons": 1,
+        "bin_end": -0.45,
+        "order": 1
+      },
+      {
+        "bin_start": -0.45,
+        "origin": "Old observed",
+        "source_seasons": 13,
+        "bin_end": -0.4,
+        "order": 0
+      },
+      {
+        "bin_start": -0.45,
+        "origin": "Old carried forward",
+        "source_seasons": 1,
+        "bin_end": -0.4,
+        "order": 1
+      },
+      {
+        "bin_start": -0.4,
+        "origin": "Old observed",
+        "source_seasons": 22,
+        "bin_end": -0.35000000000000003,
+        "order": 0
+      },
+      {
+        "bin_start": -0.4,
+        "origin": "Old carried forward",
+        "source_seasons": 9,
+        "bin_end": -0.35000000000000003,
+        "order": 1
+      },
+      {
+        "bin_start": -0.35000000000000003,
+        "origin": "Old observed",
+        "source_seasons": 18,
+        "bin_end": -0.30000000000000004,
+        "order": 0
+      },
+      {
+        "bin_start": -0.35000000000000003,
+        "origin": "Old carried forward",
+        "source_seasons": 6,
+        "bin_end": -0.30000000000000004,
+        "order": 1
+      },
+      {
+        "bin_start": -0.30000000000000004,
+        "origin": "Old observed",
+        "source_seasons": 40,
+        "bin_end": -0.25000000000000006,
+        "order": 0
+      },
+      {
+        "bin_start": -0.30000000000000004,
+        "origin": "Old carried forward",
+        "source_seasons": 14,
+        "bin_end": -0.25000000000000006,
+        "order": 1
+      },
+      {
+        "bin_start": -0.25,
+        "origin": "Old observed",
+        "source_seasons": 53,
+        "bin_end": -0.2,
+        "order": 0
+      },
+      {
+        "bin_start": -0.25,
+        "origin": "Old carried forward",
+        "source_seasons": 19,
+        "bin_end": -0.2,
+        "order": 1
+      },
+      {
+        "bin_start": -0.2,
+        "origin": "Old observed",
+        "source_seasons": 85,
+        "bin_end": -0.15000000000000002,
+        "order": 0
+      },
+      {
+        "bin_start": -0.2,
+        "origin": "Old carried forward",
+        "source_seasons": 38,
+        "bin_end": -0.15000000000000002,
+        "order": 1
+      },
+      {
+        "bin_start": -0.15000000000000002,
+        "origin": "Old observed",
+        "source_seasons": 196,
+        "bin_end": -0.10000000000000002,
+        "order": 0
+      },
+      {
+        "bin_start": -0.15000000000000002,
+        "origin": "Old carried forward",
+        "source_seasons": 89,
+        "bin_end": -0.10000000000000002,
+        "order": 1
+      },
+      {
+        "bin_start": -0.1,
+        "origin": "Old observed",
+        "source_seasons": 484,
+        "bin_end": -0.05,
+        "order": 0
+      },
+      {
+        "bin_start": -0.1,
+        "origin": "Old carried forward",
+        "source_seasons": 215,
+        "bin_end": -0.05,
+        "order": 1
+      },
+      {
+        "bin_start": -0.05,
+        "origin": "Old observed",
+        "source_seasons": 1330,
+        "bin_end": 0.0,
+        "order": 0
+      },
+      {
+        "bin_start": -0.05,
+        "origin": "Old carried forward",
+        "source_seasons": 635,
+        "bin_end": 0.0,
+        "order": 1
+      },
+      {
+        "bin_start": 0.0,
+        "origin": "Old observed",
+        "source_seasons": 1895,
+        "bin_end": 0.05,
+        "order": 0
+      },
+      {
+        "bin_start": 0.0,
+        "origin": "Old carried forward",
+        "source_seasons": 909,
+        "bin_end": 0.05,
+        "order": 1
+      },
+      {
+        "bin_start": 0.05,
+        "origin": "Old observed",
+        "source_seasons": 1529,
+        "bin_end": 0.1,
+        "order": 0
+      },
+      {
+        "bin_start": 0.05,
+        "origin": "Old carried forward",
+        "source_seasons": 687,
+        "bin_end": 0.1,
+        "order": 1
+      },
+      {
+        "bin_start": 0.1,
+        "origin": "Old observed",
+        "source_seasons": 2342,
+        "bin_end": 0.15000000000000002,
+        "order": 0
+      },
+      {
+        "bin_start": 0.1,
+        "origin": "Old carried forward",
+        "source_seasons": 984,
+        "bin_end": 0.15000000000000002,
+        "order": 1
+      },
+      {
+        "bin_start": 0.15000000000000002,
+        "origin": "Old observed",
+        "source_seasons": 2611,
+        "bin_end": 0.2,
+        "order": 0
+      },
+      {
+        "bin_start": 0.15000000000000002,
+        "origin": "Old carried forward",
+        "source_seasons": 1075,
+        "bin_end": 0.2,
+        "order": 1
+      },
+      {
+        "bin_start": 0.15000000000000002,
+        "origin": "New satellite pilot",
+        "source_seasons": 1,
+        "bin_end": 0.2,
+        "order": 2
+      },
+      {
+        "bin_start": 0.2,
+        "origin": "Old observed",
+        "source_seasons": 3225,
+        "bin_end": 0.25,
+        "order": 0
+      },
+      {
+        "bin_start": 0.2,
+        "origin": "Old carried forward",
+        "source_seasons": 1384,
+        "bin_end": 0.25,
+        "order": 1
+      },
+      {
+        "bin_start": 0.2,
+        "origin": "New satellite pilot",
+        "source_seasons": 2,
+        "bin_end": 0.25,
+        "order": 2
+      },
+      {
+        "bin_start": 0.25,
+        "origin": "Old observed",
+        "source_seasons": 4143,
+        "bin_end": 0.3,
+        "order": 0
+      },
+      {
+        "bin_start": 0.25,
+        "origin": "Old carried forward",
+        "source_seasons": 1518,
+        "bin_end": 0.3,
+        "order": 1
+      },
+      {
+        "bin_start": 0.30000000000000004,
+        "origin": "Old observed",
+        "source_seasons": 3762,
+        "bin_end": 0.35000000000000003,
+        "order": 0
+      },
+      {
+        "bin_start": 0.30000000000000004,
+        "origin": "Old carried forward",
+        "source_seasons": 1440,
+        "bin_end": 0.35000000000000003,
+        "order": 1
+      },
+      {
+        "bin_start": 0.30000000000000004,
+        "origin": "New satellite pilot",
+        "source_seasons": 5,
+        "bin_end": 0.35000000000000003,
+        "order": 2
+      },
+      {
+        "bin_start": 0.35000000000000003,
+        "origin": "Old observed",
+        "source_seasons": 4050,
+        "bin_end": 0.4,
+        "order": 0
+      },
+      {
+        "bin_start": 0.35000000000000003,
+        "origin": "Old carried forward",
+        "source_seasons": 1539,
+        "bin_end": 0.4,
+        "order": 1
+      },
+      {
+        "bin_start": 0.35000000000000003,
+        "origin": "New satellite pilot",
+        "source_seasons": 1,
+        "bin_end": 0.4,
+        "order": 2
+      },
+      {
+        "bin_start": 0.4,
+        "origin": "Old observed",
+        "source_seasons": 4852,
+        "bin_end": 0.45,
+        "order": 0
+      },
+      {
+        "bin_start": 0.4,
+        "origin": "Old carried forward",
+        "source_seasons": 1782,
+        "bin_end": 0.45,
+        "order": 1
+      },
+      {
+        "bin_start": 0.4,
+        "origin": "New satellite pilot",
+        "source_seasons": 4,
+        "bin_end": 0.45,
+        "order": 2
+      },
+      {
+        "bin_start": 0.45,
+        "origin": "Old observed",
+        "source_seasons": 4392,
+        "bin_end": 0.5,
+        "order": 0
+      },
+      {
+        "bin_start": 0.45,
+        "origin": "Old carried forward",
+        "source_seasons": 1644,
+        "bin_end": 0.5,
+        "order": 1
+      },
+      {
+        "bin_start": 0.45,
+        "origin": "New satellite pilot",
+        "source_seasons": 3,
+        "bin_end": 0.5,
+        "order": 2
+      },
+      {
+        "bin_start": 0.5,
+        "origin": "Old observed",
+        "source_seasons": 4345,
+        "bin_end": 0.55,
+        "order": 0
+      },
+      {
+        "bin_start": 0.5,
+        "origin": "Old carried forward",
+        "source_seasons": 1587,
+        "bin_end": 0.55,
+        "order": 1
+      },
+      {
+        "bin_start": 0.5,
+        "origin": "New satellite pilot",
+        "source_seasons": 5,
+        "bin_end": 0.55,
+        "order": 2
+      },
+      {
+        "bin_start": 0.55,
+        "origin": "Old observed",
+        "source_seasons": 5077,
+        "bin_end": 0.6000000000000001,
+        "order": 0
+      },
+      {
+        "bin_start": 0.55,
+        "origin": "Old carried forward",
+        "source_seasons": 1886,
+        "bin_end": 0.6000000000000001,
+        "order": 1
+      },
+      {
+        "bin_start": 0.55,
+        "origin": "New satellite pilot",
+        "source_seasons": 6,
+        "bin_end": 0.6000000000000001,
+        "order": 2
+      },
+      {
+        "bin_start": 0.6000000000000001,
+        "origin": "Old observed",
+        "source_seasons": 4024,
+        "bin_end": 0.6500000000000001,
+        "order": 0
+      },
+      {
+        "bin_start": 0.6000000000000001,
+        "origin": "Old carried forward",
+        "source_seasons": 1558,
+        "bin_end": 0.6500000000000001,
+        "order": 1
+      },
+      {
+        "bin_start": 0.6000000000000001,
+        "origin": "New satellite pilot",
+        "source_seasons": 4,
+        "bin_end": 0.6500000000000001,
+        "order": 2
+      },
+      {
+        "bin_start": 0.65,
+        "origin": "Old observed",
+        "source_seasons": 3384,
+        "bin_end": 0.7000000000000001,
+        "order": 0
+      },
+      {
+        "bin_start": 0.65,
+        "origin": "Old carried forward",
+        "source_seasons": 1343,
+        "bin_end": 0.7000000000000001,
+        "order": 1
+      },
+      {
+        "bin_start": 0.65,
+        "origin": "New satellite pilot",
+        "source_seasons": 9,
+        "bin_end": 0.7000000000000001,
+        "order": 2
+      },
+      {
+        "bin_start": 0.7000000000000001,
+        "origin": "Old observed",
+        "source_seasons": 2908,
+        "bin_end": 0.7500000000000001,
+        "order": 0
+      },
+      {
+        "bin_start": 0.7000000000000001,
+        "origin": "Old carried forward",
+        "source_seasons": 1150,
+        "bin_end": 0.7500000000000001,
+        "order": 1
+      },
+      {
+        "bin_start": 0.7000000000000001,
+        "origin": "New satellite pilot",
+        "source_seasons": 7,
+        "bin_end": 0.7500000000000001,
+        "order": 2
+      },
+      {
+        "bin_start": 0.75,
+        "origin": "Old observed",
+        "source_seasons": 1613,
+        "bin_end": 0.8,
+        "order": 0
+      },
+      {
+        "bin_start": 0.75,
+        "origin": "Old carried forward",
+        "source_seasons": 654,
+        "bin_end": 0.8,
+        "order": 1
+      },
+      {
+        "bin_start": 0.75,
+        "origin": "New satellite pilot",
+        "source_seasons": 5,
+        "bin_end": 0.8,
+        "order": 2
+      },
+      {
+        "bin_start": 0.8,
+        "origin": "Old observed",
+        "source_seasons": 829,
+        "bin_end": 0.8500000000000001,
+        "order": 0
+      },
+      {
+        "bin_start": 0.8,
+        "origin": "Old carried forward",
+        "source_seasons": 380,
+        "bin_end": 0.8500000000000001,
+        "order": 1
+      },
+      {
+        "bin_start": 0.8,
+        "origin": "New satellite pilot",
+        "source_seasons": 1,
+        "bin_end": 0.8500000000000001,
+        "order": 2
+      },
+      {
+        "bin_start": 0.8500000000000001,
+        "origin": "Old observed",
+        "source_seasons": 294,
+        "bin_end": 0.9000000000000001,
+        "order": 0
+      },
+      {
+        "bin_start": 0.8500000000000001,
+        "origin": "Old carried forward",
+        "source_seasons": 130,
+        "bin_end": 0.9000000000000001,
+        "order": 1
+      },
+      {
+        "bin_start": 0.8500000000000001,
+        "origin": "New satellite pilot",
+        "source_seasons": 1,
+        "bin_end": 0.9000000000000001,
+        "order": 2
+      },
+      {
+        "bin_start": 0.9,
+        "origin": "Old observed",
+        "source_seasons": 14,
+        "bin_end": 0.9500000000000001,
+        "order": 0
+      },
+      {
+        "bin_start": 0.9,
+        "origin": "Old carried forward",
+        "source_seasons": 8,
+        "bin_end": 0.9500000000000001,
+        "order": 1
+      }
+    ]
+  },
+  "mark": {
+    "type": "bar"
+  },
+  "encoding": {
+    "color": {
+      "field": "origin",
+      "legend": {
+        "columns": 4,
+        "orient": "top",
+        "title": null
+      },
+      "scale": {
+        "domain": [
+          "Old observed",
+          "Old carried forward",
+          "New satellite pilot",
+          "Missing"
+        ],
+        "range": [
+          "#0072B2",
+          "#D98B23",
+          "#008A70",
+          "#B8B8B8"
+        ]
+      },
+      "type": "nominal"
+    },
+    "order": {
+      "field": "order",
+      "sort": "ascending",
+      "type": "quantitative"
+    },
+    "tooltip": [
+      {
+        "field": "origin",
+        "type": "nominal"
+      },
+      {
+        "field": "bin_start",
+        "format": ".2f",
+        "type": "quantitative"
+      },
+      {
+        "field": "source_seasons",
+        "type": "quantitative"
+      }
+    ],
+    "x": {
+      "bin": "binned",
+      "field": "bin_start",
+      "scale": {
+        "domain": [
+          -1,
+          1
+        ]
+      },
+      "title": "NDVI",
+      "type": "quantitative"
+    },
+    "x2": {
+      "field": "bin_end"
+    },
+    "y": {
+      "field": "source_seasons",
+      "stack": "zero",
+      "title": "Source-seasons",
+      "type": "quantitative"
+    }
+  },
+  "height": 330,
+  "title": {
+    "text": "NDVI distribution with the pilot values included",
+    "subtitle": [
+      "One value per active source-season; bin width 0.05. Missing values are excluded.",
+      "New values contribute only a small fraction of the full distribution. Preview, not an adopted release."
+    ]
+  },
+  "width": 880,
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json"
+}

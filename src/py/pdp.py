@@ -24,6 +24,7 @@ def ClusterBootstrapCi(
             Pl.col(WeightCol).sum().alias("count"),
         )
 
+    StationBin = StationBin.sort(BinCol, "STAID")
     NBins = len(Bins)
     BootMeans = Np.zeros((NBins, NBoot))
 

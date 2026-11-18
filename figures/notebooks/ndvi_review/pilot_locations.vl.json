@@ -1,0 +1,2932 @@
+{
+  "config": {
+    "view": {
+      "continuousWidth": 300,
+      "continuousHeight": 300,
+      "stroke": null
+    },
+    "axis": {
+      "domainColor": "#444444",
+      "domainWidth": 0.7,
+      "gridColor": "#e5e5e5",
+      "gridWidth": 0.5,
+      "labelColor": "#222222",
+      "labelFont": "DejaVu Serif",
+      "labelFontSize": 10,
+      "labelPadding": 5,
+      "tickColor": "#444444",
+      "tickSize": 4,
+      "tickWidth": 0.7,
+      "titleColor": "#222222",
+      "titleFont": "DejaVu Serif",
+      "titleFontSize": 11,
+      "titleFontWeight": "normal",
+      "titlePadding": 10
+    },
+    "background": "white",
+    "font": "DejaVu Serif",
+    "header": {
+      "labelFontSize": 12,
+      "labelFontWeight": "normal",
+      "labelPadding": 7
+    },
+    "legend": {
+      "gradientThickness": 10,
+      "labelFont": "DejaVu Serif",
+      "labelFontSize": 10,
+      "titleFont": "DejaVu Serif",
+      "titleFontSize": 11,
+      "titleFontWeight": "normal"
+    },
+    "padding": 8,
+    "title": {
+      "anchor": "start",
+      "font": "DejaVu Serif",
+      "fontSize": 12,
+      "offset": 10
+    }
+  },
+  "data": {
+    "values": [
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2019-12-01",
+        "origin": "Old observed",
+        "ndvi": -0.023622047244094446
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2020-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.3464566929133859
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2020-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.6377952755905512
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2020-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.5905511811023623
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2020-12-01",
+        "origin": "Old observed",
+        "ndvi": -0.047244094488189003
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2021-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.26771653543307083
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2021-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.6141732283464567
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2021-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.6062992125984252
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2021-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.07086614173228356
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2022-03-01",
+        "origin": "Old observed",
+        "ndvi": null
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2022-06-01",
+        "origin": "Old observed",
+        "ndvi": null
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2022-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.6456692913385826
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2022-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.015748031496062964
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2023-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.45669291338582685
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2023-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.6220472440944882
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2023-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.6692913385826771
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2023-12-01",
+        "origin": "Old carried forward",
+        "ndvi": null
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2023-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.34037330602625326
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2024-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.45669291338582685
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2024-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2024-03-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2024-06-01",
+        "origin": "Old carried forward",
+        "ndvi": null
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2024-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6961806642689766
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2024-09-01",
+        "origin": "Old carried forward",
+        "ndvi": null
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2024-09-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6513322201242889
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2024-12-01",
+        "origin": "Old carried forward",
+        "ndvi": null
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2024-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.3637205575826541
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2025-03-01",
+        "origin": "Old carried forward",
+        "ndvi": null
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2025-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.5841323569974929
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2025-06-01",
+        "origin": "Old carried forward",
+        "ndvi": null
+      },
+      {
+        "SOUID": 135789,
+        "source_label": "Austria \u00b7 135789",
+        "season_start": "2025-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6859936461139774
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2019-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.22047244094488194
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2020-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.4724409448818898
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2020-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.6692913385826771
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2020-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.5118110236220472
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2020-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.09448818897637801
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2021-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.36220472440944884
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2021-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.7401574803149606
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2021-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.4881889763779528
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2021-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.26771653543307083
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2022-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.39370078740157477
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2022-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.7086614173228347
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2022-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.4251968503937007
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2022-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.2913385826771653
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2023-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.4251968503937007
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2023-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.6692913385826771
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2023-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.4330708661417322
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2023-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.2913385826771653
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2023-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2023-12-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2024-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.4251968503937007
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2024-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.44977476930566446
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2024-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.6692913385826771
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2024-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.7038008167849181
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2024-09-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.4330708661417322
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2024-09-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.5365886484409251
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2024-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.2913385826771653
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2024-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2024-12-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2025-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.4251968503937007
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2025-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.4773571162915888
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2025-06-01",
+        "origin": "Old carried forward",
+        "ndvi": null
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2025-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 141832,
+        "source_label": "Denmark \u00b7 141832",
+        "season_start": "2025-06-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2019-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.1968503937007875
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2020-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.3307086614173229
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2020-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.811023622047244
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2020-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.6771653543307086
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2020-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.12598425196850394
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2021-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.3858267716535433
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2021-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.7795275590551181
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2021-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.7165354330708662
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2021-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.11023622047244097
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2022-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.2834645669291338
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2022-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.8582677165354331
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2022-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.5984251968503937
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2022-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.3307086614173229
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2023-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.2362204724409449
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2023-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.7244094488188977
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2023-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.49606299212598426
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2023-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.3307086614173229
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2023-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2023-12-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2024-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.2362204724409449
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2024-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2024-03-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2024-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.7244094488188977
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2024-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.7795066837868571
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2024-09-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.49606299212598426
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2024-09-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.61604150457444
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2024-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.3307086614173229
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2024-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2024-12-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2025-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.2362204724409449
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2025-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2025-03-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2025-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.7244094488188977
+      },
+      {
+        "SOUID": 45501,
+        "source_label": "Finland \u00b7 45501",
+        "season_start": "2025-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.7558632570154646
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2019-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.6062992125984252
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2020-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.7244094488188977
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2020-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.5511811023622046
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2020-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.7165354330708662
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2020-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.5984251968503937
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2021-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.7559055118110236
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2021-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.7007874015748032
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2021-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.6692913385826771
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2021-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.5905511811023623
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2022-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.6692913385826771
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2022-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.5354330708661417
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2022-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.5118110236220472
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2022-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.7165354330708662
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2023-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.6929133858267718
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2023-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.7559055118110236
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2023-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.68503937007874
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2023-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.7165354330708662
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2023-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.7392218163829486
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2024-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.6929133858267718
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2024-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.8673211379031964
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2024-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.7559055118110236
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2024-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.7242195040970616
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2024-09-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.68503937007874
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2024-09-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6628389886904884
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2024-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.7165354330708662
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2024-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6924427344328891
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2025-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.6929133858267718
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2025-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.758617991984484
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2025-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.7559055118110236
+      },
+      {
+        "SOUID": 4119,
+        "source_label": "France \u00b7 4119",
+        "season_start": "2025-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.5607251400242748
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2019-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.40157480314960625
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2020-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.4173228346456692
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2020-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.4724409448818898
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2020-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.5039370078740157
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2020-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.45669291338582685
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2021-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.46456692913385833
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2021-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.5590551181102361
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2021-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.6220472440944882
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2021-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.25984251968503935
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2022-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.4724409448818898
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2022-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.4409448818897639
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2022-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.6299212598425197
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2022-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.30708661417322825
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2023-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.5511811023622046
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2023-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.5275590551181102
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2023-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.6771653543307086
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2023-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.30708661417322825
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2023-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2023-12-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2024-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.5511811023622046
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2024-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.5553075681490287
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2024-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.5275590551181102
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2024-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.5727042782301645
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2024-09-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.6771653543307086
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2024-09-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.5526207718820774
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2024-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.30708661417322825
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2024-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.32597625735122987
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2025-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.5511811023622046
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2025-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.32370608415398167
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2025-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.5275590551181102
+      },
+      {
+        "SOUID": 26362,
+        "source_label": "Germany \u00b7 26362",
+        "season_start": "2025-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6894813309692335
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2019-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.32283464566929143
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2020-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.4330708661417322
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2020-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.5748031496062993
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2020-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.40944881889763773
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2020-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.25196850393700787
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2021-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.44881889763779537
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2021-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.5196850393700787
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2021-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.4724409448818898
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2021-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.25984251968503935
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2022-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.3858267716535433
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2022-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.4803149606299213
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2022-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.4803149606299213
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2022-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.30708661417322825
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2023-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.40944881889763773
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2023-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.5354330708661417
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2023-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.5354330708661417
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2023-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.30708661417322825
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2023-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.40073286807419956
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2024-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.40944881889763773
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2024-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6207605045516825
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2024-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.5354330708661417
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2024-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6337909099240344
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2024-09-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.5354330708661417
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2024-09-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.5890310255126981
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2024-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.30708661417322825
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2024-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.4253268139836021
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2025-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.40944881889763773
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2025-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.5487168475176187
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2025-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.5354330708661417
+      },
+      {
+        "SOUID": 158944,
+        "source_label": "Hungary \u00b7 158944",
+        "season_start": "2025-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6319838338068385
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2019-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.6929133858267718
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2020-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.6535433070866141
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2020-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.6771653543307086
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2020-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.7165354330708662
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2020-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.4881889763779528
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2021-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.6692913385826771
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2021-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.6062992125984252
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2021-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.6692913385826771
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2021-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.7401574803149606
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2022-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.6614173228346456
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2022-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.5984251968503937
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2022-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.6692913385826771
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2022-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.5748031496062993
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2023-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.5433070866141732
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2023-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.6614173228346456
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2023-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.6771653543307086
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2023-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.5748031496062993
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2023-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6977946603236854
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2024-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.5433070866141732
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2024-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.7125772631378435
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2024-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.6614173228346456
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2024-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6946253748628032
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2024-09-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.6771653543307086
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2024-09-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.7036914438794458
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2024-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.5748031496062993
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2024-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6852138000294185
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2025-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.5433070866141732
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2025-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.7426228737710886
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2025-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.6614173228346456
+      },
+      {
+        "SOUID": 94369,
+        "source_label": "Italy \u00b7 94369",
+        "season_start": "2025-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.729678529680588
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2019-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.03937007874015741
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2020-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.15748031496062986
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2020-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.6771653543307086
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2020-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.25984251968503935
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2020-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.023622047244094446
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2021-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.2440944881889764
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2021-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.6535433070866141
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2021-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.2440944881889764
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2021-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.07874015748031504
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2022-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.15748031496062986
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2022-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.6141732283464567
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2022-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.17322834645669283
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2022-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.06299212598425208
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2023-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.15748031496062986
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2023-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.6062992125984252
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2023-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.4251968503937007
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2023-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.06299212598425208
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2023-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2023-12-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2024-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.15748031496062986
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2024-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.24970410862349923
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2024-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.6062992125984252
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2024-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.8135577258526991
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2024-09-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.4251968503937007
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2024-09-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.2238219612732247
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2024-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.06299212598425208
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2024-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2024-12-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2025-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.15748031496062986
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2025-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.18563917553918116
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2025-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.6062992125984252
+      },
+      {
+        "SOUID": 9826,
+        "source_label": "Norway \u00b7 9826",
+        "season_start": "2025-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6915499830025394
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2019-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.30708661417322825
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2020-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.32283464566929143
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2020-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.45669291338582685
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2020-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.4330708661417322
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2020-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.12598425196850394
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2021-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.35433070866141736
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2021-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.3858267716535433
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2021-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.46456692913385833
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2021-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.18897637795275601
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2022-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.30708661417322825
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2022-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.4173228346456692
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2022-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.3779527559055118
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2022-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.22834645669291342
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2023-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.39370078740157477
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2023-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.40944881889763773
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2023-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.46456692913385833
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2023-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.22834645669291342
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2023-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2023-12-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2024-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.39370078740157477
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2024-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2024-03-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2024-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.40944881889763773
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2024-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.4606816281412071
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2024-09-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.46456692913385833
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2024-09-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2024-09-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2024-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.22834645669291342
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2024-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2024-12-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2025-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.39370078740157477
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2025-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.4073306716926295
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2025-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.40944881889763773
+      },
+      {
+        "SOUID": 137920,
+        "source_label": "Poland \u00b7 137920",
+        "season_start": "2025-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.45263472298964097
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2019-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.46456692913385833
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2020-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.4803149606299213
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2020-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.4881889763779528
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2020-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.4173228346456692
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2020-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.4251968503937007
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2021-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.46456692913385833
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2021-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.46456692913385833
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2021-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.49606299212598426
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2021-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.40157480314960625
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2022-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.4330708661417322
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2022-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.4330708661417322
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2022-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.22834645669291342
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2022-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.3307086614173229
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2023-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.4251968503937007
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2023-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.4173228346456692
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2023-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.4881889763779528
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2023-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.3307086614173229
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2023-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2023-12-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2024-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.4251968503937007
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2024-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.5052334216253348
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2024-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.4173228346456692
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2024-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.3036332714147479
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2024-09-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.4881889763779528
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2024-09-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.3146723048188658
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2024-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.3307086614173229
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2024-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.3605485292600889
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2025-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.4251968503937007
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2025-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.5155409498347995
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2025-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.4173228346456692
+      },
+      {
+        "SOUID": 20595,
+        "source_label": "Spain \u00b7 20595",
+        "season_start": "2025-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.3013527053291972
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2019-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.4330708661417322
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2020-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.45669291338582685
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2020-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.7716535433070866
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2020-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.5748031496062993
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2020-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.17322834645669283
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2021-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.4409448818897639
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2021-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.7480314960629921
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2021-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.6220472440944882
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2021-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.40157480314960625
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2022-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.4251968503937007
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2022-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.7401574803149606
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2022-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.5905511811023623
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2022-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.36220472440944884
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2023-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.46456692913385833
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2023-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.7401574803149606
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2023-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.5433070866141732
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2023-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.36220472440944884
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2023-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2023-12-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2024-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.46456692913385833
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2024-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.5014158739268022
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2024-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.7401574803149606
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2024-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.7753901861725483
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2024-09-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.5433070866141732
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2024-09-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6793176830120151
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2024-12-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.36220472440944884
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2024-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2024-12-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2025-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.46456692913385833
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2025-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.5547283384407781
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2025-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.7401574803149606
+      },
+      {
+        "SOUID": 35790,
+        "source_label": "Sweden \u00b7 35790",
+        "season_start": "2025-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.7641992127328394
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2019-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.5433070866141732
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2020-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.6299212598425197
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2020-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.7559055118110236
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2020-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.5590551181102361
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2020-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.4330708661417322
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2021-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.5511811023622046
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2021-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.6535433070866141
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2021-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.68503937007874
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2021-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.5984251968503937
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2022-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.6299212598425197
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2022-06-01",
+        "origin": "Old observed",
+        "ndvi": 0.7874015748031495
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2022-09-01",
+        "origin": "Old observed",
+        "ndvi": 0.7165354330708662
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2022-12-01",
+        "origin": "Old observed",
+        "ndvi": 0.5511811023622046
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2023-03-01",
+        "origin": "Old observed",
+        "ndvi": 0.5039370078740157
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2023-06-01",
+        "origin": "Old observed",
+        "ndvi": null
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2023-09-01",
+        "origin": "Old observed",
+        "ndvi": null
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2023-12-01",
+        "origin": "Old carried forward",
+        "ndvi": null
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2023-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2023-12-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2024-03-01",
+        "origin": "Old carried forward",
+        "ndvi": null
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2024-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2024-03-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2024-06-01",
+        "origin": "Old carried forward",
+        "ndvi": null
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2024-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2024-06-01",
+        "origin": "Missing",
+        "ndvi": null
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2024-09-01",
+        "origin": "Old carried forward",
+        "ndvi": null
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2024-09-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.5620864022323258
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2024-12-01",
+        "origin": "Old carried forward",
+        "ndvi": null
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2024-12-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6624161433215893
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2025-03-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.5039370078740157
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2025-03-01",
+        "origin": "New satellite pilot",
+        "ndvi": 0.6771945137619967
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2025-06-01",
+        "origin": "Old carried forward",
+        "ndvi": 0.7559055118110236
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2025-06-01",
+        "origin": "New satellite pilot",
+        "ndvi": null
+      },
+      {
+        "SOUID": 5814,
+        "source_label": "United Kingdom \u00b7 5814",
+        "season_start": "2025-06-01",
+        "origin": "Missing",
+        "ndvi": null
+      }
+    ]
+  },
+  "facet": {
+    "field": "source_label",
+    "sort": [
+      "Austria \u00b7 135789",
+      "Denmark \u00b7 141832",
+      "Finland \u00b7 45501",
+      "France \u00b7 4119",
+      "Germany \u00b7 26362",
+      "Hungary \u00b7 158944",
+      "Italy \u00b7 94369",
+      "Norway \u00b7 9826",
+      "Poland \u00b7 137920",
+      "Spain \u00b7 20595",
+      "Sweden \u00b7 35790",
+      "United Kingdom \u00b7 5814"
+    ],
+    "title": null,
+    "type": "nominal"
+  },
+  "spec": {
+    "layer": [
+      {
+        "mark": {
+          "type": "line",
+          "invalid": "break-paths-show-domains",
+          "point": {
+            "filled": true,
+            "size": 25
+          },
+          "strokeWidth": 1.8
+        },
+        "encoding": {
+          "color": {
+            "field": "origin",
+            "legend": {
+              "columns": 4,
+              "orient": "top",
+              "title": null
+            },
+            "scale": {
+              "domain": [
+                "Old observed",
+                "Old carried forward",
+                "New satellite pilot",
+                "Missing"
+              ],
+              "range": [
+                "#0072B2",
+                "#D98B23",
+                "#008A70",
+                "#B8B8B8"
+              ]
+            },
+            "type": "nominal"
+          },
+          "strokeDash": {
+            "field": "origin",
+            "legend": null,
+            "scale": {
+              "domain": [
+                "Old observed",
+                "Old carried forward",
+                "New satellite pilot",
+                "Missing"
+              ],
+              "range": [
+                [
+                  1,
+                  0
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ]
+              ]
+            },
+            "type": "nominal"
+          },
+          "tooltip": [
+            {
+              "field": "source_label",
+              "type": "nominal"
+            },
+            {
+              "field": "season_start",
+              "type": "temporal"
+            },
+            {
+              "field": "origin",
+              "type": "nominal"
+            },
+            {
+              "field": "ndvi",
+              "format": ".3f",
+              "type": "quantitative"
+            }
+          ],
+          "x": {
+            "axis": {
+              "format": "%Y",
+              "grid": false,
+              "tickCount": "year"
+            },
+            "field": "season_start",
+            "title": null,
+            "type": "temporal"
+          },
+          "y": {
+            "field": "ndvi",
+            "scale": {
+              "domain": [
+                -0.18,
+                1
+              ]
+            },
+            "title": "NDVI",
+            "type": "quantitative"
+          }
+        },
+        "transform": [
+          {
+            "filter": "(datum.origin !== 'Missing')"
+          }
+        ]
+      },
+      {
+        "mark": {
+          "type": "point",
+          "color": "#B8B8B8",
+          "shape": "cross",
+          "size": 35,
+          "strokeWidth": 1.5
+        },
+        "encoding": {
+          "x": {
+            "axis": {
+              "format": "%Y",
+              "grid": false,
+              "tickCount": "year"
+            },
+            "field": "season_start",
+            "title": null,
+            "type": "temporal"
+          },
+          "y": {
+            "datum": -0.155
+          }
+        },
+        "transform": [
+          {
+            "filter": "(datum.origin === 'Missing')"
+          }
+        ]
+      },
+      {
+        "mark": {
+          "type": "rule",
+          "color": "#999999",
+          "strokeDash": [
+            3,
+            3
+          ],
+          "strokeWidth": 0.8
+        },
+        "encoding": {
+          "x": {
+            "field": "cutoff",
+            "type": "temporal"
+          }
+        },
+        "transform": [
+          {
+            "aggregate": [],
+            "groupby": [
+              "source_label"
+            ]
+          },
+          {
+            "calculate": "datetime(2023, 11, 1)",
+            "as": "cutoff"
+          }
+        ]
+      }
+    ],
+    "height": 155,
+    "width": 275
+  },
+  "columns": 3,
+  "title": {
+    "text": "Old and new NDVI at the same 12 pilot locations",
+    "subtitle": [
+      "Blue: original observed seasons. Orange dashed: values currently carried forward. Green: new satellite estimates.",
+      "Grey crosses at the bottom mark failed candidate coverage, not NDVI = 0. Gaps remain gaps.",
+      "Vertical lines mark December 2023. These are pilot estimates; the analysis release is unchanged."
+    ]
+  },
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json"
+}

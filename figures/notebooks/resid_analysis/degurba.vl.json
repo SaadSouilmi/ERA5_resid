@@ -1,0 +1,283 @@
+{
+  "config": {
+    "view": {
+      "continuousWidth": 300,
+      "continuousHeight": 300
+    }
+  },
+  "vconcat": [
+    {
+      "layer": [
+        {
+          "data": {
+            "name": "data-a0a55d106695e8d630baff0f16eee66d"
+          },
+          "mark": {
+            "type": "rule",
+            "color": "grey",
+            "opacity": 0.5,
+            "strokeDash": [
+              4,
+              4
+            ]
+          },
+          "encoding": {
+            "y": {
+              "field": "y",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "data": {
+            "name": "data-def36b8a46c8f7a081479c393e07695c"
+          },
+          "mark": {
+            "type": "bar",
+            "opacity": 0.8
+          },
+          "encoding": {
+            "color": {
+              "field": "color",
+              "legend": null,
+              "scale": null,
+              "type": "nominal"
+            },
+            "tooltip": [
+              {
+                "field": "label",
+                "title": "Class",
+                "type": "nominal"
+              },
+              {
+                "field": "mean",
+                "format": ".3f",
+                "title": "Mean residual",
+                "type": "quantitative"
+              },
+              {
+                "field": "ci_lo",
+                "format": ".3f",
+                "title": "CI low",
+                "type": "quantitative"
+              },
+              {
+                "field": "ci_hi",
+                "format": ".3f",
+                "title": "CI high",
+                "type": "quantitative"
+              }
+            ],
+            "x": {
+              "axis": {
+                "labelAngle": -30
+              },
+              "field": "label",
+              "sort": [
+                "Very low density rural",
+                "Low density rural",
+                "Rural cluster",
+                "Suburban",
+                "Semi-dense urban cluster",
+                "Dense urban cluster",
+                "Urban centre"
+              ],
+              "title": "DEGURBA class",
+              "type": "nominal"
+            },
+            "y": {
+              "field": "mean",
+              "title": "Mean residual (\u00b0C)",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "data": {
+            "name": "data-def36b8a46c8f7a081479c393e07695c"
+          },
+          "mark": {
+            "type": "errorbar",
+            "color": "black",
+            "ticks": true
+          },
+          "encoding": {
+            "x": {
+              "field": "label",
+              "sort": [
+                "Very low density rural",
+                "Low density rural",
+                "Rural cluster",
+                "Suburban",
+                "Semi-dense urban cluster",
+                "Dense urban cluster",
+                "Urban centre"
+              ],
+              "type": "nominal"
+            },
+            "y": {
+              "field": "ci_lo",
+              "type": "quantitative"
+            },
+            "y2": {
+              "field": "ci_hi"
+            }
+          }
+        }
+      ],
+      "height": 260,
+      "width": 640
+    },
+    {
+      "data": {
+        "name": "data-58805145ca1e17156287987187aa3e72"
+      },
+      "mark": {
+        "type": "bar",
+        "color": "#4C78A8",
+        "opacity": 0.6
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "degurba_label",
+            "title": "Class",
+            "type": "nominal"
+          },
+          {
+            "field": "share",
+            "format": ".1%",
+            "title": "Share",
+            "type": "quantitative"
+          }
+        ],
+        "x": {
+          "axis": {
+            "labelAngle": -30
+          },
+          "field": "degurba_label",
+          "sort": [
+            "Very low density rural",
+            "Low density rural",
+            "Rural cluster",
+            "Suburban",
+            "Semi-dense urban cluster",
+            "Dense urban cluster",
+            "Urban centre"
+          ],
+          "title": "DEGURBA class",
+          "type": "nominal"
+        },
+        "y": {
+          "field": "share",
+          "title": "Obs share",
+          "type": "quantitative"
+        }
+      },
+      "height": 100,
+      "width": 640
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "x": "shared"
+    }
+  },
+  "spacing": 4,
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json",
+  "datasets": {
+    "data-a0a55d106695e8d630baff0f16eee66d": [
+      {
+        "y": 0
+      }
+    ],
+    "data-def36b8a46c8f7a081479c393e07695c": [
+      {
+        "label": "Very low density rural",
+        "mean": 1.1402367877002073,
+        "ci_lo": 1.0294370925957537,
+        "ci_hi": 1.2580420837292983,
+        "color": "#90EE90"
+      },
+      {
+        "label": "Low density rural",
+        "mean": 1.7413996760140715,
+        "ci_lo": 1.648836962584061,
+        "ci_hi": 1.8319257957660298,
+        "color": "#228B22"
+      },
+      {
+        "label": "Rural cluster",
+        "mean": 2.130295105427097,
+        "ci_lo": 1.9213196394143293,
+        "ci_hi": 2.3392113635104774,
+        "color": "#006400"
+      },
+      {
+        "label": "Suburban",
+        "mean": 1.7541867227824721,
+        "ci_lo": 1.6270188999619553,
+        "ci_hi": 1.8778402368028717,
+        "color": "#FFA500"
+      },
+      {
+        "label": "Semi-dense urban cluster",
+        "mean": 2.703768070807388,
+        "ci_lo": 2.1740194495686644,
+        "ci_hi": 3.3014068666673815,
+        "color": "#FF8C00"
+      },
+      {
+        "label": "Dense urban cluster",
+        "mean": 1.9923757982848442,
+        "ci_lo": 1.7998119669754333,
+        "ci_hi": 2.2138975814287174,
+        "color": "#DC143C"
+      },
+      {
+        "label": "Urban centre",
+        "mean": 1.71680882394949,
+        "ci_lo": 1.5893567066508034,
+        "ci_hi": 1.8511385045401207,
+        "color": "#8B0000"
+      }
+    ],
+    "data-58805145ca1e17156287987187aa3e72": [
+      {
+        "degurba_label": "Low density rural",
+        "count": 2205318,
+        "share": 0.31692825405329433
+      },
+      {
+        "degurba_label": "Very low density rural",
+        "count": 2532936,
+        "share": 0.36401053458446136
+      },
+      {
+        "degurba_label": "Suburban",
+        "count": 712167,
+        "share": 0.10234616681329971
+      },
+      {
+        "degurba_label": "Semi-dense urban cluster",
+        "count": 102984,
+        "share": 0.014799924235608861
+      },
+      {
+        "degurba_label": "Dense urban cluster",
+        "count": 320232,
+        "share": 0.046020831758501295
+      },
+      {
+        "degurba_label": "Urban centre",
+        "count": 516376,
+        "share": 0.07420886426131013
+      },
+      {
+        "degurba_label": "Rural cluster",
+        "count": 537064,
+        "share": 0.07718195554331778
+      }
+    ]
+  }
+}

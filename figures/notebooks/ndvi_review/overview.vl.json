@@ -1,0 +1,1008 @@
+{
+  "config": {
+    "view": {
+      "continuousWidth": 300,
+      "continuousHeight": 300,
+      "stroke": null
+    },
+    "axis": {
+      "domainColor": "#444444",
+      "domainWidth": 0.7,
+      "gridColor": "#e5e5e5",
+      "gridWidth": 0.5,
+      "labelColor": "#222222",
+      "labelFont": "DejaVu Serif",
+      "labelFontSize": 10,
+      "labelPadding": 5,
+      "tickColor": "#444444",
+      "tickSize": 4,
+      "tickWidth": 0.7,
+      "titleColor": "#222222",
+      "titleFont": "DejaVu Serif",
+      "titleFontSize": 11,
+      "titleFontWeight": "normal",
+      "titlePadding": 10
+    },
+    "background": "white",
+    "font": "DejaVu Serif",
+    "legend": {
+      "gradientThickness": 10,
+      "labelFont": "DejaVu Serif",
+      "labelFontSize": 10,
+      "titleFont": "DejaVu Serif",
+      "titleFontSize": 11,
+      "titleFontWeight": "normal"
+    },
+    "padding": 8,
+    "title": {
+      "anchor": "start",
+      "font": "DejaVu Serif",
+      "fontSize": 12,
+      "offset": 10
+    }
+  },
+  "vconcat": [
+    {
+      "layer": [
+        {
+          "data": {
+            "values": [
+              {
+                "season_start": "2019-12-01",
+                "current_available": 3542,
+                "preview_available": 3542,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.33920068291858774
+              },
+              {
+                "season_start": "2020-03-01",
+                "current_available": 3556,
+                "preview_available": 3556,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.40817781635563266
+              },
+              {
+                "season_start": "2020-06-01",
+                "current_available": 3561,
+                "preview_available": 3561,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.5042664738516784
+              },
+              {
+                "season_start": "2020-09-01",
+                "current_available": 3666,
+                "preview_available": 3666,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.46169310669226904
+              },
+              {
+                "season_start": "2020-12-01",
+                "current_available": 3686,
+                "preview_available": 3686,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.26519368882470806
+              },
+              {
+                "season_start": "2021-03-01",
+                "current_available": 3591,
+                "preview_available": 3591,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.39764327704650954
+              },
+              {
+                "season_start": "2021-06-01",
+                "current_available": 3596,
+                "preview_available": 3596,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.49855701435540806
+              },
+              {
+                "season_start": "2021-09-01",
+                "current_available": 3611,
+                "preview_available": 3611,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.4614966953556172
+              },
+              {
+                "season_start": "2021-12-01",
+                "current_available": 3853,
+                "preview_available": 3853,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.30467720213924726
+              },
+              {
+                "season_start": "2022-03-01",
+                "current_available": 3468,
+                "preview_available": 3468,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.39432516869647355
+              },
+              {
+                "season_start": "2022-06-01",
+                "current_available": 3481,
+                "preview_available": 3481,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.473614921949752
+              },
+              {
+                "season_start": "2022-09-01",
+                "current_available": 3767,
+                "preview_available": 3767,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.45404873236080423
+              },
+              {
+                "season_start": "2022-12-01",
+                "current_available": 3547,
+                "preview_available": 3547,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.30105068273288504
+              },
+              {
+                "season_start": "2023-03-01",
+                "current_available": 3528,
+                "preview_available": 3528,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.4004209295266663
+              },
+              {
+                "season_start": "2023-06-01",
+                "current_available": 3543,
+                "preview_available": 3543,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.4986298812563756
+              },
+              {
+                "season_start": "2023-09-01",
+                "current_available": 3563,
+                "preview_available": 3563,
+                "new_source_seasons": 0,
+                "series": "Current analysis",
+                "ndvi": 0.4639017372337299
+              },
+              {
+                "season_start": "2023-12-01",
+                "current_available": 3351,
+                "preview_available": 3351,
+                "new_source_seasons": 3,
+                "series": "Current analysis",
+                "ndvi": 0.2956903216104254
+              },
+              {
+                "season_start": "2024-03-01",
+                "current_available": 3557,
+                "preview_available": 3557,
+                "new_source_seasons": 8,
+                "series": "Current analysis",
+                "ndvi": 0.39282196135379055
+              },
+              {
+                "season_start": "2024-06-01",
+                "current_available": 3206,
+                "preview_available": 3206,
+                "new_source_seasons": 10,
+                "series": "Current analysis",
+                "ndvi": 0.494869364036919
+              },
+              {
+                "season_start": "2024-09-01",
+                "current_available": 3099,
+                "preview_available": 3099,
+                "new_source_seasons": 9,
+                "series": "Current analysis",
+                "ndvi": 0.458423215007127
+              },
+              {
+                "season_start": "2024-12-01",
+                "current_available": 3246,
+                "preview_available": 3246,
+                "new_source_seasons": 5,
+                "series": "Current analysis",
+                "ndvi": 0.3138908699259173
+              },
+              {
+                "season_start": "2025-03-01",
+                "current_available": 3214,
+                "preview_available": 3214,
+                "new_source_seasons": 10,
+                "series": "Current analysis",
+                "ndvi": 0.39923513761153223
+              },
+              {
+                "season_start": "2025-06-01",
+                "current_available": 3074,
+                "preview_available": 3074,
+                "new_source_seasons": 9,
+                "series": "Current analysis",
+                "ndvi": 0.4974154580709942
+              },
+              {
+                "season_start": "2023-12-01",
+                "current_available": 3351,
+                "preview_available": 3351,
+                "new_source_seasons": 3,
+                "series": "Preview with new pilot values",
+                "ndvi": 0.2957617403355613
+              },
+              {
+                "season_start": "2024-03-01",
+                "current_available": 3557,
+                "preview_available": 3557,
+                "new_source_seasons": 8,
+                "series": "Preview with new pilot values",
+                "ndvi": 0.3930448467371587
+              },
+              {
+                "season_start": "2024-06-01",
+                "current_available": 3206,
+                "preview_available": 3206,
+                "new_source_seasons": 10,
+                "series": "Preview with new pilot values",
+                "ndvi": 0.49499870473709956
+              },
+              {
+                "season_start": "2024-09-01",
+                "current_available": 3099,
+                "preview_available": 3099,
+                "new_source_seasons": 9,
+                "series": "Preview with new pilot values",
+                "ndvi": 0.4583967530551504
+              },
+              {
+                "season_start": "2024-12-01",
+                "current_available": 3246,
+                "preview_available": 3246,
+                "new_source_seasons": 5,
+                "series": "Preview with new pilot values",
+                "ndvi": 0.31396890062912625
+              },
+              {
+                "season_start": "2025-03-01",
+                "current_available": 3214,
+                "preview_available": 3214,
+                "new_source_seasons": 10,
+                "series": "Preview with new pilot values",
+                "ndvi": 0.399429451684068
+              },
+              {
+                "season_start": "2025-06-01",
+                "current_available": 3074,
+                "preview_available": 3074,
+                "new_source_seasons": 9,
+                "series": "Preview with new pilot values",
+                "ndvi": 0.4974803624170076
+              }
+            ]
+          },
+          "mark": {
+            "type": "line",
+            "point": true,
+            "strokeWidth": 2
+          },
+          "encoding": {
+            "color": {
+              "field": "series",
+              "legend": {
+                "orient": "top",
+                "title": null
+              },
+              "scale": {
+                "domain": [
+                  "Current analysis",
+                  "Preview with new pilot values"
+                ],
+                "range": [
+                  "#555555",
+                  "#008A70"
+                ]
+              },
+              "type": "nominal"
+            },
+            "strokeDash": {
+              "field": "series",
+              "legend": null,
+              "scale": {
+                "domain": [
+                  "Current analysis",
+                  "Preview with new pilot values"
+                ],
+                "range": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    5,
+                    3
+                  ]
+                ]
+              },
+              "type": "nominal"
+            },
+            "tooltip": [
+              {
+                "field": "season_start",
+                "type": "temporal"
+              },
+              {
+                "field": "series",
+                "type": "nominal"
+              },
+              {
+                "field": "ndvi",
+                "format": ".5f",
+                "type": "quantitative"
+              },
+              {
+                "field": "new_source_seasons",
+                "type": "quantitative"
+              }
+            ],
+            "x": {
+              "axis": {
+                "format": "%Y",
+                "grid": false,
+                "tickCount": "year"
+              },
+              "field": "season_start",
+              "title": null,
+              "type": "temporal"
+            },
+            "y": {
+              "field": "ndvi",
+              "scale": {
+                "zero": false
+              },
+              "title": "Mean NDVI",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "season_start": "2023-12-01"
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "color": "#777777",
+            "strokeDash": [
+              4,
+              4
+            ],
+            "strokeWidth": 1
+          },
+          "encoding": {
+            "x": {
+              "axis": {
+                "format": "%Y",
+                "grid": false,
+                "tickCount": "year"
+              },
+              "field": "season_start",
+              "title": null,
+              "type": "temporal"
+            }
+          }
+        }
+      ],
+      "height": 245,
+      "title": {
+        "text": "A. Seasonal NDVI across the full retained sample",
+        "subtitle": [
+          "Equal weight per active observation source. The two means nearly overlap.",
+          "Dashed vertical line: December 2023, the first missing raster season."
+        ]
+      },
+      "width": 880
+    },
+    {
+      "layer": [
+        {
+          "data": {
+            "values": [
+              {
+                "season_start": "2024-03-01",
+                "origin": "New satellite pilot",
+                "source_seasons": 8,
+                "station_days": 736,
+                "order": 2
+              },
+              {
+                "season_start": "2021-03-01",
+                "origin": "Missing",
+                "source_seasons": 75,
+                "station_days": 6781,
+                "order": 3
+              },
+              {
+                "season_start": "2022-09-01",
+                "origin": "Old observed",
+                "source_seasons": 3767,
+                "station_days": 321409,
+                "order": 0
+              },
+              {
+                "season_start": "2025-06-01",
+                "origin": "Old carried forward",
+                "source_seasons": 3065,
+                "station_days": 212614,
+                "order": 1
+              },
+              {
+                "season_start": "2025-03-01",
+                "origin": "Old carried forward",
+                "source_seasons": 3204,
+                "station_days": 279939,
+                "order": 1
+              },
+              {
+                "season_start": "2023-09-01",
+                "origin": "Old observed",
+                "source_seasons": 3563,
+                "station_days": 303940,
+                "order": 0
+              },
+              {
+                "season_start": "2024-03-01",
+                "origin": "Missing",
+                "source_seasons": 133,
+                "station_days": 7017,
+                "order": 3
+              },
+              {
+                "season_start": "2024-03-01",
+                "origin": "Old carried forward",
+                "source_seasons": 3549,
+                "station_days": 294059,
+                "order": 1
+              },
+              {
+                "season_start": "2022-06-01",
+                "origin": "Missing",
+                "source_seasons": 75,
+                "station_days": 6706,
+                "order": 3
+              },
+              {
+                "season_start": "2023-03-01",
+                "origin": "Missing",
+                "source_seasons": 86,
+                "station_days": 7455,
+                "order": 3
+              },
+              {
+                "season_start": "2021-09-01",
+                "origin": "Missing",
+                "source_seasons": 75,
+                "station_days": 6722,
+                "order": 3
+              },
+              {
+                "season_start": "2025-03-01",
+                "origin": "New satellite pilot",
+                "source_seasons": 10,
+                "station_days": 786,
+                "order": 2
+              },
+              {
+                "season_start": "2022-09-01",
+                "origin": "Missing",
+                "source_seasons": 77,
+                "station_days": 6791,
+                "order": 3
+              },
+              {
+                "season_start": "2019-12-01",
+                "origin": "Missing",
+                "source_seasons": 98,
+                "station_days": 5697,
+                "order": 3
+              },
+              {
+                "season_start": "2024-06-01",
+                "origin": "New satellite pilot",
+                "source_seasons": 10,
+                "station_days": 918,
+                "order": 2
+              },
+              {
+                "season_start": "2020-03-01",
+                "origin": "Missing",
+                "source_seasons": 76,
+                "station_days": 6745,
+                "order": 3
+              },
+              {
+                "season_start": "2024-12-01",
+                "origin": "New satellite pilot",
+                "source_seasons": 5,
+                "station_days": 418,
+                "order": 2
+              },
+              {
+                "season_start": "2020-09-01",
+                "origin": "Missing",
+                "source_seasons": 76,
+                "station_days": 6726,
+                "order": 3
+              },
+              {
+                "season_start": "2020-12-01",
+                "origin": "Old observed",
+                "source_seasons": 3686,
+                "station_days": 311691,
+                "order": 0
+              },
+              {
+                "season_start": "2023-09-01",
+                "origin": "Missing",
+                "source_seasons": 87,
+                "station_days": 6620,
+                "order": 3
+              },
+              {
+                "season_start": "2025-06-01",
+                "origin": "New satellite pilot",
+                "source_seasons": 9,
+                "station_days": 703,
+                "order": 2
+              },
+              {
+                "season_start": "2021-03-01",
+                "origin": "Old observed",
+                "source_seasons": 3591,
+                "station_days": 324367,
+                "order": 0
+              },
+              {
+                "season_start": "2024-09-01",
+                "origin": "New satellite pilot",
+                "source_seasons": 9,
+                "station_days": 758,
+                "order": 2
+              },
+              {
+                "season_start": "2020-03-01",
+                "origin": "Old observed",
+                "source_seasons": 3556,
+                "station_days": 309589,
+                "order": 0
+              },
+              {
+                "season_start": "2024-12-01",
+                "origin": "Missing",
+                "source_seasons": 155,
+                "station_days": 9000,
+                "order": 3
+              },
+              {
+                "season_start": "2021-12-01",
+                "origin": "Missing",
+                "source_seasons": 98,
+                "station_days": 8607,
+                "order": 3
+              },
+              {
+                "season_start": "2022-03-01",
+                "origin": "Old observed",
+                "source_seasons": 3468,
+                "station_days": 305799,
+                "order": 0
+              },
+              {
+                "season_start": "2023-12-01",
+                "origin": "Old carried forward",
+                "source_seasons": 3348,
+                "station_days": 285668,
+                "order": 1
+              },
+              {
+                "season_start": "2020-06-01",
+                "origin": "Old observed",
+                "source_seasons": 3561,
+                "station_days": 320725,
+                "order": 0
+              },
+              {
+                "season_start": "2020-12-01",
+                "origin": "Missing",
+                "source_seasons": 142,
+                "station_days": 8067,
+                "order": 3
+              },
+              {
+                "season_start": "2025-06-01",
+                "origin": "Missing",
+                "source_seasons": 53,
+                "station_days": 560,
+                "order": 3
+              },
+              {
+                "season_start": "2024-09-01",
+                "origin": "Old carried forward",
+                "source_seasons": 3090,
+                "station_days": 261601,
+                "order": 1
+              },
+              {
+                "season_start": "2019-12-01",
+                "origin": "Old observed",
+                "source_seasons": 3542,
+                "station_days": 203129,
+                "order": 0
+              },
+              {
+                "season_start": "2021-06-01",
+                "origin": "Old observed",
+                "source_seasons": 3596,
+                "station_days": 323507,
+                "order": 0
+              },
+              {
+                "season_start": "2022-12-01",
+                "origin": "Old observed",
+                "source_seasons": 3547,
+                "station_days": 309869,
+                "order": 0
+              },
+              {
+                "season_start": "2021-06-01",
+                "origin": "Missing",
+                "source_seasons": 78,
+                "station_days": 7043,
+                "order": 3
+              },
+              {
+                "season_start": "2024-12-01",
+                "origin": "Old carried forward",
+                "source_seasons": 3241,
+                "station_days": 257431,
+                "order": 1
+              },
+              {
+                "season_start": "2020-06-01",
+                "origin": "Missing",
+                "source_seasons": 75,
+                "station_days": 6781,
+                "order": 3
+              },
+              {
+                "season_start": "2022-06-01",
+                "origin": "Old observed",
+                "source_seasons": 3481,
+                "station_days": 309453,
+                "order": 0
+              },
+              {
+                "season_start": "2025-03-01",
+                "origin": "Missing",
+                "source_seasons": 56,
+                "station_days": 4996,
+                "order": 3
+              },
+              {
+                "season_start": "2023-12-01",
+                "origin": "Missing",
+                "source_seasons": 102,
+                "station_days": 9161,
+                "order": 3
+              },
+              {
+                "season_start": "2023-06-01",
+                "origin": "Missing",
+                "source_seasons": 86,
+                "station_days": 6732,
+                "order": 3
+              },
+              {
+                "season_start": "2023-12-01",
+                "origin": "New satellite pilot",
+                "source_seasons": 3,
+                "station_days": 243,
+                "order": 2
+              },
+              {
+                "season_start": "2024-06-01",
+                "origin": "Old carried forward",
+                "source_seasons": 3196,
+                "station_days": 277394,
+                "order": 1
+              },
+              {
+                "season_start": "2020-09-01",
+                "origin": "Old observed",
+                "source_seasons": 3666,
+                "station_days": 317891,
+                "order": 0
+              },
+              {
+                "season_start": "2023-03-01",
+                "origin": "Old observed",
+                "source_seasons": 3528,
+                "station_days": 317890,
+                "order": 0
+              },
+              {
+                "season_start": "2024-06-01",
+                "origin": "Missing",
+                "source_seasons": 123,
+                "station_days": 6623,
+                "order": 3
+              },
+              {
+                "season_start": "2021-12-01",
+                "origin": "Old observed",
+                "source_seasons": 3853,
+                "station_days": 310020,
+                "order": 0
+              },
+              {
+                "season_start": "2023-06-01",
+                "origin": "Old observed",
+                "source_seasons": 3543,
+                "station_days": 317744,
+                "order": 0
+              },
+              {
+                "season_start": "2021-09-01",
+                "origin": "Old observed",
+                "source_seasons": 3611,
+                "station_days": 320774,
+                "order": 0
+              },
+              {
+                "season_start": "2024-09-01",
+                "origin": "Missing",
+                "source_seasons": 126,
+                "station_days": 6516,
+                "order": 3
+              },
+              {
+                "season_start": "2022-03-01",
+                "origin": "Missing",
+                "source_seasons": 75,
+                "station_days": 6808,
+                "order": 3
+              },
+              {
+                "season_start": "2022-12-01",
+                "origin": "Missing",
+                "source_seasons": 104,
+                "station_days": 9195,
+                "order": 3
+              }
+            ]
+          },
+          "mark": {
+            "type": "bar",
+            "size": 26
+          },
+          "encoding": {
+            "color": {
+              "field": "origin",
+              "legend": {
+                "columns": 4,
+                "orient": "top",
+                "title": null
+              },
+              "scale": {
+                "domain": [
+                  "Old observed",
+                  "Old carried forward",
+                  "New satellite pilot",
+                  "Missing"
+                ],
+                "range": [
+                  "#0072B2",
+                  "#D98B23",
+                  "#008A70",
+                  "#B8B8B8"
+                ]
+              },
+              "type": "nominal"
+            },
+            "order": {
+              "field": "order",
+              "sort": "ascending",
+              "type": "quantitative"
+            },
+            "tooltip": [
+              {
+                "field": "season_start",
+                "type": "temporal"
+              },
+              {
+                "field": "origin",
+                "type": "nominal"
+              },
+              {
+                "field": "source_seasons",
+                "type": "quantitative"
+              },
+              {
+                "field": "station_days",
+                "type": "quantitative"
+              }
+            ],
+            "x": {
+              "axis": {
+                "format": "%Y",
+                "grid": false,
+                "tickCount": "year"
+              },
+              "field": "season_start",
+              "title": null,
+              "type": "temporal"
+            },
+            "y": {
+              "field": "source_seasons",
+              "stack": "zero",
+              "title": "Active sources",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "season_start": "2023-12-01",
+                "current_mean": 0.2956903216104254,
+                "preview_mean": 0.2957617403355613,
+                "current_available": 3351,
+                "preview_available": 3351,
+                "new_source_seasons": 3,
+                "active_sources": 3453
+              },
+              {
+                "season_start": "2024-03-01",
+                "current_mean": 0.39282196135379055,
+                "preview_mean": 0.3930448467371587,
+                "current_available": 3557,
+                "preview_available": 3557,
+                "new_source_seasons": 8,
+                "active_sources": 3690
+              },
+              {
+                "season_start": "2024-06-01",
+                "current_mean": 0.494869364036919,
+                "preview_mean": 0.49499870473709956,
+                "current_available": 3206,
+                "preview_available": 3206,
+                "new_source_seasons": 10,
+                "active_sources": 3329
+              },
+              {
+                "season_start": "2024-09-01",
+                "current_mean": 0.458423215007127,
+                "preview_mean": 0.4583967530551504,
+                "current_available": 3099,
+                "preview_available": 3099,
+                "new_source_seasons": 9,
+                "active_sources": 3225
+              },
+              {
+                "season_start": "2024-12-01",
+                "current_mean": 0.3138908699259173,
+                "preview_mean": 0.31396890062912625,
+                "current_available": 3246,
+                "preview_available": 3246,
+                "new_source_seasons": 5,
+                "active_sources": 3401
+              },
+              {
+                "season_start": "2025-03-01",
+                "current_mean": 0.39923513761153223,
+                "preview_mean": 0.399429451684068,
+                "current_available": 3214,
+                "preview_available": 3214,
+                "new_source_seasons": 10,
+                "active_sources": 3270
+              },
+              {
+                "season_start": "2025-06-01",
+                "current_mean": 0.4974154580709942,
+                "preview_mean": 0.4974803624170076,
+                "current_available": 3074,
+                "preview_available": 3074,
+                "new_source_seasons": 9,
+                "active_sources": 3127
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "color": "#008A70",
+            "dy": -9,
+            "fontSize": 11
+          },
+          "encoding": {
+            "text": {
+              "field": "new_source_seasons",
+              "type": "quantitative"
+            },
+            "x": {
+              "axis": {
+                "format": "%Y",
+                "grid": false,
+                "tickCount": "year"
+              },
+              "field": "season_start",
+              "title": null,
+              "type": "temporal"
+            },
+            "y": {
+              "field": "active_sources",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "season_start": "2023-12-01"
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "color": "#777777",
+            "strokeDash": [
+              4,
+              4
+            ],
+            "strokeWidth": 1
+          },
+          "encoding": {
+            "x": {
+              "axis": {
+                "format": "%Y",
+                "grid": false,
+                "tickCount": "year"
+              },
+              "field": "season_start",
+              "title": null,
+              "type": "temporal"
+            }
+          }
+        }
+      ],
+      "height": 245,
+      "title": {
+        "text": "B. Where the preview values come from",
+        "subtitle": [
+          "New pilot values replace eligible carried or missing values only in this preview.",
+          "Green numbers give the new source-season count; narrow green segments are to scale."
+        ]
+      },
+      "width": 880
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
+  },
+  "spacing": 32,
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json"
+}

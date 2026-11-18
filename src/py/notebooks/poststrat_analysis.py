@@ -660,7 +660,7 @@ def _(
     _Alpha = 0.05
     _RngSeed = 0
 
-    _StationPdBs = StationDfGreg.to_pandas().copy()
+    _StationPdBs = StationDfGreg.sort("STAID").to_pandas().copy()
     _N = len(_StationPdBs)
     _Rng = Np.random.default_rng(_RngSeed)
 
@@ -748,6 +748,67 @@ def _(
     over-representation of suburban and near-coast stations.
     """)
     return (BootstrapResults,)
+
+
+@app.cell
+def _(BootstrapResults, Pl, StationDfGreg):
+    import hashlib as _Hashlib
+    import json as _Json
+
+    import altair as _Alt
+
+    from py.paths import (
+        AnalysisDataDirectory as _AnalysisDataDirectory,
+        ProjectRoot as _ProjectRoot,
+    )
+    from py.publication import (
+        ExportNotebookFigure as _ExportNotebookFigure,
+        PaperStyle as _PaperStyle,
+    )
+
+    _Directory = _ProjectRoot / "figures/notebooks/poststrat_analysis"
+    _Directory.mkdir(parents=True, exist_ok=True)
+    _Rows = [
+        {
+            "estimator": _Name,
+            "mean": _Values["mean"],
+            "ci_low": _Values["ci_lo"],
+            "ci_high": _Values["ci_hi"],
+            "n_stations": len(StationDfGreg),
+            "n_observations": int(StationDfGreg["n_obs"].sum()),
+        }
+        for _Name, _Values in BootstrapResults.items()
+    ]
+    _Frame = Pl.DataFrame(_Rows)
+    _Frame.write_csv(_Directory / "estimates.csv")
+    _Release = _Json.loads((_AnalysisDataDirectory / "clean/summary.json").read_text())
+    _Metadata = {
+        "data_sha256": _Release["cleaned_data_sha256"],
+        "notebook_sha256": _Hashlib.sha256(
+            (_ProjectRoot / "src/py/notebooks/poststrat_analysis.py").read_bytes()
+        ).hexdigest(),
+        "status": "Exploratory; population domains and calibration-weight consistency remain under review.",
+        "bootstrap": 1000,
+        "seed": 0,
+        "bootstrap_station_order": "STAID ascending",
+        "baseline_weighting": "Equal weight per nominal land-station mean, not equal weight per observation.",
+    }
+    (_Directory / "metadata.json").write_text(_Json.dumps(_Metadata, indent=2) + "\n")
+    _Base = _Alt.Chart(_Frame).encode(
+        y=_Alt.Y("estimator:N", title=None, sort=list(BootstrapResults)),
+        x=_Alt.X("mean:Q", title="Mean residual (°C)", scale=_Alt.Scale(zero=True)),
+    )
+    _Intervals = _Base.mark_rule(color="#0072B2").encode(
+        x=_Alt.X("ci_low:Q", title="Mean residual (°C)", scale=_Alt.Scale(zero=True)),
+        x2="ci_high:Q",
+    )
+    _Points = _Base.mark_point(color="#0072B2", filled=True, size=65)
+    _ExportNotebookFigure(
+        _PaperStyle((_Intervals + _Points).properties(width=440, height=125)),
+        "poststrat_analysis",
+        "estimates",
+    )
+    return
 
 
 @app.cell

@@ -1,0 +1,137 @@
+{
+  "config": {
+    "view": {
+      "continuousWidth": 300,
+      "continuousHeight": 300,
+      "stroke": null
+    },
+    "axis": {
+      "domainColor": "#444444",
+      "domainWidth": 0.7,
+      "gridColor": "#e5e5e5",
+      "gridWidth": 0.5,
+      "labelColor": "#222222",
+      "labelFont": "DejaVu Serif",
+      "labelFontSize": 10,
+      "labelPadding": 5,
+      "tickColor": "#444444",
+      "tickSize": 4,
+      "tickWidth": 0.7,
+      "titleColor": "#222222",
+      "titleFont": "DejaVu Serif",
+      "titleFontSize": 11,
+      "titleFontWeight": "normal",
+      "titlePadding": 10
+    },
+    "background": "white",
+    "font": "DejaVu Serif",
+    "legend": {
+      "gradientThickness": 10,
+      "labelFont": "DejaVu Serif",
+      "labelFontSize": 10,
+      "titleFont": "DejaVu Serif",
+      "titleFontSize": 11,
+      "titleFontWeight": "normal"
+    },
+    "padding": 8,
+    "title": {
+      "anchor": "start",
+      "font": "DejaVu Serif",
+      "fontSize": 12,
+      "offset": 10
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#0072B2"
+      },
+      "encoding": {
+        "x": {
+          "field": "ci_low",
+          "scale": {
+            "zero": true
+          },
+          "title": "Mean residual (\u00b0C)",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "ci_high"
+        },
+        "y": {
+          "field": "estimator",
+          "sort": [
+            "Naive",
+            "Post-stratified",
+            "GREG"
+          ],
+          "title": null,
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "color": "#0072B2",
+        "filled": true,
+        "size": 65
+      },
+      "encoding": {
+        "x": {
+          "field": "mean",
+          "scale": {
+            "zero": true
+          },
+          "title": "Mean residual (\u00b0C)",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "estimator",
+          "sort": [
+            "Naive",
+            "Post-stratified",
+            "GREG"
+          ],
+          "title": null,
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "data": {
+    "name": "data-1802afedfba410c847e64b88a4f55ff6"
+  },
+  "height": 125,
+  "width": 440,
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.4.1.json",
+  "datasets": {
+    "data-1802afedfba410c847e64b88a4f55ff6": [
+      {
+        "estimator": "Naive",
+        "mean": 1.548466741583679,
+        "ci_low": 1.4950031418364664,
+        "ci_high": 1.606701650921811,
+        "n_stations": 4200,
+        "n_observations": 6927077
+      },
+      {
+        "estimator": "Post-stratified",
+        "mean": 1.2464039476765343,
+        "ci_low": 1.1536202893255874,
+        "ci_high": 1.336925818979478,
+        "n_stations": 4200,
+        "n_observations": 6927077
+      },
+      {
+        "estimator": "GREG",
+        "mean": 1.155718538431897,
+        "ci_low": 1.0638927256566406,
+        "ci_high": 1.2472812811871359,
+        "n_stations": 4200,
+        "n_observations": 6927077
+      }
+    ]
+  }
+}

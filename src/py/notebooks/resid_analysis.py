@@ -12,14 +12,13 @@ def _():
     import marimo as Mo
     import numpy as Np
     import pandas as Pd
-    import plotly.express as Px
     import polars as Pl
 
     from py import pdp as Pdp
     from py.cleaning import FeatureRows, LoadResiduals
     from py.publication import ExportNotebookFigure
 
-    return Path, Alt, Mo, Np, Pd, Pdp, Pl, Px, FeatureRows, LoadResiduals, ExportNotebookFigure
+    return Path, Alt, Mo, Np, Pd, Pdp, Pl, FeatureRows, LoadResiduals, ExportNotebookFigure
 
 
 @app.cell
@@ -60,34 +59,10 @@ def _(Mo, ResidualsDf):
 
 
 @app.cell
-def _(Pl, Px, ResidualsDf):
-    _StationMean = ResidualsDf.group_by("STAID").agg(
-        Pl.col("residual").mean(),
-        Pl.col("lon").first(),
-        Pl.col("lat").first(),
-        Pl.col("place").first(),
-        Pl.col("country").first(),
-    )
+async def _(ResidualsDf):
+    from py.paper_charts import ExportNotebookStationMap as _ExportNotebookStationMap
 
-    _Fig = Px.scatter_map(
-        _StationMean,
-        lat="lat",
-        lon="lon",
-        color="residual",
-        color_continuous_scale="RdBu_r",
-        range_color=[-3, 3],
-        zoom=3,
-        center={"lat": 50, "lon": 10},
-        hover_data=["STAID", "place", "country", "residual"],
-        title="Mean residual per station (°C) — station minus ERA5",
-    )
-    _Fig.update_traces(marker=dict(size=6))
-    _Fig.update_layout(
-        height=700,
-        template="plotly_white",
-        coloraxis_colorbar_title="WS − ERA5 (°C)",
-        map_style="open-street-map",
-    )
+    _Fig = await _ExportNotebookStationMap(ResidualsDf)
     _Fig
     return
 
@@ -319,11 +294,12 @@ def _(Alt, Np, Pd, Pdp, Pl, ResidualsDf, ExportNotebookFigure):
         )
     )
 
-    # Histogram: station share per class
+    # Observation shares retain the full-sample denominator.
     _Shares = (
         ResidualsDf.group_by("degurba_label")
         .agg(Pl.len().alias("count"))
         .with_columns((Pl.col("count") / Pl.col("count").sum()).alias("share"))
+        .filter(Pl.col("degurba_label").is_in(_DegurbaOrder))
         .to_pandas()
     )
 
@@ -343,12 +319,12 @@ def _(Alt, Np, Pd, Pdp, Pl, ResidualsDf, ExportNotebookFigure):
                 Alt.Tooltip("share:Q", title="Share", format=".1%"),
             ],
         )
-        .properties(width=560, height=100)
+        .properties(width=640, height=100)
     )
 
     ExportNotebookFigure(
         Alt.vconcat(
-            (_ZeroRule + _Bars + _Errorbars).properties(width=560, height=260),
+            (_ZeroRule + _Bars + _Errorbars).properties(width=640, height=260),
             _Hist,
             spacing=4,
         ).resolve_scale(x="shared"),

@@ -105,7 +105,7 @@ def Main():
                 if File.suffix in (".csv", ".json")
             }
         ManifestFile.write_text(Json.dumps(Manifest, indent=2) + "\n")
-        print(f"Saved {Target}; {len(Pdfs)} Altair PDFs", flush=True)
+        print(f"Saved {Target}; {len(Pdfs)} figure PDFs", flush=True)
     with PdfWriter() as Book:
         for Record in Manifest.values():
             for File in Record["pdfs"]:
@@ -118,18 +118,18 @@ def Main():
     Index = '<!doctype html><html><head><meta charset="utf-8"><title>ERA5 notebooks</title></head><body><h1>ERA5 notebook exports</h1>'
     Index += '<p>Start with the <a href="cleaning_process.html">step-by-step cleaning notebook</a>. The <a href="clean_dataset.html">release summary</a> and <a href="data_cleaning.html">original processing audit</a> record the methods and limitations. The export manifest records the dataset used by each notebook.</p><ul>'
     Index += "".join(
-        f'<li><a href="{Name}.html">{Html.escape(Name)}</a>: {len(Record["pdfs"])} Altair PDFs</li>'
+        f'<li><a href="{Name}.html">{Html.escape(Name)}</a>: {len(Record["pdfs"])} figure PDFs</li>'
         for Name, Record in Manifest.items()
     )
     PdfLink = (
-        '<p><a href="all_altair_figures.pdf">All Altair figures in one PDF</a></p>'
+        '<p><a href="all_altair_figures.pdf">All notebook figures in one PDF</a></p>'
         if (Output / "all_altair_figures.pdf").exists()
         else ""
     )
     Index += (
         "</ul>"
         + PdfLink
-        + "<p>PDFs and their self-contained Vega-Lite source data are saved in <code>"
+        + "<p>PDFs and their Vega-Lite or Plotly specifications with plotted data are saved in <code>"
         + str(NotebookFiguresDirectory)
         + "</code>.</p></body></html>"
     )
