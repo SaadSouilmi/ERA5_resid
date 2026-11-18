@@ -11,9 +11,9 @@ import pandas as pd
 import polars as pl
 import xarray as xr
 
-from py.era5_windows import match_month, outside_download, read_month_cells
 from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
-from py.scripts.match_era5_grid import SOURCE_KEYS, sha256
+from py.preprocessing.era5_windows import match_month, outside_download, read_month_cells
+from py.preprocessing.match_era5_grid import SOURCE_KEYS, sha256
 
 
 def main():
@@ -183,8 +183,8 @@ def main():
             "code_sha256": {
                 str(path): sha256(path)
                 for path in [
-                    DATA_DIRECTORY.parent / "src/py/era5_windows.py",
-                    DATA_DIRECTORY.parent / "src/py/scripts/build_monthly_era5_pairs.py",
+                    DATA_DIRECTORY.parent / "src/py/preprocessing/era5_windows.py",
+                    DATA_DIRECTORY.parent / "src/py/preprocessing/build_monthly_era5_pairs.py",
                 ]
             },
         }

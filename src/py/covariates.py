@@ -147,27 +147,8 @@ def AddSeasonalNdvi(
 
 
 def CoastDistances(Stations, CoastFile):
-    import geopandas as Gpd
-    import shapely as Shapely
-    from pyproj import Geod, Transformer
+    from py.preprocessing.coastal_distance import coast_distances
 
-    Coast = Gpd.read_file(CoastFile, bbox=(-45, 20, 75, 85))
-    Bounds = Coast.bounds
-    Caspian = (Bounds.minx > 46) & (Bounds.maxx < 55) & (Bounds.miny > 35) & (Bounds.maxy < 49)
-    Coast = Coast.loc[~Caspian].to_crs("EPSG:3035")
-    Segments = Coast.geometry.to_numpy()
-    Points = (
-        Gpd.GeoSeries(Gpd.points_from_xy(Stations["lon"], Stations["lat"]), crs="EPSG:4326")
-        .to_crs("EPSG:3035")
-        .to_numpy()
+    return coast_distances(Stations, CoastFile, latitude="lat", longitude="lon").select(
+        "STAID", "dist_to_sea_km"
     )
-    Nearest = Shapely.STRtree(Segments).nearest(Points)
-    Lines = Shapely.shortest_line(Points, Segments[Nearest])
-    Endpoints = Shapely.get_point(Lines, 1)
-    Lons, Lats = Transformer.from_crs("EPSG:3035", "EPSG:4326", always_xy=True).transform(
-        Shapely.get_x(Endpoints), Shapely.get_y(Endpoints)
-    )
-    _, _, Metres = Geod(ellps="WGS84").inv(
-        Stations["lon"].to_numpy(), Stations["lat"].to_numpy(), Lons, Lats
-    )
-    return Stations.select("STAID").with_columns(Pl.Series("dist_to_sea_km", Metres / 1000))

@@ -8,8 +8,8 @@ import polars as pl
 
 from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
 from py.paths import ProjectRoot as PROJECT_ROOT
-from py.scripts.match_era5_grid import sha256
-from py.station_sample import select_clean_sample
+from py.preprocessing.match_era5_grid import sha256
+from py.preprocessing.station_sample import select_clean_sample
 
 
 def main():
@@ -31,7 +31,7 @@ def main():
     clean.write_parquet(output, compression="zstd")
     result = {
         "created_utc": datetime.now(timezone.utc).isoformat(),
-        "entry_point": "py.scripts.export_clean_station_sample",
+        "entry_point": "py.preprocessing.export_clean_station_sample",
         "file": str(output),
         "sha256": sha256(output),
         "bytes": output.stat().st_size,
@@ -45,8 +45,8 @@ def main():
         "code_sha256": {
             str(path): sha256(path)
             for path in [
-                PROJECT_ROOT / "src/py/station_sample.py",
-                PROJECT_ROOT / "src/py/scripts/export_clean_station_sample.py",
+                PROJECT_ROOT / "src/py/preprocessing/station_sample.py",
+                PROJECT_ROOT / "src/py/preprocessing/export_clean_station_sample.py",
             ]
         },
     }

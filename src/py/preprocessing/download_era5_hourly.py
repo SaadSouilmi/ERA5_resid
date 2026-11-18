@@ -1,6 +1,6 @@
 """Download hourly ERA5-Land on the existing grid and audit UTC coverage.
 
-Run with uv run --with cdsapi python -m py.scripts.download_era5_hourly.
+Run with uv run --with cdsapi python -m py.preprocessing.download_era5_hourly.
 """
 
 import argparse

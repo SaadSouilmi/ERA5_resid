@@ -9,7 +9,7 @@ import polars as pl
 from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
 from py.paths import ProjectRoot as PROJECT_ROOT
 from py.paths import RawDataDirectory as RAW_DIRECTORY
-from py.observation_windows import observation_window_rules
+from py.preprocessing.observation_windows import observation_window_rules
 
 
 def _sha256(path):
@@ -60,13 +60,13 @@ def save_selected_observations(
         *dict.fromkeys(era5_files),
     ]
     code = [
-        PROJECT_ROOT / "src/py" / name
+        PROJECT_ROOT / "src/py/preprocessing" / name
         for name in [
             "station_selection.py",
             "station_metadata.py",
             "observation_windows.py",
             "save_selected_observations.py",
-            "scripts/select_station_observations.py",
+            "select_station_observations.py",
         ]
     ]
     manifest = {
@@ -78,7 +78,7 @@ def save_selected_observations(
         **summary,
         "unresolved_policy": "Keep observations with null UTC boundaries and explicit window_status.",
         "utc_window_meaning": "Documented observation or reporting boundaries. window_sampling distinguishes GSOD sample maxima from other provider daily maxima. ERA5 extraction checks hourly completeness and includes both endpoints.",
-        "entry_point": "py.scripts.select_station_observations",
+        "entry_point": "py.preprocessing.select_station_observations",
         "code_sha256": {str(path): _sha256(path) for path in code},
         "inputs": [{"path": str(path), "sha256": _sha256(path)} for path in inputs],
     }
