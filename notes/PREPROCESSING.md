@@ -2,17 +2,17 @@
 
 Select European ECA&D daily maximum temperatures for comparison with ERA5-Land over **1 January 2020–31 August 2025**. Residual = station maximum minus ERA5-Land hourly-sampled maximum, in °C. The steps below select observations, resolve their time intervals, match grid cells and calculate temperature pairs.
 
-**Current saved stage, 18 November 2026:** all **68 monthly files** are complete. They contain **9,837,164 observations**, including **8,712,539 matched maxima**. The stricter source-day export is implemented; its output file has not yet been written.
+**Current saved stage, 18 November 2026:** all **68 monthly files** are complete. They contain **9,837,164 observations**, including **8,712,539 matched maxima**. The final [source-day sample](../data2/station_era5_clean.parquet) is saved: **6,726,213 unique source-days**, **93.2 MiB**.
 
-Run the script pipeline from the repository root with [`./run.sh`](../run.sh). It starts a dedicated tmux session, logs to `data2/preprocessing.log`, and writes `running`, then the exit code, to `data2/preprocessing.status`; `0` means success. The session ends with the command.
+The pipeline code lives in [`py.preprocessing`](../src/py/preprocessing/). Run it from the repository root with [`./run.sh`](../run.sh), which calls `uv run python -m py.preprocessing` inside a dedicated tmux session. It logs to `data2/preprocessing.log` and writes `running`, then the exit code, to `data2/preprocessing.status`; `0` means success. The session ends with the command.
 
 | Order | Python entry point | Output under `data2/` |
 |:---|:---|:---|
-| 1, if the cache is absent | `py.scripts.build_station_cache` | `station_data.parquet` |
-| 2 | `py.scripts.select_station_observations` | `selected_station_observations.parquet` |
-| 3 | `py.scripts.match_era5_grid` | `selected_station_era5_grid.parquet` |
-| 4 | `py.scripts.build_monthly_era5_pairs` | `station_era5_monthly/YYYY-MM.parquet` |
-| 5 | `py.scripts.export_clean_station_sample` | `station_era5_clean.parquet` |
+| 1, if the cache is absent | `py.preprocessing.build_station_cache` | `station_data.parquet` |
+| 2 | `py.preprocessing.select_station_observations` | `selected_station_observations.parquet` |
+| 3 | `py.preprocessing.match_era5_grid` | `selected_station_era5_grid.parquet` |
+| 4 | `py.preprocessing.build_monthly_era5_pairs` | `station_era5_monthly/YYYY-MM.parquet` |
+| 5 | `py.preprocessing.export_clean_station_sample` | `station_era5_clean.parquet` |
 
 The runner reuses the raw cache and rebuilds downstream outputs. The ERA5 download, ECA&D source metadata and reviewed observation-window rules must already be available. Each stage saves counts and provenance under `data2/cleaning_audit/`; the selection script also saves spike and range exclusions.
 
@@ -88,7 +88,7 @@ This selection precedes the geographical lookup and monthly ERA5 extraction belo
 
 ## 8. Geographical ERA5 lookup
 
-Run `py.scripts.match_era5_grid` to match the **4,775 distinct source coordinate pairs** to the nearest coordinate on each actual hourly ERA5-Land grid axis. Exact ties use the larger coordinate. All **68 monthly files** have identical axes and array ordering. Masked cells remain at their nearest grid position; no land fallback is applied.
+Run `py.preprocessing.match_era5_grid` to match the **4,775 distinct source coordinate pairs** to the nearest coordinate on each actual hourly ERA5-Land grid axis. Exact ties use the larger coordinate. All **68 monthly files** have identical axes and array ordering. Masked cells remain at their nearest grid position; no land fallback is applied.
 
 [selected_station_era5_grid.parquet](../data2/selected_station_era5_grid.parquet) has **7,413 rows**, one per `(STAID, SOUID, source_lat, source_lon)`, and joins to all **9,840,278 observations**. It contains the join keys, observation count, first/last labelled dates, `latitude_index`, `longitude_index`, `grid_cell_id`, `era5_lat`, `era5_lon`, `era5_cell_masked` and `grid_match_status`.
 
@@ -104,7 +104,7 @@ The available locations use **3,690 distinct grid cells**. The mask flag records
 
 ## 9. Monthly observations with ERA5 maxima
 
-`py.scripts.build_monthly_era5_pairs` has saved **68 files**, [2020-01.parquet through 2025-08.parquet](../data2/station_era5_monthly/). Each observation belongs to its ECA&D `DATE` month, even when its UTC interval crosses a month boundary. The script reads monthly ERA5 arrays in storage-aligned blocks, caches neighbouring months and computes maxima in NumPy batches.
+`py.preprocessing.build_monthly_era5_pairs` has saved **68 files**, [2020-01.parquet through 2025-08.parquet](../data2/station_era5_monthly/). Each observation belongs to its ECA&D `DATE` month, even when its UTC interval crosses a month boundary. The script reads monthly ERA5 arrays in storage-aligned blocks, caches neighbouring months and computes maxima in NumPy batches.
 
 Use **both endpoints**: `window_start_utc <= valid_time <= window_end_utc`. ERA5-Land `2m_temperature` is instantaneous at its UTC timestamp, with **no one-hour shift**. A 24-hour window therefore contains **25 samples**; 12-, 23- and 25-hour windows contain 13, 24 and 26 samples. Adjacent windows can share their boundary sample.
 
@@ -137,9 +137,9 @@ The status counts assign unknown windows before checking the grid mask; they the
 
 The [monthly coverage table](../data2/cleaning_audit/station_era5_monthly_coverage.csv) records counts and output hashes. The [manifest](../data2/cleaning_audit/station_era5_monthly.json) records input, source and code hashes, endpoint rules, dropped counts and completion status. All 68 saved file hashes match the coverage table.
 
-## 10. Stricter source-day sample
+## 10. Final temperature sample
 
-`py.scripts.export_clean_station_sample` is ready to write `data2/station_era5_clean.parquet` from the completed monthly files. It verifies their listed hashes, then applies two filters:
+`py.preprocessing.export_clean_station_sample` writes [station_era5_clean.parquet](../data2/station_era5_clean.parquet) from the completed monthly files. It verifies their listed hashes, then applies two filters:
 
 ```python
 (era5_match_status == "matched") & (window_sampling == "provider_daily_maximum")
@@ -155,23 +155,62 @@ Keep one row per `(SOUID, DATE)`, choosing the smallest input `observation_id`. 
 
 There are **no conflicting source-days**. All resolved durations are retained, including **12-hour windows** and 23/25-hour daylight-saving days. GSOD sampled reporting days are excluded by the sampling filter.
 
-These counts have been checked against the saved monthly data. **The stricter Parquet and its manifest have not yet been written.** When run, the export saves its counts and input hashes to `data2/cleaning_audit/station_era5_clean.json`. The earlier screened release remains at `data2/clean/analysis.parquet`.
+The saved Parquet has been read back and checked: one row per source-day, the smallest eligible `observation_id`, complete ERA5 hours, finite temperatures and the recorded file hash. Residuals equal station minus ERA5 temperature. The [manifest](../data2/cleaning_audit/station_era5_clean.json) records counts and input, output and code hashes. The earlier screened release remains at `data2/clean/analysis.parquet`.
 
-Load the clean sample into a Polars DataFrame:
+## 11. Coastal distance
+
+[`py.preprocessing.coastal_distance`](../src/py/preprocessing/coastal_distance.py) reads the clean temperature sample and the cached [Natural Earth 1:10 million coastline](https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-coastline/) at `data2/clean/sources/ne_10m_coastline.zip`. Run this covariate step separately from the temperature pipeline:
+
+```bash
+uv run python -m py.preprocessing.coastal_distance
+```
+
+No download is needed.
+
+For each distinct observation-source coordinate, find the nearest coastline point in **EPSG:3035**, then calculate the **WGS84 ellipsoidal distance in kilometres** to that point. Exclude the Caspian Sea ring; retain ocean coastline beyond the ERA5 footprint. This is an approximate distance because of coastline generalisation and the projected nearest-point search.
+
+[station_coastal_distance.parquet](../data2/station_coastal_distance.parquet) contains **4,458 source locations** at **4,272 distinct coordinates**. It stores `SOUID`, `source_lat`, `source_lon`, observation count, `coast_lat`, `coast_lon` and `dist_to_sea_km`. Join on **`(SOUID, source_lat, source_lon)`**, many-to-one. All **6,726,213 observations** have a distance; the temperature Parquet is unchanged. The [manifest](../data2/cleaning_audit/station_coastal_distance.json) records coverage, method and input/output/code hashes.
+
+## 12. Original seasonal NDVI
+
+[`py.preprocessing.ndvi`](../src/py/preprocessing/ndvi.py) samples the 16 original rasters under `data/main/sentinel2_ndvi/` at the observation-source coordinates. They cover **1 December 2019–30 November 2023**. Valid encoded values `0..254` map to `value / 254 * 2 - 1`; `255` is nodata.
+
+Use the matching raster within each covered season. For later dates without a raster, **carry forward the latest earlier valid value at that location, across seasons**. Thus the September–November 2023 value is normally held through August 2025. Missing pixels inside a covered season remain missing; locations without a previous value remain missing. No future season is used to fill an earlier date.
+
+```bash
+uv run python -m py.preprocessing.ndvi
+```
+
+[station_ndvi.parquet](../data2/station_ndvi.parquet) stores **79,656 source-seasons**. Join on `(SOUID, source_lat, source_lon, ndvi_season)`, where `ndvi_season` is the season's starting date as `YYYYMMDD`. The lookup records `ndvi`, source filename/start/end, `ndvi_method` and `ndvi_is_extrapolated`. The loader adds `ndvi_lag_days`: zero within a covered season, otherwise days since the last date covered by the source raster.
+
+| NDVI assignment | Observations |
+|:---|---:|
+| Observed seasonal raster | 4,845,070 |
+| Last value carried forward | 1,870,410 |
+| Missing | 10,733 |
+
+Counts and hashes are in the [NDVI manifest](../data2/cleaning_audit/station_ndvi.json) and [coverage table](../data2/cleaning_audit/station_ndvi_coverage.csv). These values use only the original rasters; the separate acquisition archive is not an input.
+
+## 13. Elevation and daily weather covariates
+
+[`py.preprocessing.analysis_covariates`](../src/py/preprocessing/analysis_covariates.py) reads each observation source's `HGHT` from ECA&D `sources.txt`, in metres. Sentinel heights `−999` and `−9999` remain missing. [station_elevation.parquet](../data2/station_elevation.parquet) joins on `(STAID, source_metadata_id)`.
+
+It also saves review extractions under `data2/station_weather/`, keyed by `(grid_cell_id, DATE)`, from the supplied daily ERA5 files. Wind is `sqrt(mean(u10)**2 + mean(v10)**2)` in m/s. All twelve 2020–2025 wind-component files record `daily_reduce(..., how=mean)` with a zero UTC shift, confirming UTC calendar-day aggregation. **3,576,314 temperature observations** use the matching UTC calendar-day window; the other station windows require hourly components or differently shifted daily means for temporal alignment.
+
+The precipitation files have `GRIB_stepType = accum` and no recorded daily averaging, despite their `daily_mean` filenames. Their date assignment remains under review: [ECMWF documents](https://confluence.ecmwf.int/spaces/CKB/pages/462888259/ERA5%2Bfamily%2Bpost-processed%2Bdaily%2Bstatistics%2Bdocumentation) that an unshifted ERA5-Land accumulation stamped at midnight covers the preceding day. The loader currently adds elevation; wind and precipitation remain separate review inputs.
+
+## 14. Load for analysis
+
+[`load_data()`](../src/py/load_data.py) returns a Polars DataFrame with all temperature-sample columns, coastal distance, source elevation and NDVI with its provenance. It checks many-to-one matching and preserves every original observation and its row order.
 
 ```python
-import polars as pl
+from py.load_data import load_data
 
-from py.paths import AnalysisDataDirectory as data_dir
-
-clean_sample = (
-    pl.scan_parquet(data_dir / "station_era5_monthly/*.parquet")
-    .filter(
-        (pl.col("era5_match_status") == "matched")
-        & (pl.col("window_sampling") == "provider_daily_maximum")
-    )
-    .sort("observation_id")
-    .unique(subset=["SOUID", "DATE"], keep="first", maintain_order=True)
-    .collect()
-)
+data = load_data()
 ```
+
+## 15. Residual profiles
+
+[`py.scripts.plot_partial_dependence`](../src/py/scripts/plot_partial_dependence.py) saves Seaborn/Matplotlib figures and CSV source tables under `figures/notebooks/partial_dependence/`. The default profiles are station temperature, NDVI, coastal distance and elevation. Wind and precipitation require an explicit `--features` selection and retain the daily-covariate qualifications above.
+
+These are observation-weighted mean residuals in ten quantile bins, with 1,000 source-ID bootstrap draws and pointwise 95% percentile intervals, seed `1337`. They are descriptive associations. Temperature also appears in the residual's definition. Each plot uses available values for its own feature; the temperature sample is retained in full. Precipitation uses `log10(max(tp, 1e-9))` when requested. Histograms count all available observations. The [figure manifest](../figures/notebooks/partial_dependence/manifest.json) identifies inputs, code and per-feature sample sizes.

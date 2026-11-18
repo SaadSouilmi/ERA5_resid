@@ -51,6 +51,6 @@ Full [unresolved-source findings](../data2/cleaning_audit/preprocessing_window_r
 
 ## Implementation
 
-[observation_windows.py](../src/py/observation_windows.py) applies the [provider rules](../data2/cleaning_audit/verified_observation_window_rules.csv), then [verified source-day mappings](../data2/cleaning_audit/verified_observation_window_overrides.csv) with their [evidence](../data2/cleaning_audit/verified_observation_window_override_rules.csv). Source-day mappings require the same source, date, temperature and original window code; existing mapped intervals are preserved.
+[observation_windows.py](../src/py/preprocessing/observation_windows.py) applies the [provider rules](../data2/cleaning_audit/verified_observation_window_rules.csv), then [verified source-day mappings](../data2/cleaning_audit/verified_observation_window_overrides.csv) with their [evidence](../data2/cleaning_audit/verified_observation_window_override_rules.csv). Source-day mappings require the same source, date, temperature and original window code; existing mapped intervals are preserved.
 
 The Parquet stores `window_start_utc`, `window_end_utc`, `window_hours`, `window_rule_id`, `window_status` and `window_sampling`. Check ERA5 endpoint sampling and required-hour completeness before calculating comparable maxima.
