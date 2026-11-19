@@ -1,9 +1,11 @@
 (() => {
   const nav = document.getElementById("article-toc");
   const list = nav.querySelector("ol");
-  const headings = [...document.querySelectorAll("article h1, article h2")];
+  const headings = [...document.querySelectorAll("article h2, article h3, article h4")];
   const used = new Set([...document.querySelectorAll("[id]")].map(el => el.id));
-  const entries = headings.map(heading => {
+  const entries = [];
+  const stack = [];
+  for (const heading of headings) {
     if (!heading.id) {
       const base = heading.textContent.trim().toLowerCase().normalize("NFKD")
         .replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-")
@@ -13,14 +15,23 @@
       heading.id = id;
       used.add(id);
     }
+    const level = Number(heading.tagName.slice(1));
+    while (stack.length && stack[stack.length - 1].level >= level) stack.pop();
+    const parent = stack[stack.length - 1] || null;
+    if (parent && !parent.children) {
+      parent.children = document.createElement("ol");
+      parent.item.append(parent.children);
+    }
     const item = document.createElement("li");
     const link = document.createElement("a");
     link.href = "#" + heading.id;
     link.textContent = heading.textContent.trim();
     item.append(link);
-    list.append(item);
-    return { heading, item, link };
-  });
+    (parent ? parent.children : list).append(item);
+    const entry = { heading, item, link, level, parent };
+    entries.push(entry);
+    stack.push(entry);
+  }
   if (!entries.length) return;
   nav.hidden = false;
   let scrollFrame = 0;
@@ -89,6 +100,7 @@
       else break;
     }
     for (const entry of entries) {
+      entry.item.classList.remove("is-ancestor");
       if (entry === active) {
         entry.item.classList.add("is-current");
         entry.link.setAttribute("aria-current", "location");
@@ -96,6 +108,9 @@
         entry.item.classList.remove("is-current");
         entry.link.removeAttribute("aria-current");
       }
+    }
+    for (let ancestor = active.parent; ancestor; ancestor = ancestor.parent) {
+      ancestor.item.classList.add("is-ancestor");
     }
   };
   const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };

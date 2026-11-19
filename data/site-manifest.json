@@ -43,18 +43,19 @@
     "data2/cleaning_audit/selected_station_era5_grid.json": "6f0cb3042e83bdbc7eb27fc1a2f0c94ec0d12f94dd8244e792e674e643d25d13",
     "data2/cleaning_audit/station_era5_monthly.json": "800bc10571e0f8603f3487368977c1c284e2b35b1457a1f7102cfea162049333",
     "data2/cleaning_audit/station_era5_clean.json": "1a01c28bae2a5100b9b988647c2bb4721d99af62dc304baaf04c77627a50b2aa",
-    "data2/cleaning_audit/station_ndvi_coverage.csv": "3a5311a873bc7030c63e39e6a1802e57b3eee2081b25178fa6d90781f9a8026d"
+    "data2/cleaning_audit/station_ndvi_coverage.csv": "3a5311a873bc7030c63e39e6a1802e57b3eee2081b25178fa6d90781f9a8026d",
+    "notes/blogpost.md": "4a0420dc1168a66f820de6b0fec452f5c506fde1239cbe04bf5c44835dfb742d"
   },
   "files": {
     ".era5-generated-site": "8c05411d7570b299491b2212ccfe419942129024d1be4c7f4ee215db3e1a0f29",
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "assets/blog.css": "85a945cbce322305e440d9718a3b206b6443e1e89104667f2cd78d14ed325d8b",
+    "assets/blog.css": "32bc8387f0e43bc048b91d1c305eab8dcaac814232959c91f66300af2dd5c9ae",
     "assets/fonts/LICENSE.txt": "86f8a7de774bb9a0efd72968f55486305e3a93d147600cb53497160d7c49b842",
     "assets/fonts/hack-bold-italic.ttf": "81f1b2b159e934f29c355814ce4f0e7bcbc3926a46a4c46da89f7e0bb7873ad9",
     "assets/fonts/hack-bold.ttf": "add70efb723227c08400c4d0f0068cf9f1783e22f6702b811bafbf3f5920902c",
     "assets/fonts/hack-italic.ttf": "c54feb21d2296e112aea1867284343aef67173046b05e4446d700e1acc7aec9e",
     "assets/fonts/hack-regular.ttf": "8cba545f0ab36d8f313a448676df9988d6c679a014ffed863e52305844e7b113",
-    "assets/sidebar.js": "f2920bf576e0220a71552e165742222e1a6e6c4f2af48e6d24c7e0378bde0ad0",
+    "assets/sidebar.js": "bb28cf3b5c8b7382ee183177708c08b7536497895e31a23fa22069fa50a122b9",
     "data/preprocessing-summary.json": "7019d71818db9c997e412b1198f9d081ceb0ae627f87c635cb8943da872d4f0d",
     "data/preprocessing_unresolved_windows.csv": "e704606264b38e025fb3d84a4f7873d0a0e670c3189089a68970547aaabc8ff5",
     "data/preprocessing_window_counts.csv": "9fb42c874e1f482c471cb0258bd6e4138fd836a4942fd0e39ae731136e96e27a",
@@ -65,8 +66,12 @@
     "data/study-area.pdf": "53a84e5d98855d807a7a9a96b3e6be9574540427ac35a05ab605eb3626ecf1c5",
     "data/verified_observation_window_override_rules.csv": "ae2ce3dced73bdc1a931419384693934050372c1fbbcbfc1da9fd9920e976550",
     "data/verified_observation_window_rules.csv": "f3c1d51d39eb6e3d94fa6bd8c278adfe3a66130599f9065a048c0920aaae731f",
-    "index.html": "0aa2046ec8be3a2aa2807703a1d666c5dd2ade8074b4601d1f4aedcd4f0997ad",
-    "preprocessing.html": "e3e98a00a3107bd49b1dc63d5554256ae600ad1c20ab3353ab4fc50e7795a32d",
-    "report.html": "46c4958940e2071a7151fafcd9cc07951747c2d563205a82ccd8c8f96f5b1e89"
-  }
+    "index.html": "abfa20c712a727bd5bba732d40d0a2d68594cd04cb5e7236c19e3188550e44a6",
+    "preprocessing.html": "4102a719ef175ff0d95f94b2df7c555e5ca4ae9412e514f13088eb1d2b17f126",
+    "report.html": "4102a719ef175ff0d95f94b2df7c555e5ca4ae9412e514f13088eb1d2b17f126"
+  },
+  "presentation_updated_utc": "2026-11-19T22:24:57.828634+00:00",
+  "layout": "Single article: h2 main sections with nested h3/h4 subsections",
+  "content_source": "notes/blogpost.md",
+  "content_source_sha256": "4a0420dc1168a66f820de6b0fec452f5c506fde1239cbe04bf5c44835dfb742d"
 }

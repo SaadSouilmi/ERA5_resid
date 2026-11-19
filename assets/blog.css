@@ -132,7 +132,7 @@ footer { margin-top: 3em; font-family: Arial, Helvetica, sans-serif; font-size: 
   .wide-plot { position: static; width: 100%; transform: none; }
 }
 html { scroll-behavior: smooth; }
-article h1, article h2 { scroll-margin-top: 24px; }
+article h1, article h2, article h3, article h4 { scroll-margin-top: 24px; }
 #article-toc { display: none; position: fixed; z-index: 2; top: clamp(90px, 18vh, 180px); left: max(20px, calc(50% - 750px)); width: min(210px, calc(50vw - 560px)); max-height: calc(100vh - 220px); overflow-y: auto; color: #536257; font: 13px/1.45 Arial, Helvetica, sans-serif; }
 #article-toc[hidden] { display: none; }
 #article-toc h2 { opacity: .2; transition: opacity 250ms ease; margin: 0 0 10px 12px; color: #596d5d; font: inherit; font-weight: 600; }
@@ -141,9 +141,24 @@ article h1, article h2 { scroll-margin-top: 24px; }
 #article-toc li::before { position: absolute; top: 11px; left: -3px; width: 5px; height: 5px; border-radius: 50%; background: #bcc8bd; content: ""; }
 #article-toc li.is-current::before { background: #47764e; box-shadow: 0 0 0 2px #fff; }
 #article-toc a { display: block; color: inherit; text-decoration: none; opacity: .2; transition: opacity 250ms ease, color 250ms ease; }
-#article-toc li.is-current a { color: #47764e; opacity: .7; }
+#article-toc li.is-current > a { color: #47764e; opacity: .7; }
 #article-toc:hover a, #article-toc:focus-within a, #article-toc:hover h2, #article-toc:focus-within h2 { opacity: 1; }
 @media (min-width: 1440px) { #article-toc { display: block; } }
-@media (hover: none) { #article-toc a, #article-toc li.is-current a, #article-toc h2 { opacity: 1; } }
+@media (hover: none) { #article-toc a, #article-toc li.is-current > a, #article-toc h2 { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } #article-toc a, #article-toc h2 { transition: none; } }
 @media print { #article-toc { display: none !important; } }
+
+article h3 {
+  margin: 1.65em 0 .65em;
+  color: #252925;
+  font-size: 1.17em;
+  line-height: 1.35;
+  letter-spacing: -.01em;
+}
+#article-toc > ol > li > a { font-weight: 600; }
+#article-toc ol ol { margin: 5px 0 4px 5px; padding: 0; border-left: 0; }
+#article-toc ol ol a { font-size: 12px; }
+#article-toc li.is-ancestor > a { color: #536257; opacity: .55; }
+#article-toc:hover li.is-ancestor > a, #article-toc:focus-within li.is-ancestor > a { opacity: 1; }
+@media (max-width: 600px) { article h3 { font-size: 1.12em; } }
+@media (hover: none) { #article-toc li.is-ancestor > a { opacity: 1; } }
