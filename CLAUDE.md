@@ -1,24 +1,13 @@
 # Project context
 
-Read AGENTS.md for repository conventions and README.md for the current workflow.
+Follow AGENTS.md for conventions and README.md for commands.
 
-This project compares European ECA&D daily maximum temperature with ERA5-Land
-daily maximum temperature. Residual means station minus ERA5, in degrees Celsius.
-The working draft is `paper/paper.tex`.
+The current temperature sample is `data2/station_era5_clean.parquet`.
+Load it with `py.load_data.load_data()`; use `include_weather=True` for the saved
+station-window wind/rain lookup. Methods and results live in `notes/`.
 
-The current analysis input is `data2/clean/analysis.parquet`, with its release
-manifest in `data2/clean/summary.json`. `data2/residuals.parquet` is the selected
-raw input; `py.notebooks.temp_resid` can create a reviewed replacement candidate
-at `data2/residuals_rebuilt.parquet`.
+All active Python belongs in `src/py`. Use uv, snake_case, plain functions and
+simple code. Run computational work in dedicated tmux sessions.
 
-Start with `src/py/notebooks/cleaning_process.py` for the implemented cleaning
-policy, sequential selection counts, provenance checks and NDVI extrapolation.
-All active notebooks are Marimo apps under `src/py/notebooks/`. Use `uv` and
-PascalCase Python bindings as described in AGENTS.md.
-
-Do not treat seasonal NDVI extrapolations as observed vegetation, the supplied
-precipitation proxy as a daily total, or mixed observation windows as aligned.
-Station screening is provisional. Post-stratification remains exploratory.
-
-Deprecated notebooks and reports are available from Git history and a verified
-local archive; they are not alternative active workflows.
+Earlier sample builders and notebooks are archived; do not restore their outputs
+as current results. `paper/paper.tex` remains a draft awaiting numerical refresh.

@@ -57,13 +57,13 @@ def paper_style(palette=None):
 
 
 def save_figure(fig, output):
-    """Save SVG, PNG, and PDF files using output as a suffix-free stem."""
+    """Save PNG and PDF files using output as a suffix-free stem."""
     stem = Path(output)
     stem.parent.mkdir(parents=True, exist_ok=True)
     fig.canvas.draw()
     for text in fig.findobj(match=Text):
         text.set_path_effects([pe.withStroke(linewidth=.18, foreground=text.get_color())])
-    paths = [stem.with_suffix("." + ext) for ext in ("svg", "png", "pdf")]
+    paths = [stem.with_suffix("." + ext) for ext in ("png", "pdf")]
     for path in paths:
         fig.savefig(path)
     return paths

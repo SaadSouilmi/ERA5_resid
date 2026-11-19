@@ -25,6 +25,11 @@ __marimo__/
 !/data2/cleaning_audit/*.csv
 !/data2/cleaning_audit/*.json
 
+# Live progress and archived NDVI/hourly-station experiments.
+/data2/cleaning_audit/hourly_weather_progress.json
+/data2/cleaning_audit/ndvi_*
+/data2/cleaning_audit/ghcnh_*
+
 # Retired local work and generated HTML are not publication sources.
 /notebooks/
 /notebooks_v0/
@@ -34,9 +39,10 @@ __marimo__/
 /docs/
 /docs_/
 /scripts/
-/paper/figures/*.html
-/paper/figures/archive/
-/paper/figures/paper/.cartopy/
+/figures/*.html
+/figures/archive/
+/figures/paper/.cartopy/
+/figures/notebooks/*/.cartopy/
 
 # latex tmporary files
 *.aux

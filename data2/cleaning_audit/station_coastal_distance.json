@@ -1,0 +1,34 @@
+{
+  "created_utc": "2026-11-18T16:41:43.591344+00:00",
+  "entry_point": "py.preprocessing.coastal_distance",
+  "input": "/home2/lobib/gen_hack/data2/station_era5_clean.parquet",
+  "input_sha256": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+  "coastline": "/home2/lobib/gen_hack/data2/clean/sources/ne_10m_coastline.zip",
+  "coastline_sha256": "bfa04cdbcbef07ef90dfca1dabb48062eca29900a113df0f389303e255484017",
+  "coastline_source": "https://www.naturalearthdata.com/downloads/10m-physical-vectors/10m-coastline/",
+  "file": "/home2/lobib/gen_hack/data2/station_coastal_distance.parquet",
+  "sha256": "8401de603d68e522ba57efd64bc49ee3b8f92b19523c0bac9cd5787f6ab2709b",
+  "bytes": 121753,
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/preprocessing/coastal_distance.py": "3c713e8bc22fc69e57cdcb9dac46b48739a583700b9a7bbbb0cc7d7e9873efd9"
+  },
+  "join_keys": [
+    "SOUID",
+    "source_lat",
+    "source_lon"
+  ],
+  "sources": 4458,
+  "source_locations": 4458,
+  "distinct_coordinates": 4272,
+  "observations": 6726213,
+  "missing_distances": 0,
+  "distance_km": {
+    "minimum": 0.0065939270220182495,
+    "median": 85.76890392575444,
+    "maximum": 817.5097744734186
+  },
+  "method": "Nearest point on the cached Natural Earth 1:10 million coastline in EPSG:3035; WGS84 ellipsoidal distance to that point, in kilometres.",
+  "coastline_selection": "Features intersecting (-45, 20, 75, 85) degrees; Caspian Sea ring excluded by its bounds. Coastline geometries are not clipped to the ERA5 footprint.",
+  "limitations": "Approximate coastal distance: coastline generalisation and the projected nearest-point search limit accuracy. Inland lake shores are not coastline.",
+  "temperature_sample": "Unchanged; coastal distance is saved separately and joins many-to-one on SOUID and the source coordinates."
+}

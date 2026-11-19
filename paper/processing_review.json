@@ -1,0 +1,465 @@
+{
+  "baseline_commit": "04c4e26",
+  "data_sha256": "9c6aa07f0b786d9e66ab5f3f4fda9f56b106eee45711d8fa0c8197f771d47561",
+  "checks": [
+    {
+      "check": "residuals.parquet matches the release",
+      "passed": true,
+      "details": "cb172ba533937ac58b5d75ca4f210e6329131256d7c87e8bd8b59d6a83edadff"
+    },
+    {
+      "check": "residuals.parquet is unchanged since before CAL",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "residuals_cleaned.parquet matches the release",
+      "passed": true,
+      "details": "e833a311a3efa4780696e90f7684f270784eb8959a880119228c6afa2c1d3682"
+    },
+    {
+      "check": "residuals_cleaned.parquet is unchanged since before CAL",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "clean/analysis.parquet matches the release",
+      "passed": true,
+      "details": "9c6aa07f0b786d9e66ab5f3f4fda9f56b106eee45711d8fa0c8197f771d47561"
+    },
+    {
+      "check": "clean/analysis.parquet is unchanged since before CAL",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "temperature_pairs.parquet matches the release",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "temperature_pairs_utc.parquet matches the release",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "excluded_pairs.parquet matches the release",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "observation_sources.parquet matches the release",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "CAL did not change the core cleaning or estimator modules",
+      "passed": true,
+      "details": []
+    },
+    {
+      "check": "Sequential selection table reconciles",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Release row and station counts",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Station-day keys are unique",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Source-day keys are unique",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Residual arithmetic",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Source quality flags",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "No substituted land cells",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Source and saved ERA5 cells agree",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Quarantined stations excluded",
+      "passed": true,
+      "details": 55
+    },
+    {
+      "check": "UTC subset definition",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "UTC subset counts",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NDVI observed_season count",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NDVI previous_same_season count",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NDVI missing count",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NDVI flags agree with methods",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NDVI source dates do not use future rasters",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "NDVI extrapolates the matching season",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Missing elevations have no retained sentinel codes",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Saved full ERA5 check covers every intermediate row",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Continuous table: station_celsius",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "LaTeX continuous row: station_celsius",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Continuous table: era5_celsius",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "LaTeX continuous row: era5_celsius",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Continuous table: residual",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "LaTeX continuous row: residual",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Continuous table: wind",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "LaTeX continuous row: wind",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Continuous table: tp",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "LaTeX continuous row: tp",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Continuous table: dist_to_sea_km",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "LaTeX continuous row: dist_to_sea_km",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Continuous table: elevation",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "LaTeX continuous row: elevation",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Continuous table: ndvi",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "LaTeX continuous row: ndvi",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Counts and denominators: descriptive_degurba",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "LaTeX counts: descriptive_degurba",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Counts and denominators: descriptive_countries",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "LaTeX counts: descriptive_countries",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Pre-CAL point estimates preserved: station_celsius",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Notebook conditional means: station_celsius",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Notebook intervals contain the point means: station_celsius",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Pre-CAL point estimates preserved: tp",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Notebook conditional means: tp",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Notebook intervals contain the point means: tp",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Pre-CAL point estimates preserved: wind",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Notebook conditional means: wind",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Notebook intervals contain the point means: wind",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Pre-CAL point estimates preserved: ndvi",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Notebook conditional means: ndvi",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Notebook intervals contain the point means: ndvi",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Pre-CAL point estimates preserved: dist_to_sea_km",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Notebook conditional means: dist_to_sea_km",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Notebook intervals contain the point means: dist_to_sea_km",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Pre-CAL point estimates preserved: elevation",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Notebook conditional means: elevation",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Notebook intervals contain the point means: elevation",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Notebook urban-class means",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Notebook land-class shares retain the full-sample denominator",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "All 64 notebook joint-bin counts and means",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "LaTeX data summary",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "LaTeX selection counts",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "LaTeX result ranges",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Plotly station map reproduces the cleaned station means and coordinates",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Plotly specification contains every station with unchanged colours and coordinates",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Manuscript contains only its referenced notebook PDFs",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Manuscript PDFs and plotted data match notebook sources",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "bootstrap_order_fix": [
+    {
+      "feature": "station_celsius",
+      "maximum_interval_endpoint_change_celsius": 0.009885629788967454
+    },
+    {
+      "feature": "tp",
+      "maximum_interval_endpoint_change_celsius": 0.00979711540275674
+    },
+    {
+      "feature": "wind",
+      "maximum_interval_endpoint_change_celsius": 0.013980420423941098
+    },
+    {
+      "feature": "ndvi",
+      "maximum_interval_endpoint_change_celsius": 0.011388138428554129
+    },
+    {
+      "feature": "dist_to_sea_km",
+      "maximum_interval_endpoint_change_celsius": 0.027847540696127382
+    },
+    {
+      "feature": "elevation",
+      "maximum_interval_endpoint_change_celsius": 0.02109785101161088
+    }
+  ],
+  "passed": true,
+  "inputs": {
+    "paper/paper.tex": "50071e9697e2c1b2e5ddad8e3bb45d2a33c6495825d5b420ef12c1a61a730279",
+    "src/py/scripts/audit_paper.py": "e64901236a9a0dc89a1ded205a89eee93264be29469939bdba0567eea62e4195",
+    "paper/tables/cleaning_selection.csv": "0eaedca4a68422094464841e389875edccbffde631d0bfce15bdb3bf1b6e6e2f",
+    "paper/tables/descriptive_continuous.csv": "5b2215d54d4760f9aff17682e2e6c2beb5a9a783a4b8d2639cfd2def755a4ca9",
+    "paper/tables/descriptive_countries.csv": "9b96e8dab01b53b9b245d965a423fbf1e6bf2c820a14bacd831cb3967316b9ba",
+    "paper/tables/descriptive_degurba.csv": "4b6fed35cccb52f6cc8d9691a65d054e2b344b9bcf6b0250e2c49cc7afbfa31c",
+    "paper/tables/results_summary.csv": "1cfc22ec4a76db70d86423fbdbd2adebc31d579394d3ffc58e221eb5a9ac8a9d",
+    "paper/tables/cleaning_selection.tex": "1a3c482b39073dfcf34cedef0edfa13db7ec3e607670f0582842b61eb660aeda",
+    "paper/tables/data_summary.tex": "9c9273fe470d77a3bbec1e44f192a39db5359020b970b613a137de5dc887b1ee",
+    "paper/tables/descriptive_continuous.tex": "ed0911034bf4379eac9b630ea9ca4930913f50e0d75daa07bbbbee53f767c6d7",
+    "paper/tables/descriptive_countries.tex": "fe4230302e0339421064d90f9f986ec375e8ffe17841ac93228a94585fc68e84",
+    "paper/tables/descriptive_degurba.tex": "a5b8d2a8535d459cbb17e14af286cde413a164a94d35d85e7fc46e1dd7ab2a57",
+    "paper/tables/results_summary.tex": "32cc24bcb1262a7a3049c040bf80f7b1c19e3b7a79cc8258804d3e34d77e9ddc",
+    "figures/notebooks/resid_analysis/degurba.vl.json": "ece6841be1215a4de7af5374adb8559b789c7ba17927fd0e8e712cfe7a8c7057",
+    "figures/notebooks/resid_analysis/distance_by_degurba.vl.json": "9170359e068e963912ce2deda90b34e4d8bfa48e5615e8223423ba59c313b168",
+    "figures/notebooks/resid_analysis/elevation_by_dist_to_sea_km.vl.json": "31d2680ec01b0f87171114276f854d297d037988415a4e6a6a9f199f3467c2a0",
+    "figures/notebooks/resid_analysis/elevation_by_wind.vl.json": "278fbc9851d3d7e7d53d8dcd518a80ccfe85bec1db30d06e3887469a74c7a58d",
+    "figures/notebooks/resid_analysis/geography_covariates.vl.json": "029ddf920dcab66e88c85f5393a0a27d01c11c81664e9b8d5695e062e4b77f29",
+    "figures/notebooks/resid_analysis/pdp_dist_to_sea_km.vl.json": "f9d4105e4658f6d212635ce378d9b390534ee32690d45d7f920d36287885b13d",
+    "figures/notebooks/resid_analysis/pdp_elevation.vl.json": "6cfd786d7bfdcce014d8db7fcde3083f8e04b65c21ec0ca14930130913fb60c1",
+    "figures/notebooks/resid_analysis/pdp_ndvi.vl.json": "21862bf34c2b357d9e620fa62d4cc0e2a668c09742dc17c31d8bf51d5eead357",
+    "figures/notebooks/resid_analysis/pdp_station_celsius.vl.json": "0883eadade97286bd62389111c19b8ac69a5be8de0ecaba4ee0b56a4b3e9cf49",
+    "figures/notebooks/resid_analysis/pdp_tp.vl.json": "6907a602ee7353a7dab7c0e9685853e95477c3d4d166c0a986f9ed7ccc356e3a",
+    "figures/notebooks/resid_analysis/pdp_wind.vl.json": "e6bcb1cb763f0c688f35b66139d507ebe046e6130e01fa5e56ccfec38653fa6c",
+    "figures/notebooks/resid_analysis/station_celsius_by_wind.vl.json": "da8bdb912633ec0b9b243a06ccafba273ffa2ec4eb8ea1e99ad735d21351e198",
+    "figures/notebooks/resid_analysis/station_map.plotly.json": "4230e161bcf0157202d019e41ac72e75b4dccf28afbb6da37e31ca27c7a0281d",
+    "figures/notebooks/resid_analysis/tables/station_means.csv": "c9572c963680951e6a9931e4ea9c6f2ae3d49412e484ba1841fb7307d02276f1"
+  },
+  "limits": [
+    "Historical full-source checks were reconciled with their saved release; this review does not re-extract every ERA5 value or revalidate instruments.",
+    "Mixed observation windows and station sampling frequencies remain; the main figures do not use only the UTC subset.",
+    "Station-only screening thresholds and source-ID metadata offsets are provisional; distinct source IDs need not identify independent physical instruments.",
+    "NDVI carry-forward is seasonal extrapolation, not contemporaneous vegetation measurement; coastline distance uses generalized geometry.",
+    "The precipitation accumulation recipe remains unresolved; mean-vector wind is not mean hourly speed.",
+    "Bootstrap clusters are nominal stations, with no correction for dependence across stations, multiplicity or confounding.",
+    "The general literature review, authorship and missing downscaling.bib are outside this numerical processing audit."
+  ],
+  "documentation": [
+    "https://cds.climate.copernicus.eu/datasets/derived-era5-land-daily-statistics?tab=overview",
+    "https://www.ecad.eu/dailydata/datadictionary.php"
+  ]
+}

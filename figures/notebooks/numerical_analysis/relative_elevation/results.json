@@ -1,0 +1,26 @@
+{
+  "analysis": "relative_elevation",
+  "created_utc": "2026-11-19T00:55:57.280832+00:00",
+  "parent_observations": 6726213,
+  "parent_sources": 4458,
+  "summary": {
+    "sources_with_two_neighbours": 2877,
+    "sources_without_proxy": 1581,
+    "pearson_r": -0.6252758087272311,
+    "pearson_p_naive": 6.23096105658e-312,
+    "slope_celsius_per_100m": -0.4895258383067708,
+    "lookup_file": "/home2/lobib/gen_hack/data2/numerical_analysis/relative_elevation.parquet",
+    "lookup_sha256": "a1edacd6d9a20ccd221f8704bce9860765c19b26180def2fe737be8d74e47381"
+  },
+  "method": "Elevation minus the unweighted mean height of at least two distinct nearby source locations, 0.1\u201325 km away, using the archive's local equirectangular distance approximation. Duplicate location/height entries count once. This depends on station-network geometry and is not DEM topographic position or station-minus-grid elevation. Correlation gives every source equal weight; its naive Pearson p-value does not account for spatial dependence. Fixed elevation bands reproduce the archive's boundaries.",
+  "tables": {
+    "sources": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/relative_elevation/tables/sources.csv",
+      "sha256": "c55e6752acdf1548228e9815e2a4514319aaf4a24fcf8ce8d95f25359ef690f6"
+    },
+    "elevation_bands": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/relative_elevation/tables/elevation_bands.csv",
+      "sha256": "f1df47b1a9f45b8a4c71d986763f567e3c13fd6ffe438f6bbd020e78cf85cf69"
+    }
+  }
+}

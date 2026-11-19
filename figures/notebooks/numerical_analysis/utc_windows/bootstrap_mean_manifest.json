@@ -1,0 +1,27 @@
+{
+  "created_utc": "2026-11-19T11:52:36.766834+00:00",
+  "bootstrap": 1000,
+  "seed": 1337,
+  "unit": "SOUID, retaining all source-days within each draw",
+  "estimator": "Observation-weighted mean residual within each window sample",
+  "display": "25th\u201375th percentile boxes, median line, 5th\u201395th percentile whiskers of bootstrap means",
+  "interpretation": "Uncertainty in the estimated mean; not the distribution of individual temperatures. Samples overlap, so these are not independent comparisons.",
+  "validation": "Matches existing sample counts, means and 95% source-bootstrap intervals within 1e-12 \u00b0C",
+  "inputs": {
+    "/home2/lobib/gen_hack/data2/station_era5_clean.parquet": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74"
+  },
+  "tables": {
+    "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/utc_windows/tables/bootstrap_mean_draws.csv": "a8ba49de15aeebf89bddf72f883cac878cb2a57200ab88a376304039e6a6e068",
+    "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/utc_windows/tables/bootstrap_mean_quantiles.csv": "7068880216315a571508997f1f4d767c4937c5d6425344194d141fd09de509c5"
+  },
+  "render_code_sha256": {
+    "/home2/lobib/gen_hack/src/py/scripts/plot_bootstrap_means.py": "c488cb4ce9256acf40be33bb9e0446d49951e6c9174171c5b64e27c563d6af99",
+    "/home2/lobib/gen_hack/src/py/analysis_common.py": "a00b5550a3d0ee5d830e18d8d45296863a57f7fde31bf25bb9e1dd6c19173f2a",
+    "/home2/lobib/gen_hack/src/py/scripts/scientific_style.py": "6ffc7d0c365dd33f7655795bf4f52862bb832b951ea4502d4cc119321d3e0bbd"
+  },
+  "outputs": [
+    "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/utc_windows/window_bootstrap_means.png",
+    "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/utc_windows/window_bootstrap_means.pdf",
+    "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/utc_windows/window_bootstrap_means.svg"
+  ]
+}

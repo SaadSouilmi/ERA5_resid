@@ -1,0 +1,38 @@
+{
+  "analysis": "descriptive",
+  "bootstrap_unit": "SOUID (actual observation source)",
+  "hourly_weather_included": false,
+  "origin": "ERA5_resid_v3_code.zip: pending_remarks_analysis.py and supplemental_v3_checks.py",
+  "inputs": {
+    "/home2/lobib/gen_hack/data2/station_era5_clean.parquet": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+    "/home2/lobib/gen_hack/data2/station_ndvi.parquet": "be428f2ff7dca8f3fda425339d3f8d31681d014b5dceb101767e29bfae89120c",
+    "/home2/lobib/gen_hack/data2/station_elevation.parquet": "3595df9b7406222c9b27a42002fc11a4c300eb0901b2fd2b56f1c7b762ad5d9f",
+    "/home2/lobib/gen_hack/data2/station_coastal_distance.parquet": "8401de603d68e522ba57efd64bc49ee3b8f92b19523c0bac9cd5787f6ab2709b",
+    "/home2/lobib/gen_hack/data2/station_land_cover.parquet": "fac834689993882de10e8c74a54209be1ad99e87669316671039ec3005e8ecc5"
+  },
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/analysis_common.py": "12f92324519ad1e3b410354d404cb65f78704847d0d7be8aa5098d3496e811f5",
+    "/home2/lobib/gen_hack/src/py/analysis_descriptive.py": "38e2e5fac30b1ac29ccf8f9a86e0b7810de2250eccc33f1a4fe21157d8583e0a",
+    "/home2/lobib/gen_hack/src/py/load_data.py": "3cbb598247e81757632926c626058360bcc9088955ded67a0c970a9b376cfe57",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "611557dc64dd723692a8783037108bb703ef82312853fdce8ecf4e19e459ab3f"
+  },
+  "results_sha256": "ef255d4df705b5253ea6eadfe5ba3b264002fd885528f79eaf6a6944b8e0aca4",
+  "tables": {
+    "continuous": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/descriptive/tables/continuous.csv",
+      "sha256": "344fc1dd3b4c3aa3fdd406a84bc31c0aa49728595c4b0f705c102cda50c8a725"
+    },
+    "countries": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/descriptive/tables/countries.csv",
+      "sha256": "d93d5acba06fea65ffefec9a3b5d316d08c74ff22a9b431cf0aa9817f7923bff"
+    },
+    "degurba": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/descriptive/tables/degurba.csv",
+      "sha256": "670e503fdf0fe0e5d735357eb5f6e0fffdaca2af3648b60cf6490d650fcafe04"
+    },
+    "by_year": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/descriptive/tables/by_year.csv",
+      "sha256": "5fa9fba74dfc4944e05c1873c03dab5ab51515b2db9f3db5cf7543be58340716"
+    }
+  }
+}

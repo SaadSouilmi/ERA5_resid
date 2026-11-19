@@ -1,0 +1,2114 @@
+[
+  {
+    "SOUID": 156837,
+    "station": "16614099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16614099999.csv",
+    "sha256": "fbab06a8fea86dcfadc7eded32355d803a8f6bcc8419cd87334a0b12a6665d2d",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16614099999.csv"
+  },
+  {
+    "SOUID": 156837,
+    "station": "16614099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16614099999.csv",
+    "sha256": "1ef0460ba4b8476b98decb05187a375ad13ea47e0d2c51b1252b776a25bd2606",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16614099999.csv"
+  },
+  {
+    "SOUID": 156837,
+    "station": "16614099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16614099999.csv",
+    "sha256": "908e6f70986479cfcc68f5ce3e23c33bc325166b5e49e7991cbd2ad6e3260e93",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16614099999.csv"
+  },
+  {
+    "SOUID": 156837,
+    "station": "16614099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16614099999.csv",
+    "sha256": "d9b2bd2c05a66d11738b21a0ae4d473f9bffdbc75ee7b66cf4f5542e16a84de6",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16614099999.csv"
+  },
+  {
+    "SOUID": 156837,
+    "station": "16614099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16614099999.csv",
+    "sha256": "53463a925de97ec50ab7ff40a53bd1a0863d40c72f3778329a8bc2c37a15c12e",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16614099999.csv"
+  },
+  {
+    "SOUID": 156837,
+    "station": "16614099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16614099999.csv",
+    "sha256": "036f004f3dd70ca13c23f223de5ae60bacd5e534e3f27bc5b84b0e30c1deb9f5",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16614099999.csv"
+  },
+  {
+    "SOUID": 156844,
+    "station": "16622099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16622099999.csv",
+    "sha256": "1c7022144656a71f55f9882338048968837074d78e70ee0f720b2eff81409063",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16622099999.csv"
+  },
+  {
+    "SOUID": 156844,
+    "station": "16622099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16622099999.csv",
+    "sha256": "0f96cd26461fc28de835587d17bb6b124860121725b17889e82e2181ac002c3d",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16622099999.csv"
+  },
+  {
+    "SOUID": 156844,
+    "station": "16622099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16622099999.csv",
+    "sha256": "5c636ba6789a6dddf43db8356c2cc2b75e551fd7485766c674057edf728d2fb4",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16622099999.csv"
+  },
+  {
+    "SOUID": 156844,
+    "station": "16622099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16622099999.csv",
+    "sha256": "3dd812d8f4301ea90c6150574676b4801b0eb9d928630480aaff799deaa34d18",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16622099999.csv"
+  },
+  {
+    "SOUID": 156844,
+    "station": "16622099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16622099999.csv",
+    "sha256": "2dfb59d12f7308b91d8539b82e8233725798d4a6f745d42c606e0386a4da23e7",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16622099999.csv"
+  },
+  {
+    "SOUID": 156844,
+    "station": "16622099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16622099999.csv",
+    "sha256": "3d82d0df3dd26065dd094f24ffb38354e3b705ef2c61bb965ea3243b893a3d43",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16622099999.csv"
+  },
+  {
+    "SOUID": 156851,
+    "station": "16624099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16624099999.csv",
+    "sha256": "2b7773eb4266f0d355ed412e5fe25447bcf8a43209cef3e1a29b67d1810075aa",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16624099999.csv"
+  },
+  {
+    "SOUID": 156851,
+    "station": "16624099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16624099999.csv",
+    "sha256": "f55782ba0be4d14e8c06a55d980a46549e5d42e22ed649e0ebd0948e7d8ad014",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16624099999.csv"
+  },
+  {
+    "SOUID": 156851,
+    "station": "16624099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16624099999.csv",
+    "sha256": "2dee29ed616438299de149508039eeeecd6ee08cc67e5e238ea9f96ac3b6a9e2",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16624099999.csv"
+  },
+  {
+    "SOUID": 156851,
+    "station": "16624099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16624099999.csv",
+    "sha256": "460a4d253552cdc9e84a54ba8e13efaf7df2cb87bb3f309fb7bef833d7475a26",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16624099999.csv"
+  },
+  {
+    "SOUID": 156851,
+    "station": "16624099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16624099999.csv",
+    "sha256": "a16196840d92c8de1473c149c3c3865de3ec21f5423fbf6fa0dca7c22d4e24c6",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16624099999.csv"
+  },
+  {
+    "SOUID": 156851,
+    "station": "16624099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16624099999.csv",
+    "sha256": "1bbda8275f5047ea3a8aeef75b98b8734c35011a3de94e10c7caaf2e528d2ce5",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16624099999.csv"
+  },
+  {
+    "SOUID": 156858,
+    "station": "16642199999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16642199999.csv",
+    "sha256": "e7756e1e3e34447518f08b2097f8abf157c515459db9667cf75442254abf6a70",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16642199999.csv"
+  },
+  {
+    "SOUID": 156858,
+    "station": "16642199999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16642199999.csv",
+    "sha256": "c91e3f8574e13f94a62a420efb64dd4e4a5b82aca72716aba64ac4483f79f955",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16642199999.csv"
+  },
+  {
+    "SOUID": 156858,
+    "station": "16642199999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16642199999.csv",
+    "sha256": "0ec36627219258702cf03262b4e55aa76ca54719c4d0443d115cdafc1f4a4dfa",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16642199999.csv"
+  },
+  {
+    "SOUID": 156858,
+    "station": "16642199999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16642199999.csv",
+    "sha256": "d31e9a8f33e2fc6c2917e7192aa33716ce3eb2ea76ca3b49400334ba14e1d585",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16642199999.csv"
+  },
+  {
+    "SOUID": 156858,
+    "station": "16642199999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16642199999.csv",
+    "sha256": "6841704e17c21b5d0fe19aef7cec8ed29a0acb0ef37b16db816673642ecc88d9",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16642199999.csv"
+  },
+  {
+    "SOUID": 156858,
+    "station": "16642199999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16642199999.csv",
+    "sha256": "11706ef708904acd000969896c75ca284347747e4e38fae0e08371ee2a8b4163",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16642199999.csv"
+  },
+  {
+    "SOUID": 156865,
+    "station": "16643099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16643099999.csv",
+    "sha256": "8db42b0b11a221623ce053dc8f4d6a1d1c48dc7987293231be83a7eae3a0c3d7",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16643099999.csv"
+  },
+  {
+    "SOUID": 156865,
+    "station": "16643099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16643099999.csv",
+    "sha256": "ce821c920c89ea2ded7a1283bbc55d0de0c082649a4339e8bc24c387fce8e3a2",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16643099999.csv"
+  },
+  {
+    "SOUID": 156865,
+    "station": "16643099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16643099999.csv",
+    "sha256": "3702d802c04b6a16138e4888be775375fde5c652486f42bc1f26e6b0f82cc49e",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16643099999.csv"
+  },
+  {
+    "SOUID": 156865,
+    "station": "16643099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16643099999.csv",
+    "sha256": "662771e2b8b4d38c699807ac257c9bec70a462c901ffde8755981cb50b8d7de8",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16643099999.csv"
+  },
+  {
+    "SOUID": 156865,
+    "station": "16643099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16643099999.csv",
+    "sha256": "ac44b82b636ffefd46dc10a38214d6a3a5c431b8e2a37b9a579af41676520e11",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16643099999.csv"
+  },
+  {
+    "SOUID": 156865,
+    "station": "16643099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16643099999.csv",
+    "sha256": "8d8017fa83e24978c2255a1bed6e7dd692a79337f474c545cb64217c4ee67e54",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16643099999.csv"
+  },
+  {
+    "SOUID": 156872,
+    "station": "16650099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16650099999.csv",
+    "sha256": "f2191b6cea0ef75697528f34cdd201503eb760921d50478d4d1a562e3e9c92e3",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16650099999.csv"
+  },
+  {
+    "SOUID": 156872,
+    "station": "16650099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16650099999.csv",
+    "sha256": "7553f99f5832c927eb186933fc379d83ea0e0c31dac69d472c9b761cc2d7d509",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16650099999.csv"
+  },
+  {
+    "SOUID": 156872,
+    "station": "16650099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16650099999.csv",
+    "sha256": "14952ba679391aa4617d8f9f950274a913dc081a574869a9f4d79c4a339298bb",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16650099999.csv"
+  },
+  {
+    "SOUID": 156872,
+    "station": "16650099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16650099999.csv",
+    "sha256": "c16e327a8f1402a8a166702de723e5d6ee8cbebfcaecb4296b1a38212366a7cb",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16650099999.csv"
+  },
+  {
+    "SOUID": 156872,
+    "station": "16650099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16650099999.csv",
+    "sha256": "706a4f47ed139a6a68a918b2caef708f89e396b7bbbd07793470aa83fd804e7b",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16650099999.csv"
+  },
+  {
+    "SOUID": 156872,
+    "station": "16650099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16650099999.csv",
+    "sha256": "d82a5484db1edb1ddf4b9e3b77f4d3d5373b1e28c003d9178d381d78c19e3177",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16650099999.csv"
+  },
+  {
+    "SOUID": 156886,
+    "station": "16665099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16665099999.csv",
+    "sha256": "68ba5ba7ffdb154c9dd14a626fbb2591f1190c68c2e4f87ffc59cfeb877cfedf",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16665099999.csv"
+  },
+  {
+    "SOUID": 156886,
+    "station": "16665099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16665099999.csv",
+    "sha256": "e267d08955138122a3d9d3f4354c5d1e5b13d28eacfec65de88bac0b9c79c73a",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16665099999.csv"
+  },
+  {
+    "SOUID": 156886,
+    "station": "16665099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16665099999.csv",
+    "sha256": "1a898a81dbfca8c1020c2edbc73dc0731aea7a22ee4248709ff44c4d16c1b3e6",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16665099999.csv"
+  },
+  {
+    "SOUID": 156886,
+    "station": "16665099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16665099999.csv",
+    "sha256": "320884ae84a0803d38acd42cfb53cafa01824425e07e5c84e0ce8cd6281e7fd0",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16665099999.csv"
+  },
+  {
+    "SOUID": 156886,
+    "station": "16665099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16665099999.csv",
+    "sha256": "b1d86ed3ad349210b5d57a67ed5c81c27774adc4e7c6ce879ab52512e7fe6463",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16665099999.csv"
+  },
+  {
+    "SOUID": 156886,
+    "station": "16665099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16665099999.csv",
+    "sha256": "bd78594d0215051c020b93b8077bf4a4d25e0b1f7208fbc7ba915cb6645ce243",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16665099999.csv"
+  },
+  {
+    "SOUID": 156893,
+    "station": "16665399999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16665399999.csv",
+    "sha256": "e80f4e60d35bdba0e03d9f22cbbb1541f82602dc087dd320b35ca91e25692bcc",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16665399999.csv"
+  },
+  {
+    "SOUID": 156893,
+    "station": "16665399999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16665399999.csv",
+    "sha256": "ae8e0984840e1924be255e554b6ec68b45baa201459deec72658636c6cb96510",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16665399999.csv"
+  },
+  {
+    "SOUID": 156893,
+    "station": "16665399999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16665399999.csv",
+    "sha256": "f8952967c936c81524148171216a23adacb4c1347ee4e9cbf716f16b8c73efb7",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16665399999.csv"
+  },
+  {
+    "SOUID": 156893,
+    "station": "16665399999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16665399999.csv",
+    "sha256": "aa1dbd0bec95ae761412974a869abd6d3656fb87a983216e42d7c4bad941dd07",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16665399999.csv"
+  },
+  {
+    "SOUID": 156893,
+    "station": "16665399999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16665399999.csv",
+    "sha256": "65413ac30b190864633e8ae8e0231d372690431803ba86b221254cc33b258556",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16665399999.csv"
+  },
+  {
+    "SOUID": 156893,
+    "station": "16665399999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16665399999.csv",
+    "sha256": "7ee6f9f45c3d21ec8496bb400aea75bd5d6f17bdc763370e006c260e01b39662",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16665399999.csv"
+  },
+  {
+    "SOUID": 156900,
+    "station": "16667099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16667099999.csv",
+    "sha256": "7660008adeeb8992bf81fc7d7492e178a6b43829452dad4e905a4b6a6c1fbd87",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16667099999.csv"
+  },
+  {
+    "SOUID": 156900,
+    "station": "16667099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16667099999.csv",
+    "sha256": "5eaa2ee5ff6553bc5cc461394414063274f5eedbd0b98de20638d070da08eb7c",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16667099999.csv"
+  },
+  {
+    "SOUID": 156900,
+    "station": "16667099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16667099999.csv",
+    "sha256": "d86bcaf775eedbf60524332208bf2c62420841708e99011bcab357c1df1765dc",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16667099999.csv"
+  },
+  {
+    "SOUID": 156900,
+    "station": "16667099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16667099999.csv",
+    "sha256": "70fc4f3d65287c40faf8f7b8570290954249462da44e8d10be9e5d84c4a14ab7",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16667099999.csv"
+  },
+  {
+    "SOUID": 156900,
+    "station": "16667099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16667099999.csv",
+    "sha256": "25655982465c150a7a4fb6df31c5ee6f03c7367babd2219b12310e05e641d9e7",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16667099999.csv"
+  },
+  {
+    "SOUID": 156900,
+    "station": "16667099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16667099999.csv",
+    "sha256": "169b7e9f8adb5b1fa4e50fc6386f2cc6cc1776c8260645cf225e93fce84f9231",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16667099999.csv"
+  },
+  {
+    "SOUID": 156914,
+    "station": "16682099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16682099999.csv",
+    "sha256": "f1f3bb3ca656b0bcdef27172fccc72fef78cd389444806e6ca23938f640e04c2",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16682099999.csv"
+  },
+  {
+    "SOUID": 156914,
+    "station": "16682099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16682099999.csv",
+    "sha256": "7f466b44e213ba2b707f8728fb194844e0ae88be08bc33b2f3dbbf074c96ec48",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16682099999.csv"
+  },
+  {
+    "SOUID": 156914,
+    "station": "16682099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16682099999.csv",
+    "sha256": "dd4c338577bb9d94e9a780c2ffebdc6fe8ed4c019d1ae4fb06bab7cbb2ec4cf7",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16682099999.csv"
+  },
+  {
+    "SOUID": 156914,
+    "station": "16682099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16682099999.csv",
+    "sha256": "414f196a62d5c208b5fd9ed597ed4ce86dab137a60d9d313806b659e8140bf53",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16682099999.csv"
+  },
+  {
+    "SOUID": 156914,
+    "station": "16682099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16682099999.csv",
+    "sha256": "93309815ab680da6179d31d0ba300d5580fab76f47c4147887f64169ebd33e68",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16682099999.csv"
+  },
+  {
+    "SOUID": 156914,
+    "station": "16682099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16682099999.csv",
+    "sha256": "eb2f4e653eabaac72297044b3195be58ff4da04ae4e8c45d83ed46afc2f5ce8f",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16682099999.csv"
+  },
+  {
+    "SOUID": 156928,
+    "station": "16699099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16699099999.csv",
+    "sha256": "5cdf506f85e1bebdf1e6b157445387262971f62bfb16c67d28852b02def88126",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16699099999.csv"
+  },
+  {
+    "SOUID": 156928,
+    "station": "16699099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16699099999.csv",
+    "sha256": "c3e8e31268e95ef1c05eefe391d78a1bd0a4d325cfc72ee9fa594a070ab898ed",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16699099999.csv"
+  },
+  {
+    "SOUID": 156928,
+    "station": "16699099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16699099999.csv",
+    "sha256": "27c2b9c08ff5fe92d13931ed84dae21e5815338186e9d36f50f2a433a00afa2f",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16699099999.csv"
+  },
+  {
+    "SOUID": 156928,
+    "station": "16699099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16699099999.csv",
+    "sha256": "9d674395859a4484732137b1d9a3d7bfa940ba21747aa866e7f3229c87f01965",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16699099999.csv"
+  },
+  {
+    "SOUID": 156928,
+    "station": "16699099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16699099999.csv",
+    "sha256": "80169365269c1eb796b3fb8fc745341d65ee18182858f60dc35cfe0d21f2f051",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16699099999.csv"
+  },
+  {
+    "SOUID": 156928,
+    "station": "16699099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16699099999.csv",
+    "sha256": "d843b2b5d747982c2b1bd51bb086f7027c080191601ce95e53eca41f60229875",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16699099999.csv"
+  },
+  {
+    "SOUID": 156935,
+    "station": "16706099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16706099999.csv",
+    "sha256": "32b571cc56b2f799ccb1030949bc52eac76801c90152d1aa892a7cabef54f4bb",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16706099999.csv"
+  },
+  {
+    "SOUID": 156935,
+    "station": "16706099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16706099999.csv",
+    "sha256": "a38dab8746beace5a573271ed1ad3a14904b8fc8142a7e557ebfa38bdf0cd42e",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16706099999.csv"
+  },
+  {
+    "SOUID": 156935,
+    "station": "16706099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16706099999.csv",
+    "sha256": "d5a87ad227339a2da1a110939cd81e332b19576b86dc9c98654ed597432f3770",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16706099999.csv"
+  },
+  {
+    "SOUID": 156935,
+    "station": "16706099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16706099999.csv",
+    "sha256": "2e6d261a09154facbf9a9efa6254501266d346fa0cc71d7f7d2bc6d0b244867a",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16706099999.csv"
+  },
+  {
+    "SOUID": 156935,
+    "station": "16706099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16706099999.csv",
+    "sha256": "86c29f7d13c6be24a3c75c78e9c0a61a158589a06d99cc29eef76d7a2cc18933",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16706099999.csv"
+  },
+  {
+    "SOUID": 156935,
+    "station": "16706099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16706099999.csv",
+    "sha256": "5a01ffe020d80da4ad238dd0eb75c17632167263327694c21979d2db10593d63",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16706099999.csv"
+  },
+  {
+    "SOUID": 156942,
+    "station": "16715099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16715099999.csv",
+    "sha256": "9511650108cd5294b532a8649130ec50989f85fc8cff96a53639b8209d4d3e14",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16715099999.csv"
+  },
+  {
+    "SOUID": 156942,
+    "station": "16715099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16715099999.csv",
+    "sha256": "c0c59a441e8bfe60c9a09ec862c13fc500305aafbbc5d9a78972a11bd6298815",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16715099999.csv"
+  },
+  {
+    "SOUID": 156942,
+    "station": "16715099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16715099999.csv",
+    "sha256": "1c8578cb21cb7a907b6675763735bf7b5992bd53abf364a843670764726d3ef6",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16715099999.csv"
+  },
+  {
+    "SOUID": 156942,
+    "station": "16715099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16715099999.csv",
+    "sha256": "4c324dc4a4f0470fefd027a704eacd0279650adce018051d47f5e12c8f0ff3d6",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16715099999.csv"
+  },
+  {
+    "SOUID": 156942,
+    "station": "16715099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16715099999.csv",
+    "sha256": "87103e7188cbe6b66a4a58bbbb608160b597e41394fec44f828196c7affb7c5c",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16715099999.csv"
+  },
+  {
+    "SOUID": 156942,
+    "station": "16715099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16715099999.csv",
+    "sha256": "97d9613103d18884f63b3df51fb125fd474419be3b10369d87d9971a5c16df73",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16715099999.csv"
+  },
+  {
+    "SOUID": 156949,
+    "station": "16716199999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16716199999.csv",
+    "sha256": "f457b8ef21755fac329bba08e734eb87ac923e6e078ab942a3651a9fa3cd6f3c",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16716199999.csv"
+  },
+  {
+    "SOUID": 156949,
+    "station": "16716199999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16716199999.csv",
+    "sha256": "e6769cc77235c75fb8e5d4723e89c8ced7d9117752eacd6c66cf7c8c8cbc028c",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16716199999.csv"
+  },
+  {
+    "SOUID": 156949,
+    "station": "16716199999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16716199999.csv",
+    "sha256": "46892b998dc76a1da2ca463c30bf2c70477c0f370d9efe92b4faa4bdddbef53d",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16716199999.csv"
+  },
+  {
+    "SOUID": 156949,
+    "station": "16716199999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16716199999.csv",
+    "sha256": "a7736db7ebc108c34c71b6523c9c788425ff71bb6daad322e0ef0d13e6e2a82f",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16716199999.csv"
+  },
+  {
+    "SOUID": 156949,
+    "station": "16716199999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16716199999.csv",
+    "sha256": "edf15189f49bf28d4677f65ea741d5ad89768791c57c3f9178591e8677357973",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16716199999.csv"
+  },
+  {
+    "SOUID": 156949,
+    "station": "16716199999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16716199999.csv",
+    "sha256": "7ab4b3538e97cf1715b69748d3c114f91ea72e1d7bdb9284c268fca71a86aedb",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16716199999.csv"
+  },
+  {
+    "SOUID": 156963,
+    "station": "16718099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16718099999.csv",
+    "sha256": "194c8c3d7f669381270ee091b821624406e2ec5855cb8655e6849f4b36a0b710",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16718099999.csv"
+  },
+  {
+    "SOUID": 156963,
+    "station": "16718099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16718099999.csv",
+    "sha256": "a24b08a4fb7a86a90ac19fb88b4593198c14a5b1672224f3cf84871ef5202f24",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16718099999.csv"
+  },
+  {
+    "SOUID": 156963,
+    "station": "16718099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16718099999.csv",
+    "sha256": "44358e9b0d8662067e9d133e958e14025e2e3e04a46aad7ecca04436c436b856",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16718099999.csv"
+  },
+  {
+    "SOUID": 156963,
+    "station": "16718099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16718099999.csv",
+    "sha256": "165eb3ebcdbd2b9dbb95e4b3d4b5fcb2c06f17e5c2d876c1243624646a41634d",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16718099999.csv"
+  },
+  {
+    "SOUID": 156963,
+    "station": "16718099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16718099999.csv",
+    "sha256": "6ad3dc1844f1223e13e4521345bf528ca033ec2ce36b2b16b66f8668040f167e",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16718099999.csv"
+  },
+  {
+    "SOUID": 156963,
+    "station": "16718099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16718099999.csv",
+    "sha256": "b921d619c3eec42ab8cdb887cd02398579e00b58f918fc57a6a6df5b2a168a12",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16718099999.csv"
+  },
+  {
+    "SOUID": 156970,
+    "station": "16719399999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16719399999.csv",
+    "sha256": "c21ce8b8a1211cefd7d1cac247e3896310e11ac531376e929db6d02cdc113b57",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16719399999.csv"
+  },
+  {
+    "SOUID": 156970,
+    "station": "16719399999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16719399999.csv",
+    "sha256": "e896e3cea820db14009245fcac05cd5371b3c7328a7180ce1bfe422e0f71bd36",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16719399999.csv"
+  },
+  {
+    "SOUID": 156970,
+    "station": "16719399999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16719399999.csv",
+    "sha256": "4390735df3bcddbaa76aa7b33d49c2e6ab5ad0f93aadfe4ad3f2637cc5ef5ea9",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16719399999.csv"
+  },
+  {
+    "SOUID": 156970,
+    "station": "16719399999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16719399999.csv",
+    "sha256": "78f39361e684b688ed1203c66809cbb640aa2a1ece07ff8d31593731e9e3e603",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16719399999.csv"
+  },
+  {
+    "SOUID": 156970,
+    "station": "16719399999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16719399999.csv",
+    "sha256": "db18ff626a205c6760eda24af64b831ef6932bfebb14964ca3dc0779e38a428d",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16719399999.csv"
+  },
+  {
+    "SOUID": 156970,
+    "station": "16719399999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16719399999.csv",
+    "sha256": "a93372fd3cb3e60abb449cc97cb5402e638a05be8585aed118b3b966aebc7793",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16719399999.csv"
+  },
+  {
+    "SOUID": 156977,
+    "station": "16723099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16723099999.csv",
+    "sha256": "cb84de6619845917fdf9ed5d89ca32d9df17ba5967806a08f9d3f7baf99c7a37",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16723099999.csv"
+  },
+  {
+    "SOUID": 156977,
+    "station": "16723099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16723099999.csv",
+    "sha256": "995a491ffd857a8d1a7c4d038d27a1cdeb64d43acd798d21729b5689879832bc",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16723099999.csv"
+  },
+  {
+    "SOUID": 156977,
+    "station": "16723099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16723099999.csv",
+    "sha256": "c145233f2a38b0b8d0014ff7cc38d53afa892610eb3ac443038e3f0d19e1a76e",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16723099999.csv"
+  },
+  {
+    "SOUID": 156977,
+    "station": "16723099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16723099999.csv",
+    "sha256": "9f12bd6d12bcdf7e4dd54b1f34332daa8bdcbc42c20ef5968fb93324d640dd80",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16723099999.csv"
+  },
+  {
+    "SOUID": 156977,
+    "station": "16723099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16723099999.csv",
+    "sha256": "a1996fed47634ccd364379cbf6cfb9e397f8ae3aebd6eb4afb2479af319444de",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16723099999.csv"
+  },
+  {
+    "SOUID": 156977,
+    "station": "16723099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16723099999.csv",
+    "sha256": "bb685c24fb3ab7caf8ea1e557c04044350232f872b00fa23d4122465710ff013",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16723099999.csv"
+  },
+  {
+    "SOUID": 156984,
+    "station": "16726099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16726099999.csv",
+    "sha256": "3a01ad191318689697b4a84711449a37488c24a27222f74ef057c95c51b237c4",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16726099999.csv"
+  },
+  {
+    "SOUID": 156984,
+    "station": "16726099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16726099999.csv",
+    "sha256": "e1a3ee4bb0658e3980a76fe75f8c2aaba5e9cb798148a34d80a8c9e019ecbfbd",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16726099999.csv"
+  },
+  {
+    "SOUID": 156984,
+    "station": "16726099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16726099999.csv",
+    "sha256": "3620f4ea75a5ef7606c6738f125edb584087c5d7f35a491f4fcbeb6d1fcd0eb7",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16726099999.csv"
+  },
+  {
+    "SOUID": 156984,
+    "station": "16726099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16726099999.csv",
+    "sha256": "a6ee979127afc676573920e6b8e294ce0b38e0295da6bc041a9bf0c02bc7ee76",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16726099999.csv"
+  },
+  {
+    "SOUID": 156984,
+    "station": "16726099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16726099999.csv",
+    "sha256": "c6d5ffde38f8c14a0b42524aa4b673ec22205d9e9049207155db3270dca66ab9",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16726099999.csv"
+  },
+  {
+    "SOUID": 156984,
+    "station": "16726099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16726099999.csv",
+    "sha256": "e2e9cc8b2b4def2752fbf4b79305a2cdac3201ed681aaacf90efcf15e0fdcab5",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16726099999.csv"
+  },
+  {
+    "SOUID": 156991,
+    "station": "16726399999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16726399999.csv",
+    "sha256": "fc7971160d294c92df699b4793a4f3764db9ab0b80e541ec162cda633f6b756e",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16726399999.csv"
+  },
+  {
+    "SOUID": 156991,
+    "station": "16726399999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16726399999.csv",
+    "sha256": "a3a305f1ff13521ea36a9875220a83cef1e1fc1ab4b888ba16d3e17e4a66d331",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16726399999.csv"
+  },
+  {
+    "SOUID": 156991,
+    "station": "16726399999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16726399999.csv",
+    "sha256": "156994260f437e515a83590bc8debee737657f44353babcad98a023de52b2998",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16726399999.csv"
+  },
+  {
+    "SOUID": 156991,
+    "station": "16726399999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16726399999.csv",
+    "sha256": "f6202d1a8bddc6fa06a9bc9f672d76b1f8039e69d8b7ccfad540f14ee4f15f22",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16726399999.csv"
+  },
+  {
+    "SOUID": 156991,
+    "station": "16726399999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16726399999.csv",
+    "sha256": "77cec15b1ef507dda7eab1f9eb251481edb98c45ada1079a04fedd0e0b1a5f14",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16726399999.csv"
+  },
+  {
+    "SOUID": 156991,
+    "station": "16726399999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16726399999.csv",
+    "sha256": "46d6bee76661176df23169659c574b49e6105fe35d441974f88294251d23e0e6",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16726399999.csv"
+  },
+  {
+    "SOUID": 156998,
+    "station": "16726499999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16726499999.csv",
+    "sha256": "154206bfb0190442ee0f2e25dc7b66ad98f96c92cc8dbccd27ad3b38aeb38c4c",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16726499999.csv"
+  },
+  {
+    "SOUID": 156998,
+    "station": "16726499999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16726499999.csv",
+    "sha256": "fb8955ce05416856cd85613efe5793828fc7826f3da97ab5b6ffe19b4ff29b81",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16726499999.csv"
+  },
+  {
+    "SOUID": 156998,
+    "station": "16726499999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16726499999.csv",
+    "sha256": "86a33f22fcf2b282820af80d5666a16d9fe531e9e5633bccb07e8c56a5acfb2e",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16726499999.csv"
+  },
+  {
+    "SOUID": 156998,
+    "station": "16726499999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16726499999.csv",
+    "sha256": "17f45a89cb6abfda077e32cc4368417c94a6008b89d59e8579d70932ecd4a3a7",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16726499999.csv"
+  },
+  {
+    "SOUID": 156998,
+    "station": "16726499999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16726499999.csv",
+    "sha256": "e109f3d596bba2fd58bdb4256cd4a40f9c62a230aeea34cbe4bd698d17fc5ef5",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16726499999.csv"
+  },
+  {
+    "SOUID": 156998,
+    "station": "16726499999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16726499999.csv",
+    "sha256": "3f83eafb5e19ebb05a4ecf7e7c35614f35b38ceaebd283c7d76877225a439053",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16726499999.csv"
+  },
+  {
+    "SOUID": 157005,
+    "station": "16734199999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16734199999.csv",
+    "sha256": "89f4778069c8b3a2da81adb2c11abc8b9dc205b33429f5beba15eeffcff14c65",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16734199999.csv"
+  },
+  {
+    "SOUID": 157005,
+    "station": "16734199999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16734199999.csv",
+    "sha256": "f659e75224375f6eb20f67091f4a9f1b9733711181cefe2c9b11f5303c399ee8",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16734199999.csv"
+  },
+  {
+    "SOUID": 157005,
+    "station": "16734199999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16734199999.csv",
+    "sha256": "2d904a35140bf3a0d2d0d1366b077fee729b2f75505cf0f6285ff45f7a6665f2",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16734199999.csv"
+  },
+  {
+    "SOUID": 157005,
+    "station": "16734199999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16734199999.csv",
+    "sha256": "ac12ffa3d7e459346065829dedc7e27c445968ef2fc569edf793c58522da7021",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16734199999.csv"
+  },
+  {
+    "SOUID": 157005,
+    "station": "16734199999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16734199999.csv",
+    "sha256": "835b08815f167cfc8792ec674b8c4890cddf6b1b26de894de105f5af01ca62a7",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16734199999.csv"
+  },
+  {
+    "SOUID": 157005,
+    "station": "16734199999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16734199999.csv",
+    "sha256": "bc2f9fc0d7afed9cf6f7eee66f8319d225b7aff0446774dd5995e4952d40f4a2",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16734199999.csv"
+  },
+  {
+    "SOUID": 157012,
+    "station": "16742099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16742099999.csv",
+    "sha256": "8ce2b71fa8e7133860569cffb7ca61f4345af9fb7c0689b39804290da9f4180d",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16742099999.csv"
+  },
+  {
+    "SOUID": 157012,
+    "station": "16742099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16742099999.csv",
+    "sha256": "63899d6386b29259064b6ace18b02641ae756d63d130090b5d8d3b36fab83c74",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16742099999.csv"
+  },
+  {
+    "SOUID": 157012,
+    "station": "16742099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16742099999.csv",
+    "sha256": "d0a19ebb0a63b843b192c9f85fe92d1f8b6080c02df7f1fbc073210617f5f4bf",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16742099999.csv"
+  },
+  {
+    "SOUID": 157012,
+    "station": "16742099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16742099999.csv",
+    "sha256": "1418ac20963e1ad3aacd57eb73d7f9b5bacc69e93fbd8f473fb49a73cbe996e0",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16742099999.csv"
+  },
+  {
+    "SOUID": 157012,
+    "station": "16742099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16742099999.csv",
+    "sha256": "ac3d4c9e8461d1dd9448977b5af6ba8533755641e7f61bdb2d790674495763a5",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16742099999.csv"
+  },
+  {
+    "SOUID": 157012,
+    "station": "16742099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16742099999.csv",
+    "sha256": "3998d32efa86387881b862c776f091cdfbc035bb0786fbf56d20220d2b8f8f16",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16742099999.csv"
+  },
+  {
+    "SOUID": 157019,
+    "station": "16744399999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16744399999.csv",
+    "sha256": "c89e8493a4dac2446e89f04cdeeb774726d0230b7e8c30a6799a1cbd990b2b77",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16744399999.csv"
+  },
+  {
+    "SOUID": 157019,
+    "station": "16744399999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16744399999.csv",
+    "sha256": "7e778804dca05cf1c1ee4ba9f1a7bb8ccd66b90bc019add1b16355ff69fe69cc",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16744399999.csv"
+  },
+  {
+    "SOUID": 157019,
+    "station": "16744399999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16744399999.csv",
+    "sha256": "f096276304994df6ad19f19c077d7ca0d3d9f0f8f570809ae5d44f0c7a38deb2",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16744399999.csv"
+  },
+  {
+    "SOUID": 157019,
+    "station": "16744399999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16744399999.csv",
+    "sha256": "2646591466f0e7c783286030e5497eaab654962cea4bba7ac221c574b17357b0",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16744399999.csv"
+  },
+  {
+    "SOUID": 157019,
+    "station": "16744399999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16744399999.csv",
+    "sha256": "326c218894baf0b4b91d05b2acc8ae5adcc88e48909c4ffaf45c3f2ebad4bf74",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16744399999.csv"
+  },
+  {
+    "SOUID": 157019,
+    "station": "16744399999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16744399999.csv",
+    "sha256": "bb2983317789bb661033fe63cd07bcfe31b70ae5c85460eddb3d4176df28ffa5",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16744399999.csv"
+  },
+  {
+    "SOUID": 157033,
+    "station": "16754399999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16754399999.csv",
+    "sha256": "eed2fba73075eb67054f7b1fdcd356c236dc2d9bd5cbc870e04866c60240b1f7",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16754399999.csv"
+  },
+  {
+    "SOUID": 157033,
+    "station": "16754399999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16754399999.csv",
+    "sha256": "d62387ee9bcd596615c0bdf3c3e1fd7fcc2f365f42f0cbbcb0e60515df9644e8",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16754399999.csv"
+  },
+  {
+    "SOUID": 157033,
+    "station": "16754399999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16754399999.csv",
+    "sha256": "3f63db4d3be1dafd0bd10b2507a036ff235550ed5b8e0c46c60b8e0bd28f362f",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16754399999.csv"
+  },
+  {
+    "SOUID": 157033,
+    "station": "16754399999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16754399999.csv",
+    "sha256": "4eb7722c0d1c75a1bef7a74602a8dcaf41dd0c46537e13e5bc7d3dd10c83db41",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16754399999.csv"
+  },
+  {
+    "SOUID": 157033,
+    "station": "16754399999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16754399999.csv",
+    "sha256": "2b4536fd42223f30c1cb285851d5ec08569b5ad5b496c20da1860a76f04ddac6",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16754399999.csv"
+  },
+  {
+    "SOUID": 157033,
+    "station": "16754399999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16754399999.csv",
+    "sha256": "3a54b2f3b3dea61229bcc970b8a86c4e24c0c1b5185bb668daabf6f8a6c696b1",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16754399999.csv"
+  },
+  {
+    "SOUID": 157047,
+    "station": "16757099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16757099999.csv",
+    "sha256": "9f44515fe997e946a718c0dad638e30f22a1624fca1820a96e0bf85e597807b0",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16757099999.csv"
+  },
+  {
+    "SOUID": 157047,
+    "station": "16757099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16757099999.csv",
+    "sha256": "7e3685f5a424a4a8b289eafc6627d63ac957637fec534eb16bbf8cb3f651b62f",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16757099999.csv"
+  },
+  {
+    "SOUID": 157047,
+    "station": "16757099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16757099999.csv",
+    "sha256": "2cc0f59b7e97cc18efca3f54210f0a79c72253cc80e72a993cc9cd2eb6ed440f",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16757099999.csv"
+  },
+  {
+    "SOUID": 157047,
+    "station": "16757099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16757099999.csv",
+    "sha256": "57ff9a4d260cdd59a550f995a66636fa737285fd5e112e198d3bca739a77ed93",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16757099999.csv"
+  },
+  {
+    "SOUID": 157047,
+    "station": "16757099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16757099999.csv",
+    "sha256": "e5b22ba6c52caba68c05a9fa95bbab3b417cbbf8480e3fcacc24608e8099991d",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16757099999.csv"
+  },
+  {
+    "SOUID": 157047,
+    "station": "16757099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16757099999.csv",
+    "sha256": "e4633e38e1129237d834182f3cdb2f22e23992100e30d89e46afa9cb8b12d602",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16757099999.csv"
+  },
+  {
+    "SOUID": 157061,
+    "station": "16765099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/16765099999.csv",
+    "sha256": "54d9e9c20b9ac2bfecac79321f352b2af6d3990fdc9b4d614200d7910bb99c33",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_16765099999.csv"
+  },
+  {
+    "SOUID": 157061,
+    "station": "16765099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/16765099999.csv",
+    "sha256": "128ebd6579bc4c0e5c9575cd814b80e8b0b637135559b336c0a0043abbdf4d0e",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_16765099999.csv"
+  },
+  {
+    "SOUID": 157061,
+    "station": "16765099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/16765099999.csv",
+    "sha256": "d079eb854194e0236d08ca7603d1999a3ff9606687bbc41db1a3da57827491f1",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_16765099999.csv"
+  },
+  {
+    "SOUID": 157061,
+    "station": "16765099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/16765099999.csv",
+    "sha256": "af212b02a29d49856d5fb8023bb10be77c181fb5f706cca6635f60fd9bf0ca1c",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_16765099999.csv"
+  },
+  {
+    "SOUID": 157061,
+    "station": "16765099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/16765099999.csv",
+    "sha256": "f90c02a48272025c3ef784a0c1f37ac4c50750bd65b754a6b798869a7ed2aaa5",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_16765099999.csv"
+  },
+  {
+    "SOUID": 157061,
+    "station": "16765099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/16765099999.csv",
+    "sha256": "aeb1f02cb160fd04c9c920e1240f04b29bd9c3c36ed1084aea4083f7dff5d339",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_16765099999.csv"
+  },
+  {
+    "SOUID": 157068,
+    "station": "13600099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/13600099999.csv",
+    "sha256": "d906cbd471a38626b04d03cc3608e2da1c513e961e0a1f467a2d51676a676ec6",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_13600099999.csv"
+  },
+  {
+    "SOUID": 157068,
+    "station": "13600099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/13600099999.csv",
+    "sha256": "c75cebfed0c031c9d088ec3008e9fe399e65a51b5fbb47b86291abc25d3447c3",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_13600099999.csv"
+  },
+  {
+    "SOUID": 157068,
+    "station": "13600099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/13600099999.csv",
+    "sha256": "5276649cdd649170ae6b4bbc30fa8665eec72fee19cb656e5be621b71b9e2b0f",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_13600099999.csv"
+  },
+  {
+    "SOUID": 157068,
+    "station": "13600099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/13600099999.csv",
+    "sha256": "f00424eb24c9d049a52bcfd23eed4abac3c59f37f313685f6fde3057435efb41",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_13600099999.csv"
+  },
+  {
+    "SOUID": 157068,
+    "station": "13600099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/13600099999.csv",
+    "sha256": "dbbde5b5227e825f5992197135a0faf17d39dce44a38f4b627144f17c2bb05c6",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_13600099999.csv"
+  },
+  {
+    "SOUID": 157068,
+    "station": "13600099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/13600099999.csv",
+    "sha256": "e1dc1716467c9ccef0ee968604b24ab355be914ce45b133798300424d34ade57",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_13600099999.csv"
+  },
+  {
+    "SOUID": 157075,
+    "station": "13610099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/13610099999.csv",
+    "sha256": "824b6a0fedf9e8f7f4d4df89dd6a32ce3bda2b641bffd598fccfc7894c35377d",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_13610099999.csv"
+  },
+  {
+    "SOUID": 157075,
+    "station": "13610099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/13610099999.csv",
+    "sha256": "7d2561bb8ae4973e14f1e9625fd9c8126fa05d07ac51602c5c19a9aec46fdcd1",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_13610099999.csv"
+  },
+  {
+    "SOUID": 157075,
+    "station": "13610099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/13610099999.csv",
+    "sha256": "7b96deb1cca3ec687f9e215b3dd4eb7d8a88cb4e28f89c082dde6751ed5416ec",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_13610099999.csv"
+  },
+  {
+    "SOUID": 157075,
+    "station": "13610099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/13610099999.csv",
+    "sha256": "db0b709042365fec3ea6f0dde7f57a8e9f094685f1633a7d494e408b36236209",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_13610099999.csv"
+  },
+  {
+    "SOUID": 157075,
+    "station": "13610099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/13610099999.csv",
+    "sha256": "59da6c432dad967232e569108e7743901d0a567ffe48c80fbc960e59270918cd",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_13610099999.csv"
+  },
+  {
+    "SOUID": 157075,
+    "station": "13610099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/13610099999.csv",
+    "sha256": "1d7e7ae6b70e2002eacd936694f66fac89c0cc37429b36ecf154892148aa828d",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_13610099999.csv"
+  },
+  {
+    "SOUID": 157082,
+    "station": "13611099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/13611099999.csv",
+    "sha256": "d052f9a80614f15a25f2e53e19e0e022157bf3c65ead30215603cf4a1abdac47",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_13611099999.csv"
+  },
+  {
+    "SOUID": 157082,
+    "station": "13611099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/13611099999.csv",
+    "sha256": "226584613c4b9541e79238e57884f9030e4b08de9ee24d8768b6cd80235f7c0c",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_13611099999.csv"
+  },
+  {
+    "SOUID": 157082,
+    "station": "13611099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/13611099999.csv",
+    "sha256": "0f9f5bd53fdf3078e5fa35b7694f202568107e6b7c3b55f4ab64218062075baa",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_13611099999.csv"
+  },
+  {
+    "SOUID": 157082,
+    "station": "13611099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/13611099999.csv",
+    "sha256": "51a2a8e171ca3ca82254dc370ca360975af910ef925cc01f1a5c867f9da149b2",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_13611099999.csv"
+  },
+  {
+    "SOUID": 157082,
+    "station": "13611099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/13611099999.csv",
+    "sha256": "ac3142a5f6961a6d12ec7b5324439a2e602891afad06dfe2a438d36ef1f76c42",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_13611099999.csv"
+  },
+  {
+    "SOUID": 157082,
+    "station": "13611099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/13611099999.csv",
+    "sha256": "67dd331a74766d931216b1cd59bb3abd69f428158a394ba8f2b03b07f27e78ef",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_13611099999.csv"
+  },
+  {
+    "SOUID": 157089,
+    "station": "13615099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/13615099999.csv",
+    "sha256": "c516781fdac534a03bbaea5bbbfd568e48973b6b6f5c94595e5bf54123531e8d",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_13615099999.csv"
+  },
+  {
+    "SOUID": 157089,
+    "station": "13615099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/13615099999.csv",
+    "sha256": "238822bfb46ea08df8fda0f55b03a5485926e871244859ece6ba43b5b7754e2f",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_13615099999.csv"
+  },
+  {
+    "SOUID": 157089,
+    "station": "13615099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/13615099999.csv",
+    "sha256": "ba1702bd6684fcb62865b24b6018c8f049ad1f7333af1ae17f05ec28bcd1b521",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_13615099999.csv"
+  },
+  {
+    "SOUID": 157089,
+    "station": "13615099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/13615099999.csv",
+    "sha256": "e3ef2ab99566c8b28ea94be080f58a934bf7e8b8366ce9645b323bd385539a71",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_13615099999.csv"
+  },
+  {
+    "SOUID": 157089,
+    "station": "13615099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/13615099999.csv",
+    "sha256": "ab7acd01b9a1bef84706f72a054c2cd05ba6b7c79efbe24507024e14f47e0e39",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_13615099999.csv"
+  },
+  {
+    "SOUID": 157089,
+    "station": "13615099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/13615099999.csv",
+    "sha256": "a7f19dd7c0d56edaf049c46f733d59cc8c2a79c220f1a2dd999e63b8d91f1b45",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_13615099999.csv"
+  },
+  {
+    "SOUID": 157096,
+    "station": "13619099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/13619099999.csv",
+    "sha256": "58a3ee4e45c67e9ff8a1410b90aff7330fac8a3417ec3cce88d7460437ef5357",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_13619099999.csv"
+  },
+  {
+    "SOUID": 157096,
+    "station": "13619099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/13619099999.csv",
+    "sha256": "7cbcc379e76ab4398599c899e0b5d7a27e6266d7d999a598584a4e89da8d6e0f",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_13619099999.csv"
+  },
+  {
+    "SOUID": 157096,
+    "station": "13619099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/13619099999.csv",
+    "sha256": "3c1b9b31cda4326343904979fb086a63f1b4bdd0f1f2125d9ecf8239ab76750e",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_13619099999.csv"
+  },
+  {
+    "SOUID": 157096,
+    "station": "13619099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/13619099999.csv",
+    "sha256": "cde79deea85cb3aafa7adfda7a6dcc2ee7053a73996869e7c074e7db767da626",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_13619099999.csv"
+  },
+  {
+    "SOUID": 157096,
+    "station": "13619099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/13619099999.csv",
+    "sha256": "f8d10ab6be2a7c4acdb12c044777495e0c0103c5836ca136332a68ca73a53aee",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_13619099999.csv"
+  },
+  {
+    "SOUID": 157096,
+    "station": "13619099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/13619099999.csv",
+    "sha256": "a6f4f611b850522b45d53d401e816ec0fd7f61f279513e1040f05057d0e3eddf",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_13619099999.csv"
+  },
+  {
+    "SOUID": 157103,
+    "station": "13622099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/13622099999.csv",
+    "sha256": "32656a745f8a5719e978c74cc22263f6dc41905b4202f34f4280c6b1b8ca8ca2",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_13622099999.csv"
+  },
+  {
+    "SOUID": 157103,
+    "station": "13622099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/13622099999.csv",
+    "sha256": "3ffc584c2238184473c53f27133b0d42eecb589fe3ce62146a51c716213ca3d5",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_13622099999.csv"
+  },
+  {
+    "SOUID": 157103,
+    "station": "13622099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/13622099999.csv",
+    "sha256": "709437c147505061ed776900d76aef2ad1f189e6ed1bcce590c8049cc3f17859",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_13622099999.csv"
+  },
+  {
+    "SOUID": 157103,
+    "station": "13622099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/13622099999.csv",
+    "sha256": "32d1d04a08143672644939382a066ca2dacc6275b790a38d4102b06caaecd413",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_13622099999.csv"
+  },
+  {
+    "SOUID": 157103,
+    "station": "13622099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/13622099999.csv",
+    "sha256": "a30c27e1e2278c55ad42d6df0b5ba786668f402998fbd5902358e34ae55bd3d5",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_13622099999.csv"
+  },
+  {
+    "SOUID": 157103,
+    "station": "13622099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/13622099999.csv",
+    "sha256": "b869b39cdd6e7bd855b68c0ac32be51163168deb60ccefa77940060d042c2094",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_13622099999.csv"
+  },
+  {
+    "SOUID": 157110,
+    "station": "13624099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/13624099999.csv",
+    "sha256": "f3c8503884b81200ae8159b4847934cd3b0a9684c163dda5321a44ea32b30c1b",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_13624099999.csv"
+  },
+  {
+    "SOUID": 157110,
+    "station": "13624099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/13624099999.csv",
+    "sha256": "638decdffe971d67bcdf3b944d5eb20be2272e9c3950784b3b26e47a23fcc6f0",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_13624099999.csv"
+  },
+  {
+    "SOUID": 157110,
+    "station": "13624099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/13624099999.csv",
+    "sha256": "b4705f639c6056d85142b89b5ff12ecec015754f156b06dabfe8ca0f2552491c",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_13624099999.csv"
+  },
+  {
+    "SOUID": 157110,
+    "station": "13624099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/13624099999.csv",
+    "sha256": "64a9451dffb78a144ee01c9eb0d5db522eb659a52ac81541c1fea190a6ef8612",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_13624099999.csv"
+  },
+  {
+    "SOUID": 157110,
+    "station": "13624099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/13624099999.csv",
+    "sha256": "b6b61776544968520e96e074535c289f66dc31fe42789db094ac1284316fed88",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_13624099999.csv"
+  },
+  {
+    "SOUID": 157110,
+    "station": "13624099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/13624099999.csv",
+    "sha256": "47040484a2ad4b3f938c0bac4a7c90ad87fccf764f95cf7d4f88834099b63148",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_13624099999.csv"
+  },
+  {
+    "SOUID": 157117,
+    "station": "13625099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/13625099999.csv",
+    "sha256": "452e55147b58ab46395a07923d27b91f4a9c7e087432233e1c00181cdd800a9f",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_13625099999.csv"
+  },
+  {
+    "SOUID": 157117,
+    "station": "13625099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/13625099999.csv",
+    "sha256": "60553bd688e6f39ec45848757c0f682f3a2f9b51be54adee6160b92c9cfb6d5f",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_13625099999.csv"
+  },
+  {
+    "SOUID": 157117,
+    "station": "13625099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/13625099999.csv",
+    "sha256": "024a383322fcb1e2abf7d9111bb0e191a9d68e31b2605b1073a9ea37cfffa6bf",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_13625099999.csv"
+  },
+  {
+    "SOUID": 157117,
+    "station": "13625099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/13625099999.csv",
+    "sha256": "a60d26f61a840da5e56fc4e9bf23c29ceedcb105ec9c59fc97ebd45a4e64ce18",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_13625099999.csv"
+  },
+  {
+    "SOUID": 157117,
+    "station": "13625099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/13625099999.csv",
+    "sha256": "32976a782257e84ee8693c2c0bff597d4053d8acb07fa82bc8616c6ff176f349",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_13625099999.csv"
+  },
+  {
+    "SOUID": 157117,
+    "station": "13625099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/13625099999.csv",
+    "sha256": "14ec18d41819bf645fe3db2156a694906c4b66707f1824312e5aab8564e11d06",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_13625099999.csv"
+  },
+  {
+    "SOUID": 157124,
+    "station": "13629099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/13629099999.csv",
+    "sha256": "001018c36936c3e2f1db12acc23ca4d1dc6a24f9579a5d958919f152453f557c",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_13629099999.csv"
+  },
+  {
+    "SOUID": 157124,
+    "station": "13629099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/13629099999.csv",
+    "sha256": "c3cc75e9fa6da2f95e5ca185dafb8226008000230fe7276a56b22cd7dc253216",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_13629099999.csv"
+  },
+  {
+    "SOUID": 157124,
+    "station": "13629099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/13629099999.csv",
+    "sha256": "ff6d6450c37bc33aefb755447f7ed1660edcf27f8bfaeb4cd2b0808b3bd985af",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_13629099999.csv"
+  },
+  {
+    "SOUID": 157124,
+    "station": "13629099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/13629099999.csv",
+    "sha256": "e953d23f34f2803815d022215ba64a3c40f1c9ed373efe613aea061707a3acbe",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_13629099999.csv"
+  },
+  {
+    "SOUID": 157124,
+    "station": "13629099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/13629099999.csv",
+    "sha256": "30ae41b6931516227bd2fa3b8d4cc1c68f57f2f9f06041a770bff17c99dc7301",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_13629099999.csv"
+  },
+  {
+    "SOUID": 157124,
+    "station": "13629099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/13629099999.csv",
+    "sha256": "c0abc83c78b09a1d00a9b4b8008286d9ce93507397182f14b003e99c6e69794c",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_13629099999.csv"
+  },
+  {
+    "SOUID": 157138,
+    "station": "15502099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/15502099999.csv",
+    "sha256": "54026b6f6baddf3579dcfb9b56c439ba887575b72c26797d10d6f2c4250ebd36",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_15502099999.csv"
+  },
+  {
+    "SOUID": 157138,
+    "station": "15502099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/15502099999.csv",
+    "sha256": "5ee6a7703a0851352bc39b5978a41147b90ddb81a92660729799e5d6d44ab3ef",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_15502099999.csv"
+  },
+  {
+    "SOUID": 157138,
+    "station": "15502099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/15502099999.csv",
+    "sha256": "00960bce786f2125f6af953e44bcbb9d1d891ffb0c677431e429f9178cd20480",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_15502099999.csv"
+  },
+  {
+    "SOUID": 157138,
+    "station": "15502099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/15502099999.csv",
+    "sha256": "7bafed3aef5c257aa00c0b6541b32f2c6c5c01c3c731b1b78ba52f8fd91e328c",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_15502099999.csv"
+  },
+  {
+    "SOUID": 157138,
+    "station": "15502099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/15502099999.csv",
+    "sha256": "cd04059613f177b384025e0a1cf5fa86c0c0eceacb9b19a741b7bbabdaf74320",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_15502099999.csv"
+  },
+  {
+    "SOUID": 157138,
+    "station": "15502099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/15502099999.csv",
+    "sha256": "1c2918bb09223df2130eafe6ebeddb30eb6670734e5089245bad2da0da38ad82",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_15502099999.csv"
+  },
+  {
+    "SOUID": 157173,
+    "station": "15525099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/15525099999.csv",
+    "sha256": "32174099b8cc47474442dcfd9bb69768e1192bbcaeee36fd0309fad53d6b38b9",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_15525099999.csv"
+  },
+  {
+    "SOUID": 157173,
+    "station": "15525099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/15525099999.csv",
+    "sha256": "a0d99a36b4b5bfbd22051342f09777ae81a8c4c4499beff4348cbd61c5afe1bb",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_15525099999.csv"
+  },
+  {
+    "SOUID": 157173,
+    "station": "15525099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/15525099999.csv",
+    "sha256": "b54c7e8bb196a665c46c0497c52f45ab874452e69f5bd8ff4bff997f6cedf54e",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_15525099999.csv"
+  },
+  {
+    "SOUID": 157173,
+    "station": "15525099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/15525099999.csv",
+    "sha256": "570e43a3e8f6bc9f35a580d960a00aa40328a30bf595424b5ccbbf243a2decd8",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_15525099999.csv"
+  },
+  {
+    "SOUID": 157173,
+    "station": "15525099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/15525099999.csv",
+    "sha256": "bf470a2b500aebcc3369b426e630216360487c9987e993b6646b543578ffefc4",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_15525099999.csv"
+  },
+  {
+    "SOUID": 157173,
+    "station": "15525099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/15525099999.csv",
+    "sha256": "84f27adb7d4da7e19b7f391c5e7f11c65baa5c19c245707a44c5e9fe65bdbfbd",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_15525099999.csv"
+  },
+  {
+    "SOUID": 157180,
+    "station": "15525399999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/15525399999.csv",
+    "sha256": "152cf51fa8620229c2bea5521b8b8dff87ac0810bf5e4a8c3f49b1baa6e2376c",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_15525399999.csv"
+  },
+  {
+    "SOUID": 157180,
+    "station": "15525399999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/15525399999.csv",
+    "sha256": "a088f9f1cb8eb4219f27f4b1c5aa8b6ce74b82127f17378246696ca0c8ae0c2d",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_15525399999.csv"
+  },
+  {
+    "SOUID": 157180,
+    "station": "15525399999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/15525399999.csv",
+    "sha256": "c0b4f284fb523096efc690f45fd71e744a3e40b81b044a67bc59371d142ad632",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_15525399999.csv"
+  },
+  {
+    "SOUID": 157180,
+    "station": "15525399999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/15525399999.csv",
+    "sha256": "66fce714e8664b671038d911c896eaa5206fd3db7af9354bb7ddee44b1454336",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_15525399999.csv"
+  },
+  {
+    "SOUID": 157180,
+    "station": "15525399999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/15525399999.csv",
+    "sha256": "f2f887348975d3e610d1aeaf29091229617bfb6df44ce781551fc593fdeeb7c0",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_15525399999.csv"
+  },
+  {
+    "SOUID": 157180,
+    "station": "15525399999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/15525399999.csv",
+    "sha256": "9f4633a23e28e908212e65f8d2b16eb8ea66b1f66a6db568b234716d461d489d",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_15525399999.csv"
+  },
+  {
+    "SOUID": 157215,
+    "station": "15549099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/15549099999.csv",
+    "sha256": "03393215694f32878fc634a539a316ae149cce96e6b2c1ad56cbe9484a360f50",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_15549099999.csv"
+  },
+  {
+    "SOUID": 157215,
+    "station": "15549099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/15549099999.csv",
+    "sha256": "00c1ca6529168e5aaeafa0a17af708699eea347ada53f52fb6ab238f33007170",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_15549099999.csv"
+  },
+  {
+    "SOUID": 157215,
+    "station": "15549099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/15549099999.csv",
+    "sha256": "2201c217e2a10ab3f87e121d71e680dc8b0b815e2591d99932ef850aa37abad8",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_15549099999.csv"
+  },
+  {
+    "SOUID": 157215,
+    "station": "15549099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/15549099999.csv",
+    "sha256": "d895c3562aca56a4ca941f751156d26f6ef29c0789eaa2982540daea00f43257",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_15549099999.csv"
+  },
+  {
+    "SOUID": 157215,
+    "station": "15549099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/15549099999.csv",
+    "sha256": "1e6a35fcb2374a5655cf93032779e92788e3af68406e1f7489ed7fc15ac71130",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_15549099999.csv"
+  },
+  {
+    "SOUID": 157215,
+    "station": "15549099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/15549099999.csv",
+    "sha256": "7759b46c759a533693fa738953c46992f49c92046c123be865e7ae481e172f45",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_15549099999.csv"
+  },
+  {
+    "SOUID": 157250,
+    "station": "15600099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/15600099999.csv",
+    "sha256": "418cae4cf3fdc481ff6027e4ccc7612442f1dff536f19e20ecac57e1fe1d4bbb",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_15600099999.csv"
+  },
+  {
+    "SOUID": 157250,
+    "station": "15600099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/15600099999.csv",
+    "sha256": "44e62c8d8aa65fb5503547b6fd24bb9596ac8e0ed9df6127692d7fe9f0798775",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_15600099999.csv"
+  },
+  {
+    "SOUID": 157250,
+    "station": "15600099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/15600099999.csv",
+    "sha256": "563783df4a5660e406c73d1573c1d62191f540d7b0d3b4395718a46463210dc6",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_15600099999.csv"
+  },
+  {
+    "SOUID": 157250,
+    "station": "15600099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/15600099999.csv",
+    "sha256": "e8b6e9e39eac565e0a454d608c217ee6b4a6eb39c9f960b9eaecc5aec9b50a50",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_15600099999.csv"
+  },
+  {
+    "SOUID": 157250,
+    "station": "15600099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/15600099999.csv",
+    "sha256": "fbcda2d653fc885c30169097baf9b77b03d57c6f5a29eacb9669e332a3bebbe6",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_15600099999.csv"
+  },
+  {
+    "SOUID": 157250,
+    "station": "15600099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/15600099999.csv",
+    "sha256": "ee7ac7efdf526f06fd70e5ecfd3e2831ebf6e48289f32aa832e64c0674ed9122",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_15600099999.csv"
+  },
+  {
+    "SOUID": 157313,
+    "station": "15640099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/15640099999.csv",
+    "sha256": "15d424d890f381d3cd4c665101bece18c307119b63892ad9a0a36ae60d144652",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_15640099999.csv"
+  },
+  {
+    "SOUID": 157313,
+    "station": "15640099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/15640099999.csv",
+    "sha256": "6527d716ca32e35de061b4fb65f063d86d662cd2a2fbbe3f040914fa9aab5c0e",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_15640099999.csv"
+  },
+  {
+    "SOUID": 157313,
+    "station": "15640099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/15640099999.csv",
+    "sha256": "d1a0254ac89a00f7f73fe2521b0bd7e873a236e258f74ae1d35fdf4fce3b253e",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_15640099999.csv"
+  },
+  {
+    "SOUID": 157313,
+    "station": "15640099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/15640099999.csv",
+    "sha256": "2d6224e0d8d399e615454854167e1e363af80c2297e604509d599048bf7925b8",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_15640099999.csv"
+  },
+  {
+    "SOUID": 157313,
+    "station": "15640099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/15640099999.csv",
+    "sha256": "757bc0f8004350deae426be36682bcfda49cdf17ab621beb6bf3a4d075355830",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_15640099999.csv"
+  },
+  {
+    "SOUID": 157313,
+    "station": "15640099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/15640099999.csv",
+    "sha256": "36e74eeeba11e4889da08401b063fdad9efc6b8daf64fb410f751521978262e0",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_15640099999.csv"
+  },
+  {
+    "SOUID": 157334,
+    "station": "15655099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/15655099999.csv",
+    "sha256": "242a20d0b9bbf6e27de8f5289588e366932b0b951eae59fd010f81176c58be66",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_15655099999.csv"
+  },
+  {
+    "SOUID": 157334,
+    "station": "15655099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/15655099999.csv",
+    "sha256": "13a287c8812e9c5d16cb2370004735dcb15951fd1bf7645f5604de8adff80aed",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_15655099999.csv"
+  },
+  {
+    "SOUID": 157334,
+    "station": "15655099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/15655099999.csv",
+    "sha256": "6e515b74915739dd04a5b5ca13db01b9a46b0983934be66866dcaf78118a8cb7",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_15655099999.csv"
+  },
+  {
+    "SOUID": 157334,
+    "station": "15655099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/15655099999.csv",
+    "sha256": "63d28424ea61ff2d1e24e6c9049389f8e31612d6142f129eb58b136b39737eb5",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_15655099999.csv"
+  },
+  {
+    "SOUID": 157334,
+    "station": "15655099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/15655099999.csv",
+    "sha256": "1d507e3fa45f6524af16ca1f41f3c438d537cea6f53ef81e02523fece78e36f0",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_15655099999.csv"
+  },
+  {
+    "SOUID": 157334,
+    "station": "15655099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/15655099999.csv",
+    "sha256": "c013e091f1351adc083cd063218f0f0bb52991231fa54f1c869932d342a1ed88",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_15655099999.csv"
+  },
+  {
+    "SOUID": 157341,
+    "station": "15712099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/15712099999.csv",
+    "sha256": "e5690220af76c5cca9431508647620b270e1eabe32794cf2c07128102d2d9040",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_15712099999.csv"
+  },
+  {
+    "SOUID": 157341,
+    "station": "15712099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/15712099999.csv",
+    "sha256": "70bda99cc74e8b365799319e2a856ffebb25fe378cb6419abe2bca4bf27736c5",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_15712099999.csv"
+  },
+  {
+    "SOUID": 157341,
+    "station": "15712099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/15712099999.csv",
+    "sha256": "921bb9feaa34a4991b4dfd1d3a3b93ff21a2a6be310c5dd205de393a7b12ef18",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_15712099999.csv"
+  },
+  {
+    "SOUID": 157341,
+    "station": "15712099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/15712099999.csv",
+    "sha256": "0c2cd1ee0b3cd630afe50c4d2a6faa12ed53a0d1f083725b631a24cb6dd368f1",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_15712099999.csv"
+  },
+  {
+    "SOUID": 157341,
+    "station": "15712099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/15712099999.csv",
+    "sha256": "af1db4e3ca27179a4592f531e37f62ff38798ed22cdb257bb309ab0e43b76f1d",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_15712099999.csv"
+  },
+  {
+    "SOUID": 157341,
+    "station": "15712099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/15712099999.csv",
+    "sha256": "8578f08a1d978a43558e567d2684b427ef9935ac98a5391aff39f44a82b1f2e2",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_15712099999.csv"
+  },
+  {
+    "SOUID": 157362,
+    "station": "15730099999",
+    "year": 2020,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2020/15730099999.csv",
+    "sha256": "a7ee83d8b8934ca932209c5f3f50a3136a0e17f58c113e90867332d1b5a40a5d",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2020_15730099999.csv"
+  },
+  {
+    "SOUID": 157362,
+    "station": "15730099999",
+    "year": 2021,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2021/15730099999.csv",
+    "sha256": "80b6c68100bf71686bc876bb348e0906e318716bfeac818adc30422a099e91f0",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2021_15730099999.csv"
+  },
+  {
+    "SOUID": 157362,
+    "station": "15730099999",
+    "year": 2022,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2022/15730099999.csv",
+    "sha256": "29a42a73b617814b1540689accfa405d04ee5ab49632cb88e576609589d0ba9e",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2022_15730099999.csv"
+  },
+  {
+    "SOUID": 157362,
+    "station": "15730099999",
+    "year": 2023,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2023/15730099999.csv",
+    "sha256": "8c4a70065748350738c4a0aec46f9c761b4bea39aeb2c937c8d9afccd7d1542a",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2023_15730099999.csv"
+  },
+  {
+    "SOUID": 157362,
+    "station": "15730099999",
+    "year": 2024,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2024/15730099999.csv",
+    "sha256": "91d4c68e4ab05bf366be217570299d81620667af5bc1121b2fdcac61079a4eba",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2024_15730099999.csv"
+  },
+  {
+    "SOUID": 157362,
+    "station": "15730099999",
+    "year": 2025,
+    "url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/2025/15730099999.csv",
+    "sha256": "c63b9ae280590a02dfd170994add8c9e4ac61ca6a61a4a3aab19594cabceff0c",
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/gsod/2025_15730099999.csv"
+  }
+]

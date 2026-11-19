@@ -1,0 +1,17 @@
+{
+  "created_utc": "2026-11-18T01:44:11.023434+00:00",
+  "status": "complete",
+  "dataset": "reanalysis-era5-land",
+  "expected_months": 68,
+  "downloaded_months": 68,
+  "expected_hours": 49680,
+  "reference_land_cells": 109118,
+  "grid_and_timestamp_validation": "Exact monthly UTC sequence and complete reference latitude/longitude axes required for each downloaded file.",
+  "land_mask_definition": "Finite cells in the first day of the supplied 2020 daily-maximum reference; extra finite cells are reported separately.",
+  "station_pairing_policy": "Only exact UTC timestamps are paired to station readings. Off-hour station observations remain unmatched.",
+  "screened_station_temperatures": 1375526,
+  "station_temperatures_on_exact_hours": 1022069,
+  "station_temperatures_off_hour": 353457,
+  "matched_screened_station_temperatures": 973042,
+  "exact_hour_station_temperatures_without_finite_era5": 49027
+}

@@ -1,0 +1,29 @@
+{
+  "window": "UTC calendar day, 00:00 to 23:00 samples",
+  "period": "January 2020",
+  "land_grid_points": 29,
+  "results": [
+    {
+      "sampling_hours": 1,
+      "grid_days": 899,
+      "mean_abs_difference_c": 4.786405467880979e-06,
+      "max_abs_difference_c": 0.000244140625,
+      "grid_days_within_0p01_c": 899
+    },
+    {
+      "sampling_hours": 3,
+      "grid_days": 899,
+      "mean_abs_difference_c": 0.17937383768423248,
+      "max_abs_difference_c": 2.456878662109375,
+      "grid_days_within_0p01_c": 334
+    },
+    {
+      "sampling_hours": 6,
+      "grid_days": 899,
+      "mean_abs_difference_c": 0.37215456681468995,
+      "max_abs_difference_c": 4.99871826171875,
+      "grid_days_within_0p01_c": 249
+    }
+  ],
+  "limitation": "This check covers January 2020 at the downloaded station-pilot grid points, not every year or cell."
+}

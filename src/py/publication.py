@@ -45,8 +45,8 @@ def PaperStyle(Chart):
     )
 
 
-def SaveFigure(Chart, Stem, Dpi=600, WidthMm=DoubleColumnMm, Formats=("svg", "pdf", "png")):
-    """Save the Altair spec and SVG/PDF/PNG at an exact physical width."""
+def SaveFigure(Chart, Stem, Dpi=600, WidthMm=DoubleColumnMm, Formats=("png", "pdf")):
+    """Save the Altair spec and PNG/PDF at an exact physical width."""
     Stem = Path(Stem)
     Stem.parent.mkdir(parents=True, exist_ok=True)
     Spec = Chart.to_dict()

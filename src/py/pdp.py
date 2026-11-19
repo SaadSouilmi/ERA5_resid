@@ -1,9 +1,6 @@
 import numpy as Np
 import polars as Pl
 
-from py.cleaning import FeatureRows
-
-
 def ClusterBootstrapCi(
     Df: Pl.DataFrame,
     BinCol: str,
@@ -59,7 +56,7 @@ def BinCenters(Bins, DataMin, DataMax):
 
 
 def BinFeatures(Df: Pl.DataFrame, Feature: str, NBins: int = 5):
-    Df = FeatureRows(Df, [Feature])
+    Df = Df.filter(Pl.col(Feature).is_finite())
     Df = Df.with_columns(Pl.col(Feature).qcut(NBins, allow_duplicates=True).alias("bin"))
     Bins = sorted(
         Df["bin"].drop_nulls().unique().to_list(),

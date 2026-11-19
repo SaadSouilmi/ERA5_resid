@@ -1,0 +1,50 @@
+{
+  "analysis": "fixed_effects",
+  "created_utc": "2026-11-19T00:56:20.956470+00:00",
+  "parent_observations": 6726213,
+  "parent_sources": 4458,
+  "summary": {},
+  "method": "Subtract each source's calendar-month mean across all study years, for both residual and conditioning variables. This removes source-by-month mean differences, not all day-specific confounding. Station temperature and the midpoint both contain a component of the residual; conditioning on ERA5 gives a separate coupling diagnostic. 1,000 SOUID bootstrap draws per bin; demeaning is held fixed during resampling.",
+  "tables": {
+    "station_celsius_raw": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/station_celsius_raw.csv",
+      "sha256": "219fc4fef1a4d84493530dec7fe3116d91d0cb471408f00091dd4b63a23621c3"
+    },
+    "station_celsius_within": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/station_celsius_within.csv",
+      "sha256": "4dc1fc69562ba484da678fbc1f134567aa17a2770528a4075b34f1ad5d6f266b"
+    },
+    "era5_celsius_raw": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/era5_celsius_raw.csv",
+      "sha256": "10452a5c9b46f0fe5fc4f7124a7fec853b4f53cf6af1c86e686bc4c292a73ec1"
+    },
+    "era5_celsius_within": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/era5_celsius_within.csv",
+      "sha256": "840c13b98bf871a90b1fd4eb51a612518535a17058939009b8eeb1cb3d271f3f"
+    },
+    "midpoint_raw": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/midpoint_raw.csv",
+      "sha256": "3384e8280dc89cee46b0ae46e79b80894194e896d0a4aed65b715c87e03130f2"
+    },
+    "midpoint_within": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/midpoint_within.csv",
+      "sha256": "0ce66b6ac398004c52f831cf22150367d22a8ef8ab8890f2fe4d24a15cd24745"
+    },
+    "era5_celsius_raw_reference": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/era5_celsius_raw_reference.csv",
+      "sha256": "a78b3aa5bcbec5730f3b373e7689cdced87859d8f8f8d4b4a3778c0115145d3a"
+    },
+    "era5_celsius_within_reference": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/era5_celsius_within_reference.csv",
+      "sha256": "3e37a1eb00420e2c22ed7943c1875484c2261b2fb13945963e0ae98bf2d5c449"
+    },
+    "midpoint_raw_reference": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/midpoint_raw_reference.csv",
+      "sha256": "08fbb7445d4e455f3e02f4ee0838d8e9e48398d860292e6783f5bf33d1ae9102"
+    },
+    "midpoint_within_reference": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/midpoint_within_reference.csv",
+      "sha256": "356b147cea8f96a87038a75e6b21fe7dc5e03b6e6b096a4848fe40ac2407de1f"
+    }
+  }
+}

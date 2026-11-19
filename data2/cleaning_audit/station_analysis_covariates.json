@@ -1,0 +1,184 @@
+{
+  "created_utc": "2026-11-18T23:38:52.097831+00:00",
+  "entry_point": "py.preprocessing.analysis_covariates",
+  "input": "/home2/lobib/gen_hack/data2/station_era5_clean.parquet",
+  "input_sha256": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+  "elevation": {
+    "file": "/home2/lobib/gen_hack/data2/station_elevation.parquet",
+    "sha256": "3595df9b7406222c9b27a42002fc11a4c300eb0901b2fd2b56f1c7b762ad5d9f",
+    "missing": 3,
+    "units": "metres",
+    "source": "HGHT in ECA&D sources.txt"
+  },
+  "source_metadata": "/home2/lobib/gen_hack/data/main/ECA_blend_tx/sources.txt",
+  "source_metadata_sha256": "bbf73025a23bb15f49cacfeb280570e985b22cfce08317307ebaebb234102ff7",
+  "weather": [
+    {
+      "year": 2020,
+      "rows": 1086534,
+      "missing_wind": 0,
+      "missing_tp": 0,
+      "file": "/home2/lobib/gen_hack/data2/station_weather/2020.parquet",
+      "sha256": "bc38ede3e6803a3647d5dd7082566d8ae502a5c8914c803de560a25a46eb815f"
+    },
+    {
+      "year": 2021,
+      "rows": 1107752,
+      "missing_wind": 0,
+      "missing_tp": 0,
+      "file": "/home2/lobib/gen_hack/data2/station_weather/2021.parquet",
+      "sha256": "79083d349e46d90c6ad3be4f6dbd5bfd183363a1b082a31d5dc968d160de9a37"
+    },
+    {
+      "year": 2022,
+      "rows": 1105331,
+      "missing_wind": 0,
+      "missing_tp": 0,
+      "file": "/home2/lobib/gen_hack/data2/station_weather/2022.parquet",
+      "sha256": "6226c772bca80d949ac8cf462809d3abd7dea4053561363ad995deed6eca86aa"
+    },
+    {
+      "year": 2023,
+      "rows": 1078582,
+      "missing_wind": 0,
+      "missing_tp": 0,
+      "file": "/home2/lobib/gen_hack/data2/station_weather/2023.parquet",
+      "sha256": "e1f65a7ca621a8178c1ada47d65b71eca4eeafcc7e3e74e8e52edb222a86559c"
+    },
+    {
+      "year": 2024,
+      "rows": 1012128,
+      "missing_wind": 0,
+      "missing_tp": 0,
+      "file": "/home2/lobib/gen_hack/data2/station_weather/2024.parquet",
+      "sha256": "bcfc26bf313f83d3d47ae3fb2bb999f68377af5eafbb9906ab4c4b148bdad760"
+    },
+    {
+      "year": 2025,
+      "rows": 622529,
+      "missing_wind": 0,
+      "missing_tp": 0,
+      "file": "/home2/lobib/gen_hack/data2/station_weather/2025.parquet",
+      "sha256": "230918f1f389133e98f0ad1ddfe2a6449b26b663a249b81de2eb37082dccd55e"
+    }
+  ],
+  "weather_inputs": [
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2020_10m_u_component_of_wind_daily_mean.nc",
+      "sha256": "a3c80e538f87292b22e09b591d248229929169429aade58a6724bf6902954b51",
+      "time_shift": "0 days 00:00:00",
+      "history": "2025-10-04T23:34 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"10m_u_component_of_wind.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}\nearthkit.transforms.aggregate.temporal.daily_reduce(10m_u_component_of_wind_0, how=mean, **{'time_shift': {'hours': 0}})"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2020_10m_v_component_of_wind_daily_mean.nc",
+      "sha256": "7d3215af76e05d32e159844d99db9aa1adc9cde5c3e1284d47fcaaa14fb98733",
+      "time_shift": "0 days 00:00:00",
+      "history": "2025-10-05T00:13 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"10m_v_component_of_wind.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}\nearthkit.transforms.aggregate.temporal.daily_reduce(10m_v_component_of_wind_0, how=mean, **{'time_shift': {'hours': 0}})"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2020_total_precipitation_daily_mean.nc",
+      "sha256": "c4bcbc46058a08e207befa6423e5f7ee51056ada7419356e69bed3c694ab2006",
+      "time_shift": null,
+      "history": "2025-10-08T12:46 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"data.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2021_10m_u_component_of_wind_daily_mean.nc",
+      "sha256": "423e8d77dc2f04eba18ed84e4c50f6742808d2bdae4515d068e532b7b12aa681",
+      "time_shift": "0 days 00:00:00",
+      "history": "2025-10-05T10:41 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"10m_u_component_of_wind.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}\nearthkit.transforms.aggregate.temporal.daily_reduce(10m_u_component_of_wind_0, how=mean, **{'time_shift': {'hours': 0}})"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2021_10m_v_component_of_wind_daily_mean.nc",
+      "sha256": "1d5b239cdff80eeab95b57761262a8b12d1ca128d48b7bd747e2f6fb18411d78",
+      "time_shift": "0 days 00:00:00",
+      "history": "2025-10-05T11:15 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"10m_v_component_of_wind.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}\nearthkit.transforms.aggregate.temporal.daily_reduce(10m_v_component_of_wind_0, how=mean, **{'time_shift': {'hours': 0}})"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2021_total_precipitation_daily_mean.nc",
+      "sha256": "ed699ab03b0586523e1a7e06afc13234e4ef911f202a2437ceebd5e9c091b72e",
+      "time_shift": null,
+      "history": "2025-10-08T15:41 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"data.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2022_10m_u_component_of_wind_daily_mean.nc",
+      "sha256": "bde93f4e491466bb948fcd462496b17bd5fac0916767abf4ee1db5d11d4f2d40",
+      "time_shift": "0 days 00:00:00",
+      "history": "2025-10-05T21:32 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"10m_u_component_of_wind.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}\nearthkit.transforms.aggregate.temporal.daily_reduce(10m_u_component_of_wind_0, how=mean, **{'time_shift': {'hours': 0}})"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2022_10m_v_component_of_wind_daily_mean.nc",
+      "sha256": "981b122f8371bab508f9a664e347a947b79f89796ba3a61aec3579deccc97097",
+      "time_shift": "0 days 00:00:00",
+      "history": "2025-10-05T22:15 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"10m_v_component_of_wind.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}\nearthkit.transforms.aggregate.temporal.daily_reduce(10m_v_component_of_wind_0, how=mean, **{'time_shift': {'hours': 0}})"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2022_total_precipitation_daily_mean.nc",
+      "sha256": "a17a9cf27d7ce8b641f36110bc07707a6e630b23225889cecf1d451efdacf072",
+      "time_shift": null,
+      "history": "2025-10-08T18:42 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"data.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2023_10m_u_component_of_wind_daily_mean.nc",
+      "sha256": "d032fbb7a15724fb6eb8bfab5ad40be7e46aeb71206a30be6fae3b36197daa39",
+      "time_shift": "0 days 00:00:00",
+      "history": "2025-10-06T09:26 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"10m_u_component_of_wind.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}\nearthkit.transforms.aggregate.temporal.daily_reduce(10m_u_component_of_wind_0, how=mean, **{'time_shift': {'hours': 0}})"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2023_10m_v_component_of_wind_daily_mean.nc",
+      "sha256": "6f45b6232a6e83586d3b9156e630dc6897065ae839a19333f347a77ec2b5f906",
+      "time_shift": "0 days 00:00:00",
+      "history": "2025-10-06T10:03 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"10m_v_component_of_wind.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}\nearthkit.transforms.aggregate.temporal.daily_reduce(10m_v_component_of_wind_0, how=mean, **{'time_shift': {'hours': 0}})"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2023_total_precipitation_daily_mean.nc",
+      "sha256": "0cc327a812c85af9130c3540ec88ac6e6429f6548a25184953f4b7c781d41617",
+      "time_shift": null,
+      "history": "2025-10-08T21:32 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"data.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2024_10m_u_component_of_wind_daily_mean.nc",
+      "sha256": "9e78d52d15f1371cf859ec2a98c9c16eebc92bb3fd257e2fab0cc11987d7e741",
+      "time_shift": "0 days 00:00:00",
+      "history": "2025-10-06T22:44 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"10m_u_component_of_wind.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}\nearthkit.transforms.aggregate.temporal.daily_reduce(10m_u_component_of_wind_0, how=mean, **{'time_shift': {'hours': 0}})"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2024_10m_v_component_of_wind_daily_mean.nc",
+      "sha256": "06dd82bd498091a22d07d381327b6318dd9104e026eb5d43d27ddedaa20ab372",
+      "time_shift": "0 days 00:00:00",
+      "history": "2025-10-06T23:19 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"10m_v_component_of_wind.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}\nearthkit.transforms.aggregate.temporal.daily_reduce(10m_v_component_of_wind_0, how=mean, **{'time_shift': {'hours': 0}})"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2024_total_precipitation_daily_mean.nc",
+      "sha256": "578af77ae126c297a06b4d6f18e9e8227d87e681fab95fc817c4dd614eb88d38",
+      "time_shift": null,
+      "history": "2025-10-09T00:51 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"data.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2025_10m_u_component_of_wind_daily_mean.nc",
+      "sha256": "4b559c712e88994db3e3f10eb90cb869c84f4eb28c28cfd5218ae3291936854e",
+      "time_shift": "0 days 00:00:00",
+      "history": "2025-10-07T11:14 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"10m_u_component_of_wind.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}\nearthkit.transforms.aggregate.temporal.daily_reduce(10m_u_component_of_wind_0, how=mean, **{'time_shift': {'hours': 0}})"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2025_10m_v_component_of_wind_daily_mean.nc",
+      "sha256": "b1e1df0a049f50d02b265fdd0a3f1b2aed44a8724c7833e295cb40a0cfbf7c34",
+      "time_shift": "0 days 00:00:00",
+      "history": "2025-10-07T11:52 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"10m_v_component_of_wind.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}\nearthkit.transforms.aggregate.temporal.daily_reduce(10m_v_component_of_wind_0, how=mean, **{'time_shift': {'hours': 0}})"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/derived-era5-land-daily-statistics/2025_total_precipitation_daily_mean.nc",
+      "sha256": "9e68eef2ad1bc8c643344aff463a5f295443c72b1104eb07b19a02c057c511be",
+      "time_shift": null,
+      "history": "2025-10-09T09:21 GRIB to CDM+CF via cfgrib-0.9.15.0/ecCodes-2.42.0 with {\"source\": \"data.grib\", \"filter_by_keys\": {}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}"
+    }
+  ],
+  "wind": "sqrt(daily_mean_u10 ** 2 + daily_mean_v10 ** 2), metres per second",
+  "precipitation": "Supplied total_precipitation_daily_mean proxy in metres; no claim of verified daily totals.",
+  "temporal_matching": "Use the supplied daily covariate row labelled by ECA&D DATE. These are calendar-date covariates, not aggregates over station-specific temperature windows.",
+  "wind_time_window": "All supplied wind components record zero-shift UTC calendar-day means.",
+  "precipitation_time_window": "Unverified: no daily averaging or date-shift history is retained. Unshifted ERA5-Land midnight accumulations refer to the preceding day; no shift is applied to this review lookup.",
+  "spatial_matching": "Sample each temperature pair's ERA5 cell; no land fallback or interpolation.",
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/preprocessing/analysis_covariates.py": "831830a3ab288de0e8d92455270d92285acdbfdadcc4e9bc6ef67c011a84b7a9"
+  }
+}

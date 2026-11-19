@@ -1,59 +1,89 @@
-"""Copy the manuscript's selected notebook PDFs and their exact plotted data."""
+"""Copy the draft's selected current-sample PDFs, source tables and provenance."""
 
-import argparse as Argparse
-import hashlib as Hashlib
-import json as Json
-import re as Re
-import shutil as Shutil
+import argparse
+import json
+import re
+import shutil
 
-from py.paths import NotebookFiguresDirectory, ProjectRoot
+from py.paths import AnalysisDataDirectory, NotebookFiguresDirectory, ProjectRoot
+from py.preprocessing.match_era5_grid import sha256
 
 
-def Main():
-    Argparse.ArgumentParser(description=__doc__).parse_args()
-    Paper = ProjectRoot / "paper"
-    Text = Re.sub(r"(?<!\\)%[^\n]*", "", (Paper / "paper.tex").read_text())
-    Names = Re.findall(r"\\includegraphics(?:\[[^\]]*\])?\{figures/([^{}]+\.pdf)\}", Text)
-    if not Names or any("/" in Name for Name in Names):
-        raise ValueError("Use explicit PDF filenames directly under paper/figures")
-    Figures, Tables = Paper / "figures", Paper / "tables"
-    Figures.mkdir(exist_ok=True)
-    Tables.mkdir(exist_ok=True)
-    Sources = {}
-    for Name in dict.fromkeys(Names):
-        Matches = list(NotebookFiguresDirectory.glob(f"*/{Name}"))
-        if len(Matches) != 1:
-            raise ValueError(f"Expected one notebook export for {Name}, found {len(Matches)}")
-        Source = Matches[0]
-        Specs = [
-            Source.with_suffix(Suffix)
-            for Suffix in (".vl.json", ".plotly.json")
-            if Source.with_suffix(Suffix).is_file()
+def figure_sources(name):
+    directory = NotebookFiguresDirectory
+    if name == "degurba.pdf":
+        folder = directory / "partial_dependence"
+        return folder / "degurba_seaborn.pdf", folder / "degurba_manifest.json", [
+            *sorted((folder / "tables").glob("degurba*.csv"))
         ]
-        if len(Specs) != 1:
-            raise ValueError(f"Expected one Altair or Plotly specification for {Source}")
-        Sources[Name] = Source, Specs[0]
-    Extra = {File.name for File in Figures.iterdir()} - set(Sources)
-    if Extra:
-        raise ValueError(f"Move unused assets out of paper/figures first: {sorted(Extra)}")
-    Manifest = {}
-    for Name, (Source, Spec) in Sources.items():
-        Shutil.copy2(Source, Figures / Name)
-        Shutil.copy2(Spec, Tables / Spec.name)
-        for Suffix in (".vl.json", ".plotly.json"):
-            Other = Tables / Source.with_suffix(Suffix).name
-            if Other.name != Spec.name:
-                Other.unlink(missing_ok=True)
-        Manifest[Name] = {
-            "source": str(Source.relative_to(ProjectRoot)),
-            "sha256": Hashlib.sha256(Source.read_bytes()).hexdigest(),
-            "source_specification": str(Spec.relative_to(ProjectRoot)),
-            "specification": f"tables/{Spec.name}",
-            "specification_sha256": Hashlib.sha256(Spec.read_bytes()).hexdigest(),
+    if name.startswith("pdp_"):
+        folder = directory / "partial_dependence"
+        feature = name.removeprefix("pdp_").removesuffix(".pdf")
+        return folder / name, folder / "manifest.json", [
+            folder / "tables" / f"pdp_{feature}.csv",
+            folder / "tables" / f"histogram_{feature}.csv",
+        ]
+    if name == "station_map.pdf":
+        folder = directory / "station_map"
+        return folder / name, folder / "manifest.json", [
+            folder / "tables/source_means.csv", folder / "station_map.plotly.json"
+        ]
+    folder = directory / "interactions"
+    stem = name.removesuffix(".pdf")
+    return folder / name, folder / "manifest.json", [
+        folder / "tables" / f"{stem}{suffix}.csv" for suffix in ["", "_hist_x", "_hist_y"]
+    ]
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--check", action="store_true", help="Validate sources without copying")
+    args = parser.parse_args()
+    paper = ProjectRoot / "paper"
+    text = re.sub(r"(?<!\\)%[^\n]*", "", (paper / "paper.tex").read_text())
+    names = list(dict.fromkeys(re.findall(
+        r"\\includegraphics(?:\[[^\]]*\])?\{figures/([^{}]+\.pdf)\}", text
+    )))
+    if not names or any("/" in name for name in names):
+        raise ValueError("Use explicit PDF filenames directly under paper/figures")
+    temperature = AnalysisDataDirectory / "station_era5_clean.parquet"
+    digest = sha256(temperature)
+    sources = {}
+    for name in names:
+        source, manifest_path, tables = figure_sources(name)
+        manifest = json.loads(manifest_path.read_text())
+        if manifest["inputs"].get(str(temperature)) != digest:
+            raise ValueError(f"Rebuild {source}: its temperature sample differs")
+        if name.startswith("pdp_") and name[4:-4] not in manifest["features"]:
+            raise ValueError(f"Rebuild {source}: feature absent from the current manifest")
+        if source.parent.name == "interactions" and source.stem not in manifest["pairs"]:
+            raise ValueError(f"Rebuild {source}: pair absent from the current manifest")
+        if name in ["pdp_tp.pdf", "pdp_wind.pdf", "station_celsius_by_wind.pdf"]:
+            weather = AnalysisDataDirectory / "station_hourly_weather.parquet"
+            if manifest["inputs"].get(str(weather)) != sha256(weather):
+                raise ValueError(f"Rebuild {source}: hourly weather differs")
+        provenance = f"{source.parent.name}_{manifest_path.name}"
+        files = {provenance: manifest_path, **{path.name: path for path in tables}}
+        sources[name] = {
+            "source": str(source.relative_to(ProjectRoot)),
+            "sha256": sha256(source),
+            "temperature_sha256": digest,
+            "source_files": {
+                target: {"source": str(path.relative_to(ProjectRoot)), "sha256": sha256(path)}
+                for target, path in files.items()
+            },
         }
-    (Tables / "figure_sources.json").write_text(Json.dumps(Manifest, indent=2) + "\n")
-    print(f"Copied {len(Sources)} notebook PDFs to {Figures}; source data in {Tables}")
+    if not args.check:
+        figures, tables = paper / "figures", paper / "tables"
+        figures.mkdir(exist_ok=True)
+        tables.mkdir(exist_ok=True)
+        for name, record in sources.items():
+            shutil.copy2(ProjectRoot / record["source"], figures / name)
+            for target, item in record["source_files"].items():
+                shutil.copy2(ProjectRoot / item["source"], tables / target)
+        (tables / "figure_sources.json").write_text(json.dumps(sources, indent=2) + "\n")
+    print(f"{'Validated' if args.check else 'Copied'} {len(sources)} current-sample figures")
 
 
 if __name__ == "__main__":
-    Main()
+    main()

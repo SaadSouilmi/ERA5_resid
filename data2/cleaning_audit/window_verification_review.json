@@ -1,0 +1,316 @@
+{
+  "created_utc": "2026-11-18T10:56:43.051292+00:00",
+  "scope": "UTC-window metadata only for observation dates from 2020-01-01 through 2025-08-31, matching the hourly ERA5 download.",
+  "verification_basis": "Provider documentation interpreted together with the supplied source country, participant, ELEI and applicable dates. This verifies the declared convention; it does not independently audit every historical instrument log.",
+  "rule_file": "/home2/lobib/gen_hack/data2/cleaning_audit/verified_observation_window_rules.csv",
+  "coverage": {
+    "first_date": 20200101,
+    "last_date": 20250831,
+    "daily_records": 9840278,
+    "mapped_records": 9651857,
+    "sampled_reporting_day_records": 34965,
+    "unresolved_records": 188421,
+    "mapped_percent": 98.0852065358316
+  },
+  "inputs": [
+    {
+      "path": "/home2/lobib/gen_hack/data2/station_data.parquet",
+      "sha256": "4fe2892a269ab928e74671cecc638277d74d5b02b5f14b1110e7f88fa5029d32"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data/main/ECA_blend_tx/sources.txt",
+      "sha256": "bbf73025a23bb15f49cacfeb280570e985b22cfce08317307ebaebb234102ff7"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data/main/ECA_blend_tx/elements.txt",
+      "sha256": "e1bcbaabc7cacc8ae072a84e7615cadba3bcfb75ac7f3bcccde0449f1a0566d8"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data2/cleaning_audit/verified_observation_window_rules.csv",
+      "sha256": "f3c1d51d39eb6e3d94fa6bd8c278adfe3a66130599f9065a048c0920aaae731f"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data2/cleaning_audit/verified_observation_window_overrides.csv",
+      "sha256": "35025bd9d95cb33291b723b70a5e4a3d383a4b7ed636732b751c8361c146d76f"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data2/cleaning_audit/verified_observation_window_override_rules.csv",
+      "sha256": "ae2ce3dced73bdc1a931419384693934050372c1fbbcbfc1da9fd9920e976550"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/src/py/observation_windows.py",
+      "sha256": "2eebca49bc4f8eca1c5263378e82f81ea4e619fc00206d2f241f30fa26df4bf5"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/src/py/station_metadata.py",
+      "sha256": "b8f7242cfddb4b2d2c93ae33bc9f781f84eb3d79e319c40fcfb048c62aa62263"
+    }
+  ],
+  "danish_archive_check": {
+    "url": "https://www.dmi.dk/fileadmin/user_upload/Rapporter/TR/2020/DMIRep20-02.zip",
+    "sha256": "1fbf5a4b6639a271bb9b4ea04a1122f7588fe80b1ecc2e354253c4e32e7d7ab4",
+    "files_examined": [
+      "dk_daily_21100_112.csv",
+      "dk_daily_25140_112.csv",
+      "dk_daily_27080_112.csv",
+      "dk_daily_30380_112.csv",
+      "dk_daily_32020_112.csv",
+      "dk_daily_32030_112.csv",
+      "dk_daily_6051_112.csv",
+      "dk_daily_6088_112.csv",
+      "dk_daily_6132_112.csv",
+      "dk_daily_6186_112.csv",
+      "dk_daily_6193_112.csv"
+    ],
+    "finding": "The older archive showed conflicting hour fields. Newly verified DMI API intervals resolve Vestervig 2020 and matching Nordby days from 2020-05-15; remaining earlier or unmatched Nordby records retain null windows."
+  },
+  "remaining_work": [
+    "LU TX13: Recover original interval definitions for the older ASTA records and retired stations.",
+    "LV TX19: Obtain the provider aggregation and timestamp convention, including whether hourly values represent the preceding hour.",
+    "GR TX1: Use already available source-report metadata to recover the explicit extreme periods; the reporting-date label alone is insufficient.",
+    "AL TX1: Use already available source-report metadata to recover the explicit extreme periods; the reporting-date label alone is insufficient.",
+    "BG TX1: Use already available source-report metadata to recover the explicit extreme periods; the reporting-date label alone is insufficient.",
+    "ME TX17: Reconcile this source/provider TX17 interval with the original modern archive before assigning its date anchor.",
+    "HR TX1: Recover source-specific observing times, including the local solar-time conversion actually used in the archive.",
+    "LV TX1: Identify the original daily maximum product and any station/date transitions.",
+    "HU TX12: Confirm the date anchor for the three specific manual or historical products; preserve the supplied 19 UTC clock.",
+    "BA TX8: Obtain an explicit Sarajevo evening-maximum date convention or compare with identifiable original time-stamped extremes.",
+    "SK TX1: Find Hurbanovo original daily maximum observing metadata for 2020.",
+    "DK TX16: Reconcile the earlier Nordby product timestamps and the one unmatched modern daily value."
+  ],
+  "unresolved_groups_file": "/home2/lobib/gen_hack/data2/cleaning_audit/preprocessing_unresolved_windows.csv",
+  "source_inventory_file": "/home2/lobib/gen_hack/data2/cleaning_audit/preprocessing_window_sources.csv",
+  "tests": {
+    "command": "tests/run.sh observation_windows",
+    "passed": 22,
+    "failed": 0
+  },
+  "resolution_assessment": {
+    "is_research_judgment": true,
+    "counts": [
+      {
+        "resolution_route": "aggregation_definition_needed",
+        "daily_records": 105435
+      },
+      {
+        "resolution_route": "date_convention_needed",
+        "daily_records": 17667
+      },
+      {
+        "resolution_route": "original_window_metadata_needed",
+        "daily_records": 65319
+      }
+    ],
+    "date_convention_needed": "Clock hours are documented; provider or original-product confirmation can establish which labelled dates delimit the window. This is a metadata gap rather than evidence of permanent loss.",
+    "aggregation_definition_needed": "Need the exact station/product interval or sampling definition. Resolving it depends on recovering that metadata or identifiable original reports.",
+    "original_window_metadata_needed": "TX1 explicitly lacks an interval. Some cases may be recoverable from provider archives, but no exact window can be recovered from the daily maximum value alone. Cases with lost metadata and reports must remain unresolved.",
+    "gsod_detail": "The remaining GSOD records use explicit extreme-temperature reports; their physical reporting periods are still unresolved. Verified hourly-fallback reporting days are mapped separately with a sampling flag.",
+    "gsod_reference": "https://essd.copernicus.org/articles/18/5739/2026/#section4",
+    "gsod_records": 47479,
+    "assessed_groups": "/home2/lobib/gen_hack/data2/cleaning_audit/preprocessing_window_resolution.csv"
+  },
+  "selected_observations_file": "/home2/lobib/gen_hack/data2/selected_station_observations.parquet",
+  "selected_observations_manifest": "/home2/lobib/gen_hack/data2/cleaning_audit/selected_station_observations.json",
+  "updated_utc": "2026-11-18T13:58:32.299610+00:00",
+  "previous_archive_verification": {
+    "reviewed_utc": "2026-11-18T13:02:16.570120+00:00",
+    "study_period": {
+      "first_date": 20200101,
+      "last_date": 20250831
+    },
+    "previous_mapped_records": 9490768,
+    "previous_unresolved_records": 349510,
+    "newly_mapped_records": 117837,
+    "newly_mapped_sources": 56,
+    "newly_mapped_station_series": 63,
+    "coverage": {
+      "first_date": 20200101,
+      "last_date": 20250831,
+      "daily_records": 9840278,
+      "mapped_records": 9608605,
+      "unresolved_records": 231673,
+      "mapped_percent": 97.6456661082136
+    },
+    "new_rules": [
+      {
+        "country_code": "RO",
+        "window_rule_id": "anm_tx2_modern",
+        "observation_window": "TX2",
+        "newly_mapped_records": 50612,
+        "sources": 25,
+        "station_series": 26,
+        "first_date": 20200101,
+        "last_date": 20250531
+      },
+      {
+        "country_code": "EE",
+        "window_rule_id": "estonia_tx2_modern",
+        "observation_window": "TX2",
+        "newly_mapped_records": 50178,
+        "sources": 25,
+        "station_series": 25,
+        "first_date": 20200101,
+        "last_date": 20250731
+      },
+      {
+        "country_code": "FI",
+        "window_rule_id": "fmi_tx1_modern",
+        "observation_window": "TX1",
+        "newly_mapped_records": 15952,
+        "sources": 3,
+        "station_series": 9,
+        "first_date": 20200101,
+        "last_date": 20250831
+      },
+      {
+        "country_code": "RS",
+        "window_rule_id": "rhms_serbia_tx8_2021",
+        "observation_window": "TX8",
+        "newly_mapped_records": 1095,
+        "sources": 3,
+        "station_series": 3,
+        "first_date": 20210101,
+        "last_date": 20211231
+      }
+    ],
+    "observations_and_temperatures_unchanged": true,
+    "previously_mapped_windows_unchanged": true,
+    "verification": {
+      "finland": {
+        "matched_daily_values": 369,
+        "sources": 3,
+        "months": [
+          "2020-01",
+          "2020-06",
+          "2025-01",
+          "2025-07"
+        ],
+        "table": "fmi_window_verification.csv"
+      },
+      "estonia": {
+        "matched_daily_values": 369,
+        "sources_checked": 3,
+        "source_group_size": 25,
+        "complete_hourly_windows": 357,
+        "matched_labelled_day_windows": 357,
+        "matched_next_day_windows": 12,
+        "months": [
+          "2020-01",
+          "2020-06",
+          "2025-01",
+          "2025-07"
+        ],
+        "table": "estonia_window_verification.csv"
+      },
+      "romania": {
+        "matched_map_values": 12,
+        "map_pdf_page": 218,
+        "date": 20200719,
+        "table": "romania_window_verification.csv",
+        "interpretation": "Dated official map confirms the calendar-date anchor for the declared TX2 code; this does not independently audit every instrument log."
+      },
+      "serbia": {
+        "year": 2021,
+        "yearbook_pdf_page": 9,
+        "yearbook_printed_page": 3,
+        "interpretation": "Yearbook verifies date anchor; supplied TX8 fixes CET clock. No extension beyond 2021."
+      }
+    },
+    "unresolved_groups": 12,
+    "unresolved_details": "preprocessing_window_resolution.csv",
+    "tests": {
+      "command": "tests/run.sh observation_windows",
+      "passed": 17,
+      "failed": 0
+    },
+    "selected_file_sha256": "04cedaeef0870dd717a281137e6b3ce2c07226cdd373af64cd97312c34e1380d"
+  },
+  "additional_archive_verification": {
+    "reviewed_utc": "2026-11-18T13:58:32.299610+00:00",
+    "study_period": {
+      "first_date": 20200101,
+      "last_date": 20250831
+    },
+    "uses_only_files_cached_before_user_download_restriction": true,
+    "new_network_downloads_after_user_restriction": 0,
+    "previous_mapped_records": 9608605,
+    "previous_unresolved_records": 231673,
+    "newly_mapped_records": 43252,
+    "newly_mapped_distinct_source_days": 39662,
+    "sources_with_new_mappings": 65,
+    "station_series_with_new_mappings": 73,
+    "coverage": {
+      "first_date": 20200101,
+      "last_date": 20250831,
+      "daily_records": 9840278,
+      "mapped_records": 9651857,
+      "sampled_reporting_day_records": 34965,
+      "unresolved_records": 188421,
+      "mapped_percent": 98.0852065358316
+    },
+    "new_mappings": [
+      {
+        "country_code": "GR",
+        "window_rule_id": "gsod_hourly_fallback",
+        "window_sampling": "hourly_or_synoptic_samples",
+        "newly_mapped_records": 29264,
+        "sources": 26,
+        "station_series": 27,
+        "first_date": 20200101,
+        "last_date": 20250228
+      },
+      {
+        "country_code": "LU",
+        "window_rule_id": "asta_cet_day",
+        "window_sampling": "provider_daily_maximum",
+        "newly_mapped_records": 7690,
+        "sources": 24,
+        "station_series": 30,
+        "first_date": 20241117,
+        "last_date": 20250831
+      },
+      {
+        "country_code": "BG",
+        "window_rule_id": "gsod_hourly_fallback",
+        "window_sampling": "hourly_or_synoptic_samples",
+        "newly_mapped_records": 3153,
+        "sources": 4,
+        "station_series": 4,
+        "first_date": 20200101,
+        "last_date": 20250228
+      },
+      {
+        "country_code": "AL",
+        "window_rule_id": "gsod_hourly_fallback",
+        "window_sampling": "hourly_or_synoptic_samples",
+        "newly_mapped_records": 2548,
+        "sources": 9,
+        "station_series": 9,
+        "first_date": 20200102,
+        "last_date": 20250228
+      },
+      {
+        "country_code": "DK",
+        "window_rule_id": "dmi_archive_day",
+        "window_sampling": "provider_daily_maximum",
+        "newly_mapped_records": 597,
+        "sources": 2,
+        "station_series": 3,
+        "first_date": 20200101,
+        "last_date": 20201231
+      }
+    ],
+    "observations_temperatures_and_source_metadata_unchanged": true,
+    "previously_mapped_windows_unchanged": true,
+    "sampling_note": "GSOD hourly-fallback UTC reporting days are identified separately by window_sampling. Their exact sample timestamps and completeness are not reconstructed here. Other provider maxima retain their original measurement-window definitions.",
+    "remaining_groups": 12,
+    "remaining_details": "/home2/lobib/gen_hack/data2/cleaning_audit/preprocessing_window_resolution.csv",
+    "tests": {
+      "command": "tests/run.sh observation_windows",
+      "passed": 22,
+      "failed": 0
+    },
+    "selected_file_sha256": "4df30a1921c717c0767e30cca4c2d47da05bf7e11241bd87900458995bbab818",
+    "selected_file_bytes": 38422242
+  }
+}

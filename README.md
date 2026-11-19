@@ -1,185 +1,135 @@
-# ERA5-Land temperature residuals
+# European station–ERA5-Land residuals
 
-Compare ECA&D station daily maximum temperature with ERA5-Land daily maximum
-temperature across Europe. Residual = station minus ERA5, in °C.
-The working paper is `paper/paper.tex`.
+Compare ECA&D daily maximum temperatures with hourly ERA5-Land maxima over each
+source's verified UTC observation window. Residual = station − ERA5-Land, in °C.
 
-## Current dataset
+The current temperature sample is `data2/station_era5_clean.parquet`: **6,726,213
+source-days**, **4,458 sources**, 1 January 2020–31 August 2025. Covariates stay in
+separate Parquet files and join through the loader.
 
-Analyses use `data2/clean/analysis.parquet`: 6,958,414 screened station-day pairs
-at 4,217 nominal station IDs, from 2020-01-01 to 2025-08-31. The original
-selected input is `data2/residuals.parquet`. Release counts, limitations and
-hashes are in [summary.json](data2/clean/summary.json).
+- [Preprocessing](notes/PREPROCESSING.md): inputs, ordered filters, matching and covariates.
+- [Observation windows](notes/OBSERVATION_WINDOWS.md): provider conventions and sources.
+- [Numerical analysis](notes/NUMERICAL_ANALYSIS.md): methods, plots and available results.
+- [Cleanup record](notes/CLEANUP.md): retained scope, archive and remaining publication work.
 
-The cleaning pipeline checks saved station values against TX/Q_TX, validates
-ERA5 extraction against all supplied in-grid daily values, excludes substituted
-land cells and source-location mismatches, quarantines series using station-only
-evidence, and keeps each `(SOUID, date)` once. Residual magnitude is not an
-exclusion rule. Screening thresholds are provisional, not validated climatological QC.
+## Load the data
 
-NDVI, elevation, DEGURBA and coastal distance refer to the actual observation
-source, including borrowed observations. Missing NDVI seasons use the latest
-earlier raster from the same season, with provenance and an extrapolation flag.
-Spatial nodata stays missing. Each figure selects its own available covariates.
-
-The main dataset retains mixed observation-day windows; the separate UTC subset
-contains 3,528,147 pairs at 2,154 station IDs. Precipitation remains a proxy in
-metres pending its upstream accumulation recipe. Wind is the magnitude of the
-daily mean vector. Post-stratification results remain exploratory.
-
-## Setup and layout
-
-```bash
+```sh
 uv sync --locked
-uv run marimo edit src/py/notebooks/cleaning_process.py
 ```
 
-Active Python lives under `src/py`: analysis modules at the package root,
-entry points in `py.scripts`, Marimo notebooks in `py.notebooks`, and tests in
-`py.tests`. Use PascalCase for Python bindings and snake_case for filenames.
-External API names, columns and serialized keys keep their required spelling.
-Shared paths come from `py.paths`.
+```python
+from py.load_data import load_data
 
-| Notebook | Purpose |
+data = load_data()
+data_with_weather = load_data(include_weather=True)
+```
+
+The second call requires `data2/station_hourly_weather.parquet`. The hourly weather
+job is downloading its inputs; aggregation and the full numerical rerun are queued.
+The numerical note distinguishes completed results from pending weather analyses.
+
+Both calls return Polars DataFrames and preserve the temperature rows and order.
+NDVI uses the original seasonal rasters, with the latest earlier valid value
+carried forward across missing seasons. Source dates, lag and extrapolation flags
+remain available. Missing pixels within existing seasons remain missing.
+
+## Rebuild
+
+Large inputs stay local and ignored. Required inputs are listed in the
+[preprocessing note](notes/PREPROCESSING.md#inputs). Supply the ECA&D files, hourly
+temperature NetCDFs, original NDVI rasters, GHS-SMOD raster, cached coastline and
+verified window-rule CSVs before rebuilding.
+
+```sh
+./run.sh
+```
+
+This starts the `station-preprocessing` tmux session and runs:
+
+1. Cache the station files; select quality-valid European observations inside the grid.
+2. Remove isolated spikes, apply −60°C to 50°C bounds, restrict the study period.
+3. Resolve source coordinates and UTC windows; match nearest ERA5 cells.
+4. Calculate complete-window temperature maxima and retain unique eligible source-days.
+5. Build coastal distance, seasonal NDVI, source elevation and land cover lookups.
+6. Retrieve hourly wind/rain and aggregate them over the saved station windows.
+
+Logs: `data2/preprocessing.log`. Status: `data2/preprocessing.status`; `0` means
+success. The tmux session ends with the command. Do not start a second rebuild
+while the current hourly-weather job is running.
+
+The optional temperature retrieval command is
+`uv run python -m py.preprocessing.download_era5_hourly prepare`, followed by
+`download`. Its default period is 2020-01-01 through 2025-08-31. Preparation writes
+a request plan without submitting downloads. CDS configuration stays local in
+`~/.cdsapirc`, `CDSAPI_RC`, or ignored `data2/.cdsapirc`.
+
+To resume weather retrieval, aggregation and all queued analyses, use
+`bash src/py/preprocessing/hourly_weather.sh` in a dedicated tmux session.
+Follow `data2/hourly_weather.log`, `data2/hourly_weather.status` and
+`data2/cleaning_audit/hourly_weather_progress.json`. Completed downloads are reused.
+
+## Analyses
+
+```sh
+bash src/py/scripts/run_numerical_analysis.sh
+```
+
+The runner starts its own tmux session. It exports DEGURBA, six residual profiles
+and four interaction plots, then runs the fourteen modules below and refreshes
+manuscript tables and the numerical note. It requires the hourly weather lookup.
+
+| Module under `src/py/` | Analysis |
 |:---|:---|
-| `cleaning_process.py` | Cleaning decisions, sequential exclusions, source checks, NDVI policy and live release assertions. |
-| `resid_analysis.py` | Residual maps, covariate profiles, urbanization and joint-bin figures. |
-| `poststrat_analysis.py` | Exploratory station representativeness and calibration, with method caveats. |
-| `data_comparison.py` | Comparison of station metadata releases; independent of cleaned residual pairs. |
-| `temp_resid.py` | Inspect the current dataset; an explicit rebuild mode runs the raw matching pipeline. |
+| `analysis_descriptive.py` | Sample, coverage and residual distribution |
+| `analysis_utc_windows.py` | UTC-window sensitivity and companion profiles |
+| `analysis_exceedances.py` | Hot-day thresholds and count ratios |
+| `analysis_heat_excess.py` | Daily-maximum heat excess above 24°C |
+| `analysis_heatwaves.py` | Consecutive hot spells |
+| `analysis_seasonal.py` | Seasonal temperature × wind |
+| `analysis_fixed_effects.py` | Within-source monthly anomalies |
+| `analysis_multivariate.py` | Joint adjusted regression |
+| `analysis_covariate_tests.py` | Source-clustered tests across deciles |
+| `analysis_ndvi_sensitivity.py` | Observed-season versus carried-forward NDVI |
+| `analysis_geographic_deciles.py` | Geographic bin coverage |
+| `analysis_relative_elevation.py` | Elevation relative to nearby sources |
+| `analysis_mos.py` | Bias correction with held-out sources |
+| `analysis_model_partial_dependence.py` | Fitted-model partial dependence |
 
-## Required local data
+Each module can also run as `uv run python -m py.analysis_<name>` inside a dedicated
+tmux session. Method definitions and caveats are in the numerical note.
 
-Large datasets are intentionally excluded from Git. To reproduce analyses,
-restore the saved Parquet files and the source datasets at these paths:
+Figures, CSV source tables, results and manifests live under
+`figures/notebooks/{partial_dependence,interactions,numerical_analysis}/`.
+The folder name is retained for output-path compatibility; the active workflow
+uses Python modules. Models and predictions stay local in `data2/numerical_analysis/`.
 
-| Path | Contents |
-|:---|:---|
-| `data2/residuals.parquet` | Selected station–ERA5 pairs; generate or restore before auditing. |
-| `data2/residuals_cleaned.parquet` | Intermediate audit output. |
-| `data2/clean/*.parquet` | Screened pairs, UTC subset, covariates, exclusions and observation provenance. |
-| `data/main/ECA_blend_tx/` | Original station observations, station metadata and source metadata. |
-| `data/main/derived-era5-land-daily-statistics/` | Supplied daily ERA5-Land NetCDF files. |
-| `data/main/sentinel2_ndvi/` | Original dated seasonal NDVI rasters. |
-| `data2/GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0/` | GHS-SMOD 2020 urbanization raster. |
-| `data/main/gadm_410_europe.gpkg` | Boundary data required by the exploratory post-stratification notebook. |
-| `data2/ECA_homblend_tx/stations.txt` | Alternative station metadata for `data_comparison.py`. |
-| `data2/stations_data.csv` | Validated station-distance data required by the raw rebuild notebook. |
+Current plotting entry points are `py.scripts.plot_degurba`,
+`plot_partial_dependence`, `plot_interactions` and `plot_station_map`.
+The station map uses actual source locations and the approved Plotly/OpenStreetMap
+renderer. To restyle saved figures without refitting, use
+`py.scripts.restyle_note_figures`; `py.scripts.plot_bootstrap_means` previews the
+bootstrap distributions. Default exports are PNG/PDF.
 
-These files are not fetched by `uv sync` and are not present in a plain Git clone.
-The raw rebuild notebook creates a candidate `data2/residuals_rebuilt.parquet`
-from the station, ERA5 and covariate sources above. Review the notebook export
-before adopting that candidate: it uses geodesic nearest-land matching, and the
-cleaning pipeline treats substituted land cells differently.
+## Manuscript
 
-Generate and review the candidate, then explicitly copy it to the input path
-before starting the processing audit:
+`paper/paper.tex` is the working draft. Its existing numerical text and publication
+assets still need reconciliation with the current release. The bibliography
+`paper/downscaling.bib` is missing. See [paper/README.md](paper/README.md).
 
-```bash
-uv run marimo export html src/py/notebooks/temp_resid.py -o /tmp/temp_resid.html -- --rebuild
-# Review /tmp/temp_resid.html, then confirm this replacement (back up any existing input first).
-cp -i data2/residuals_rebuilt.parquet data2/residuals.parquet
-uv run python -m py.scripts.audit_cleaning
-uv run python -m py.scripts.build_clean_dataset
-```
+After the full rerun and station-map export, `py.scripts.sync_paper_figures` copies
+only the draft's selected PDFs, their CSV/specification sources and input manifests.
+Use `--check` to validate those sources without copying. It rejects figures whose
+sample or weather inputs differ. `py.scripts.build_paper_tables` builds the current
+CSV/LaTeX tables after all required analyses finish.
 
-The `cp -i` step prompts before replacing an existing input. Confirm only after
-reviewing the candidate and preserving any input you need to keep. The audit
-creates `data2/residuals_cleaned.parquet` and the audit manifest used by the
-clean-dataset builder. Exact source-file hashes are saved in
-`data2/clean/*_source_files.csv`. Natural Earth coastline data is downloaded by
-the cleaning builder when absent. Do not substitute different source releases
-without rebuilding and reviewing the audit.
+## Layout
 
-Compact audit CSV/JSON files are versioned. Opening the cleaning notebook requires
-the saved audit products and Parquet inputs; rebuilding them requires the original
-sources above. Paper figures can be restyled from committed tables without raw data.
+All active Python lives in `src/py`: preprocessing in `preprocessing/`, analyses
+in the package root and commands in `scripts/`. Paths come from
+`py.paths`. Keep datasets, credentials, logs and models out of Git.
 
-## Cleaning and exports
-
-Run computational work in a dedicated tmux session, which ends with its command.
-For a raw rebuild, first run the export in tmux:
-
-```bash
-tmux new-session -s era5-residuals 'uv run marimo export html src/py/notebooks/temp_resid.py -o /tmp/temp_resid.html -- --rebuild'
-```
-
-Review `/tmp/temp_resid.html` and adopt the candidate with the interactive copy
-shown above. Then start the audit, clean build and exports:
-
-```bash
-tmux new-session -s era5-audit 'uv run python -m py.scripts.audit_cleaning'
-tmux new-session -s era5-clean 'uv run python -m py.scripts.build_clean_dataset'
-tmux new-session -s era5-notebooks 'uv run python -m py.scripts.export_notebooks'
-tmux new-session -s era5-figures 'uv run python -m py.scripts.build_paper_figures'
-```
-
-Run the audit before the clean build and regenerate exports after rebuilding data.
-To export only the cleaning walkthrough:
-
-```bash
-tmux new-session -s era5-cleaning-html 'uv run python -m py.scripts.export_notebooks cleaning_process'
-```
-
-HTML reports, logs, `exports.json`, `index.html` and a combined notebook PDF are
-written under `/home2/lobib/research-reports/saad.souilmi/era5-notebooks/`.
-Set `ERA5_REPORTS_DIR` to change the report root on another machine.
-`cleaning_process.html` is the full walkthrough; `clean_dataset.html` is the
-generated release summary; `data_cleaning.html` records the earlier processing audit.
-Export manifests identify notebook source and input hashes. The cleaning notebook
-also records the audit files used in its export.
-
-Individual Altair PDFs and self-contained Vega-Lite specifications are saved in
-`paper/figures/notebooks/`, grouped by notebook. The specifications contain the exact
-plotted data. Other interactive figures remain in their HTML notebooks.
-
-## Publication figures
-
-`paper/figures/paper/` contains:
-
-- `01_covariates`: binned residual means and 95% station-bootstrap intervals.
-- `02_urbanization`: residual means by land urbanization class.
-- `03_interactions`: temperature × wind and elevation × coast-distance joint bins.
-- `04_station_map`: mean residuals in a European map window.
-- Individual PDF, SVG and 600 dpi PNG exports, plus `all_figures.pdf`.
-- `captions.txt`, `metadata.json`, self-contained Vega-Lite specifications and CSV source tables.
-
-Altair figures use a white background, serif text and a fixed 180 mm width.
-PDF fonts are embedded; SVG text uses DejaVu Serif. Estimates weight observations
-equally, with pointwise station-cluster bootstrap intervals. These are descriptive
-conditional means, not model-based partial dependence or causal effects.
-
-Restyle saved results without rerunning statistics:
-
-```bash
-uv run python -m py.scripts.build_paper_figures --from-tables
-```
-
-## Checks
-
-```bash
-tests/run.sh all
-uv run ruff check src/py
-uv run marimo check src/py/notebooks/*.py
-```
-
-Run these in a dedicated tmux session as well. Tests use plain functions and
-`Run`/`Expect*` helpers, count failed tests, and exit with the failure count.
-Individual suites are `cleaning`, `pdp`, `publication` and `layout`.
-
-## Retired work
-
-Historical Jupyter notebooks, duplicate Quarto/HTML reports, old cached plot data
-and the standalone `build_poststrat_report.py` exporter have been removed from
-the active tree. The Marimo export workflow replaces those entry points.
-Unused dashboard, Jupyter and earlier modelling dependencies have been removed.
-Raw rasters are excluded from the cleaned commit but stay available locally.
-This cleanup does not rewrite Git history or shrink earlier commits.
-
-Tracked historical files remain in Git history; `5ee9293` is the last pre-refactor
-checkpoint. A hash-verified local archive also preserves uncommitted historical
-work at `/home2/lobib/research-reports/saad.souilmi/archives/deprecated_repo_20261003.tar.gz`.
-The pre-cleaning figures are retained locally in
-`paper/figures/archive/before_cleaned_graphs_20261003.tar.gz`.
-The nested report worktree is kept locally and ignored, rather than altering its
-separate Git state.
+Historical notebooks, earlier sample builders, website exports and separate NDVI
+acquisition experiments are archived outside the active tree. Git commit `5ee9293`
+also preserves the earlier workflow. The registered `report/` worktree, local
+inputs, environments and running download remain available.

@@ -5,11 +5,19 @@
 \usepackage{newcent}
 \usepackage[scaled=1.1]{newtxmath}
 \usepackage{graphicx}
-\graphicspath{ {./images/} {./figures/} }
+\graphicspath{{figures/}}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{booktabs}
 \usepackage{caption}
 \usepackage{subcaption}
+\newcommand{\fitwidetable}[1]{%
+  \begingroup
+  \setbox0=\hbox{#1}%
+  \leavevmode
+  \ifdim\wd0>\linewidth
+    \resizebox{\linewidth}{!}{\box0}%
+  \else\box0\fi
+  \endgroup}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -18,22 +26,10 @@
 \usepackage[backend=biber, style=alphabetic]{biblatex}
 \addbibresource{downscaling.bib}
 
-% ===========================================================================
-% NOTE TO SAAD (delete this block once resolved) -- three AI drafts of this
-% paper were produced independently from the repo and the hackathon brief.
-% They agree almost verbatim on the "Related work" section (good sign: that
-% part reflects what the team actually wrote/curated) but they REPORT
-% DIFFERENT NUMBERS for the same quantities (e.g. the temperature PDP range
-% is variously "0.7 to 2.3", "0.8 to 2.3", "<1.0 to >2.3" across the three
-% drafts). None of those numbers came from your actual notebooks -- they are
-% each model's plausible-sounding guess. I have NOT picked one arbitrarily;
-% every quantitative claim below is left as a [TK: ...] placeholder for you
-% to fill from the real pipeline output (the report at
-% https://saadsouilmi.github.io/ERA5_resid/). Please do not let a number
-% survive into the final paper unless it came from that pipeline.
-% ===========================================================================
+% Empirical sections and tables use the screened release documented in
+% paper/processing_review.json. Remaining TK items concern the wider paper.
 
-\title{Where ERA5 Underestimates Temperature: A Pan-European,
+\title{Where ERA5-Land Underestimates Temperature: A Pan-European,
 Station-Level Diagnostic from GenHack'25}
 \author{Saad So\underline{u}ilmi\footnote{TODO: confirm spelling/ordering of
 author surname (GitHub handle is ``SaadSouilmi''; all three drafts wrote
@@ -47,36 +43,26 @@ Charles-Albert Lehalle, Mengda Li, Gauthier Vermandel, Thomas Watteau}
 \maketitle
 
 \begin{abstract}
-% TODO (Saad): tighten to ~150-200 words once the numbers below are filled
-% in and the results section is final.
-Rescaled reanalysis temperature fields -- gridded products such as ERA5
-that assimilate, interpolate, and bias-adjust weather-station records --
-are treated as ground truth by a large body of downstream research in
-climate economics, energy modelling, agriculture, and impact assessment.
-They are, however, only an approximation of local air temperature, and
-their accuracy is neither spatially uniform nor uniform across weather
-regimes. Only a handful of studies have characterised these inaccuracies,
-mostly over specific regions and mostly using elevation as the sole
-explanatory variable. The GenHack'25 hackathon at \'Ecole Polytechnique,
-with technical support from Kayrros, gave several hundred students the
-opportunity to study this discrepancy over Europe, with most teams
-focusing on a specific region. In this paper we recode, harmonise, and
-extend the teams' collective findings into a single, reproducible
-pipeline run at the scale of the whole of Europe. Using station
-temperature as the reference and the ERA5 (or rescaled) product as the
-candidate field, we define station-level residuals and characterise
-their structure with quantile-binned partial dependence profiles and
-station-clustered bootstrap inference. We find that: (i)~on average, the
-rescaled product \emph{underestimates} station temperature by roughly
-[TK: X to Y]$^\circ$C; (ii)~the underestimation grows monotonically with
-temperature itself; (iii)~it decreases with distance to the sea beyond a
-short coastal band; (iv)~it increases with elevation, consistent with
-earlier regional studies; (v)~precipitation and NDVI show at most a
-minor effect at continental scale; and (vi)~wind speed strongly damps
-the bias, with a pronounced temperature$\times$wind interaction whereby
-calm conditions amplify the warm-temperature underestimation. We discuss
-the implications of these diagnostics for statistical and
-machine-learning downscaling.
+Gridded reanalysis fields provide spatially complete weather information,
+but do not measure the same spatial footprint or necessarily the same
+daily interval as station observations. Motivated by the GenHack'25
+analyses, we compare ECA\&D daily maximum temperatures with supplied
+ERA5-Land daily maxima across Europe. A conservative screening and
+source-observation deduplication pipeline retains 6,958,414 station-days
+at 4,217 nominal station IDs between January 2020 and August 2025.
+The observation-weighted station-minus-reanalysis mean is
+$1.58\,^\circ$C. Quantile-binned conditional means increase with station
+temperature and decrease with the magnitude of the daily mean wind
+vector. Elevation, coastal-distance and urban-class profiles are
+non-monotonic; NDVI and the supplied precipitation proxy show smaller
+variation. Joint bins have larger warm-temperature residuals under low
+mean-vector wind. These are descriptive associations, with pointwise
+station-bootstrap intervals, rather than causal effects or an
+area-weighted estimate of European bias. Mixed observation windows,
+provisional station screening, seasonal NDVI extrapolation and an
+unresolved precipitation accumulation convention limit interpretation.
+We discuss the implications for evaluating and developing downscaling models.
+
 \end{abstract}
 
 \paragraph{Acknowledgment to students.} Special thanks to all GenHack'25
@@ -90,21 +76,20 @@ technical support, infrastructure, and geospatial data provision, and to
 \section{Introduction}
 \label{sec:intro}
 
-A large fraction of quantitative climate research -- in climate
-econometrics, energy-demand modelling, crop-yield estimation,
-epidemiological exposure studies, hydrology, and extreme-event
-attribution -- does not consume raw climate-model output but
-\emph{rescaled} temperature fields: gridded reconstructions of
-near-surface air temperature obtained by assimilating, interpolating, and
-bias-adjusting weather-station records into a background field such as
-ERA5 \parencite{TODO:era5_hersbach2020}. These fields are treated,
-implicitly, as ground truth, either because station coverage is sparse in
-the region of interest or simply because a gridded product is easier to
-merge with other geospatial covariates. This substitution is convenient
-but it is an approximation: ERA5 temperature is the output of a
-data-assimilating physical model at $\sim$0.25\textdegree{} resolution,
-not a direct observation, and there is no reason to expect its error to
-be uniform in space, in time, or across weather regimes.
+Gridded temperature products are widely used in climate econometrics,
+energy-demand modelling, crop-yield estimation, exposure studies and
+hydrology, often because local station coverage is sparse or gridded
+fields are easier to merge with other spatial data. This substitution
+requires an assessment of the difference between a grid-cell estimate
+and a point measurement.
+
+The product evaluated here is ERA5-Land, supplied on a
+$0.1^\circ\times0.1^\circ$ grid. ERA5-Land replays the land component of
+ERA5 with atmospheric forcing from ERA5. It does not directly assimilate
+observations; observations influence it through that forcing.\footnote{\href{https://cds.climate.copernicus.eu/datasets/derived-era5-land-daily-statistics?tab=overview}{Copernicus ERA5-Land daily-statistics documentation}.}
+Our pipeline compares supplied daily maxima against ECA\&D station
+daily maxima; it does not evaluate a separately bias-adjusted Kayrros
+temperature product or apply a new temperature downscaling model.
 
 Surprisingly little is known about the spatial and statistical structure
 of this error. A small number of studies have identified systematic
@@ -121,7 +106,7 @@ and to our knowledge no study has, to date, mapped the ERA5-to-station
 discrepancy jointly across the full set of plausible covariates
 (temperature, precipitation, wind, distance to the sea, vegetation,
 urbanisation class) at the scale of an entire continent. A systematic,
-Europe-wide characterisation of \emph{where, when, and why} rescaled
+Europe-wide characterisation of \emph{where, when, and why} reanalysis
 temperatures depart from station measurements has been missing.
 
 The GenHack'25 hackathon at \'Ecole Polytechnique, with technical support
@@ -138,7 +123,7 @@ sign, and a handful of covariates recur as explanatory across very
 different regions. This paper takes that collective observation
 seriously. We do not report on individual team submissions; instead, we
 recode the teams' findings into a single, consistent diagnostic pipeline
--- partial dependence of the residual on each covariate, with
+-- conditional mean residual by covariate bin, with
 cluster-bootstrap confidence intervals resampled by station -- and re-run
 it at the scale of the whole of Europe, rather than region by region, to
 check which of the teams' regional findings hold up, and with what
@@ -147,27 +132,26 @@ strength, once pooled.
 \paragraph{Contributions.}
 \begin{enumerate}
     \item We assemble a harmonised European dataset of paired station and
-    ERA5 (rescaled-product) temperatures [TK: period, number of stations,
-    number of station-days], together with geospatial covariates:
+    ERA5-Land daily maximum temperatures over 2020-01-01 to 2025-08-31,
+    with 4,217 nominal station IDs and 6,958,414 screened station-days, together with geospatial covariates:
     elevation, distance to the sea, NDVI, DEGURBA urbanisation class,
     precipitation, and wind speed.
     \item We define the station--product residual and characterise its
-    marginal and conditional structure through quantile-binned partial
-    dependence profiles, with cluster-bootstrap confidence intervals that
-    respect the spatial (station-level) dependence of the data
+    marginal and joint structure through quantile-binned conditional
+    mean profiles, with cluster-bootstrap confidence intervals that
+    account for within-station serial dependence
     (Section~\ref{sec:data}).
     \item We report, at pan-European scale, the marginal association
     between the residual and six covariates -- station temperature,
     precipitation, wind speed, NDVI, distance to the sea, and elevation
     -- together with a DEGURBA urbanisation breakdown
     (Section~\ref{sec:results}): a systematic underestimation by the
-    rescaled product, an amplification of the bias at high temperature
-    and low wind, an elevation effect consistent with the regional
-    literature, a coastal effect, and no more than a minor role for
+    ERA5-Land in the screened sample, larger residuals in joint high-temperature
+    and low-wind bins, non-monotonic elevation and coastal profiles, and no more than a minor role for
     precipitation and vegetation at this scale.
     \item We document a temperature$\times$wind interaction whereby the
-    warm-temperature underestimation is strongly amplified under low wind
-    and largely damped under high wind, a result not, to our knowledge,
+    warm-temperature residual is larger in low-wind bins
+    than in high-wind bins, a result not, to our knowledge,
     previously reported at continental scale.
     \item We draw consequences for statistical and machine-learning
     downscaling, arguing that the residual structure documented here
@@ -219,10 +203,10 @@ variability
 
 The present paper is complementary to this literature: rather than
 proposing a new downscaling method, we characterise the \emph{errors of
-an existing rescaled product} that downstream studies routinely treat as
+the supplied ERA5-Land product} that downstream studies routinely treat as
 observations. In the language above, our object of study is the
 discrepancy between the target \(y_H\) (station temperature) and the
-rescaled estimate \(\hat y_H\) over the station network.
+reanalysis estimate \(\hat y_H\) over the station network.
 
 \subsection{Documented biases between reanalysis and station temperature}
 \label{sec:related-bias}
@@ -411,9 +395,9 @@ what determines, in practice, which covariates a downscaling network such
 as AMUN should be given, and where a residual-diffusion or
 flow-matching correction such as CorrDiff is likely to matter most. To
 our knowledge, no prior work provides a unified, Europe-wide,
-covariate-level diagnostic of station--rescaled-product residuals with
-uncertainty quantification that accounts for spatial clustering of
-stations; we view the two literatures as complementary, with this paper
+covariate-level diagnostic of station--reanalysis residuals with
+uncertainty quantification that accounts for within-station dependence;
+we view the two literatures as complementary, with this paper
 supplying the covariate-level diagnosis that the downscaling literature
 currently takes largely as given.
 
@@ -440,395 +424,372 @@ teams' combined domain, i.e.\ continental Europe.
 
 \subsection{Data}
 
+The screened release contains 6,958,414 station-day pairs at 4,217 nominal
+station IDs, from 2020-01-01 to 2025-08-31. It retains the original
+observation-day window metadata; these figures use the main sample with
+mixed windows, rather than the separate UTC-window subset.
+
 \begin{itemize}
-\item \textbf{Target.} Station-observed 2m air temperature from
-% TODO (Saad): name the station network(s) used, e.g. ECA\&D / national
-% met services, and the time period covered.
-[TK: station network], matched to the nearest ERA5 grid cell.
-\item \textbf{Reference.} ERA5 reanalysis 2m temperature
-\parencite{TODO:era5_hersbach2020} at the matched grid cell and
-timestamp. [TK: confirm whether the ``rescaled'' product used is raw
-ERA5, ERA5-Land, or a Kayrros-provided bias-adjusted product -- the
-three drafts of this paper disagreed on this point and it should be
-stated unambiguously once, here.]
-\item \textbf{Residual.} $r_{it} = T^{\text{station}}_{it} -
-T^{\text{ERA5}}_{it}$ for station $i$ at date $t$, so that $r_{it}>0$
-means ERA5 (or the rescaled product) \emph{underestimates} station
-temperature.
-\item \textbf{Covariates.} Station temperature, precipitation (ERA5,
-mm/day), wind speed (ERA5, m/s), NDVI, distance to the sea (km),
-elevation (m), and DEGURBA degree-of-urbanisation class (water; very
-low density rural; low density rural; rural cluster; suburban;
-semi-dense urban cluster; dense urban cluster; urban centre).
+\item \textbf{Target.} ECA\&D daily maximum air temperature, validated
+against the source TX values and their quality flags.
+\item \textbf{Reference.} Supplied ERA5-Land daily maximum 2m temperature
+at the matched grid cell. Matches requiring a substituted land cell,
+or a different grid cell at the actual observation source, are excluded.
+\item \textbf{Residual.} $r_{it}=T^{\mathrm{station}}_{it}-T^{\mathrm{ERA5}}_{it}$;
+a positive residual means ERA5-Land is cooler than the station.
+\item \textbf{Covariates.} Station temperature, the supplied precipitation
+proxy in metres, the magnitude of the daily mean wind vector (m/s),
+NDVI, distance to the sea (km), elevation (m), and DEGURBA urbanisation
+class. Geographical covariates refer to the actual observation source.
+The precipitation proxy is not an established daily total.
 \end{itemize}
 
-\begin{table}[htbp]
-\centering
-\small
-\caption{Descriptive statistics for continuous variables.}
-\label{tab:desc_continuous}
-\begin{tabular}{lrrrrrrrr}
-\toprule
-Variable & Nulls & Mean & Std & P05 & P25 & P50 & P75 & P95 \\
-\midrule
-era5\_celsius & 0 & 14 & 9.7 & -2.2 & 6.7 & 14 & 20 & 29 \\
-residual & 0 & 1.6 & 2.5 & -2.1 & 0.25 & 1.4 & 2.7 & 5.8 \\
-wind & 0 & 2.2 & 1.7 & 0.35 & 1.00 & 1.9 & 3.0 & 5.5 \\
-dist\_to\_sea\_km & 0 & 83 & 94 & 0.21 & 8.4 & 47 & 130 & 280 \\
-elevation & 0 & 340 & 420 & 4.0 & 42 & 180 & 500 & 1100 \\
-ndvi & 0 & 0.39 & 0.25 & -0.024 & 0.23 & 0.41 & 0.58 & 0.75 \\
-\bottomrule
-\end{tabular}
-\end{table}
+\paragraph{Temperature screening and provenance.}
+The raw matched input contains 10,467,039 observations at 6,064 nominal
+station IDs. Removing rows outside the supplied ERA5-Land grid footprint
+leaves 10,024,790 observations. Station temperatures are checked against
+TX/10 with $\mathrm{Q\_TX}=0$, and ERA5-Land temperatures are converted
+from Kelvin by subtracting 273.15. Saved temperature, wind and precipitation
+values were checked against all supplied in-grid daily files; the recorded
+check covers 10,024,790 station-days with no extraction mismatches.
+This verifies extraction and arithmetic, not the instruments or upstream
+aggregation.
 
-\begin{table}[htbp]
-\centering
-\small
-\caption{Distribution across DEGURBA urbanization classes.}
-\label{tab:desc_degurba}
-\begin{tabular}{llrrrr}
-\toprule
-Code & Label & Obs Count & Obs (\%) & Station Count & Station (\%) \\
-\midrule
-10 & Water & 152,911 & 1.6\% & 79 & 1.4\% \\
-11 & Very low density rural & 3,514,982 & 36\% & 2,110 & 37\% \\
-12 & Low density rural & 2,912,790 & 30\% & 1,622 & 29\% \\
-13 & Rural cluster & 774,427 & 7.9\% & 450 & 7.9\% \\
-21 & Suburban & 1,002,786 & 10.0\% & 550 & 9.7\% \\
-22 & Semi-dense urban cluster & 156,261 & 1.6\% & 91 & 1.6\% \\
-23 & Dense urban cluster & 512,965 & 5.2\% & 313 & 5.5\% \\
-30 & Urban centre & 829,059 & 8.4\% & 449 & 7.9\% \\
-\bottomrule
-\end{tabular}
-\end{table}
+Screening uses unique source-days at source coordinates. A value is flagged
+if it is outside $[-60,50]\,^\circ$C; if it lies more than $20\,^\circ$C
+above both, or below both, adjacent calendar days; or if it differs by
+more than $20\,^\circ$C from the median of at least three same-day
+neighbour observations. The spatial check considers up to ten distinct
+locations among the 64 nearest candidates, 15--100 km away and within
+300 m elevation. A missing neighbour comparison is not a passed check.
+The rules flag 313 unique source-days. Every nominal station series that
+uses a flagged source is quarantined, giving 55 quarantined station IDs.
+These are provisional screening thresholds, not a calibrated quality-control
+algorithm or proof that all excluded readings are erroneous.
 
-\begin{table}[htbp]
-\centering
-\small
-\caption{Top 10 countries by weather station coverage.}
-\label{tab:desc_country_top10}
-\begin{tabular}{lrrrr}
-\toprule
-Country & Station Count & Station (\%) & Obs Count & Obs (\%) \\
-\midrule
-Italy & 1,047 & 18\% & 1,365,458 & 14\% \\
-Spain & 923 & 16\% & 1,777,964 & 18\% \\
-Norway & 703 & 12\% & 1,266,064 & 13\% \\
-Germany & 655 & 12\% & 1,317,796 & 13\% \\
-Austria & 597 & 11\% & 1,008,176 & 10.0\% \\
-Sweden & 424 & 7.5\% & 836,831 & 8.5\% \\
-Finland & 292 & 5.2\% & 573,328 & 5.8\% \\
-Hungary & 166 & 2.9\% & 314,484 & 3.2\% \\
-Poland & 145 & 2.6\% & 266,229 & 2.7\% \\
-Ukraine & 115 & 2.0\% & 75,371 & 0.76\% \\
-\bottomrule
-\end{tabular}
-\end{table}
+The subsequent exclusions are applied in the order shown in
+Table~\ref{tab:cleaning-selection}. Each retained $(\mathrm{SOUID},t)$
+appears once, keeping the smallest eligible nominal station ID. No row
+is selected by the size of its ERA5 residual. ECA\&D blended records can
+borrow observations from nearby sources; a nominal station ID therefore
+does not always identify the instrument that made the observation.\footnote{\href{https://www.ecad.eu/dailydata/datadictionary.php}{ECA\&D data dictionary on blended series}.}
+The supplied participant-source metadata requires an inferred identifier
+offset of $+100000$, while synoptic identifiers match directly. The raw
+and matched identifiers are retained and ambiguous matches fail; provider
+confirmation of this convention remains desirable.
 
-\begin{table}[htbp]
-\centering
-\caption{Data summary: number of stations, observations, time span, and covariate coverage.}
-\label{tab:data-summary}
-\begin{tabular}{lc}
-\toprule
-Quantity & Value \\
-\midrule
-Number of stations & 5,664 \\
-Number of station-days & 9,856,181 \\
-Time period & 2020-01-01 to 2025-08-31 \\
-Countries covered & 34 \\
-Residual $r_{it}$, mean (sd) & 1.6 (2.5) $^\circ$C \\
-\bottomrule
-\end{tabular}
-\end{table}
+\input{tables/cleaning_selection.tex}
+
+\paragraph{Observation windows.}
+ERA5-Land daily maxima are maxima of hourly samples. ECA\&D observation
+windows and measurement frequencies vary by source; matching calendar
+dates does not make those sampling schemes identical. The main sample
+retains the source-window labels. The separate UTC-window subset contains
+3,528,147 observations at 2,154 nominal IDs, restricted to the supplied
+TX3/TX21 metadata codes; it is not the sample used in the figures.
+
+\paragraph{Covariates and missingness.}
+Elevation, NDVI, DEGURBA and coastal distance refer to the observation
+source, whose location may change within a nominal station series.
+Country labels in Table~\ref{tab:desc_country_top10} and the map positions
+refer to nominal station metadata. Each figure retains finite values for
+its own covariates; no global complete-case filter is applied.
+
+NDVI is sampled from the raster covering the actual season when present.
+If a season is unavailable, the latest earlier raster from the same season
+is carried forward, with raster dates, filename and lag retained.
+Raster codes 0--254 are mapped to $[-1,1]$; nodata remains missing.
+Of the retained observations, 4,927,797 have observed-season NDVI,
+1,873,268 have extrapolated NDVI, and 157,349 have no usable NDVI.
+This is an explicit seasonal extrapolation assumption, not measured
+vegetation for the missing dates or a claim of exact periodicity.
+
+DEGURBA uses the fixed 2020 GHS-SMOD classification, sampled in the raster's
+coordinate system. Elevation is taken from source metadata; the sentinel
+codes $-999$ and $-9999$ are treated as missing, leaving 3,825 observations
+without valid elevation. Coastal distance uses the Natural Earth 1:10
+million ocean coastline with the Caspian ring excluded. A nearest point
+is selected in EPSG:3035 and its WGS84 geodesic distance is calculated;
+the generalized coastline and projection make this an approximate covariate.
+
+Wind is $\sqrt{\overline{u}_{10}^{\,2}+\overline{v}_{10}^{\,2}}$, using
+the daily mean components. It is not the mean of hourly speed magnitudes.
+Precipitation is the supplied daily-mean proxy in metres. Its upstream
+accumulation recipe is unresolved, so no conversion to a daily total or
+to mm/day is made.
+
+\input{tables/descriptive_continuous.tex}
+\input{tables/descriptive_degurba.tex}
+\input{tables/descriptive_countries.tex}
+\input{tables/data_summary.tex}
 
 \subsection{Methodology}
 \label{sec:methods}
 
 \paragraph{Covariate profiles.} For each covariate $X_j$, we estimate the
-partial dependence of the mean residual $\mathbb{E}[r \mid X_j]$ by
-binning $X_j$ into quantiles and computing the mean residual within each
-bin. This is a descriptive device: it does not impose a functional form
-and is directly interpretable, at the cost of not controlling for other
-covariates -- a limitation we return to in Section~\ref{sec:discussion}.
-% TODO (Saad): confirm whether this is a *univariate* binned mean, or a
-% partial-dependence profile extracted from a fitted multivariate model
-% (e.g. gradient boosting) marginalising over the other covariates. The
-% two have different causal interpretations and the methods section must
-% say which one was used.
+conditional mean residual $\mathbb{E}[r\mid X_j]$ using ten quantile bins,
+merging duplicate boundaries. Means give each observation equal weight.
+Points are plotted at bin midpoints, with outer bins bounded by observed
+extrema. These are univariate descriptive profiles, not partial dependence
+from a fitted multivariate model. The lower panels show histograms of
+4,999 sampled observations, rather than the complete sample counts.
 
-\paragraph{Inference.} Because residuals from the same station are
-serially correlated and stations are spatially clustered, uncertainty is
-quantified with a cluster bootstrap: stations (not observations) are
-resampled with replacement, $B=1000$ replications, and we report 95\%
-percentile confidence intervals for all profiled means and class means.
-Clustering the resampling by station, rather than by observation,
-respects the two-level structure of the data (dates nested in stations)
-without imposing a parametric correlation model. The same procedure is
-applied to the DEGURBA class breakdown (Section~\ref{sec:results-degurba}).
+\paragraph{Inference.} Pointwise 95\% percentile intervals use $B=1000$
+bootstrap resamples of nominal station IDs within each bin or class,
+retaining all observations from each selected station. The seed is 1337,
+and station groups are sorted before resampling. This accounts for
+dependence within a station, but not dependence between nearby stations.
+The intervals are neither simultaneous bands nor formal tests of the
+differences between bins.
 
-\paragraph{Interactions.} For the temperature$\times$wind interaction
-(Section~\ref{sec:results-interaction}), observations are additionally
-stratified into wind-speed terciles ([TK: confirm cut points, e.g.\ low
-$\le 1.2\,\mathrm{m/s}$; mid $1.2$--$2.4\,\mathrm{m/s}$; high
-$>2.4\,\mathrm{m/s}$]) before the temperature partial-dependence profile
-is recomputed within each tercile.
+\paragraph{Joint profiles.} The temperature$\times$wind figure uses an
+eight-by-eight grid of marginal quantile bins, with observation-weighted
+mean residuals in each joint cell. It displays no confidence intervals
+and does not estimate a causal interaction. Marginal histograms each use
+4,999 sampled observations. Wind is the magnitude of the daily mean
+vector, which is distinct from the daily mean wind speed.
 
 % ===========================================================================
 \section{Results}
 \label{sec:results}
 
-\subsection{ERA5 underestimates station temperature on average}
+\subsection{ERA5-Land maxima are lower on average in the screened sample}
 \label{sec:results-map}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/paper/04_station_map.pdf}
-\caption{Mean residual per station, $\bar r_i = T_i^{-1}\sum_t r_{it}$,
-all dates pooled. Positive (red) values indicate that the rescaled
-product underestimates station temperature.}
+\includegraphics[width=\textwidth]{figures/station_map.pdf}
+\caption{Mean station-minus-ERA5-Land residual at each nominal station ID,
+all dates pooled. Positive (red) values indicate cooler ERA5-Land maxima.
+Nominal station coordinates are used; the sources contributing to each
+mean may change over time. All 4,217 IDs lie in the displayed window. Colours
+saturate beyond $\pm3\,^\circ$C. Plotly map with an OpenStreetMap basemap
+(\copyright\ OpenStreetMap contributors).}
 \label{fig:map}
 \end{figure}
 
-Across the pooled European station network, the mean residual is
-positive: station temperature exceeds the co-located ERA5 temperature on
-average. This is not a local artefact: the bias is spatially widespread
-rather than confined to a handful of stations or countries, with 90\% of stations showing a positive mean residual and an unweighted
-sample mean of $\bar r_i \approx 1.5^\circ$C, though the magnitude
-varies substantially by region -- largest in Albania, Bosnia and Herzegovina, Montenegro,
-smallest, occasionally negative, in Russian Federation, Denmark, Netherlands.(Figure~\ref{fig:map}).
+The observation-weighted mean residual is $1.58\,^\circ$C; the mean
+giving equal weight to each nominal station is $1.55\,^\circ$C.
+Approximately 89.1\% of stations have a positive mean residual
+(Figure~\ref{fig:map}). These quantities describe the screened station
+sample, not an area-weighted European temperature bias.
 
-\subsection{Station temperature itself is a first-order explanatory
-variable}
+\subsection{Residuals increase across station-temperature bins}
 \label{sec:results-temperature}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/paper/01_covariates.pdf}
-\caption{Partial dependence of the mean residual on each of six
-covariates: station temperature, precipitation, wind speed, NDVI,
-distance to the sea, and elevation. Covariates are binned into
-quantiles; shaded bands are 95\% confidence intervals from a
-station-clustered bootstrap ($B=1000$).}
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figures/pdp_station_celsius.pdf}
+\caption{Station temperature}\label{fig:temperature}
+\end{subfigure}%
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figures/pdp_tp.pdf}
+\caption{Precipitation proxy}\label{fig:precip}
+\end{subfigure}%
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figures/pdp_wind.pdf}
+\caption{Mean wind vector}\label{fig:wind}
+\end{subfigure}%
+
+\medskip
+
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figures/pdp_ndvi.pdf}
+\caption{NDVI}\label{fig:ndvi}
+\end{subfigure}%
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figures/pdp_dist_to_sea_km.pdf}
+\caption{Distance to sea}\label{fig:coast}
+\end{subfigure}%
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figures/pdp_elevation.pdf}
+\caption{Elevation}\label{fig:elevation}
+\end{subfigure}%
+\caption{Mean residual by covariate quantile bin (upper panel of each subplot),
+with pointwise 95\% station-bootstrap intervals. Lower histograms each use
+4,999 sampled observations. Points mark bin midpoints. Precipitation is the
+supplied proxy in metres, displayed as $\log_{10}(\max(\mathrm{tp},10^{-9}))$,
+not a daily total. Wind is the magnitude of the daily mean vector. NDVI
+includes flagged seasonal extrapolations; elevation excludes 3,825 missing
+or invalid values. These are descriptive conditional means.}
 \label{fig:pdp}
 \end{figure}
 
-The partial dependence of the mean residual on station temperature is
-close to monotonically increasing (Figure~\ref{fig:pdp}, top left): the
-underestimation is smallest at low station temperatures and largest at
-high station temperatures, rising from approximately $0.84\,^\circ$C at
-$-20\,^\circ$C to $2.3\,^\circ$C at $+40\,^\circ$C. In other words, the
-rescaled product's cold bias worsens precisely on the warmest days --
-the opposite of what one would want for downstream applications
-sensitive to heat extremes (heatwave detection, energy demand, crop
-stress).
+Mean residual rises from $0.52\,^\circ$C in the lowest station-temperature
+bin (maxima at or below $2.5\,^\circ$C) to $2.32\,^\circ$C in the highest
+bin (above $29\,^\circ$C; Figure~\ref{fig:pdp}). The outer points represent
+broad bins, not estimates at an individual extreme temperature. Station
+temperature also enters the residual definition, so this marginal
+association alone does not isolate a physical temperature effect.
 
-\subsection{Precipitation and NDVI show at most a minor effect}
+\subsection{Smaller variations across precipitation-proxy and NDVI bins}
 \label{sec:results-precip}
 
-The partial dependence of the residual on precipitation is close to flat, with confidence
-bands that overlap substantially across the observed range (0.001
-–1.3 mm/day, with mean residual hovering between 1.5 and 1.6~\text{°C}, 95\% CI [1.5, 1.7]~\text{°C}) (Figure 2, top centre). We therefore report no more than a minor precipitation effect at
-continental scale – a statement about the observed range rather than an absence of
-physical effect. The partial dependence on NDVI is likewise close to flat across its observed range (-0.40–0.78, mean residual between 1.5 and 1.6~\text{°C}), with substantially overlapping confidence bands (Figure 2, bottom left);
-any effect is below the detection threshold of the current sample.
-% TODO (Saad): decide between "no detectable effect" and "small effect"
-% based on whether a formal test (e.g. comparing bin means against a
-% null of no association) supports a genuine, if modest, relationship;
-% see Section~\ref{sec:discussion}. Do not let this wording drift
-% between sections in the final draft.
+The precipitation-proxy bin means range from $1.52$ to $1.71\,^\circ$C
+(Figure~\ref{fig:precip}). The pattern is not monotonic and cannot be
+interpreted as a response to daily precipitation totals without resolving
+the upstream accumulation convention.
 
-\subsection{Wind speed strongly damps the underestimation}
+NDVI bin means range from $1.53$ to $1.66\,^\circ$C, with substantially
+overlapping pointwise intervals (Figure~\ref{fig:ndvi}). This is a small
+descriptive variation; no formal test of no association is reported.
+Interpretation also depends on the seasonal extrapolation policy.
+
+\subsection{Residuals decrease across mean-vector wind bins}
 \label{sec:results-wind}
 
-Wind speed is the covariate with the clearest monotonic marginal
-association in the panel (Figure~\ref{fig:pdp}, top right): the residual
-falls steadily as wind speed increases, from its largest values at
-near-calm conditions to roughly half that magnitude at the highest
-observed wind speeds (from $\sim 2.1^\circ$C to $\sim 1.1^\circ$C).
+The wind profile decreases across the displayed bins
+(Figure~\ref{fig:wind}), from $2.25\,^\circ$C below approximately
+$0.50\,\mathrm{m/s}$ to $1.11\,^\circ$C above approximately
+$4.02\,\mathrm{m/s}$. This is a pooled association with mean-vector wind,
+not a controlled estimate of the effect of atmospheric mixing.
 
 \subsection{Distance to the sea and elevation}
 \label{sec:results-geo}
 
-The residual decreases with distance to the sea beyond a short coastal
-band, though the profile is not monotonic over its full range: mean
-underestimation initially rises from 1.69°C (at ~2 km) to 1.92°C (at ~17 km)
-before declining steadily further inland to $1.15^\circ$C at $\sim 364$ km
-(Figure~\ref{fig:pdp}, bottom centre).
-Elevation shows the expected sign given prior regional findings
-\parencite{satyapragyan2026bias,sebbar2023ml_downscaling}: the
-underestimation increases with elevation (rising from $1.34^\circ$C at $\sim 8$ m to $1.65^\circ$C at
-$\sim 352$ m), consistent with the rescaled
-product's coarse grid cells averaging over sub-grid topographic
-variability that individual mountain stations do not experience
-(Figure~\ref{fig:pdp}, bottom right).
-% TODO (Saad): flag and, if possible, explain any near-coast feature
-% rather than smoothing over it -- check station counts per bin, since
-% it may be a sample-size artefact rather than a genuine coastal effect.
+The nearest-coast bin has mean residual $2.05\,^\circ$C, compared with
+$1.02\,^\circ$C in the furthest-inland bin (above approximately 344 km).
+The profile also has a secondary inland peak and is not monotonic
+(Figure~\ref{fig:coast}).
 
+The screened elevation profile is also non-monotonic
+(Figure~\ref{fig:elevation}). Its largest bin mean is $1.96\,^\circ$C
+between 500 and 695 m, falling to $0.80\,^\circ$C above 958 m.
+It therefore does not support a simple increase in underestimation with
+elevation. Station composition, terrain and source coverage may contribute
+to both geographical profiles.
 
 \subsection{Degree of urbanisation}
 \label{sec:results-degurba}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/paper/02_urbanization.pdf}
-\caption{Mean residual per DEGURBA urbanisation class (top), with
-station share per class (bottom). Error bars are 95\% station-clustered
-bootstrap confidence intervals.}
+\includegraphics[width=\textwidth]{figures/degurba.pdf}
+\caption{Mean residual for land DEGURBA classes (top), with
+observation share of the full screened sample per land class (bottom).
+Error bars are pointwise 95\% station-bootstrap intervals.
+Water is omitted from both panels.}
 \label{fig:degurba}
 \end{figure}
 
-Stations classified as semi-dense or dense urban clusters show
-noticeably higher mean residuals than stations classified as water or
-very-low-density rural, with rural-cluster and suburban stations
-occupying an intermediate position; the residual peaks in semi-dense
-urban clusters at approximately $+2.55^\circ$C and remains elevated in
-the densest classes (Figure~\ref{fig:degurba}). Because the residual is
-positive in \emph{all} classes, urbanisation amplifies but does not
-solely explain the underestimation. Two readings are compatible with
-this pattern: the rescaled product under-represents the urban heat
-signal measured by stations, and/or station siting in built environments
-warms the reference relative to the grid-cell average. Our design cannot
-separate these two components; we flag this as a priority for follow-up
-work. Together with the elevation result, this points to two largely
-distinct geographic drivers of the residual: topographic (elevation,
-distance to sea) and land-use / built-environment (urbanisation class).
+Mean residual ranges from $1.14\,^\circ$C in very-low-density rural
+locations to $2.70\,^\circ$C in semi-dense urban clusters; urban centres
+average $1.72\,^\circ$C (Figure~\ref{fig:degurba}). The ordering is not
+monotonic in urban density. The semi-dense class contains only 66 nominal
+station IDs and has a comparatively wide interval. These class differences
+cannot separate station siting, regional composition and unresolved urban
+processes; they are not a direct estimate of an urban heat-island effect.
 
-\subsection{A temperature$\times$wind interaction}
+\subsection{The joint temperature$\times$wind profile}
 \label{sec:results-interaction}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/paper/03_interactions.pdf}
-\caption{Partial dependence of the mean residual on station temperature,
-stratified by wind-speed tercile. Shaded bands are 95\% station-clustered
-bootstrap confidence intervals.}
+\begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/station_celsius_by_wind.pdf}
+    \caption{Station temperature $\times$ mean wind vector}
+\end{subfigure}%
+\hfill
+\begin{subfigure}[t]{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/elevation_by_dist_to_sea_km.pdf}
+    \caption{Elevation $\times$ distance to sea}
+\end{subfigure}
+\caption{Observation-weighted mean residual in joint quantile bins
+(eight bins per axis). Marginal histograms show 4,999 sampled observations
+per axis. Each panel uses its own colour scale.
+These are descriptive cell means; no confidence intervals are shown.}
 \label{fig:interaction}
 \end{figure}
 
-Stratifying the station-temperature partial dependence profile by
-wind-speed tercile reveals that the temperature effect documented in
-Section~\ref{sec:results-temperature} is not uniform
-(Figure~\ref{fig:interaction}): under low wind, the underestimation
-rises sharply with station temperature and reaches its largest values in
-the sample; under high wind, the same temperature range produces a much
-flatter, substantially smaller residual. At low station temperatures the
-three wind terciles are close to indistinguishable; the gap opens up
-specifically as temperature rises, reaching $\sim 1.8^\circ$C
-under calm conditions versus $\sim 2.8^\circ$C under strong wind] at the
-warmest temperatures. This is consistent with a physical mechanism in
-which low wind favours a stable near-surface boundary layer that the
-rescaled product's coarser vertical/horizontal resolution does not fully
-resolve, so that the model's warm-day bias is largest precisely when
-vertical mixing is weakest. The amplification of the bias by stagnant
-boundary layers is, jointly with the urbanisation gradient, the most
-physical signal in the data: both point to unresolved surface-layer
-processes rather than to a uniform calibration offset.
+The joint profile shows larger warm-temperature residuals under lower
+mean-vector wind (Figure~\ref{fig:interaction}). In the warmest temperature
+bin (above $27.7\,^\circ$C), mean residual is $3.36\,^\circ$C below
+$0.58\,\mathrm{m/s}$, compared with $2.27\,^\circ$C above
+$3.72\,\mathrm{m/s}$. These are different station-day groups, not a
+within-station comparison or a formal interaction test. A boundary-layer
+interpretation remains a hypothesis requiring additional controls.
 
-
-\begin{table}[htbp]
-\centering
-\caption{Summary of marginal associations between covariates and the residual.}
-\label{tab:results-summary}
-\resizebox{\linewidth}{!}{%
-\begin{tabular}{lccc}
-\toprule
-Covariate & Direction of association & Approx.\ range ($^\circ$C) & Detectable? \\
-\midrule
-Station temperature & Increasing & 0.84--2.3 & Yes (strong) \\
-Wind speed & Decreasing & 1.1--2.1 & Yes (strong) \\
-Distance to sea & Decreasing (non-monotonic near coast) & 1.1--1.9 & Yes \\
-DEGURBA (urban $>$ rural) & Increasing with density & 1.1--2.55 & Yes (weak)\\
-Elevation & Increasing & 1.3--1.7 & Yes (weaker) \\
-Precipitation & None / negligible & 1.5--1.6 & No \\
-NDVI & None / negligible & 1.5--1.6 & No \\
-\bottomrule
-\end{tabular}}
-\end{table}
+\input{tables/results_summary.tex}
 
 % ===========================================================================
 \section{Discussion}
 \label{sec:discussion}
 
 \paragraph{Interpretation and threats to validity.}
-Several caveats qualify the results above. \emph{(i) Magnitude.} A mean
-underestimation on the order of [TK]$^\circ$C is large relative to
-published reanalysis biases over Europe; part of it may reflect
-processing artefacts rather than genuine product error -- elevation
-mismatch between station and grid cell, differing averaging windows, or
-station screening. We regard artefact checks as a precondition for
-downstream use of these estimates [TK: report artefact checks, or move
-to an appendix]. \emph{(ii) Univariate profiles and confounding by
-pooling.} The results in Section~\ref{sec:results} are, as currently
-implemented, marginal (univariate) associations between the residual and
-each covariate taken separately. Several of these covariates are
-themselves correlated -- mountain stations tend to be further from the
-sea and less urbanised, for instance -- so a univariate profile can
-partly reflect the influence of a correlated covariate rather than the
-one being plotted. A joint model (e.g.\ a multivariate regression, or a
-fitted gradient-boosting model with true multivariate partial
-dependence) would let each covariate's effect be interpreted holding the
-others fixed, which is a meaningfully stronger claim than what
-Table~\ref{tab:results-summary} currently supports. All profiles also
-pool dates, so the temperature profile in particular partly reflects the
-seasonal cycle; station fixed effects or deseasonalised residuals would
-isolate within-station variation [TK: add a mixed-model specification if
-time allows]. \emph{(iii) Reference ambiguity.} Station thermometers and
-grid cells average different spatial footprints; over cities and coasts,
-part of the residual measures representativeness rather than accuracy.
-\emph{(iv) Statistical significance of ``minor'' effects.} The
-precipitation and NDVI effects are visually small and their confidence
-bands largely overlap across bins; before describing either as
-``minor but noticeable'' in the final text, a formal test against a null
-of no association is advisable.
+The checks above establish consistency with the supplied source files,
+but do not establish error-free station observations, physically identical
+sampling intervals, or a representative sample of European land area.
+The $1.58\,^\circ$C observation-weighted mean can reflect product error,
+representativeness, observation windows and station selection. The
+separate UTC subset addresses one aspect of the window mismatch; its
+existence does not correct the mixed-window figures shown here.
 
-More substantively, the two strongest results in this analysis -- the
-wind-speed effect and the temperature$\times$wind interaction -- deserve
-to be stated as clearly among the paper's central conclusions
-(Section~\ref{sec:intro}), since they are, on the evidence gathered here,
-at least as strong as the elevation effect that originally motivated
-this line of work. The interaction result in particular offers a
-candidate physical mechanism (near-surface stability under low wind)
-that ties several of the other findings together and gives the paper a
-sharper, more specific contribution than a list of marginal associations.
+The univariate and joint-bin profiles pool dates and stations and do not
+control for the other covariates, seasonality or station composition.
+Station temperature appears both as a predictor and in the residual
+definition. A multivariate or within-station analysis would be needed
+to distinguish conditional associations from these pooled relationships;
+neither would by itself establish causality.
+
+Bootstrap clusters are nominal station IDs. Source-day deduplication
+removes repeated observations, but does not prove independence of physical
+instruments or remove dependence between neighbouring stations. The
+confidence intervals describe sampling variation under the stated
+resampling scheme, not uncertainty from window mismatch, NDVI extrapolation,
+screening choices or covariate measurement error. No formal multiplicity
+adjustment, bin-difference test or joint interaction test is reported.
+
+NDVI extrapolation assumes that a previous matching season is informative.
+Recorded one- and two-year backtest mean absolute errors are approximately
+0.073 and 0.071 NDVI units on 40,237 and 26,418 source-season comparisons,
+respectively. The samples differ, so the smaller two-year error is not
+evidence that longer extrapolation is preferable. Observed-only sensitivity
+comparisons also change year and sample composition. Precipitation remains
+a proxy, coast distance is approximate, and DEGURBA is fixed at 2020.
+The temperature--wind pattern motivates a boundary-layer hypothesis,
+but the present analysis does not identify that mechanism.
 
 \paragraph{Consequences for downscaling.}
-The diagnostics of Section~\ref{sec:results} define a natural empirical
-target for downscaling research in the sense of
-Section~\ref{sec:related-diagnostics}: the conditional structure of the
-residual -- its dependence on temperature, wind, elevation, distance to
-sea, and urban class, and its spatial clustering -- is precisely the
-component that a residual-based or bias-aware downscaling model should
-learn. The strong temperature$\times$wind interaction further suggests
-that dynamic covariates (boundary-layer state) carry information that
-static covariate sets (topography, land cover, NDVI) do not. Finally,
-our results caution against treating rescaled products as ground truth
-in the training and evaluation of downscaling models: doing so transfers
-the biases documented here into the learned model.
+The descriptive profiles identify covariates and conditions worth testing
+in future residual-based downscaling or bias-correction models. The joint
+temperature--wind pattern suggests including dynamic as well as static
+predictors, while the non-monotonic geographical profiles argue against
+imposing a simple linear elevation or urban-density correction. These
+diagnostics neither supply a validated correction model nor establish
+where ERA5-Land can be treated as ground truth. Evaluation should preserve
+separate training and validation samples and account for the sampling and
+representativeness limitations identified here.
 
 % ===========================================================================
 \section{Conclusion}
 \label{sec:conclusion}
 
-Using the collective output of the GenHack'25 hackathon recoded into a
-single European pipeline, we characterised the errors of a rescaled
-reanalysis temperature product against weather stations. The product
-underestimates station temperature on average; the underestimation grows
-with temperature itself, with elevation, and towards the coast, and is
-strongly amplified by low wind and by urbanisation. Precipitation and
-vegetation show at most a minor effect at continental scale. These
-conclusions delineate where rescaled temperatures can be trusted and
-provide an empirical error model for downstream uncertainty
-quantification. Users of ERA5-type temperature in downstream models
-should, at minimum, be aware that the error grows with temperature and
-shrinks with wind speed; future downscaling or bias-correction models
-(Section~\ref{sec:related-ml}) should treat wind speed and DEGURBA class
-as first-class conditioning covariates alongside the more commonly used
-elevation. Planned extensions include deseasonalised within-station
-inference, artefact controls, a joint (multivariate) specification of
-the covariate effects, and the separation of station-siting from product
-bias in urban areas.
+Motivated by the GenHack'25 analyses, we compared ECA\&D daily maximum
+temperatures with ERA5-Land daily maxima using a documented conservative
+screening pipeline. In the retained sample, station maxima exceed the
+reanalysis by $1.58\,^\circ$C on average when observations receive equal
+weight. Conditional means increase across station-temperature bins and
+decrease across mean-vector wind bins. Elevation, coastal-distance and
+urban-class profiles are non-monotonic; NDVI and the precipitation proxy
+show smaller descriptive ranges. The joint temperature--wind profile
+is consistent with larger warm-temperature residuals under low mean-vector
+wind, but does not establish a causal mechanism. Aligned-window sensitivity
+analyses, validated screening rules, improved covariate provenance and
+within-station or multivariate inference are needed before these patterns
+can support a general European bias estimate or an operational correction.
 
 \printbibliography
 

@@ -1,0 +1,80 @@
+[
+  {
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/luxembourg/lux_daily_study_overlap.json",
+    "url": "https://wms.inspire.geoportail.lu/geoserver/mf/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mf%3AMF.PointTimeSeriesObservation_Daily_ASTA_max_ta200max&count=20000&outputFormat=application%2Fjson&srsName=EPSG%3A4326&CQL_FILTER=datetime+%3E%3D+%272024-11-17T00%3A00%3A00Z%27+AND+datetime+%3C+%272025-09-01T00%3A00%3A00Z%27",
+    "sha256": "a4a5b73145cb1556678ee5559473f8f578beec09b2e2d3279f3d73b5c9ffc7f8",
+    "transport_framing_bytes_removed": 0
+  },
+  {
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/luxembourg/lux_Arsdorf_01_hourly.json",
+    "url": "https://wms.inspire.geoportail.lu/geoserver/mf/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mf%3AMF.PointTimeSeriesObservation_Hourly_ASTA_max_ta200max&count=2000&outputFormat=application%2Fjson&CQL_FILTER=name_descr%3D%27Arsdorf%27+AND+datetime+%3E%3D+%272026-01-01T00%3A00%3A00Z%27+AND+datetime+%3C+%272026-02-01T00%3A00%3A00Z%27",
+    "sha256": "8ebf904b82a1401318ab2c4526fd2f66f703f2455ab2179242c6a7c82c8b0b2f",
+    "transport_framing_bytes_removed": 0
+  },
+  {
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/luxembourg/lux_Arsdorf_01_daily.json",
+    "url": "https://wms.inspire.geoportail.lu/geoserver/mf/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mf%3AMF.PointTimeSeriesObservation_Daily_ASTA_max_ta200max&count=2000&outputFormat=application%2Fjson&CQL_FILTER=name_descr%3D%27Arsdorf%27+AND+datetime+%3E%3D+%272026-01-01T00%3A00%3A00Z%27+AND+datetime+%3C+%272026-02-01T00%3A00%3A00Z%27",
+    "sha256": "0e73ae2104d5eac602ab7eda27e0e495e057df562daf602b7b9569b27ce54a44",
+    "transport_framing_bytes_removed": 0
+  },
+  {
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/luxembourg/lux_Arsdorf_07_hourly.json",
+    "url": "https://wms.inspire.geoportail.lu/geoserver/mf/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mf%3AMF.PointTimeSeriesObservation_Hourly_ASTA_max_ta200max&count=2000&outputFormat=application%2Fjson&CQL_FILTER=name_descr%3D%27Arsdorf%27+AND+datetime+%3E%3D+%272026-07-01T00%3A00%3A00Z%27+AND+datetime+%3C+%272026-08-01T00%3A00%3A00Z%27",
+    "sha256": "41b2f932b0aaf6a8706da5f6640dc84ae83e5ba9dd6ccd17054375b1d4df8aa0",
+    "transport_framing_bytes_removed": 0
+  },
+  {
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/luxembourg/lux_Arsdorf_07_daily.json",
+    "url": "https://wms.inspire.geoportail.lu/geoserver/mf/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mf%3AMF.PointTimeSeriesObservation_Daily_ASTA_max_ta200max&count=2000&outputFormat=application%2Fjson&CQL_FILTER=name_descr%3D%27Arsdorf%27+AND+datetime+%3E%3D+%272026-07-01T00%3A00%3A00Z%27+AND+datetime+%3C+%272026-08-01T00%3A00%3A00Z%27",
+    "sha256": "8cb67c958aaa6e66f095061430412fae50c86deb03acd3438c84823ce25ff543",
+    "transport_framing_bytes_removed": 0
+  },
+  {
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/luxembourg/lux_Reuler_01_hourly.json",
+    "url": "https://wms.inspire.geoportail.lu/geoserver/mf/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mf%3AMF.PointTimeSeriesObservation_Hourly_ASTA_max_ta200max&count=2000&outputFormat=application%2Fjson&CQL_FILTER=name_descr%3D%27Reuler%27+AND+datetime+%3E%3D+%272026-01-01T00%3A00%3A00Z%27+AND+datetime+%3C+%272026-02-01T00%3A00%3A00Z%27",
+    "sha256": "56ccf5d2c4d8dbb77fb311890a662737f4194fa4edcb580dea1c6d9ef5eb1618",
+    "transport_framing_bytes_removed": 0
+  },
+  {
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/luxembourg/lux_Reuler_01_daily.json",
+    "url": "https://wms.inspire.geoportail.lu/geoserver/mf/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mf%3AMF.PointTimeSeriesObservation_Daily_ASTA_max_ta200max&count=2000&outputFormat=application%2Fjson&CQL_FILTER=name_descr%3D%27Reuler%27+AND+datetime+%3E%3D+%272026-01-01T00%3A00%3A00Z%27+AND+datetime+%3C+%272026-02-01T00%3A00%3A00Z%27",
+    "sha256": "b8ddfc6e395fb975b55d9d57937c633c0c6896c4f84f5104a38921e95d398817",
+    "transport_framing_bytes_removed": 0
+  },
+  {
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/luxembourg/lux_Reuler_07_hourly.json",
+    "url": "https://wms.inspire.geoportail.lu/geoserver/mf/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mf%3AMF.PointTimeSeriesObservation_Hourly_ASTA_max_ta200max&count=2000&outputFormat=application%2Fjson&CQL_FILTER=name_descr%3D%27Reuler%27+AND+datetime+%3E%3D+%272026-07-01T00%3A00%3A00Z%27+AND+datetime+%3C+%272026-08-01T00%3A00%3A00Z%27",
+    "sha256": "5a797b0f96a62806f3a31a801be47e363f8c7ed35b7284c2bb4fe13f6992cc76",
+    "transport_framing_bytes_removed": 0
+  },
+  {
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/luxembourg/lux_Reuler_07_daily.json",
+    "url": "https://wms.inspire.geoportail.lu/geoserver/mf/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mf%3AMF.PointTimeSeriesObservation_Daily_ASTA_max_ta200max&count=2000&outputFormat=application%2Fjson&CQL_FILTER=name_descr%3D%27Reuler%27+AND+datetime+%3E%3D+%272026-07-01T00%3A00%3A00Z%27+AND+datetime+%3C+%272026-08-01T00%3A00%3A00Z%27",
+    "sha256": "20447a8160a85cf58f8e0ab172ae384fe2d6d9297055c5f079e9b2169691a47a",
+    "transport_framing_bytes_removed": 0
+  },
+  {
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/luxembourg/lux_Merl_01_hourly.json",
+    "url": "https://wms.inspire.geoportail.lu/geoserver/mf/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mf%3AMF.PointTimeSeriesObservation_Hourly_ASTA_max_ta200max&count=2000&outputFormat=application%2Fjson&CQL_FILTER=name_descr%3D%27Merl%27+AND+datetime+%3E%3D+%272026-01-01T00%3A00%3A00Z%27+AND+datetime+%3C+%272026-02-01T00%3A00%3A00Z%27",
+    "sha256": "1449cd71da8fcf8353084b82dd41cfc451e656ecca8945995ce2dab5e9ccd7fd",
+    "transport_framing_bytes_removed": 0
+  },
+  {
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/luxembourg/lux_Merl_01_daily.json",
+    "url": "https://wms.inspire.geoportail.lu/geoserver/mf/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mf%3AMF.PointTimeSeriesObservation_Daily_ASTA_max_ta200max&count=2000&outputFormat=application%2Fjson&CQL_FILTER=name_descr%3D%27Merl%27+AND+datetime+%3E%3D+%272026-01-01T00%3A00%3A00Z%27+AND+datetime+%3C+%272026-02-01T00%3A00%3A00Z%27",
+    "sha256": "6f6b5efeceac87a57fc8c0dd42ff6854eb83fc101ff4cc86f7e4d608b8838725",
+    "transport_framing_bytes_removed": 0
+  },
+  {
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/luxembourg/lux_Merl_07_hourly.json",
+    "url": "https://wms.inspire.geoportail.lu/geoserver/mf/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mf%3AMF.PointTimeSeriesObservation_Hourly_ASTA_max_ta200max&count=2000&outputFormat=application%2Fjson&CQL_FILTER=name_descr%3D%27Merl%27+AND+datetime+%3E%3D+%272026-07-01T00%3A00%3A00Z%27+AND+datetime+%3C+%272026-08-01T00%3A00%3A00Z%27",
+    "sha256": "d35ed707c9062880b2ba93208d4784119e3d6597ba6af380b586ff535cfbd77d",
+    "transport_framing_bytes_removed": 0
+  },
+  {
+    "path": "/home2/lobib/gen_hack/data2/observation_window_evidence/luxembourg/lux_Merl_07_daily.json",
+    "url": "https://wms.inspire.geoportail.lu/geoserver/mf/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=mf%3AMF.PointTimeSeriesObservation_Daily_ASTA_max_ta200max&count=2000&outputFormat=application%2Fjson&CQL_FILTER=name_descr%3D%27Merl%27+AND+datetime+%3E%3D+%272026-07-01T00%3A00%3A00Z%27+AND+datetime+%3C+%272026-08-01T00%3A00%3A00Z%27",
+    "sha256": "514df5c6da0f71831026c7a4cd1ba7d659813343921475d68b69c4bf6c72c433",
+    "transport_framing_bytes_removed": 0
+  }
+]

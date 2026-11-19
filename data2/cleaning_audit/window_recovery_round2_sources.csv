@@ -1,0 +1,87 @@
+STAID,SOUID,source_name,country_code,window_rule_id,window_sampling,daily_records,first_date,last_date
+1679,157068,SHKODRA,AL,gsod_hourly_fallback,hourly_or_synoptic_samples,129,20200104,20250228
+23388,157075,KUKES INTERNATIONIONAL AIRPORT,AL,gsod_hourly_fallback,hourly_or_synoptic_samples,147,20200111,20250228
+23389,157082,DURRES,AL,gsod_hourly_fallback,hourly_or_synoptic_samples,73,20200110,20250228
+23390,157089,TIRANA RINAS,AL,gsod_hourly_fallback,hourly_or_synoptic_samples,1579,20200111,20250228
+23391,157096,PESHKOPI,AL,gsod_hourly_fallback,hourly_or_synoptic_samples,137,20200111,20250228
+23392,157103,VLORE,AL,gsod_hourly_fallback,hourly_or_synoptic_samples,131,20200107,20250228
+23393,157110,QYTETI STALIN,AL,gsod_hourly_fallback,hourly_or_synoptic_samples,84,20200111,20250228
+23394,157117,GJIROKASTRA,AL,gsod_hourly_fallback,hourly_or_synoptic_samples,117,20200111,20250228
+23395,157124,KORCA,AL,gsod_hourly_fallback,hourly_or_synoptic_samples,151,20200102,20250228
+23340,157180,GORNA ORYAHOVITSA,BG,gsod_hourly_fallback,hourly_or_synoptic_samples,1866,20200101,20250228
+2348,157215,RAZGRAD,BG,gsod_hourly_fallback,hourly_or_synoptic_samples,1,20220301,20220301
+23350,157250,MOURGASH,BG,gsod_hourly_fallback,hourly_or_synoptic_samples,9,20200716,20230613
+23362,157334,BURGAS,BG,gsod_hourly_fallback,hourly_or_synoptic_samples,1277,20200102,20250228
+107,71532,VESTERVIG,DK,dmi_archive_day,provider_daily_maximum,366,20200101,20201231
+109,71535,NORDBY (FANO),DK,dmi_archive_day,provider_daily_maximum,230,20200515,20201231
+304,71535,NORDBY (FANO),DK,dmi_archive_day,provider_daily_maximum,1,20201124,20201124
+23313,156837,ARISTOTELIS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,1244,20200102,20250228
+23314,156844,MAKEDONIA,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,969,20200103,20250228
+23315,156851,MEGAS ALEXANDROS INTL,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,667,20200107,20250228
+23316,156858,PAROS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,643,20200101,20250228
+23317,156865,AKTIO,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,1458,20200104,20250228
+23318,156872,LIMNOS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,1370,20200105,20250228
+354,156886,ANCHIALOS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,1846,20200101,20250228
+23319,156893,ALEXANDROS PAPADIAMANTIS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,1188,20200101,20250226
+837,156900,MITILINI,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,1203,20200102,20250228
+16381,156914,ANDRAVIDA,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,949,20200104,20250228
+941,156928,TANAGRA,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,1847,20200101,20250228
+789,156935,CHIOS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,524,20200102,20250228
+23320,156942,TATOI,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,120,20200106,20250228
+23321,156949,ELEFTHERIOS VENIZELOS INTL,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,1856,20200101,20250228
+23323,156963,ELEFSIS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,1077,20200102,20250228
+23324,156970,DIONYSIOS SOLOMOS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,1774,20200101,20250228
+326,156977,SAMOS AIRPORT,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,614,20200102,20250228
+841,156984,KALAMATA,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,608,20200102,20250228
+23325,156991,MIKONOS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,722,20200102,20250228
+23326,156998,SYROS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,581,20200102,20250228
+842,157005,CYCLADES ISLANDS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,1736,20200101,20250228
+23856,157005,CYCLADES ISLANDS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,1736,20200101,20250228
+23327,157012,KOS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,683,20200101,20250228
+23328,157019,SANTORINI,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,1825,20200101,20250228
+23329,157033,KARPATHOS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,1726,20200101,20250228
+23332,157033,KARPATHOS,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,94,20201005,20250228
+23330,157047,SITIA,GR,gsod_hourly_fallback,hourly_or_synoptic_samples,130,20200102,20241018
+23329,157061,KARPATHOS (AIRPORT),GR,gsod_hourly_fallback,hourly_or_synoptic_samples,7,20220809,20240420
+23332,157061,KARPATHOS (AIRPORT),GR,gsod_hourly_fallback,hourly_or_synoptic_samples,67,20200106,20250218
+280,121002,ARSDORF_1,LU,asta_cet_day,provider_daily_maximum,250,20241117,20250803
+22463,121012,ASSELBORN,LU,asta_cet_day,provider_daily_maximum,203,20241117,20250803
+22483,121012,ASSELBORN,LU,asta_cet_day,provider_daily_maximum,33,20250121,20250803
+22492,121012,ASSELBORN,LU,asta_cet_day,provider_daily_maximum,31,20250101,20250131
+24854,121012,ASSELBORN,LU,asta_cet_day,provider_daily_maximum,38,20250101,20250413
+22464,121022,BERINGEN,LU,asta_cet_day,provider_daily_maximum,220,20241117,20250803
+22465,121032,BETTENDORF,LU,asta_cet_day,provider_daily_maximum,202,20241117,20250803
+22466,121042,BREIDFELD,LU,asta_cet_day,provider_daily_maximum,205,20241117,20250803
+24854,121042,BREIDFELD,LU,asta_cet_day,provider_daily_maximum,205,20241117,20250803
+22468,121062,DAHL,LU,asta_cet_day,provider_daily_maximum,217,20241117,20250831
+22470,121082,ESCH SURE,LU,asta_cet_day,provider_daily_maximum,239,20241117,20250804
+22471,121092,ESCHDORF,LU,asta_cet_day,provider_daily_maximum,288,20241117,20250831
+22464,121102,ETTELBRUCK,LU,asta_cet_day,provider_daily_maximum,68,20250522,20250831
+22465,121102,ETTELBRUCK,LU,asta_cet_day,provider_daily_maximum,86,20241222,20250831
+22472,121102,ETTELBRUCK,LU,asta_cet_day,provider_daily_maximum,288,20241117,20250831
+22473,121112,FOUHREN,LU,asta_cet_day,provider_daily_maximum,257,20241117,20250831
+22474,121122,GODBRANGE,LU,asta_cet_day,provider_daily_maximum,288,20241117,20250831
+22491,121122,GODBRANGE,LU,asta_cet_day,provider_daily_maximum,288,20241117,20250831
+22476,121142,HOSINGEN,LU,asta_cet_day,provider_daily_maximum,257,20241117,20250831
+287,121152,KOERICH_1,LU,asta_cet_day,provider_daily_maximum,270,20241117,20250831
+22477,121172,MERL,LU,asta_cet_day,provider_daily_maximum,233,20241117,20250805
+22478,121172,MERL,LU,asta_cet_day,provider_daily_maximum,233,20241117,20250805
+22480,121172,MERL,LU,asta_cet_day,provider_daily_maximum,233,20241117,20250805
+24855,121172,MERL,LU,asta_cet_day,provider_daily_maximum,233,20241117,20250805
+22479,121182,OBERCORN,LU,asta_cet_day,provider_daily_maximum,288,20241117,20250831
+22463,121222,REULER,LU,asta_cet_day,provider_daily_maximum,18,20250613,20250630
+22483,121222,REULER,LU,asta_cet_day,provider_daily_maximum,217,20241117,20250801
+22492,121222,REULER,LU,asta_cet_day,provider_daily_maximum,18,20250613,20250630
+22484,121232,ROESER,LU,asta_cet_day,provider_daily_maximum,255,20241117,20250803
+22485,121242,ROODT,LU,asta_cet_day,provider_daily_maximum,288,20241117,20250831
+22486,121252,SCHIMPACH,LU,asta_cet_day,provider_daily_maximum,280,20241117,20250831
+22482,121262,STADTBREDIMUS,LU,asta_cet_day,provider_daily_maximum,90,20241201,20250228
+22487,121262,STADTBREDIMUS,LU,asta_cet_day,provider_daily_maximum,90,20241201,20250228
+22488,121272,STEINSEL,LU,asta_cet_day,provider_daily_maximum,288,20241117,20250831
+22489,121282,TRINTANGE,LU,asta_cet_day,provider_daily_maximum,288,20241117,20250831
+24855,121282,TRINTANGE,LU,asta_cet_day,provider_daily_maximum,55,20250402,20250831
+287,121292,USELDANGE,LU,asta_cet_day,provider_daily_maximum,18,20241214,20241231
+22490,121292,USELDANGE,LU,asta_cet_day,provider_daily_maximum,288,20241117,20250831
+22463,121312,WINCRANGE,LU,asta_cet_day,provider_daily_maximum,67,20250414,20250831
+22483,121312,WINCRANGE,LU,asta_cet_day,provider_daily_maximum,38,20250522,20250831
+22492,121312,WINCRANGE,LU,asta_cet_day,provider_daily_maximum,239,20241117,20250831

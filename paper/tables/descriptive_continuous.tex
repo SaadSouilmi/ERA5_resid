@@ -1,0 +1,21 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Continuous variables in the screened sample. Missing counts include nonfinite and invalid elevation values. Temperatures are in degrees Celsius, wind is the magnitude of the daily mean vector (m/s), and precipitation is a proxy in metres.}
+\label{tab:desc_continuous}
+\fitwidetable{%
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Variable & Missing & Mean & SD & P05 & P25 & P50 & P75 & P95 \\
+\midrule
+station\_celsius & 0 & 15.7 & 10 & -0.6 & 8.7 & 15.9 & 23 & 32 \\
+era5\_celsius & 0 & 14.2 & 9.77 & -1.76 & 7.48 & 14.4 & 21 & 30.1 \\
+residual & 0 & 1.58 & 2.49 & -2.13 & 0.26 & 1.44 & 2.78 & 5.83 \\
+wind & 0 & 2.06 & 1.51 & 0.332 & 0.956 & 1.73 & 2.78 & 4.92 \\
+tp & 0 & 0.00137 & 0.00287 & 1.64e-07 & 1.32e-05 & 0.00024 & 0.00139 & 0.00657 \\
+dist\_to\_sea\_km & 0 & 138 & 138 & 1.43 & 27.1 & 90.6 & 216 & 412 \\
+elevation & 3,825 & 399 & 437 & 6 & 84 & 251 & 597 & 1.21e+03 \\
+ndvi & 157,349 & 0.414 & 0.226 & 0.00787 & 0.252 & 0.433 & 0.591 & 0.748 \\
+\bottomrule
+\end{tabular}}
+\end{table}

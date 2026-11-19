@@ -1,0 +1,36 @@
+{
+  "created_utc": "2026-11-19T00:35:03.746152+00:00",
+  "statistic": "Observation-weighted joint-bin residual means; descriptive associations.",
+  "bins_per_numeric_axis": 8,
+  "pairs": {
+    "elevation_by_dist_to_sea_km": {
+      "observations": 6722390,
+      "sources": 4455
+    },
+    "distance_by_degurba": {
+      "observations": 6692879,
+      "sources": 4439
+    }
+  },
+  "inputs": {
+    "/home2/lobib/gen_hack/data2/station_era5_clean.parquet": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+    "/home2/lobib/gen_hack/data2/station_coastal_distance.parquet": "8401de603d68e522ba57efd64bc49ee3b8f92b19523c0bac9cd5787f6ab2709b",
+    "/home2/lobib/gen_hack/data2/station_land_cover.parquet": "fac834689993882de10e8c74a54209be1ad99e87669316671039ec3005e8ecc5",
+    "/home2/lobib/gen_hack/data2/station_elevation.parquet": "3595df9b7406222c9b27a42002fc11a4c300eb0901b2fd2b56f1c7b762ad5d9f"
+  },
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/scripts/plot_interactions.py": "57397935a5c02077c1c1927b00926c71c3653b2f1508480c24898977971c7411",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "0c1ff5665b601924b03ec37eb727d711bf8355db4bf1d96b89363254929f79b9",
+    "/home2/lobib/gen_hack/src/py/load_data.py": "3cbb598247e81757632926c626058360bcc9088955ded67a0c970a9b376cfe57"
+  },
+  "restyled_utc": "2026-11-19T11:51:42.560912+00:00",
+  "render_code_sha256": {
+    "/home2/lobib/gen_hack/src/py/scripts/plot_interactions.py": "343bbc8ed2dfa91ddd740a166706b41456fd0c1ad10495d4975b12ba183ef7e6",
+    "/home2/lobib/gen_hack/src/py/scripts/scientific_style.py": "6ffc7d0c365dd33f7655795bf4f52862bb832b951ea4502d4cc119321d3e0bbd",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "611557dc64dd723692a8783037108bb703ef82312853fdce8ecf4e19e459ab3f"
+  },
+  "presentation": {
+    "style": "Original Seaborn/DejaVu Sans",
+    "grid": "major"
+  }
+}

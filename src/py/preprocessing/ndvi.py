@@ -57,7 +57,7 @@ def fill_missing_seasons(samples):
 def main():
     import numpy as np
 
-    from py.covariates import SampleRaster as sample_raster
+    from py.covariates import sample_raster
     from py.preprocessing.match_era5_grid import sha256
 
     argparse.ArgumentParser(description=__doc__).parse_args()

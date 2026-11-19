@@ -1,9 +1,0 @@
-{
-  "data_sha256": "9c6aa07f0b786d9e66ab5f3f4fda9f56b106eee45711d8fa0c8197f771d47561",
-  "notebook_sha256": "3a1dec2d52a4d13cb0f6a2c4c9921fcea2b88d60641c78f765ab05ed0ccfc1c0",
-  "status": "Exploratory; population domains and calibration-weight consistency remain under review.",
-  "bootstrap": 1000,
-  "seed": 0,
-  "bootstrap_station_order": "STAID ascending",
-  "baseline_weighting": "Equal weight per nominal land-station mean, not equal weight per observation."
-}

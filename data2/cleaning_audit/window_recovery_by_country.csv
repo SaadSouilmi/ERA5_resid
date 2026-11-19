@@ -1,0 +1,5 @@
+country_code,window_rule_id,observation_window,newly_mapped_records,sources,station_series,first_date,last_date
+RO,anm_tx2_modern,TX2,50612,25,26,20200101,20250531
+EE,estonia_tx2_modern,TX2,50178,25,25,20200101,20250731
+FI,fmi_tx1_modern,TX1,15952,3,9,20200101,20250831
+RS,rhms_serbia_tx8_2021,TX8,1095,3,3,20210101,20211231

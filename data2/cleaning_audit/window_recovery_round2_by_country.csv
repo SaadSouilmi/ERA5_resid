@@ -1,0 +1,6 @@
+country_code,window_rule_id,window_sampling,newly_mapped_records,sources,station_series,first_date,last_date
+GR,gsod_hourly_fallback,hourly_or_synoptic_samples,29264,26,27,20200101,20250228
+LU,asta_cet_day,provider_daily_maximum,7690,24,30,20241117,20250831
+BG,gsod_hourly_fallback,hourly_or_synoptic_samples,3153,4,4,20200101,20250228
+AL,gsod_hourly_fallback,hourly_or_synoptic_samples,2548,9,9,20200102,20250228
+DK,dmi_archive_day,provider_daily_maximum,597,2,3,20200101,20201231

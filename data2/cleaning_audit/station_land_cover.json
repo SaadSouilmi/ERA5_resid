@@ -1,0 +1,18 @@
+{
+  "input_sha256": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+  "raster": "/home2/lobib/gen_hack/data2/GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0/GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0.tif",
+  "raster_sha256": "1e2d7d7a6994b0458fc5d6ff985fb872f27841162b1808a3d52e32ae1a4953a0",
+  "reference_year": 2020,
+  "file": "/home2/lobib/gen_hack/data2/station_land_cover.parquet",
+  "sha256": "fac834689993882de10e8c74a54209be1ad99e87669316671039ec3005e8ecc5",
+  "source_locations": 4458,
+  "missing": 0,
+  "join_keys": [
+    "SOUID",
+    "source_lat",
+    "source_lon"
+  ],
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/preprocessing/land_cover.py": "77d4d49b75c915afa6e41a38f925e2edda952ecabbadb1e4c63a4860853e8143"
+  }
+}

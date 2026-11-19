@@ -1,0 +1,18 @@
+{
+  "pilot": "December 2019 / January 2020; existing clean-sample ERA5 cells",
+  "grid_cells": 3660,
+  "windows_checked": 7320,
+  "windows": [
+    "2019-12-31 18:00 to 2020-01-01 18:00",
+    "2020-01-01 00:00 to 2020-01-02 00:00"
+  ],
+  "maximum_rainfall_error_against_cumulative_identity_m": 0.0,
+  "complete_wind_samples_per_24h_window": 25,
+  "rain_intervals_per_24h_window": 24,
+  "negative_precipitation_intervals": 3233,
+  "old_daily_precipitation_diagnostic": {
+    "maximum_error_against_same_midnight_field_m": 0.08901358395814896,
+    "fraction_within_1e-6m_same_midnight": 0.12480874316939891,
+    "fraction_within_1e-6m_next_midnight": 0.15722222222222224
+  }
+}

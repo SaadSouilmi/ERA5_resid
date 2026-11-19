@@ -1,0 +1,53 @@
+{
+  "created_utc": "2026-11-18T13:57:46.871857+00:00",
+  "stage": "Station selection through UTC-window mapping",
+  "file": "/home2/lobib/gen_hack/data2/selected_station_observations.parquet",
+  "sha256": "4df30a1921c717c0767e30cca4c2d47da05bf7e11241bd87900458995bbab818",
+  "bytes": 38422242,
+  "daily_records": 9840278,
+  "station_series": 5613,
+  "sources": 4984,
+  "first_date": 20200101,
+  "last_date": 20250831,
+  "mapped_records": 9651857,
+  "unresolved_records": 188421,
+  "sampled_reporting_day_records": 34965,
+  "unresolved_policy": "Keep observations with null UTC boundaries and explicit window_status.",
+  "utc_window_meaning": "Documented observation or reporting boundaries. window_sampling distinguishes GSOD sample maxima from other provider daily maxima. ERA5 hourly completeness and endpoint sample selection remain to be checked.",
+  "notebook": "/home2/lobib/gen_hack/src/py/notebooks/preprocessing_walkthrough.ipynb",
+  "notebook_source_sha256": "ca41f0b4a6cc89e21f53b5b3ac0a1c98b2f66e8a51c54c2b35dfdae91f93bc3e",
+  "inputs": [
+    {
+      "path": "/home2/lobib/gen_hack/data2/station_data.parquet",
+      "sha256": "4fe2892a269ab928e74671cecc638277d74d5b02b5f14b1110e7f88fa5029d32"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data/main/ECA_blend_tx/sources.txt",
+      "sha256": "bbf73025a23bb15f49cacfeb280570e985b22cfce08317307ebaebb234102ff7"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data/main/ECA_blend_tx/elements.txt",
+      "sha256": "e1bcbaabc7cacc8ae072a84e7615cadba3bcfb75ac7f3bcccde0449f1a0566d8"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data2/cleaning_audit/verified_observation_window_rules.csv",
+      "sha256": "f3c1d51d39eb6e3d94fa6bd8c278adfe3a66130599f9065a048c0920aaae731f"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data2/cleaning_audit/verified_observation_window_overrides.csv",
+      "sha256": "35025bd9d95cb33291b723b70a5e4a3d383a4b7ed636732b751c8361c146d76f"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data2/cleaning_audit/verified_observation_window_override_rules.csv",
+      "sha256": "ae2ce3dced73bdc1a931419384693934050372c1fbbcbfc1da9fd9920e976550"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/src/py/observation_windows.py",
+      "sha256": "2eebca49bc4f8eca1c5263378e82f81ea4e619fc00206d2f241f30fa26df4bf5"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/src/py/station_metadata.py",
+      "sha256": "b8f7242cfddb4b2d2c93ae33bc9f781f84eb3d79e319c40fcfb048c62aa62263"
+    }
+  ]
+}

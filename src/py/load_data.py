@@ -1,4 +1,4 @@
-"""Load the clean temperature sample with coastal distance, elevation and seasonal NDVI."""
+"""Load the clean temperature sample with source covariates and optional hourly weather."""
 
 import polars as pl
 
@@ -6,7 +6,7 @@ from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
 from py.preprocessing.ndvi import season_key
 
 
-def load_data() -> pl.DataFrame:
+def load_data(*, include_weather=False) -> pl.DataFrame:
     """Return station–ERA5 pairs and saved covariates in the original row order."""
     observations = pl.scan_parquet(DATA_DIRECTORY / "station_era5_clean.parquet")
     keys = ["SOUID", "source_lat", "source_lon"]
@@ -15,7 +15,8 @@ def load_data() -> pl.DataFrame:
     )
     ndvi = pl.scan_parquet(DATA_DIRECTORY / "station_ndvi.parquet").drop("observations")
     elevation = pl.scan_parquet(DATA_DIRECTORY / "station_elevation.parquet")
-    return (
+    land_cover = pl.scan_parquet(DATA_DIRECTORY / "station_land_cover.parquet")
+    loaded = (
         observations.with_columns(season_key())
         .join(
             coastal_distance,
@@ -31,6 +32,7 @@ def load_data() -> pl.DataFrame:
             validate="m:1",
             maintain_order="left",
         )
+        .join(land_cover, on=keys, how="left", validate="m:1", maintain_order="left")
         .join(
             ndvi,
             on=[*keys, "ndvi_season"],
@@ -49,5 +51,17 @@ def load_data() -> pl.DataFrame:
             .otherwise(None)
             .alias("ndvi_lag_days")
         )
-        .collect()
     )
+    if include_weather:
+        from py.preprocessing.hourly_weather import JOIN_KEYS, VALUE_COLUMNS
+
+        loaded = loaded.join(
+            pl.scan_parquet(DATA_DIRECTORY / "station_hourly_weather.parquet").select(
+                *JOIN_KEYS, *VALUE_COLUMNS
+            ),
+            on=JOIN_KEYS,
+            how="left",
+            validate="m:1",
+            maintain_order="left",
+        )
+    return loaded.collect()

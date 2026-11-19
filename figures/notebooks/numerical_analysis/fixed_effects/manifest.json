@@ -1,0 +1,62 @@
+{
+  "analysis": "fixed_effects",
+  "bootstrap_unit": "SOUID (actual observation source)",
+  "hourly_weather_included": false,
+  "origin": "ERA5_resid_v3_code.zip: pending_remarks_analysis.py and supplemental_v3_checks.py",
+  "inputs": {
+    "/home2/lobib/gen_hack/data2/station_era5_clean.parquet": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+    "/home2/lobib/gen_hack/data2/station_ndvi.parquet": "be428f2ff7dca8f3fda425339d3f8d31681d014b5dceb101767e29bfae89120c",
+    "/home2/lobib/gen_hack/data2/station_elevation.parquet": "3595df9b7406222c9b27a42002fc11a4c300eb0901b2fd2b56f1c7b762ad5d9f",
+    "/home2/lobib/gen_hack/data2/station_coastal_distance.parquet": "8401de603d68e522ba57efd64bc49ee3b8f92b19523c0bac9cd5787f6ab2709b",
+    "/home2/lobib/gen_hack/data2/station_land_cover.parquet": "fac834689993882de10e8c74a54209be1ad99e87669316671039ec3005e8ecc5"
+  },
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/analysis_common.py": "12f92324519ad1e3b410354d404cb65f78704847d0d7be8aa5098d3496e811f5",
+    "/home2/lobib/gen_hack/src/py/analysis_fixed_effects.py": "10159d636213cb820b712773c1c4814e7f2547daa8f198d002b9f21a8fbde472",
+    "/home2/lobib/gen_hack/src/py/load_data.py": "3cbb598247e81757632926c626058360bcc9088955ded67a0c970a9b376cfe57",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "611557dc64dd723692a8783037108bb703ef82312853fdce8ecf4e19e459ab3f"
+  },
+  "results_sha256": "9111150abd4777de657edd7c49af77b64e39c590734e6d9b8dc5915684be76b1",
+  "tables": {
+    "station_celsius_raw": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/station_celsius_raw.csv",
+      "sha256": "219fc4fef1a4d84493530dec7fe3116d91d0cb471408f00091dd4b63a23621c3"
+    },
+    "station_celsius_within": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/station_celsius_within.csv",
+      "sha256": "4dc1fc69562ba484da678fbc1f134567aa17a2770528a4075b34f1ad5d6f266b"
+    },
+    "era5_celsius_raw": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/era5_celsius_raw.csv",
+      "sha256": "10452a5c9b46f0fe5fc4f7124a7fec853b4f53cf6af1c86e686bc4c292a73ec1"
+    },
+    "era5_celsius_within": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/era5_celsius_within.csv",
+      "sha256": "840c13b98bf871a90b1fd4eb51a612518535a17058939009b8eeb1cb3d271f3f"
+    },
+    "midpoint_raw": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/midpoint_raw.csv",
+      "sha256": "3384e8280dc89cee46b0ae46e79b80894194e896d0a4aed65b715c87e03130f2"
+    },
+    "midpoint_within": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/midpoint_within.csv",
+      "sha256": "0ce66b6ac398004c52f831cf22150367d22a8ef8ab8890f2fe4d24a15cd24745"
+    },
+    "era5_celsius_raw_reference": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/era5_celsius_raw_reference.csv",
+      "sha256": "a78b3aa5bcbec5730f3b373e7689cdced87859d8f8f8d4b4a3778c0115145d3a"
+    },
+    "era5_celsius_within_reference": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/era5_celsius_within_reference.csv",
+      "sha256": "3e37a1eb00420e2c22ed7943c1875484c2261b2fb13945963e0ae98bf2d5c449"
+    },
+    "midpoint_raw_reference": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/midpoint_raw_reference.csv",
+      "sha256": "08fbb7445d4e455f3e02f4ee0838d8e9e48398d860292e6783f5bf33d1ae9102"
+    },
+    "midpoint_within_reference": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/fixed_effects/tables/midpoint_within_reference.csv",
+      "sha256": "356b147cea8f96a87038a75e6b21fe7dc5e03b6e6b096a4848fe40ac2407de1f"
+    }
+  }
+}

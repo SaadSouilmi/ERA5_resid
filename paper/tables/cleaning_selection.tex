@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Sequential selection. Counts removed at each step refer only to rows surviving preceding steps.}
+\label{tab:cleaning-selection}
+\fitwidetable{%
+\begin{tabular}{lrr}
+\toprule
+Step & Removed & Remaining \\
+\midrule
+Raw matched input & 0 & 10,467,039 \\
+Outside grid footprint & 442,249 & 10,024,790 \\
+Substituted land cell & 948,022 & 9,076,768 \\
+Quarantined station series & 72,993 & 9,003,775 \\
+Invalid observation source & 0 & 9,003,775 \\
+Source-location grid mismatch & 1,093,595 & 7,910,180 \\
+Repeated source-day & 951,766 & 6,958,414 \\
+\bottomrule
+\end{tabular}}
+\end{table}

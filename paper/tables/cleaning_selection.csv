@@ -1,0 +1,8 @@
+step,removed,remaining
+Raw matched input,0,10467039
+Outside grid footprint,442249,10024790
+Substituted land cell,948022,9076768
+Quarantined station series,72993,9003775
+Invalid observation source,0,9003775
+Source-location grid mismatch,1093595,7910180
+Repeated source-day,951766,6958414

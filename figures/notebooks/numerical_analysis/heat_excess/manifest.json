@@ -1,0 +1,30 @@
+{
+  "analysis": "heat_excess",
+  "bootstrap_unit": "SOUID (actual observation source)",
+  "hourly_weather_included": false,
+  "origin": "ERA5_resid_v3_code.zip: pending_remarks_analysis.py and supplemental_v3_checks.py",
+  "inputs": {
+    "/home2/lobib/gen_hack/data2/station_era5_clean.parquet": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+    "/home2/lobib/gen_hack/data2/station_ndvi.parquet": "be428f2ff7dca8f3fda425339d3f8d31681d014b5dceb101767e29bfae89120c",
+    "/home2/lobib/gen_hack/data2/station_elevation.parquet": "3595df9b7406222c9b27a42002fc11a4c300eb0901b2fd2b56f1c7b762ad5d9f",
+    "/home2/lobib/gen_hack/data2/station_coastal_distance.parquet": "8401de603d68e522ba57efd64bc49ee3b8f92b19523c0bac9cd5787f6ab2709b",
+    "/home2/lobib/gen_hack/data2/station_land_cover.parquet": "fac834689993882de10e8c74a54209be1ad99e87669316671039ec3005e8ecc5"
+  },
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/analysis_common.py": "12f92324519ad1e3b410354d404cb65f78704847d0d7be8aa5098d3496e811f5",
+    "/home2/lobib/gen_hack/src/py/analysis_heat_excess.py": "f38d0d34279e5ce7230987bbefd66f52223009be449ebac063fe9cd47cbe1411",
+    "/home2/lobib/gen_hack/src/py/load_data.py": "3cbb598247e81757632926c626058360bcc9088955ded67a0c970a9b376cfe57",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "611557dc64dd723692a8783037108bb703ef82312853fdce8ecf4e19e459ab3f"
+  },
+  "results_sha256": "8812a5830d327dffac5e7b7072f24b3d8813c03caa6349b17fb4cf70b4295fb8",
+  "tables": {
+    "by_year": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/heat_excess/tables/by_year.csv",
+      "sha256": "8791ff64759da5b0ba87388820016fef7278ddcc1283d43eab27d59d4991b24d"
+    },
+    "summary": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/heat_excess/tables/summary.csv",
+      "sha256": "d26eb3daa2667f880046f31f2b33995711b23d1efbde05d10d3324e8697e0126"
+    }
+  }
+}

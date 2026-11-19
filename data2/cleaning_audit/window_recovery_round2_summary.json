@@ -1,0 +1,88 @@
+{
+  "reviewed_utc": "2026-11-18T13:58:32.299610+00:00",
+  "study_period": {
+    "first_date": 20200101,
+    "last_date": 20250831
+  },
+  "uses_only_files_cached_before_user_download_restriction": true,
+  "new_network_downloads_after_user_restriction": 0,
+  "previous_mapped_records": 9608605,
+  "previous_unresolved_records": 231673,
+  "newly_mapped_records": 43252,
+  "newly_mapped_distinct_source_days": 39662,
+  "sources_with_new_mappings": 65,
+  "station_series_with_new_mappings": 73,
+  "coverage": {
+    "first_date": 20200101,
+    "last_date": 20250831,
+    "daily_records": 9840278,
+    "mapped_records": 9651857,
+    "sampled_reporting_day_records": 34965,
+    "unresolved_records": 188421,
+    "mapped_percent": 98.0852065358316
+  },
+  "new_mappings": [
+    {
+      "country_code": "GR",
+      "window_rule_id": "gsod_hourly_fallback",
+      "window_sampling": "hourly_or_synoptic_samples",
+      "newly_mapped_records": 29264,
+      "sources": 26,
+      "station_series": 27,
+      "first_date": 20200101,
+      "last_date": 20250228
+    },
+    {
+      "country_code": "LU",
+      "window_rule_id": "asta_cet_day",
+      "window_sampling": "provider_daily_maximum",
+      "newly_mapped_records": 7690,
+      "sources": 24,
+      "station_series": 30,
+      "first_date": 20241117,
+      "last_date": 20250831
+    },
+    {
+      "country_code": "BG",
+      "window_rule_id": "gsod_hourly_fallback",
+      "window_sampling": "hourly_or_synoptic_samples",
+      "newly_mapped_records": 3153,
+      "sources": 4,
+      "station_series": 4,
+      "first_date": 20200101,
+      "last_date": 20250228
+    },
+    {
+      "country_code": "AL",
+      "window_rule_id": "gsod_hourly_fallback",
+      "window_sampling": "hourly_or_synoptic_samples",
+      "newly_mapped_records": 2548,
+      "sources": 9,
+      "station_series": 9,
+      "first_date": 20200102,
+      "last_date": 20250228
+    },
+    {
+      "country_code": "DK",
+      "window_rule_id": "dmi_archive_day",
+      "window_sampling": "provider_daily_maximum",
+      "newly_mapped_records": 597,
+      "sources": 2,
+      "station_series": 3,
+      "first_date": 20200101,
+      "last_date": 20201231
+    }
+  ],
+  "observations_temperatures_and_source_metadata_unchanged": true,
+  "previously_mapped_windows_unchanged": true,
+  "sampling_note": "GSOD hourly-fallback UTC reporting days are identified separately by window_sampling. Their exact sample timestamps and completeness are not reconstructed here. Other provider maxima retain their original measurement-window definitions.",
+  "remaining_groups": 12,
+  "remaining_details": "/home2/lobib/gen_hack/data2/cleaning_audit/preprocessing_window_resolution.csv",
+  "tests": {
+    "command": "tests/run.sh observation_windows",
+    "passed": 22,
+    "failed": 0
+  },
+  "selected_file_sha256": "4df30a1921c717c0767e30cca4c2d47da05bf7e11241bd87900458995bbab818",
+  "selected_file_bytes": 38422242
+}

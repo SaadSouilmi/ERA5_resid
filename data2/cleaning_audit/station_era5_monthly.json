@@ -1,0 +1,378 @@
+{
+  "status": "complete",
+  "created_utc": "2026-11-18T14:37:21.777263+00:00",
+  "input": "/home2/lobib/gen_hack/data2/selected_station_observations.parquet",
+  "input_sha256": "4df30a1921c717c0767e30cca4c2d47da05bf7e11241bd87900458995bbab818",
+  "grid_lookup": "/home2/lobib/gen_hack/data2/selected_station_era5_grid.parquet",
+  "grid_lookup_sha256": "e73dc89c9faefae735559b082187a55daf91fe3240e0c78a42267713925b723c",
+  "output_directory": "/home2/lobib/gen_hack/data2/station_era5_monthly",
+  "input_records": 9840278,
+  "dropped_outside_download": 3114,
+  "first_available_utc": "2020-01-01T00:00:00+00:00",
+  "last_available_utc": "2025-08-31T23:00:00+00:00",
+  "window_convention": "Both endpoints included: start <= valid_time <= end; a 24-hour window requires 25 samples.",
+  "month_assignment": "ECA&D DATE, regardless of the UTC months touched by the observation window.",
+  "maximum_policy": "Maximum of instantaneous hourly 2m_temperature, converted from Kelvin to Celsius; all required samples must be finite.",
+  "unmatched_policy": "Retain unresolved windows and unavailable grid cells with null ERA5 maximum and explicit era5_match_status. Drop windows extending beyond downloaded timestamps.",
+  "sampling_policy": "Preserve window_sampling. GSOD sampled reporting days are not guaranteed to use the same sample times as the ERA5 hourly maximum.",
+  "observation_id": "Zero-based row position in the hashed input Parquet.",
+  "completed_utc": "2026-11-18T14:40:32.067944+00:00",
+  "elapsed_seconds": 191.15098710730672,
+  "monthly_files": 68,
+  "totals": {
+    "records": 9837164,
+    "matched": 8712539,
+    "unknown_window": 188421,
+    "masked_cell": 936204,
+    "outside_grid": 0,
+    "incomplete_era5_hours": 0,
+    "sampled_station_matches": 25696,
+    "bytes": 127375720
+  },
+  "era5_sources": {
+    "2020-01": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2020-01_2m_temperature_hourly.nc",
+      "sha256": "33d8c2f4b8939b3efddd542d688746c172905fee4cf9c14c32a8bb6df8e5a7d3",
+      "hours": 744
+    },
+    "2020-02": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2020-02_2m_temperature_hourly.nc",
+      "sha256": "a30336432c47ba5619283ffbecdc37a00f221768394608c0e02d21e45a5b362e",
+      "hours": 696
+    },
+    "2020-03": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2020-03_2m_temperature_hourly.nc",
+      "sha256": "9188975c559b95b4ff45a560ea66d407dd7b47c5c082bbe2b8689fef59afbf0b",
+      "hours": 744
+    },
+    "2020-04": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2020-04_2m_temperature_hourly.nc",
+      "sha256": "f7306247a8e554dc306a63c4ddd470a737c455f1a41a43ee494ab462686c00b7",
+      "hours": 720
+    },
+    "2020-05": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2020-05_2m_temperature_hourly.nc",
+      "sha256": "0170471aa40732683016a0ab7e5c8aeed3bbf64294d9214070744ac0f4e0ddc5",
+      "hours": 744
+    },
+    "2020-06": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2020-06_2m_temperature_hourly.nc",
+      "sha256": "29a12f552b480ec27ca63e96a1275a8bb83d4af471a5af942a0ab4f446b44fab",
+      "hours": 720
+    },
+    "2020-07": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2020-07_2m_temperature_hourly.nc",
+      "sha256": "dc968753689aff7c6a91f94471a3f4d56927dbdf208be3ee6cb63eb838fa7113",
+      "hours": 744
+    },
+    "2020-08": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2020-08_2m_temperature_hourly.nc",
+      "sha256": "bf6c52e25b4fd9061204264c8350c99a298aa19d90ee638ec52dbaecda60c755",
+      "hours": 744
+    },
+    "2020-09": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2020-09_2m_temperature_hourly.nc",
+      "sha256": "64ded97ceaf7ce5b7eb9636cee82af9ed24f184d7c2b5c99fc451323141782c4",
+      "hours": 720
+    },
+    "2020-10": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2020-10_2m_temperature_hourly.nc",
+      "sha256": "073b1d9607ef9ca04475f4032d14d7135a3725bf853177af60d642bd88150e40",
+      "hours": 744
+    },
+    "2020-11": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2020-11_2m_temperature_hourly.nc",
+      "sha256": "33745357256055fa83d5748db4947248d447eae22cfceab8cbd10987b31a7fed",
+      "hours": 720
+    },
+    "2020-12": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2020-12_2m_temperature_hourly.nc",
+      "sha256": "5da7358bd7c2958e72a43b3c7be7c2290d74b0e21aab202f8a90f61214c97d48",
+      "hours": 744
+    },
+    "2021-01": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2021-01_2m_temperature_hourly.nc",
+      "sha256": "2e1d71ead3f01a790d1065132cf31c590bef9cc28d8ceb48a790503090d3bba2",
+      "hours": 744
+    },
+    "2021-02": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2021-02_2m_temperature_hourly.nc",
+      "sha256": "55346c2a8b9b538818e45918c69b972f6a54fee9ab09fdc65089860990212462",
+      "hours": 672
+    },
+    "2021-03": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2021-03_2m_temperature_hourly.nc",
+      "sha256": "8faf6bfed84de41c697fec7b5f6ee02fd6f8dc1141b0a2a48955618f1e686339",
+      "hours": 744
+    },
+    "2021-04": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2021-04_2m_temperature_hourly.nc",
+      "sha256": "9d01157ae14d7fc3daf05d330b1249c043cab529664fc4c09eccfac544d02534",
+      "hours": 720
+    },
+    "2021-05": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2021-05_2m_temperature_hourly.nc",
+      "sha256": "c6ece288205504616ca359c58e0587d659735fc44bd5a2fccc7e7893f08a0dbc",
+      "hours": 744
+    },
+    "2021-06": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2021-06_2m_temperature_hourly.nc",
+      "sha256": "5e73e44fed53d282ff6a9bc3cd69997140d593cc90c592ea3b77d6f825d74c8a",
+      "hours": 720
+    },
+    "2021-07": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2021-07_2m_temperature_hourly.nc",
+      "sha256": "782ac469181c82bf6a7afb209c0c0b3a6e86e76778442c855a6a8877451425de",
+      "hours": 744
+    },
+    "2021-08": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2021-08_2m_temperature_hourly.nc",
+      "sha256": "87855136131843d5d5b1259fbbdd74c7ddca168529b26c4804da59409241cdcc",
+      "hours": 744
+    },
+    "2021-09": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2021-09_2m_temperature_hourly.nc",
+      "sha256": "26d8bdd83451dac1c73bc22d9de81a8bead2facff8c9716dc796ac42ccad7ae7",
+      "hours": 720
+    },
+    "2021-10": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2021-10_2m_temperature_hourly.nc",
+      "sha256": "68ff42a75ea4a12492a185343f4dec2709dd8a4dd0a7d878bc8b93b977c9f608",
+      "hours": 744
+    },
+    "2021-11": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2021-11_2m_temperature_hourly.nc",
+      "sha256": "c43a0c9beb82c196c4e82df8336c4d01e5c32c86f785e7169b436d23ad727f1f",
+      "hours": 720
+    },
+    "2021-12": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2021-12_2m_temperature_hourly.nc",
+      "sha256": "7e31a27b1e9cf4c0bab35db89df4c0d351c17e222b4a665ad1b688f25c854e13",
+      "hours": 744
+    },
+    "2022-01": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2022-01_2m_temperature_hourly.nc",
+      "sha256": "b13c5d44fc247344e266ddf5e14f006b0ba9c28d594b85c039b0c84e20deed26",
+      "hours": 744
+    },
+    "2022-02": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2022-02_2m_temperature_hourly.nc",
+      "sha256": "195eb833ceff7b683e37c0e5ee9b79e5c87fd0c84af4124444310817a0a55fe0",
+      "hours": 672
+    },
+    "2022-03": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2022-03_2m_temperature_hourly.nc",
+      "sha256": "5da50ae406e6636d9b574c1c6cd5633fe70e91a07cb44544338a70f6f224eae7",
+      "hours": 744
+    },
+    "2022-04": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2022-04_2m_temperature_hourly.nc",
+      "sha256": "907595ecf558d62a5ff9afca4780e7b7c771fca094d9f3c8e7298cc17e3929bf",
+      "hours": 720
+    },
+    "2022-05": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2022-05_2m_temperature_hourly.nc",
+      "sha256": "c2194b1a56007816d0dadb1a15b91415b7eacac3f8f4f3151a24c7af5ceefcef",
+      "hours": 744
+    },
+    "2022-06": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2022-06_2m_temperature_hourly.nc",
+      "sha256": "a505010c7cfa45a0e09594622ee8e7d20efe5bb19ed1095dca9c2ab3a4e77ed3",
+      "hours": 720
+    },
+    "2022-07": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2022-07_2m_temperature_hourly.nc",
+      "sha256": "b015f90d1538eabd024759334d3f086d041eeb9b06970861ea03211307868cf0",
+      "hours": 744
+    },
+    "2022-08": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2022-08_2m_temperature_hourly.nc",
+      "sha256": "209221bb449c81424833528222e68f325e2b1100c3532338ecbd0a8f1923886e",
+      "hours": 744
+    },
+    "2022-09": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2022-09_2m_temperature_hourly.nc",
+      "sha256": "3bc5d377ad8b5747d018b7fabe44dac18d8f44d03a0b56f05fd3cd4079438594",
+      "hours": 720
+    },
+    "2022-10": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2022-10_2m_temperature_hourly.nc",
+      "sha256": "d09bdd06fbac18c48b2107e903f94326c7aa5a37c2be8a7c11f303d6fd4eb382",
+      "hours": 744
+    },
+    "2022-11": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2022-11_2m_temperature_hourly.nc",
+      "sha256": "45939d684bb7106b29d30c2b692da0165dd09cb1c52d9f4ac0c133fdb6aa9ab8",
+      "hours": 720
+    },
+    "2022-12": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2022-12_2m_temperature_hourly.nc",
+      "sha256": "1b75a4d0eb6c95ddcdb969edbbafa6bdc2202d6a6546913d2572c34867335a06",
+      "hours": 744
+    },
+    "2023-01": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2023-01_2m_temperature_hourly.nc",
+      "sha256": "439b1df392fecc0bd6131cbdc24726f532bcc3ca6ed26b4854f9c434d16fe3fa",
+      "hours": 744
+    },
+    "2023-02": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2023-02_2m_temperature_hourly.nc",
+      "sha256": "e4ceccb7f6184f9f272e426813761b8af34bac99271578898e39349e17777bb5",
+      "hours": 672
+    },
+    "2023-03": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2023-03_2m_temperature_hourly.nc",
+      "sha256": "f12882caf1c6c0ce4740be2a39ec0a35d9be72cf4995a03944b0c2479da0b49c",
+      "hours": 744
+    },
+    "2023-04": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2023-04_2m_temperature_hourly.nc",
+      "sha256": "ca4e793157090ccf6eac9879587ba62487da701b2de9ca1194c30f600e1eb77c",
+      "hours": 720
+    },
+    "2023-05": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2023-05_2m_temperature_hourly.nc",
+      "sha256": "61a9118f9c50c4244ee0b28b3839190ae57000b42789deeaf4e6f8246f0ed910",
+      "hours": 744
+    },
+    "2023-06": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2023-06_2m_temperature_hourly.nc",
+      "sha256": "e053f39de8d8954945165c267f4b4d28454eb4cfc64d0c5fb5d35bfe036335ac",
+      "hours": 720
+    },
+    "2023-07": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2023-07_2m_temperature_hourly.nc",
+      "sha256": "937329ed56ce50e6c2ff0d5e556901041450fe2fe5b3c1a4f1344d5c8100a3d9",
+      "hours": 744
+    },
+    "2023-08": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2023-08_2m_temperature_hourly.nc",
+      "sha256": "9b737f2e572281f3bb5c975d6f249bebec783945eccf581b542d0dbf84d8e4d0",
+      "hours": 744
+    },
+    "2023-09": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2023-09_2m_temperature_hourly.nc",
+      "sha256": "0d721bc4df4a272e53a2da9a64dbb2fb459975940bc3cce0fcb300d652cb9c41",
+      "hours": 720
+    },
+    "2023-10": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2023-10_2m_temperature_hourly.nc",
+      "sha256": "e204e57779dc4c01b67e7b9a3928f4c9b86ce23825188635d85b476f8251d82e",
+      "hours": 744
+    },
+    "2023-11": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2023-11_2m_temperature_hourly.nc",
+      "sha256": "cda3aee3c9d9a5b76131b8614d254dedd78749406d5bf251a434603d81849bae",
+      "hours": 720
+    },
+    "2023-12": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2023-12_2m_temperature_hourly.nc",
+      "sha256": "1addf9e668b1faab0f393a8d9cf47ab0ac66089cde3e66959500a70d9869627a",
+      "hours": 744
+    },
+    "2024-01": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2024-01_2m_temperature_hourly.nc",
+      "sha256": "aec93fecf8df0c4067beebe88c0322b5e0b9484c8618d0af1d9c092b74c8b67d",
+      "hours": 744
+    },
+    "2024-02": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2024-02_2m_temperature_hourly.nc",
+      "sha256": "8292f68acb92a97697ba217d7776cc1186845f4bc37057058afaed81e1353b76",
+      "hours": 696
+    },
+    "2024-03": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2024-03_2m_temperature_hourly.nc",
+      "sha256": "f37b046c66c373f6b66b14fd50bcd3527cf8579825263612a47201cc8b405db9",
+      "hours": 744
+    },
+    "2024-04": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2024-04_2m_temperature_hourly.nc",
+      "sha256": "042cbac8441b6c11a5ee21d4f8fdef9ae98a0de4e055ed4bed67d6e8fa1e52db",
+      "hours": 720
+    },
+    "2024-05": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2024-05_2m_temperature_hourly.nc",
+      "sha256": "ec8f89a72d282e954bce6be96936183ea1712e71fdd577830b570de77581443c",
+      "hours": 744
+    },
+    "2024-06": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2024-06_2m_temperature_hourly.nc",
+      "sha256": "bc9c21b7e72e11342c9500a725ee79b14de96c51a1ea9890d2b2135ae1657003",
+      "hours": 720
+    },
+    "2024-07": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2024-07_2m_temperature_hourly.nc",
+      "sha256": "7cbec66da5cce27a673f27ba8ea7e0bf2055f5519564aab8c7c1a7a0f78471d6",
+      "hours": 744
+    },
+    "2024-08": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2024-08_2m_temperature_hourly.nc",
+      "sha256": "72347fcc2eb67c00156ff171f1cc1e5bd99e33a012978c86ec93901a4c167b8d",
+      "hours": 744
+    },
+    "2024-09": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2024-09_2m_temperature_hourly.nc",
+      "sha256": "76cb3ce46f631c7120dfd44726219080a561cb423335ca9b037d1b1b18113d3c",
+      "hours": 720
+    },
+    "2024-10": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2024-10_2m_temperature_hourly.nc",
+      "sha256": "9a6271886d280fe9921855f485a86b7d6e68c381c66a262b3c1b825d6b5ef5c6",
+      "hours": 744
+    },
+    "2024-11": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2024-11_2m_temperature_hourly.nc",
+      "sha256": "4ae69d0dd9032596cbc4544036bfd06acb93a9d5452171396a4ea5b021638e3d",
+      "hours": 720
+    },
+    "2024-12": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2024-12_2m_temperature_hourly.nc",
+      "sha256": "1185b05afa381bb2e56d19efb197d8f2db092babed00e29a02aecb204beee0d7",
+      "hours": 744
+    },
+    "2025-01": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2025-01_2m_temperature_hourly.nc",
+      "sha256": "cebc871bc365734d3fd14bb0af9d048ee419456f3e073c60ee3a1278fa804866",
+      "hours": 744
+    },
+    "2025-02": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2025-02_2m_temperature_hourly.nc",
+      "sha256": "e347b873bd8593e65df1f95a8cba259a9fbf493cfab950db374c000d94bae800",
+      "hours": 672
+    },
+    "2025-03": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2025-03_2m_temperature_hourly.nc",
+      "sha256": "ccb234f3ae5e19d31023b7a459f94e4d82d8b7a43cd14d08aedcff87ddf34d41",
+      "hours": 744
+    },
+    "2025-04": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2025-04_2m_temperature_hourly.nc",
+      "sha256": "ed4016556b851a283c8fcc446fdcb93d50dc587bee5c4c77d791fcafe62d0e34",
+      "hours": 720
+    },
+    "2025-05": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2025-05_2m_temperature_hourly.nc",
+      "sha256": "728c6e4e1d7c1fb424ff1ad103ed992be46ed27d0ff992ddd138d625cfd08c61",
+      "hours": 744
+    },
+    "2025-06": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2025-06_2m_temperature_hourly.nc",
+      "sha256": "2468d12f107444f26e38b418e53636d2cde16955db098f86931953117e98264b",
+      "hours": 720
+    },
+    "2025-07": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2025-07_2m_temperature_hourly.nc",
+      "sha256": "43a89b1c30da990d63756c5b0256bb7075cabfd1d6b892e46d7f2deb3ff978cd",
+      "hours": 744
+    },
+    "2025-08": {
+      "file": "/home2/lobib/gen_hack/data2/era5_land_hourly/2025-08_2m_temperature_hourly.nc",
+      "sha256": "6aad159f4c8516ec6b05064b827dbfb261ed277fde8e2ca0e26000a48dc0e159",
+      "hours": 744
+    }
+  },
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/era5_windows.py": "b6e693ac3c7486e999a2909ef7a196d75471ed507f4d6b52058ea75202d7bb71",
+    "/home2/lobib/gen_hack/src/py/scripts/build_monthly_era5_pairs.py": "a56f01235239525530e2511784e514ac1f0e601fe631ec0d31968b70f54a677e"
+  }
+}

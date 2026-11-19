@@ -1,0 +1,8 @@
+variable,pattern,low,high
+Station temperature,Increasing,0.524853649830329,2.320917211133678
+Mean wind vector,Decreasing,1.1087967487069568,2.249556222148728
+Distance to sea,Non-monotonic; lower inland,1.0196427978469147,2.0490100792393053
+DEGURBA land classes,Non-monotonic across classes,1.1402367877002073,2.703768070807388
+Elevation,Non-monotonic,0.801202048040093,1.9649091967283914
+Precipitation proxy,Small variation,1.5246187718738515,1.7053443720084118
+NDVI,Small variation,1.526831207344827,1.6618046823629085

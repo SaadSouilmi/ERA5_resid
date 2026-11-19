@@ -1,0 +1,106 @@
+{
+  "created_utc": "2026-11-18T23:32:47.993436+00:00",
+  "entry_point": "py.preprocessing.ndvi",
+  "input": "/home2/lobib/gen_hack/data2/station_era5_clean.parquet",
+  "input_sha256": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+  "file": "/home2/lobib/gen_hack/data2/station_ndvi.parquet",
+  "sha256": "be428f2ff7dca8f3fda425339d3f8d31681d014b5dceb101767e29bfae89120c",
+  "bytes": 231105,
+  "join_keys": [
+    "SOUID",
+    "source_lat",
+    "source_lon",
+    "ndvi_season"
+  ],
+  "source_seasons": 79656,
+  "coverage": [
+    {
+      "ndvi_method": "last_observation_carried_forward",
+      "observations": 1870410,
+      "source_seasons": 22782
+    },
+    {
+      "ndvi_method": "missing",
+      "observations": 10733,
+      "source_seasons": 134
+    },
+    {
+      "ndvi_method": "observed_season",
+      "observations": 4845070,
+      "source_seasons": 56740
+    }
+  ],
+  "temporal_policy": "Use the original raster for a covered season. Otherwise carry forward the latest earlier nonmissing value at the same source coordinates, across seasons. Never backfill from a future season.",
+  "missing_pixel_policy": "Spatial nodata within a covered raster remains missing. Locations with no earlier valid value remain missing.",
+  "encoding": "Valid uint8 values 0..254 map to NDVI = value / 254 * 2 - 1; nodata 255 stays missing.",
+  "rasters": [
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2019-12-01_2020-03-01.tif",
+      "sha256": "d2a4dd7102f4ffa79d8018eba5335d321778cd217b5318aa8ee6f350d96898a1"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2020-03-01_2020-06-01.tif",
+      "sha256": "5d2056b6585fb27ca64827b42bee6b043db900787965cf69da3e0f415126872f"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2020-06-01_2020-09-01.tif",
+      "sha256": "bbecb825e1795b88eb3ae6ca999dd2c124de947b447865c346c0151ef2864345"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2020-09-01_2020-12-01.tif",
+      "sha256": "f3da7f83b05280eb19a8f0f742b8f6a083c0d18ffa2ff7232e2b772273c054d9"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2020-12-01_2021-03-01.tif",
+      "sha256": "1fa6663f19a5a4617444edc049ae1be4d187c8842ebd6198b98ceb717461253d"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2021-03-01_2021-06-01.tif",
+      "sha256": "fbbed864191f1d549f76859859dc663915b2e4adfa0f0912b665851bd7125835"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2021-06-01_2021-09-01.tif",
+      "sha256": "8077d37a20866e07c3f1a4d23697e80c828d045b9f8f2386d9c54c99da0ccac3"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2021-09-01_2021-12-01.tif",
+      "sha256": "cc50e6e350c57b914b70f7de4192b20a458c5a65db590b302c11a81c8ced0ce0"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2021-12-01_2022-03-01.tif",
+      "sha256": "cc283481c60836929e3558668f8d87129bf22057c1bdbe0dd3257c66f74c5849"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2022-03-01_2022-06-01.tif",
+      "sha256": "531e80fcb32abe1b36f61a9c1181e72de049674a655c9feccd7e78f053b758c3"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2022-06-01_2022-09-01.tif",
+      "sha256": "c74ef9c1f38affbf7f61962d849669610ce42bcbde970ac3259eaeb8bf37d469"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2022-09-01_2022-12-01.tif",
+      "sha256": "9c347422d296eaad25be7ff542ff36036057a77c8f58bfbfaaa012d1d7ee721d"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2022-12-01_2023-03-01.tif",
+      "sha256": "f44577e9eed070b478fa33b6e1be16cb9c01076daa3c7fa1b6c9981071f2730e"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2023-03-01_2023-06-01.tif",
+      "sha256": "71ae9def0fca534baca11be4c3e1d995cbb91d367682aa5416c1c687d2fce2aa"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2023-06-01_2023-09-01.tif",
+      "sha256": "fa4de0e198f8b42b2374c7dac775ff96208689ea4cdd43252f8e19c0f2eab786"
+    },
+    {
+      "file": "/home2/lobib/gen_hack/data/main/sentinel2_ndvi/ndvi_2023-09-01_2023-12-01.tif",
+      "sha256": "1fe3867fdc2f08de042eba0dd5b4926a951a1a577ef32f4c962b27545994610e"
+    }
+  ],
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/preprocessing/ndvi.py": "873c60036e7a750202300f45e42c67deaf28079db68f5597858776fc447cef0c",
+    "/home2/lobib/gen_hack/src/py/covariates.py": "6fe89c62a32599922165fbac1b3425f7f83efcf75021bc29a290443cd9a48f8b"
+  }
+}

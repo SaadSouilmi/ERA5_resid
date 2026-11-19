@@ -15,12 +15,13 @@ from py.load_data import load_data
 from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
 from py.paths import NotebookFiguresDirectory as FIGURES_DIRECTORY
 from py.preprocessing.match_era5_grid import sha256
-from py.scripts.plot_style import COLORS, paper_style, save_figure
+from py.scripts.plot_style import COLORS, paper_style
+from py.scripts.scientific_style import save_scientific_figure as save_figure
 
 FEATURES = {
     "station_celsius": ("Station temperature", "Station maximum temperature (°C)", COLORS[2]),
-    "tp": ("Precipitation", "Precipitation proxy (log₁₀ m)", COLORS[1]),
-    "wind": ("Wind", "Magnitude of daily mean wind (m/s)", COLORS[3]),
+    "tp": ("Precipitation", "Window precipitation total (log₁₀ m)", COLORS[1]),
+    "wind": ("Wind", "Magnitude of mean wind (m/s)", COLORS[3]),
     "ndvi": ("Vegetation", "NDVI (with carry-forward)", COLORS[0]),
     "dist_to_sea_km": ("Coastal distance", "Distance to sea (km)", COLORS[4]),
     "elevation": ("Elevation", "Source elevation (m)", COLORS[5]),
@@ -33,6 +34,7 @@ def summarize(data, feature, bins, bootstrap, seed):
         pl.col("residual_celsius").alias("residual"),
         feature,
     ).filter(pl.col(feature).is_finite())
+    negative_totals = frame.filter(pl.col(feature) < 0).height if feature == "tp" else 0
     if feature in ("wind", "tp"):
         frame = frame.filter(pl.col(feature) >= 0)
     if feature == "tp":
@@ -61,15 +63,14 @@ def summarize(data, feature, bins, bootstrap, seed):
     )
     heights, edges = np.histogram(frame[feature].to_numpy(), bins=50)
     histogram = pl.DataFrame({"left": edges[:-1], "right": edges[1:], "count": heights})
-    return (
-        curve,
-        histogram,
-        {
-            "observations": frame.height,
-            "sources": frame["STAID"].n_unique(),
-            "missing_or_invalid": data.height - frame.height,
-        },
-    )
+    coverage = {
+        "observations": frame.height,
+        "sources": frame["STAID"].n_unique(),
+        "missing_or_invalid": data.height - frame.height,
+    }
+    if feature == "tp":
+        coverage["negative_totals_excluded"] = negative_totals
+    return curve, histogram, coverage
 
 
 def draw_profile(ax, histogram_ax, curve, histogram, feature):
@@ -89,10 +90,8 @@ def draw_profile(ax, histogram_ax, curve, histogram, feature):
     ax.fill_between(
         curve["x"], curve["ci_low"], curve["ci_high"], color=color, alpha=0.16, linewidth=0
     )
-    ax.axhline(0, color="#687370", linestyle=":", linewidth=0.8)
     ax.set(title=title, xlabel="", ylabel="Mean residual (°C)")
-    if feature == "ndvi":
-        ax.set_ylim(1.1, 1.8)
+    ax.margins(y=0.08)
     ax.tick_params(labelbottom=False)
     histogram_ax.bar(
         histogram["left"],
@@ -108,7 +107,7 @@ def draw_profile(ax, histogram_ax, curve, histogram, feature):
     histogram_ax.locator_params(axis="y", nbins=3)
     ax.set_xlim(histogram_ax.get_xlim())
     for axis in (ax, histogram_ax):
-        axis.grid(True)
+        axis.grid(True, axis="both", which="major", color="#DDE3E1", linewidth=0.5, alpha=0.8)
 
 
 def main():
@@ -132,15 +131,7 @@ def main():
     if args.from_tables:
         manifest = json.loads(manifest_path.read_text())
     else:
-        data = load_data()
-        if any(name in args.features for name in ("wind", "tp")):
-            data = data.join(
-                pl.read_parquet(DATA_DIRECTORY / "station_weather/*.parquet"),
-                on=["grid_cell_id", "DATE"],
-                how="left",
-                validate="m:1",
-                maintain_order="left",
-            )
+        data = load_data(include_weather=any(name in args.features for name in ("wind", "tp")))
     paper_style(palette=COLORS)
     profiles, histograms, coverage = {}, {}, {}
     for feature in args.features:
@@ -174,17 +165,26 @@ def main():
         ax = fig.add_subplot(inner[0])
         histogram_ax = fig.add_subplot(inner[1], sharex=ax)
         draw_profile(ax, histogram_ax, profiles[feature], histograms[feature], feature)
-    fig.suptitle("Residual profiles · station-window-matched sample", fontsize=15)
     save_figure(fig, output_dir / "partial_dependence")
     plt.close(fig)
     render_code = {
         str(path): sha256(path)
-        for path in [Path(__file__), Path(__file__).with_name("plot_style.py")]
+        for path in [
+            Path(__file__),
+            Path(__file__).with_name("scientific_style.py"),
+            Path(__file__).with_name("plot_style.py"),
+        ]
     }
     if args.from_tables:
         manifest["restyled_utc"] = datetime.now(timezone.utc).isoformat()
         manifest["render_code_sha256"] = render_code
-        manifest["presentation"] = {"grid": "light major grid", "bottom_caption": False}
+        manifest["presentation"] = {
+            "style": "Original Seaborn/DejaVu Sans",
+            "grid": "major horizontal and vertical",
+            "y_limits": "Fit curve and confidence band with 8% padding",
+            "zero_reference": False,
+            "bottom_caption": False,
+        }
         manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
         return
     input_paths = [
@@ -197,7 +197,7 @@ def main():
         )
     ]
     if "wind" in args.features or "tp" in args.features:
-        input_paths.extend(sorted((DATA_DIRECTORY / "station_weather").glob("*.parquet")))
+        input_paths.append(DATA_DIRECTORY / "station_hourly_weather.parquet")
     manifest = {
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "input_records": data.height,
@@ -208,13 +208,21 @@ def main():
         "statistic": "Observation-weighted residual means in quantile bins; descriptive associations, not model-based partial dependence or causal effects.",
         "bootstrap_unit": "SOUID: source IDs resampled within each bin for pointwise percentile intervals.",
         "ndvi_policy": "Original seasonal rasters with last available value carried forward across seasons; missing pixels within existing seasons remain missing.",
-        "weather_policy": "Supplied date-labelled daily covariates, not aggregates over the station-specific temperature windows.",
-        "presentation": {"grid": "light major grid", "bottom_caption": False},
+        "weather_policy": "Wind and precipitation aggregated over each station's UTC observation window from hourly ERA5-Land; wind is the magnitude of the time-mean vector and tp is total precipitation in metres.",
+        "precipitation_plot": "Exclude negative window totals from the log profile only; retain them in the saved covariates. Nonnegative totals use log10(max(tp, 1e-9)).",
+        "presentation": {
+            "style": "Original Seaborn/DejaVu Sans",
+            "grid": "major horizontal and vertical",
+            "y_limits": "Fit curve and confidence band with 8% padding",
+            "zero_reference": False,
+            "bottom_caption": False,
+        },
         "inputs": {str(path): sha256(path) for path in input_paths},
         "code_sha256": {
             str(path): sha256(path)
             for path in [
                 Path(__file__),
+                Path(__file__).with_name("scientific_style.py"),
                 Path(__file__).with_name("plot_style.py"),
                 Path(__file__).parents[1] / "load_data.py",
                 Path(__file__).parents[1] / "pdp.py",

@@ -13,8 +13,14 @@ The pipeline code lives in [`py.preprocessing`](../src/py/preprocessing/). Run i
 | 3 | `py.preprocessing.match_era5_grid` | `selected_station_era5_grid.parquet` |
 | 4 | `py.preprocessing.build_monthly_era5_pairs` | `station_era5_monthly/YYYY-MM.parquet` |
 | 5 | `py.preprocessing.export_clean_station_sample` | `station_era5_clean.parquet` |
+| 6 | `py.preprocessing.coastal_distance` | `station_coastal_distance.parquet` |
+| 7 | `py.preprocessing.ndvi` | `station_ndvi.parquet` |
+| 8 | `build_source_elevation()` in `py.preprocessing.analysis_covariates` | `station_elevation.parquet` |
+| 9 | `py.preprocessing.land_cover` | `station_land_cover.parquet` |
+| 10 | `py.preprocessing.download_hourly_weather` | `era5_land_hourly_weather/YYYY-MM_{u10,v10,tp}.nc` |
+| 11 | `py.preprocessing.hourly_weather` | `station_hourly_weather.parquet` |
 
-The runner reuses the raw cache and rebuilds downstream outputs. The ERA5 download, ECA&D source metadata and reviewed observation-window rules must already be available. Each stage saves counts and provenance under `data2/cleaning_audit/`; the selection script also saves spike and range exclusions.
+The runner reuses the raw cache and rebuilds downstream outputs. The hourly temperature download, local covariate rasters, ECA&D source metadata and reviewed observation-window rules must already be available. The hourly weather step downloads missing wind and precipitation files through CDS and reuses completed files. Each stage saves counts and provenance under `data2/cleaning_audit/`; the selection script also saves spike and range exclusions.
 
 ## Inputs
 
@@ -191,17 +197,35 @@ uv run python -m py.preprocessing.ndvi
 
 Counts and hashes are in the [NDVI manifest](../data2/cleaning_audit/station_ndvi.json) and [coverage table](../data2/cleaning_audit/station_ndvi_coverage.csv). These values use only the original rasters; the separate acquisition archive is not an input.
 
-## 13. Elevation and daily weather covariates
+## 13. Elevation and land cover
 
-[`py.preprocessing.analysis_covariates`](../src/py/preprocessing/analysis_covariates.py) reads each observation source's `HGHT` from ECA&D `sources.txt`, in metres. Sentinel heights `−999` and `−9999` remain missing. [station_elevation.parquet](../data2/station_elevation.parquet) joins on `(STAID, source_metadata_id)`.
+`build_source_elevation()` in [`py.preprocessing.analysis_covariates`](../src/py/preprocessing/analysis_covariates.py) reads each observation source's `HGHT` from ECA&D `sources.txt`, in metres. Sentinel heights `−999` and `−9999` remain missing. [station_elevation.parquet](../data2/station_elevation.parquet) joins on `(STAID, source_metadata_id)`.
 
-It also saves review extractions under `data2/station_weather/`, keyed by `(grid_cell_id, DATE)`, from the supplied daily ERA5 files. Wind is `sqrt(mean(u10)**2 + mean(v10)**2)` in m/s. All twelve 2020–2025 wind-component files record `daily_reduce(..., how=mean)` with a zero UTC shift, confirming UTC calendar-day aggregation. **3,576,314 temperature observations** use the matching UTC calendar-day window; the other station windows require hourly components or differently shifted daily means for temporal alignment.
+The standalone `py.preprocessing.analysis_covariates` command now builds elevation only. Daily weather extraction has been retired; wind and rain use the hourly pipeline below.
 
-The precipitation files have `GRIB_stepType = accum` and no recorded daily averaging, despite their `daily_mean` filenames. Their date assignment remains under review: [ECMWF documents](https://confluence.ecmwf.int/spaces/CKB/pages/462888259/ERA5%2Bfamily%2Bpost-processed%2Bdaily%2Bstatistics%2Bdocumentation) that an unshifted ERA5-Land accumulation stamped at midnight covers the preceding day. The loader currently adds elevation; wind and precipitation remain separate review inputs.
+[`py.preprocessing.land_cover`](../src/py/preprocessing/land_cover.py) samples the existing 2020 GHS-SMOD raster at source coordinates. [station_land_cover.parquet](../data2/station_land_cover.parquet) stores `degurba` and `degurba_label`, joining on `(SOUID, source_lat, source_lon)`. Unknown raster values remain missing. The categorical interaction plot uses the seven rural/urban classes; water and unknown classes are excluded from that figure only.
 
-## 14. Load for analysis
+## 14. Hourly wind and precipitation
 
-[`load_data()`](../src/py/load_data.py) returns a Polars DataFrame with all temperature-sample columns, coastal distance, source elevation and NDVI with its provenance. It checks many-to-one matching and preserves every original observation and its row order.
+[`py.preprocessing.download_hourly_weather`](../src/py/preprocessing/download_hourly_weather.py) requests `10m_u_component_of_wind`, `10m_v_component_of_wind` and `total_precipitation` from [ERA5-Land hourly](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land). Use the same 0.1° grid as the temperature files and every UTC hour needed by the clean sample. Download **31 December 2019–31 August 2025**; the extra starting day supports midnight precipitation de-accumulation. There are **207 monthly variable requests**, with two concurrent retrievals. Each completed file is checked for grid, timestamps, units and instantaneous/accumulated field type. Completed files are reused on restart.
+
+Raw files go to `data2/era5_land_hourly_weather/`. Credentials are read from `CDSAPI_RC`, the ignored owner-only `data2/.cdsapirc`, or the CDS client's normal configuration. No key is saved in audits. The [plan](../data2/cleaning_audit/hourly_weather_plan.json), [progress](../data2/cleaning_audit/hourly_weather_progress.json) and [completed-file table](../data2/cleaning_audit/hourly_weather_downloads.csv) record retrieval and hashes.
+
+[`py.preprocessing.hourly_weather`](../src/py/preprocessing/hourly_weather.py) aggregates each station's saved UTC bounds:
+
+- **Wind:** integrate instantaneous `u10` and `v10` with trapezoidal weights, including both endpoints, then divide by window duration. `wind` is the magnitude of this mean vector in m/s. `wind_mean_speed_mps` separately averages the instantaneous speed with the same weights.
+- **Precipitation:** de-accumulate the ERA5-Land forecast fields. At 01 UTC the value is already the first hourly amount; at other hours subtract the preceding accumulation, including the 00 UTC field from the previous forecast. Sum amounts stamped on **`(start, end]`**, in metres. A 24-hour window uses **24 rainfall intervals and 25 wind samples**. See [ECMWF's de-accumulation procedure](https://confluence.ecmwf.int/pages/viewpage.action?navigatingVersions=true&pageId=737545913).
+- **Missing hours:** retain the temperature observation and leave its affected covariate null. Negative rainfall increments remain unchanged and receive an explicit review flag. The 12-hour and 23/25-hour windows use their actual durations.
+
+The completed `station_hourly_weather.parquet` joins on `(SOUID, DATE, grid_cell_id, window_start_utc, window_end_utc)`. It includes `wind`, `tp`, component means, mean speed, expected/available counts and `wind_status`/`precipitation_status`. Its manifest is `data2/cleaning_audit/station_hourly_weather.json`.
+
+The existing date-labelled daily files remain separate review inputs under `data2/station_weather/`; current weather plots use the new hourly aggregates. All twelve old wind files record zero-shift UTC calendar-day means. Their periods match **3,576,314** observations, whereas the hourly pipeline supports every resolved station window. The old precipitation files are accumulated fields despite their `daily_mean` names.
+
+The running `hourly-weather` tmux job uses [`hourly_weather.sh`](../src/py/preprocessing/hourly_weather.sh): download, aggregate, refresh land cover, export all six residual profiles and four interaction heatmaps, then run all numerical analyses. Follow `data2/hourly_weather.log` and `data2/hourly_weather.status`; status is `downloading`, `aggregating`, `plotting`, `analysing`, then the exit code (`0` means the entire sequence succeeded).
+
+## 15. Load for analysis
+
+[`load_data()`](../src/py/load_data.py) returns a Polars DataFrame with all temperature-sample columns, coastal distance, source elevation, land cover and NDVI with its provenance. After the hourly job finishes, use `load_data(include_weather=True)` to add the window-matched wind and precipitation fields. Joins check many-to-one matching and preserve every original observation and its row order.
 
 ```python
 from py.load_data import load_data
@@ -209,8 +233,18 @@ from py.load_data import load_data
 data = load_data()
 ```
 
-## 15. Residual profiles
+## 16. Residual profiles and interactions
 
-[`py.scripts.plot_partial_dependence`](../src/py/scripts/plot_partial_dependence.py) saves Seaborn/Matplotlib figures and CSV source tables under `figures/notebooks/partial_dependence/`. The default profiles are station temperature, NDVI, coastal distance and elevation. Wind and precipitation require an explicit `--features` selection and retain the daily-covariate qualifications above.
+[`py.scripts.plot_partial_dependence`](../src/py/scripts/plot_partial_dependence.py) saves Seaborn/Matplotlib figures and CSV source tables under `figures/notebooks/partial_dependence/`. The default profiles are station temperature, NDVI, coastal distance and elevation. The hourly job requests all six with `--features station_celsius tp wind ndvi dist_to_sea_km elevation` after building the matched covariates.
 
-These are observation-weighted mean residuals in ten quantile bins, with 1,000 source-ID bootstrap draws and pointwise 95% percentile intervals, seed `1337`. They are descriptive associations. Temperature also appears in the residual's definition. Each plot uses available values for its own feature; the temperature sample is retained in full. Precipitation uses `log10(max(tp, 1e-9))` when requested. Histograms count all available observations. The [figure manifest](../figures/notebooks/partial_dependence/manifest.json) identifies inputs, code and per-feature sample sizes.
+Use `uv run python -m py.scripts.plot_partial_dependence --from-tables` to restyle the saved statistics. Figures use a light grid and omit the bottom caption.
+
+These are observation-weighted mean residuals in ten quantile bins, with 1,000 source-ID bootstrap draws and pointwise 95% percentile intervals, seed `1337`. They are descriptive associations. Temperature also appears in the residual's definition. Each plot uses available values for its own feature; the temperature sample is retained in full. The precipitation profile excludes negative window totals, reports their count, and uses `log10(max(tp, 1e-9))` for nonnegative totals. Negative values remain in the saved covariates. Histograms use the same per-feature eligibility as the profile. The [figure manifest](../figures/notebooks/partial_dependence/manifest.json) identifies inputs, code and per-feature sample sizes.
+
+[`py.scripts.plot_interactions`](../src/py/scripts/plot_interactions.py) exports the four existing joint-bin heatmaps: station temperature × wind, elevation × coastal distance, elevation × wind, and coastal distance × DEGURBA. Numeric axes use eight quantile bins; DEGURBA uses its seven ordered classes. Cells show observation-weighted residual means, with full-sample marginal counts. PNG/PDF exports, source tables and the input manifest are under `figures/notebooks/interactions/`.
+
+## 17. Additional numerical analyses
+
+[`run_numerical_analysis.sh`](../src/py/scripts/run_numerical_analysis.sh) reruns the additional analyses from the supplied ZIP, one file per analysis under `src/py/analysis_*.py`. It uses this temperature sample and its saved covariates, clusters on actual source IDs, and preserves per-analysis sample counts. The 2020 land cover and original seasonal NDVI policies are unchanged.
+
+The hourly-weather job invokes it automatically after aggregation and plotting. Each analysis saves CSV tables, PNG/PDF figures, results and input/code hashes in `figures/notebooks/numerical_analysis/`. The runner refreshes manuscript CSV/LaTeX tables and [NUMERICAL_ANALYSIS.md](NUMERICAL_ANALYSIS.md), which opens with DEGURBA and documents the methods and completed results. Model predictions and fold models stay local in `data2/numerical_analysis/`. Follow `data2/numerical_analysis.progress.json`, `.log` and `.status`.

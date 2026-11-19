@@ -1,0 +1,2 @@
+threshold_celsius,station_total_celsius_days,era5_total_celsius_days,estimate,ci_low,ci_high,upper_unbounded,undefined_bootstrap_draws
+24,7380645.400000002,4936754.346807885,1.4950400367343253,1.4736827603567466,1.5169171480069155,false,0

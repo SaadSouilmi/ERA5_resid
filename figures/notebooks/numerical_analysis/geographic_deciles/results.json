@@ -1,0 +1,18 @@
+{
+  "analysis": "geographic_deciles",
+  "created_utc": "2026-11-19T00:55:41.425650+00:00",
+  "parent_observations": 6726213,
+  "parent_sources": 4458,
+  "summary": {},
+  "method": "Ten observation-weighted quantile bins per feature. Tables retain actual bin bounds, mean residuals, source-bootstrap intervals and distinct source counts. These source counts need not be equal across observation deciles.",
+  "tables": {
+    "dist_to_sea_km": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/geographic_deciles/tables/dist_to_sea_km.csv",
+      "sha256": "5bae29789bba368b360e87e208fd2144afd37acd09348ff08c7e63358b3f9362"
+    },
+    "elevation": {
+      "file": "/home2/lobib/gen_hack/figures/notebooks/numerical_analysis/geographic_deciles/tables/elevation.csv",
+      "sha256": "65d954f6bb0af040103e85e2b26aa53d84f5fccab8982cf0d56224d195ca0fb3"
+    }
+  }
+}

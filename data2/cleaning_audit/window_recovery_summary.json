@@ -1,0 +1,113 @@
+{
+  "reviewed_utc": "2026-11-18T13:02:16.570120+00:00",
+  "study_period": {
+    "first_date": 20200101,
+    "last_date": 20250831
+  },
+  "previous_mapped_records": 9490768,
+  "previous_unresolved_records": 349510,
+  "newly_mapped_records": 117837,
+  "newly_mapped_sources": 56,
+  "newly_mapped_station_series": 63,
+  "coverage": {
+    "first_date": 20200101,
+    "last_date": 20250831,
+    "daily_records": 9840278,
+    "mapped_records": 9608605,
+    "unresolved_records": 231673,
+    "mapped_percent": 97.6456661082136
+  },
+  "new_rules": [
+    {
+      "country_code": "RO",
+      "window_rule_id": "anm_tx2_modern",
+      "observation_window": "TX2",
+      "newly_mapped_records": 50612,
+      "sources": 25,
+      "station_series": 26,
+      "first_date": 20200101,
+      "last_date": 20250531
+    },
+    {
+      "country_code": "EE",
+      "window_rule_id": "estonia_tx2_modern",
+      "observation_window": "TX2",
+      "newly_mapped_records": 50178,
+      "sources": 25,
+      "station_series": 25,
+      "first_date": 20200101,
+      "last_date": 20250731
+    },
+    {
+      "country_code": "FI",
+      "window_rule_id": "fmi_tx1_modern",
+      "observation_window": "TX1",
+      "newly_mapped_records": 15952,
+      "sources": 3,
+      "station_series": 9,
+      "first_date": 20200101,
+      "last_date": 20250831
+    },
+    {
+      "country_code": "RS",
+      "window_rule_id": "rhms_serbia_tx8_2021",
+      "observation_window": "TX8",
+      "newly_mapped_records": 1095,
+      "sources": 3,
+      "station_series": 3,
+      "first_date": 20210101,
+      "last_date": 20211231
+    }
+  ],
+  "observations_and_temperatures_unchanged": true,
+  "previously_mapped_windows_unchanged": true,
+  "verification": {
+    "finland": {
+      "matched_daily_values": 369,
+      "sources": 3,
+      "months": [
+        "2020-01",
+        "2020-06",
+        "2025-01",
+        "2025-07"
+      ],
+      "table": "fmi_window_verification.csv"
+    },
+    "estonia": {
+      "matched_daily_values": 369,
+      "sources_checked": 3,
+      "source_group_size": 25,
+      "complete_hourly_windows": 357,
+      "matched_labelled_day_windows": 357,
+      "matched_next_day_windows": 12,
+      "months": [
+        "2020-01",
+        "2020-06",
+        "2025-01",
+        "2025-07"
+      ],
+      "table": "estonia_window_verification.csv"
+    },
+    "romania": {
+      "matched_map_values": 12,
+      "map_pdf_page": 218,
+      "date": 20200719,
+      "table": "romania_window_verification.csv",
+      "interpretation": "Dated official map confirms the calendar-date anchor for the declared TX2 code; this does not independently audit every instrument log."
+    },
+    "serbia": {
+      "year": 2021,
+      "yearbook_pdf_page": 9,
+      "yearbook_printed_page": 3,
+      "interpretation": "Yearbook verifies date anchor; supplied TX8 fixes CET clock. No extension beyond 2021."
+    }
+  },
+  "unresolved_groups": 12,
+  "unresolved_details": "preprocessing_window_resolution.csv",
+  "tests": {
+    "command": "tests/run.sh observation_windows",
+    "passed": 17,
+    "failed": 0
+  },
+  "selected_file_sha256": "04cedaeef0870dd717a281137e6b3ce2c07226cdd373af64cd97312c34e1380d"
+}

@@ -1,0 +1,23 @@
+{
+  "pilot": "January 2020, all retained observations; isolated output under /tmp",
+  "observations": 104702,
+  "temperature_columns_and_order_unchanged": true,
+  "full_loader_observations_unchanged": 6726213,
+  "missing_wind": 0,
+  "missing_precipitation": 0,
+  "coverage": [
+    {
+      "wind_status": "matched",
+      "precipitation_status": "negative_increment_review",
+      "len": 28779
+    },
+    {
+      "wind_status": "matched",
+      "precipitation_status": "matched",
+      "len": 75923
+    }
+  ],
+  "negative_window_totals": 231,
+  "first_48_hours_minimum_nonreset_increment_m": -2.980237923111417e-08,
+  "first_48_hours_maximum_negative_magnitude_m": 2.980237923111417e-08
+}

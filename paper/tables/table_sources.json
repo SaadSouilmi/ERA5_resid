@@ -1,0 +1,15 @@
+{
+  "data": "data2/clean/analysis.parquet",
+  "data_sha256": "9c6aa07f0b786d9e66ab5f3f4fda9f56b106eee45711d8fa0c8197f771d47561",
+  "observations": 6958414,
+  "station_ids": 4217,
+  "notebook_specifications": {
+    "figures/notebooks/resid_analysis/pdp_station_celsius.vl.json": "0883eadade97286bd62389111c19b8ac69a5be8de0ecaba4ee0b56a4b3e9cf49",
+    "figures/notebooks/resid_analysis/pdp_wind.vl.json": "e6bcb1cb763f0c688f35b66139d507ebe046e6130e01fa5e56ccfec38653fa6c",
+    "figures/notebooks/resid_analysis/pdp_dist_to_sea_km.vl.json": "f9d4105e4658f6d212635ce378d9b390534ee32690d45d7f920d36287885b13d",
+    "figures/notebooks/resid_analysis/degurba.vl.json": "ece6841be1215a4de7af5374adb8559b789c7ba17927fd0e8e712cfe7a8c7057",
+    "figures/notebooks/resid_analysis/pdp_elevation.vl.json": "6cfd786d7bfdcce014d8db7fcde3083f8e04b65c21ec0ca14930130913fb60c1",
+    "figures/notebooks/resid_analysis/pdp_tp.vl.json": "6907a602ee7353a7dab7c0e9685853e95477c3d4d166c0a986f9ed7ccc356e3a",
+    "figures/notebooks/resid_analysis/pdp_ndvi.vl.json": "21862bf34c2b357d9e620fa62d4cc0e2a668c09742dc17c31d8bf51d5eead357"
+  }
+}

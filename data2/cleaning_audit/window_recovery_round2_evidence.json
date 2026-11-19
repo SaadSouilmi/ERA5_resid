@@ -1,0 +1,65 @@
+{
+  "prepared_utc": "2026-11-18T13:54:00.844747+00:00",
+  "uses_only_cached_files": true,
+  "new_network_downloads_after_user_restriction": 0,
+  "distinct_source_days": [
+    {
+      "window_rule_id": "asta_cet_day",
+      "len": 5938
+    },
+    {
+      "window_rule_id": "dmi_archive_day",
+      "len": 596
+    },
+    {
+      "window_rule_id": "gsod_hourly_fallback",
+      "len": 33128
+    }
+  ],
+  "provider_rules": [
+    {
+      "window_rule_id": "gsod_hourly_fallback",
+      "window_sampling": "hourly_or_synoptic_samples",
+      "evidence_url": "https://www.ncei.noaa.gov/data/global-summary-of-the-day/doc/readme.txt",
+      "evidence_note": "NOAA defines the reporting day as 0000-2359 GMT and flags maxima derived from hourly or synoptic temperature samples with *. Apply only to retained source-days matching the original GSOD maximum within 0.051 C. The UTC reporting interval is known; exact sample times and completeness remain unverified. This is a sample maximum rather than a continuous 24-hour extreme."
+    },
+    {
+      "window_rule_id": "dmi_archive_day",
+      "window_sampling": "provider_daily_maximum",
+      "evidence_url": "https://www.dmi.dk/friedata/dokumentation/climate-data",
+      "evidence_note": "Use original DMI max_temp_w_date from/to intervals for retained days matching the original values. Vestervig matches all 366 days in 2020; Nordby has 230 matching days among 231 available, beginning 2020-05-15. Midnight boundaries follow the explicit UTC offsets, including DST. The API from timestamp excludes midnight by 1 ms as a query convention; nominal measurement boundaries are midnight. Hourly checks distinguish the local day from a fixed 23 UTC cut on seven retained source-days."
+    },
+    {
+      "window_rule_id": "asta_cet_day",
+      "window_sampling": "provider_daily_maximum",
+      "evidence_url": "https://data.public.lu/fr/datasets/inspire-annex-iii-meteorological-geographical-features-pointtimeseriesobservation-hourly-weather-measurements-of-asta/",
+      "evidence_note": "ASTA hourly metadata and explicit time offsets specify fixed GMT+1. From cached January/July 2026 data, all 92 complete hourly windows reproduce the daily maximum for 00-24 CET; UTC calendar days match only 82. Apply only to the 5938 retained source-days from 2024-11-17 onward directly matching the published daily maximum. No older observations are assigned using this check; 2026 diagnostic observations are not added to the analysis."
+    }
+  ],
+  "files": [
+    {
+      "path": "/home2/lobib/gen_hack/data2/cleaning_audit/verified_observation_window_overrides.csv",
+      "sha256": "35025bd9d95cb33291b723b70a5e4a3d383a4b7ed636732b751c8361c146d76f"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data2/cleaning_audit/verified_observation_window_override_rules.csv",
+      "sha256": "ae2ce3dced73bdc1a931419384693934050372c1fbbcbfc1da9fd9920e976550"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data2/cleaning_audit/dmi_2020_window_verification.csv",
+      "sha256": "c53f2a81ba583b6d0239efef1580d57ed6524fc4df8eea16900c892da8553e6f"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data2/cleaning_audit/luxembourg_window_value_verification.csv",
+      "sha256": "89533b50c97d2ec95098675234dd805fafd9ce785505ad299ce5269b4a95e865"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data2/cleaning_audit/luxembourg_window_aggregation_verification.csv",
+      "sha256": "da66f657a155cffffcb1d6c2e43617f3f8d7dce69ef5c7945bd10cdbf680870e"
+    },
+    {
+      "path": "/home2/lobib/gen_hack/data2/cleaning_audit/gsod_window_verification_summary.csv",
+      "sha256": "202a3e78cdc8076507c1d71ce41a576ba1a065874dbab45432e91f6058c38df3"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seaborn Paper Style"
+  short_description: "Seaborn plots with Saad's colors and paper styling"
+  default_prompt: "Use $seaborn-paper-style to plot my data with my saved palettes and paper styling."

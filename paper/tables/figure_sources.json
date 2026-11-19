@@ -1,0 +1,72 @@
+{
+  "station_map.pdf": {
+    "source": "figures/notebooks/resid_analysis/station_map.pdf",
+    "sha256": "ea58bbd8967f5cc36e2332e65947ad5a6de1ec0fda1ab1e6a6b9dc57e8c02e7a",
+    "source_specification": "figures/notebooks/resid_analysis/station_map.plotly.json",
+    "specification": "tables/station_map.plotly.json",
+    "specification_sha256": "4230e161bcf0157202d019e41ac72e75b4dccf28afbb6da37e31ca27c7a0281d"
+  },
+  "pdp_station_celsius.pdf": {
+    "source": "figures/notebooks/resid_analysis/pdp_station_celsius.pdf",
+    "sha256": "6459546d83b4eda9dc2bd4a1a2f8b7f84a1d4f987a90ebd6fb68434638527776",
+    "source_specification": "figures/notebooks/resid_analysis/pdp_station_celsius.vl.json",
+    "specification": "tables/pdp_station_celsius.vl.json",
+    "specification_sha256": "0883eadade97286bd62389111c19b8ac69a5be8de0ecaba4ee0b56a4b3e9cf49"
+  },
+  "pdp_tp.pdf": {
+    "source": "figures/notebooks/resid_analysis/pdp_tp.pdf",
+    "sha256": "85d0a12b9d7b37274c67f50508eb8b51f5e817065b5ca9cd715822be107d3af0",
+    "source_specification": "figures/notebooks/resid_analysis/pdp_tp.vl.json",
+    "specification": "tables/pdp_tp.vl.json",
+    "specification_sha256": "6907a602ee7353a7dab7c0e9685853e95477c3d4d166c0a986f9ed7ccc356e3a"
+  },
+  "pdp_wind.pdf": {
+    "source": "figures/notebooks/resid_analysis/pdp_wind.pdf",
+    "sha256": "eb5dcac9c3c3555b92be689322968c819031c4d9789971ea3c74102195044c31",
+    "source_specification": "figures/notebooks/resid_analysis/pdp_wind.vl.json",
+    "specification": "tables/pdp_wind.vl.json",
+    "specification_sha256": "e6bcb1cb763f0c688f35b66139d507ebe046e6130e01fa5e56ccfec38653fa6c"
+  },
+  "pdp_ndvi.pdf": {
+    "source": "figures/notebooks/resid_analysis/pdp_ndvi.pdf",
+    "sha256": "17633d6235065d351040c75952446cb4a8dd36d1bf407aad6b0c526382cc2822",
+    "source_specification": "figures/notebooks/resid_analysis/pdp_ndvi.vl.json",
+    "specification": "tables/pdp_ndvi.vl.json",
+    "specification_sha256": "21862bf34c2b357d9e620fa62d4cc0e2a668c09742dc17c31d8bf51d5eead357"
+  },
+  "pdp_dist_to_sea_km.pdf": {
+    "source": "figures/notebooks/resid_analysis/pdp_dist_to_sea_km.pdf",
+    "sha256": "6262794f0e5bfc465c1e36f52d2685d2674b848941502a06a71f69ca7e416984",
+    "source_specification": "figures/notebooks/resid_analysis/pdp_dist_to_sea_km.vl.json",
+    "specification": "tables/pdp_dist_to_sea_km.vl.json",
+    "specification_sha256": "f9d4105e4658f6d212635ce378d9b390534ee32690d45d7f920d36287885b13d"
+  },
+  "pdp_elevation.pdf": {
+    "source": "figures/notebooks/resid_analysis/pdp_elevation.pdf",
+    "sha256": "cb78f0c9b4d759afd8ba6eacecf844b3105c9ea15829be13cde39bd56b5a78bd",
+    "source_specification": "figures/notebooks/resid_analysis/pdp_elevation.vl.json",
+    "specification": "tables/pdp_elevation.vl.json",
+    "specification_sha256": "6cfd786d7bfdcce014d8db7fcde3083f8e04b65c21ec0ca14930130913fb60c1"
+  },
+  "degurba.pdf": {
+    "source": "figures/notebooks/resid_analysis/degurba.pdf",
+    "sha256": "985bd296fd6e2dee5df148a042effcd73fc1b7e82903bf889b7ca2249ae5f732",
+    "source_specification": "figures/notebooks/resid_analysis/degurba.vl.json",
+    "specification": "tables/degurba.vl.json",
+    "specification_sha256": "ece6841be1215a4de7af5374adb8559b789c7ba17927fd0e8e712cfe7a8c7057"
+  },
+  "station_celsius_by_wind.pdf": {
+    "source": "figures/notebooks/resid_analysis/station_celsius_by_wind.pdf",
+    "sha256": "36370cd8e4847ae8440571a2720975e16e24ff8cd5a70c0f15500c29e47e935e",
+    "source_specification": "figures/notebooks/resid_analysis/station_celsius_by_wind.vl.json",
+    "specification": "tables/station_celsius_by_wind.vl.json",
+    "specification_sha256": "da8bdb912633ec0b9b243a06ccafba273ffa2ec4eb8ea1e99ad735d21351e198"
+  },
+  "elevation_by_dist_to_sea_km.pdf": {
+    "source": "figures/notebooks/resid_analysis/elevation_by_dist_to_sea_km.pdf",
+    "sha256": "a1892db0c8e2f7f32ee2fa94bd9c5500b26a33d894ac0e4612f34ea20b1fdb44",
+    "source_specification": "figures/notebooks/resid_analysis/elevation_by_dist_to_sea_km.vl.json",
+    "specification": "tables/elevation_by_dist_to_sea_km.vl.json",
+    "specification_sha256": "31d2680ec01b0f87171114276f854d297d037988415a4e6a6a9f199f3467c2a0"
+  }
+}
