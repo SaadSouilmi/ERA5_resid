@@ -1,0 +1,13 @@
+country_code,provider_id,provider_name,observation_window,window_status,daily_records,sources,first_date,last_date
+LU,82,Andrew Ferrone,TX13,interval_unknown,57030,34,20200101,20241116
+LV,23,Lubova Pirozenoka,TX19,sampling_unknown,48134,21,20200101,20250731
+GR,83,GSOD,TX1,interval_unknown,19613,19,20200101,20250227
+AL,83,GSOD,TX1,interval_unknown,14213,9,20200101,20250227
+BG,83,GSOD,TX1,interval_unknown,13653,8,20200101,20250228
+ME,68,Angel Marcev,TX17,date_anchor_unknown,11410,6,20200101,20250831
+HR,6,Tanja Likso,TX1,interval_unknown,9388,13,20200101,20211231
+LV,23,Lubova Pirozenoka,TX1,interval_unknown,8086,4,20200101,20250731
+HU,13,Monika Lakatos,TX12,date_anchor_unknown,4352,3,20200101,20250831
+BA,38,Mirza Tahmaz,TX8,date_anchor_unknown,1905,1,20200101,20250731
+SK,29,Oliver Bochnicek,TX1,interval_unknown,366,1,20200101,20201231
+DK,45,Caroline Drost Jensen,TX16,hour_unknown,271,1,20200101,20201123

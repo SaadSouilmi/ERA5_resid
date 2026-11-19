@@ -1,0 +1,8 @@
+stage,records
+Raw archive,175615474
+Provider-valid observations,133209364
+European observation sources,127711784
+European sources inside the ERA5 extract,113368058
+After isolated-spike removal,113367989
+After temperature bounds,113367666
+Within January 2020–August 2025,9840278
