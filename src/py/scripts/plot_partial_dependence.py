@@ -13,7 +13,7 @@ import seaborn as sns
 from py import pdp
 from py.load_data import load_data
 from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
-from py.paths import NotebookFiguresDirectory as FIGURES_DIRECTORY
+from py.paths import ANALYSIS_FIGURES_DIRECTORY as FIGURES_DIRECTORY
 from py.preprocessing.match_era5_grid import sha256
 from py.scripts.plot_style import COLORS, paper_style
 from py.scripts.scientific_style import save_scientific_figure as save_figure

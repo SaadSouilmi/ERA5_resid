@@ -4,7 +4,7 @@ Select European ECA&D daily maximum temperatures for comparison with ERA5-Land o
 
 **Current saved stage, 18 November 2026:** all **68 monthly files** are complete. They contain **9,837,164 observations**, including **8,712,539 matched maxima**. The final [source-day sample](../data2/station_era5_clean.parquet) is saved: **6,726,213 unique source-days**, **93.2 MiB**.
 
-The pipeline code lives in [`py.preprocessing`](../src/py/preprocessing/). Run it from the repository root with [`./run.sh`](../run.sh), which calls `uv run python -m py.preprocessing` inside a dedicated tmux session. It logs to `data2/preprocessing.log` and writes `running`, then the exit code, to `data2/preprocessing.status`; `0` means success. The session ends with the command.
+The pipeline code lives in [`py.preprocessing`](../src/py/preprocessing/). Run it from the repository root with [`./run.sh preprocessing`](../run.sh), which calls `uv run python -u -m py.preprocessing` directly in the foreground. Output appears in the terminal and is saved to `data2/preprocessing.log`. The runner writes `running`, then the exit code, to `data2/preprocessing.status`; `0` means success.
 
 | Order | Python entry point | Output under `data2/` |
 |:---|:---|:---|
@@ -235,16 +235,22 @@ data = load_data()
 
 ## 16. Residual profiles and interactions
 
-[`py.scripts.plot_partial_dependence`](../src/py/scripts/plot_partial_dependence.py) saves Seaborn/Matplotlib figures and CSV source tables under `figures/notebooks/partial_dependence/`. The default profiles are station temperature, NDVI, coastal distance and elevation. The hourly job requests all six with `--features station_celsius tp wind ndvi dist_to_sea_km elevation` after building the matched covariates.
+[`py.scripts.plot_partial_dependence`](../src/py/scripts/plot_partial_dependence.py) saves Seaborn/Matplotlib figures and CSV source tables under `figures/analysis/partial_dependence/`. The default profiles are station temperature, NDVI, coastal distance and elevation. The hourly job requests all six with `--features station_celsius tp wind ndvi dist_to_sea_km elevation` after building the matched covariates.
 
 Use `uv run python -m py.scripts.plot_partial_dependence --from-tables` to restyle the saved statistics. Figures use a light grid and omit the bottom caption.
 
-These are observation-weighted mean residuals in ten quantile bins, with 1,000 source-ID bootstrap draws and pointwise 95% percentile intervals, seed `1337`. They are descriptive associations. Temperature also appears in the residual's definition. Each plot uses available values for its own feature; the temperature sample is retained in full. The precipitation profile excludes negative window totals, reports their count, and uses `log10(max(tp, 1e-9))` for nonnegative totals. Negative values remain in the saved covariates. Histograms use the same per-feature eligibility as the profile. The [figure manifest](../figures/notebooks/partial_dependence/manifest.json) identifies inputs, code and per-feature sample sizes.
+These are observation-weighted mean residuals in ten quantile bins, with 1,000 source-ID bootstrap draws and pointwise 95% percentile intervals, seed `1337`. They are descriptive associations. Temperature also appears in the residual's definition. Each plot uses available values for its own feature; the temperature sample is retained in full. The precipitation profile excludes negative window totals, reports their count, and uses `log10(max(tp, 1e-9))` for nonnegative totals. Negative values remain in the saved covariates. Histograms use the same per-feature eligibility as the profile. The [figure manifest](../figures/analysis/partial_dependence/manifest.json) identifies inputs, code and per-feature sample sizes.
 
-[`py.scripts.plot_interactions`](../src/py/scripts/plot_interactions.py) exports the four existing joint-bin heatmaps: station temperature × wind, elevation × coastal distance, elevation × wind, and coastal distance × DEGURBA. Numeric axes use eight quantile bins; DEGURBA uses its seven ordered classes. Cells show observation-weighted residual means, with full-sample marginal counts. PNG/PDF exports, source tables and the input manifest are under `figures/notebooks/interactions/`.
+[`py.scripts.plot_interactions`](../src/py/scripts/plot_interactions.py) exports the four existing joint-bin heatmaps: station temperature × wind, elevation × coastal distance, elevation × wind, and coastal distance × DEGURBA. Numeric axes use eight quantile bins; DEGURBA uses its seven ordered classes. Cells show observation-weighted residual means, with full-sample marginal counts. PNG/PDF exports, source tables and the input manifest are under `figures/analysis/interactions/`.
 
 ## 17. Additional numerical analyses
 
 [`run_numerical_analysis.sh`](../src/py/scripts/run_numerical_analysis.sh) reruns the additional analyses from the supplied ZIP, one file per analysis under `src/py/analysis_*.py`. It uses this temperature sample and its saved covariates, clusters on actual source IDs, and preserves per-analysis sample counts. The 2020 land cover and original seasonal NDVI policies are unchanged.
 
-The hourly-weather job invokes it automatically after aggregation and plotting. Each analysis saves CSV tables, PNG/PDF figures, results and input/code hashes in `figures/notebooks/numerical_analysis/`. The runner refreshes manuscript CSV/LaTeX tables and [NUMERICAL_ANALYSIS.md](NUMERICAL_ANALYSIS.md), which opens with DEGURBA and documents the methods and completed results. Model predictions and fold models stay local in `data2/numerical_analysis/`. Follow `data2/numerical_analysis.progress.json`, `.log` and `.status`.
+The hourly-weather job invokes it automatically after aggregation and plotting. Each analysis saves CSV tables, PNG/PDF figures, results and input/code hashes in `figures/analysis/numerical_analysis/`. Model predictions and fold models stay local in `data2/numerical_analysis/`. Follow `data2/numerical_analysis.progress.json`, `.log` and `.status`. The runner ends after the figure-producing analyses; manuscript and note exporters are archived outside the retained source scope. [NUMERICAL_ANALYSIS.md](NUMERICAL_ANALYSIS.md) remains a saved documentation snapshot.
+
+## 18. Source residual map
+
+`uv run python -m py.scripts.plot_station_map` averages residuals by `(SOUID, source_lat, source_lon)` over the retained source-days. Every source location is shown with an equal-size marker; colour saturates outside ±3°C without changing source values. The default atlas view uses EPSG:3035 and the already cached Natural Earth 1:50 million country boundaries, stored under `data2/clean/sources/ne_50m_admin_0_countries.*`. It downloads no new geographical data.
+
+`figures/analysis/station_map/` holds the 900 dpi PNG, vector PDF, source-means CSV, basemap GeoJSON and manifest. `--style original` retains the earlier Plotly/OpenStreetMap renderer. The paper's older map PDF is preserved separately.

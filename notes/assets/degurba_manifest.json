@@ -59,8 +59,8 @@
     "degurba_coverage.csv": "f0387dbb5be46eb3a45212ed8ed3b55ffe67594ae755068f7336d40671eecad9"
   },
   "outputs": [
-    "/home2/lobib/gen_hack/figures/notebooks/partial_dependence/degurba_seaborn.png",
-    "/home2/lobib/gen_hack/figures/notebooks/partial_dependence/degurba_seaborn.pdf"
+    "/home2/lobib/gen_hack/figures/analysis/partial_dependence/degurba_seaborn.png",
+    "/home2/lobib/gen_hack/figures/analysis/partial_dependence/degurba_seaborn.pdf"
   ],
   "restyled_utc": "2026-11-19T11:17:54.619946+00:00",
   "render_code_sha256": {

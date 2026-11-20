@@ -11,7 +11,6 @@ from matplotlib.patches import PathPatch
 from matplotlib.path import Path as DrawingPath
 
 COLORS = ["#527EAC", "#BE6274", "#347F74", "#6A56A0", "#A86C1A", "#60748C"]
-PAIR_COLORS = ["#347F74", "#BE6274"]
 INK = "#23312F"
 
 

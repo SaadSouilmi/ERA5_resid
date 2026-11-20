@@ -6,6 +6,10 @@ ERA5-Land temperature, in °C.
 
 All active Python belongs under `src/py`, the `py` package. Preprocessing lives in
 `py.preprocessing`, analyses directly in `py` and commands in `py.scripts`.
+Keep this source restricted to the new preprocessing pipeline, its loader and
+figures generated from that sample, including the calculations behind them.
+Report builders, manuscript copying and document/table exporters are outside
+this scope. Do not restore them under `src`.
 Use `uv` for environments and Python execution, and `py.paths` for
 repository paths. Run computational work in a dedicated tmux session and remove
 the session when the command finishes. Simple file reads and documentation edits
@@ -35,7 +39,8 @@ requirements and scientific assumptions; do not repeat checks the library makes.
 ## Current data
 
 The current temperature input is `data2/station_era5_clean.parquet`, built by
-`py.preprocessing` or `./run.sh`. `notes/PREPROCESSING.md` documents the selection
+`py.preprocessing` or `./run.sh preprocessing`. The launcher runs directly in the
+foreground and must not create tmux sessions. `notes/PREPROCESSING.md` documents the selection
 in execution order; `notes/OBSERVATION_WINDOWS.md` records provider evidence.
 Use `py.load_data.load_data()` for analyses and `include_weather=True` when needed.
 Keep temperature pairs separate from covariates and preserve row membership,
@@ -74,15 +79,18 @@ figure when restyling other figures. Preserve estimates when changing presentati
 
 Default exports are PNG/PDF. Do not generate new SVG files unless explicitly
 requested. Saved Altair specifications remain supported for figures using Altair.
-The station map keeps the original Plotly/OpenStreetMap style and attribution,
-with a 900 dpi square panel fitted to all sources with a small margin; preserve
-its Plotly specification.
+The station map defaults to a clean atlas view: cached Natural Earth geometry,
+European equal-area projection, square panel, saved source means and ±3°C colour
+limits, with no subtitle. Export a 900 dpi PNG and vector PDF. Keep the original Plotly/OpenStreetMap
+renderer and attribution available through `--style original`, with its Plotly
+specification. Use actual source coordinates in both styles.
 
-Exports and source tables live in `figures/notebooks/`; retain this output path
-for compatibility. Manuscript PDFs live in `paper/figures/`, source data and tables
-in `paper/tables/`. `py.scripts.sync_paper_figures` copies the selected current
-figures and provenance; `py.scripts.build_paper_tables` refreshes numerical tables.
-Require matching input hashes. `paper/paper.tex` is the working draft; its existing
+Exports and source tables live in `figures/analysis/`, using
+`py.paths.ANALYSIS_FIGURES_DIRECTORY`. Manuscript PDFs live in `paper/figures/`;
+source data and tables live in `paper/tables/`. Publication tooling is archived;
+the figure runner saves supporting CSV tables and manifests without updating
+manuscript assets or notes. Require matching input hashes.
+`paper/paper.tex` is the working draft; its existing
 text and assets await reconciliation with the new release, and the bibliography
 is missing. Do not present the old publication assets as current results.
 

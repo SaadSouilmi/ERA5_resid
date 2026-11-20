@@ -1,0 +1,66 @@
+{
+  "analysis": "utc_windows",
+  "bootstrap_unit": "SOUID (actual observation source)",
+  "hourly_weather_included": false,
+  "origin": "ERA5_resid_v3_code.zip: pending_remarks_analysis.py and supplemental_v3_checks.py",
+  "inputs": {
+    "/home2/lobib/gen_hack/data2/station_era5_clean.parquet": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+    "/home2/lobib/gen_hack/data2/station_ndvi.parquet": "be428f2ff7dca8f3fda425339d3f8d31681d014b5dceb101767e29bfae89120c",
+    "/home2/lobib/gen_hack/data2/station_elevation.parquet": "3595df9b7406222c9b27a42002fc11a4c300eb0901b2fd2b56f1c7b762ad5d9f",
+    "/home2/lobib/gen_hack/data2/station_coastal_distance.parquet": "8401de603d68e522ba57efd64bc49ee3b8f92b19523c0bac9cd5787f6ab2709b",
+    "/home2/lobib/gen_hack/data2/station_land_cover.parquet": "fac834689993882de10e8c74a54209be1ad99e87669316671039ec3005e8ecc5"
+  },
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/analysis_common.py": "12f92324519ad1e3b410354d404cb65f78704847d0d7be8aa5098d3496e811f5",
+    "/home2/lobib/gen_hack/src/py/analysis_utc_windows.py": "f492b5a4c2aa5a4abd8e8bfdb91c8d126b629987ef89ac634da9597b2b65b0e3",
+    "/home2/lobib/gen_hack/src/py/load_data.py": "3cbb598247e81757632926c626058360bcc9088955ded67a0c970a9b376cfe57",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "611557dc64dd723692a8783037108bb703ef82312853fdce8ecf4e19e459ab3f"
+  },
+  "results_sha256": "9bdd458c308e7848ed422a3d3c24b930659cc3d76ec25a14ab48ebcd41652e21",
+  "tables": {
+    "summary": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/summary.csv",
+      "sha256": "6d1cb4c5798a200b52430c273638a23c5d9bcda869ab677dc0d20e2b740bd1ae"
+    },
+    "windows": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/windows.csv",
+      "sha256": "b7b7f4eae0319762c32d89fcf8d68bd9ced1e4052ef59e48f96c5f5bdd542355"
+    },
+    "full_station_celsius": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/full_station_celsius.csv",
+      "sha256": "08b0f3ee96666cf49c5e521e7607859ab27171105ba54e41470f903146da1537"
+    },
+    "full_ndvi": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/full_ndvi.csv",
+      "sha256": "59028a07a94daac967b6302636aec08cfd5f8f2148ad414bf61c171db56bf685"
+    },
+    "full_dist_to_sea_km": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/full_dist_to_sea_km.csv",
+      "sha256": "a56a8dd7978c670993df7dd2691d7560942eccb86d945cfb96963b671212406e"
+    },
+    "full_elevation": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/full_elevation.csv",
+      "sha256": "353d77784fec9d6deef64761dde26746f9544721be8e9c2d169914c8a65748ae"
+    },
+    "utc_midnight_station_celsius": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/utc_midnight_station_celsius.csv",
+      "sha256": "5e1b00e2d5405e1773c28213e0b03520451b55e7b2dfc9ffb0f2e36353585154"
+    },
+    "utc_midnight_ndvi": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/utc_midnight_ndvi.csv",
+      "sha256": "e14ef9bd10a5438c6afeafbbdb07a81a61cd354661c0375fcf890668e0017a73"
+    },
+    "utc_midnight_dist_to_sea_km": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/utc_midnight_dist_to_sea_km.csv",
+      "sha256": "ac3164bf122a842ee570a677002dd6135b2d43b9e40eeb6b4edd219fbe59e52f"
+    },
+    "utc_midnight_elevation": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/utc_midnight_elevation.csv",
+      "sha256": "6dc35d7d1cb81303b726eb79e5ffdb4237ae650b232328cc39289fefb691622c"
+    },
+    "utc_degurba": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/utc_degurba.csv",
+      "sha256": "22f3b79f652010f06b00cb802c919144bc757109bac2abf51f5d8bcb5d430772"
+    }
+  }
+}

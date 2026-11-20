@@ -1,0 +1,27 @@
+{
+  "updated": "2026-11-19",
+  "period": [
+    "2020-01-01",
+    "2025-08-31"
+  ],
+  "selected_observations": 9840278,
+  "resolved_windows": 9651857,
+  "unresolved_windows": 188421,
+  "monthly_extraction": {
+    "records": 9837164,
+    "matched": 8712539,
+    "unknown_window": 188421,
+    "masked_cell": 936204,
+    "outside_grid": 0,
+    "incomplete_era5_hours": 0,
+    "sampled_station_matches": 25696,
+    "bytes": 127375720
+  },
+  "dropped_outside_download": 3114,
+  "clean_source_days": 6726213,
+  "matched_provider_records": 8686843,
+  "repeated_records_removed": 1960630,
+  "temperature_input_sha256": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+  "selected_input_sha256": "4df30a1921c717c0767e30cca4c2d47da05bf7e11241bd87900458995bbab818",
+  "window_closure": "both"
+}

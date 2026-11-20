@@ -2,24 +2,29 @@
 set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
-case "${1:-}" in
-    "")
+usage() {
+    printf 'Usage: ./run.sh <workflow>\n\nWorkflows:\n  preprocessing  Build station selection, ERA5 matches and covariates.\n'
+}
+
+if [[ $# -ne 1 ]]; then
+    usage >&2
+    exit 2
+fi
+
+case "$1" in
+    preprocessing)
         mkdir -p data2
-        tmux new-session -d -s station-preprocessing -c "$PWD" \
-            'bash ./run.sh --inside-tmux > data2/preprocessing.log 2>&1'
-        printf 'Started tmux session: station-preprocessing\nLog: data2/preprocessing.log\nStatus: data2/preprocessing.status (0 means success)\n'
-        exit 0
+        printf 'running\n' > data2/preprocessing.status
+        trap 'printf "%s\n" "$?" > data2/preprocessing.status' EXIT
+        export POLARS_MAX_THREADS="${POLARS_MAX_THREADS:-8}"
+        uv run python -u -m py.preprocessing 2>&1 | tee data2/preprocessing.log
         ;;
-    --inside-tmux) ;;
     --help|-h)
-        printf 'Usage: ./run.sh\nRuns station selection, ERA5 temperature matching, covariate preparation and hourly weather retrieval/aggregation in a dedicated tmux session.\n'
-        exit 0
+        usage
         ;;
-    *) printf 'Usage: ./run.sh\n' >&2; exit 2 ;;
+    *)
+        printf 'Unknown workflow: %s\n' "$1" >&2
+        usage >&2
+        exit 2
+        ;;
 esac
-
-printf 'running\n' > data2/preprocessing.status
-trap 'printf "%s\n" "$?" > data2/preprocessing.status' EXIT
-export POLARS_MAX_THREADS="${POLARS_MAX_THREADS:-8}"
-
-uv run python -m py.preprocessing

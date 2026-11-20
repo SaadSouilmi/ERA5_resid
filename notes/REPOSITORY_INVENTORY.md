@@ -2,6 +2,8 @@
 
 This is the pre-cleanup snapshot. Implemented decisions and the recovery archive are recorded in [CLEANUP.md](CLEANUP.md).
 
+Figure paths below are historical. Current outputs live in `figures/analysis/`.
+
 Snapshot: **19 November 2026, 12:54 UTC**, branch `dev`, commit `9baa91c`.
 Inventory only. Existing source files, datasets and outputs were not changed or deleted.
 

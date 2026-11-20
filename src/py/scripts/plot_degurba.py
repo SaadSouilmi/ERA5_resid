@@ -16,7 +16,7 @@ from py import pdp
 from py.covariates import sample_raster
 from py.load_data import load_data
 from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
-from py.paths import NotebookFiguresDirectory as FIGURES_DIRECTORY
+from py.paths import ANALYSIS_FIGURES_DIRECTORY as FIGURES_DIRECTORY
 from py.paths import ProjectRoot as PROJECT_ROOT
 from py.preprocessing.match_era5_grid import sha256
 from py.publication import SaveFigure as save_altair_figure

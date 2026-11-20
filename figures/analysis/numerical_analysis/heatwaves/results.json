@@ -1,0 +1,18 @@
+{
+  "analysis": "heatwaves",
+  "created_utc": "2026-11-19T00:55:33.300184+00:00",
+  "parent_observations": 6726213,
+  "parent_sources": 4458,
+  "summary": {},
+  "method": "Strict >30\u00b0C and >35\u00b0C, at least three consecutive calendar dates within SOUID. Missing dates break spells. Counts are conditional on retained observation coverage and mixed provider window durations; they are not a complete climatological heatwave inventory. Ratio intervals use 1,000 source-bootstrap draws, with zero-event sources retained.",
+  "tables": {
+    "ratios": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/heatwaves/tables/ratios.csv",
+      "sha256": "a9c07a807f6cd45d203ae34f45d76bfce70d6e510250702d9d1d69fd841d58da"
+    },
+    "source_counts": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/heatwaves/tables/source_counts.csv",
+      "sha256": "367279dd39d28ab4d3d3ccacd97ea3ee8755a9004b4ae171c30a246d0f3ebb22"
+    }
+  }
+}

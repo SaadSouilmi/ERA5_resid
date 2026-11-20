@@ -10,19 +10,8 @@ from matplotlib.text import Text
 
 INK = "#23312F"
 MUTED = "#44524F"
-MODEL_COLORS = {
-    "Oracle": "#347F74",
-    "Heston": "#BE6274",
-    "Black–Scholes": "#3E6FAD",
-}
-ALPHA_COLORS = {
-    0.55: "#26776C",
-    0.65: "#AD5069",
-    0.75: "#6A56A0",
-    0.95: "#A86C1A",
-}
 COLORS = ["#347F74", "#BE6274", "#3E6FAD", "#6A56A0", "#A86C1A", "#60748C"]
-ORANGE = "#D18A32"
+DEFAULT_COLORS = COLORS[:3]
 
 PAPER_STYLE = {
     "font.family": "sans-serif", "font.sans-serif": ["DejaVu Sans"], "mathtext.fontset": "dejavusans",
@@ -31,7 +20,7 @@ PAPER_STYLE = {
     "font.weight": "normal", "axes.labelweight": "normal", "axes.titleweight": "normal",
     "axes.edgecolor": "#687370", "axes.linewidth": .6,
     "axes.spines.top": False, "axes.spines.right": False, "axes.axisbelow": True,
-    "axes.prop_cycle": cycler(color=list(MODEL_COLORS.values())),
+    "axes.prop_cycle": cycler(color=DEFAULT_COLORS),
     "xtick.color": MUTED, "ytick.color": MUTED, "xtick.direction": "out", "ytick.direction": "out",
     "xtick.top": False, "ytick.right": False, "xtick.minor.visible": False, "ytick.minor.visible": False,
     "xtick.major.size": 3, "ytick.major.size": 3,
@@ -46,7 +35,7 @@ PAPER_STYLE = {
 
 def paper_style(palette=None):
     """Apply the paper style, optionally using a Seaborn-compatible palette."""
-    chosen = MODEL_COLORS if palette is None else palette
+    chosen = DEFAULT_COLORS if palette is None else palette
     colors = list(chosen.values()) if isinstance(chosen, dict) else sns.color_palette(chosen)
     plt.rcdefaults()
     sns.set_theme(style="white", context="paper", palette=colors, rc=PAPER_STYLE)

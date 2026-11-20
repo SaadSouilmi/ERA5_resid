@@ -42,7 +42,7 @@ __marimo__/
 /figures/*.html
 /figures/archive/
 /figures/paper/.cartopy/
-/figures/notebooks/*/.cartopy/
+/figures/analysis/*/.cartopy/
 
 # latex tmporary files
 *.aux

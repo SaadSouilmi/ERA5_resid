@@ -1,4 +1,4 @@
-"""Publication styling and fixed-width Altair and Plotly exports."""
+"""Fixed-width Altair and Plotly exports used by the current figures."""
 
 import json as Json
 from pathlib import Path
@@ -6,43 +6,8 @@ from xml.etree import ElementTree as Et
 
 import vl_convert as Vlc
 
-Blue = "#0072B2"
 Font = "DejaVu Serif"
 DoubleColumnMm = 180
-
-
-def PaperStyle(Chart):
-    return (
-        Chart.configure(background="white", font=Font, padding=8)
-        .configure_view(stroke=None)
-        .configure_axis(
-            labelFont=Font,
-            titleFont=Font,
-            labelFontSize=10,
-            titleFontSize=11,
-            titleFontWeight="normal",
-            titlePadding=10,
-            labelPadding=5,
-            domainColor="#444444",
-            domainWidth=0.7,
-            tickColor="#444444",
-            tickWidth=0.7,
-            tickSize=4,
-            gridColor="#e5e5e5",
-            gridWidth=0.5,
-            labelColor="#222222",
-            titleColor="#222222",
-        )
-        .configure_legend(
-            labelFont=Font,
-            titleFont=Font,
-            labelFontSize=10,
-            titleFontSize=11,
-            titleFontWeight="normal",
-            gradientThickness=10,
-        )
-        .configure_title(font=Font, fontSize=12, anchor="start", offset=10)
-    )
 
 
 def SaveFigure(Chart, Stem, Dpi=600, WidthMm=DoubleColumnMm, Formats=("png", "pdf")):
@@ -70,65 +35,56 @@ def SaveFigure(Chart, Stem, Dpi=600, WidthMm=DoubleColumnMm, Formats=("png", "pd
     return {"width_mm": WidthMm, "height_mm": HeightMm, "dpi": Dpi}
 
 
-def ExportNotebookFigure(Chart, Notebook, Name):
-    from py.paths import NotebookFiguresDirectory
+async def export_analysis_plotly_figure(figure, group, name, dpi=600, width_mm=DoubleColumnMm):
+    import tempfile
 
-    Stem = NotebookFiguresDirectory / Notebook / Name
-    SaveFigure(Chart, Stem, Formats=("pdf",))
-    print(f"Saved {Stem.with_suffix('.pdf')}")
-    return Chart
+    import kaleido
+    import plotly
 
+    from py.paths import ANALYSIS_FIGURES_DIRECTORY
 
-async def ExportNotebookPlotlyFigure(Figure, Notebook, Name, Dpi=600, WidthMm=DoubleColumnMm):
-    import tempfile as Tempfile
-
-    import kaleido as Kaleido
-    import plotly as Plotly
-
-    from py.paths import NotebookFiguresDirectory
-
-    Stem = NotebookFiguresDirectory / Notebook / Name
-    Stem.parent.mkdir(parents=True, exist_ok=True)
-    Width, Height = Figure.layout.width, Figure.layout.height
-    PixelRatio = WidthMm / 25.4 * Dpi / Width
-    with Tempfile.TemporaryDirectory(prefix="era5-plotly-") as Temporary:
-        Script = Path(Plotly.__file__).parent / "package_data/plotly.min.js"
-        if max(Width, Height) * PixelRatio > 4096:
+    stem = ANALYSIS_FIGURES_DIRECTORY / group / name
+    stem.parent.mkdir(parents=True, exist_ok=True)
+    width, height = figure.layout.width, figure.layout.height
+    pixel_ratio = width_mm / 25.4 * dpi / width
+    with tempfile.TemporaryDirectory(prefix="era5-plotly-") as temporary:
+        script = Path(plotly.__file__).parent / "package_data/plotly.min.js"
+        if max(width, height) * pixel_ratio > 4096:
             # MapLibre's default canvas cap silently downsamples high-resolution exports.
-            Javascript = Script.read_text()
-            Default = "maxCanvasSize:[4096,4096]"
-            if Javascript.count(Default) != 1:
+            javascript = script.read_text()
+            default = "maxCanvasSize:[4096,4096]"
+            if javascript.count(default) != 1:
                 raise ValueError(
                     "Plotly's MapLibre canvas option changed; review high-resolution export"
                 )
-            Script = Path(Temporary) / "plotly.js"
-            Script.write_text(Javascript.replace(Default, "maxCanvasSize:[8192,8192]"))
-        async with Kaleido.Kaleido(
-            plotlyjs=Script,
+            script = Path(temporary) / "plotly.js"
+            script.write_text(javascript.replace(default, "maxCanvasSize:[8192,8192]"))
+        async with kaleido.Kaleido(
+            plotlyjs=script,
             mathjax=False,
             headers={"X-Requested-With": "ERA5_resid/Plotly"},
             timeout=300,
-        ) as Renderer:
+        ) as renderer:
             # Kaleido's image scale alone does not increase MapLibre's canvas resolution.
-            for Tab in Renderer.tabs.values():
-                await Tab.send_command(
+            for tab in renderer.tabs.values():
+                await tab.send_command(
                     "Emulation.setDeviceMetricsOverride",
                     {
-                        "width": Width,
-                        "height": Height,
-                        "deviceScaleFactor": PixelRatio,
+                        "width": width,
+                        "height": height,
+                        "deviceScaleFactor": pixel_ratio,
                         "mobile": False,
                     },
                 )
-            Svg = (await Renderer.calc_fig(Figure, opts={"format": "svg", "scale": 1})).decode()
-    Root = Et.fromstring(Svg)
+            svg = (await renderer.calc_fig(figure, opts={"format": "svg", "scale": 1})).decode()
+    root = Et.fromstring(svg)
     # Convert at the target size; resizing Chrome's PDF can distort its colourbar pattern.
-    Svg = Svg.replace(f'width="{Root.attrib["width"]}"', f'width="{WidthMm / 25.4 * 72}"', 1)
-    Svg = Svg.replace(
-        f'height="{Root.attrib["height"]}"', f'height="{WidthMm / 25.4 * 72 * Height / Width}"', 1
+    svg = svg.replace(f'width="{root.attrib["width"]}"', f'width="{width_mm / 25.4 * 72}"', 1)
+    svg = svg.replace(
+        f'height="{root.attrib["height"]}"', f'height="{width_mm / 25.4 * 72 * height / width}"', 1
     )
-    Stem.with_suffix(".pdf").write_bytes(Vlc.svg_to_pdf(Svg))
-    Figure.write_json(Stem.with_suffix(".plotly.json"), pretty=True)
-    Stem.with_suffix(".vl.json").unlink(missing_ok=True)
-    print(f"Saved {Stem.with_suffix('.pdf')}")
-    return Figure
+    stem.with_suffix(".pdf").write_bytes(Vlc.svg_to_pdf(svg))
+    figure.write_json(stem.with_suffix(".plotly.json"), pretty=True)
+    stem.with_suffix(".vl.json").unlink(missing_ok=True)
+    print(f"Saved {stem.with_suffix('.pdf')}")
+    return figure

@@ -1,0 +1,39 @@
+{
+  "created_utc": "2026-11-20T00:27:36.556534+00:00",
+  "inputs": {
+    "/home2/lobib/gen_hack/data2/station_era5_clean.parquet": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74"
+  },
+  "source_locations": 4458,
+  "observations": 6726213,
+  "grouping": [
+    "SOUID",
+    "source_lat",
+    "source_lon"
+  ],
+  "style": "Clean atlas, EPSG:3035, square panel, cached Natural Earth land/borders, 900 dpi PNG and vector PDF",
+  "residual": "Source-day mean of station minus ERA5-Land window maximum, in degrees Celsius",
+  "colour_limits": [
+    -3,
+    3
+  ],
+  "colour_clipping": "Colours saturate outside \u00b13\u00b0C; source values are unchanged",
+  "first_date": 20200101,
+  "last_date": 20250831,
+  "basemap": {
+    "/home2/lobib/gen_hack/data2/clean/sources/ne_50m_admin_0_countries.shp": "94799b91827fb9f32c0c517d60281572abcf5e4647d19b7f52217071cc4fd30d",
+    "/home2/lobib/gen_hack/data2/clean/sources/ne_50m_admin_0_countries.shx": "1813a4b55c3e9db05b7f5f77adbfe7b8f8ad5bce870dab0f4e5ec937f0e5a791",
+    "/home2/lobib/gen_hack/data2/clean/sources/ne_50m_admin_0_countries.dbf": "4ec70fc63842df719ee1f9f7bb0469b528b1eab8099c44aea6c7339a10cacc4b",
+    "/home2/lobib/gen_hack/data2/clean/sources/ne_50m_admin_0_countries.prj": "98aaf3d1c0ecadf1a424a4536de261c3daf4e373697cb86c40c43b989daf52eb",
+    "/home2/lobib/gen_hack/data2/clean/sources/ne_50m_admin_0_countries.cpg": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+  },
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/scripts/plot_station_map.py": "db8ba129bc48e08b642fc67248eb98b74247e3b1b5a577a9046360f84df56c92",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "71ea7e7756e6b3774fc7fb0477ea4e3f8aea8ffa2f12c427b7b8b7218afd168b"
+  },
+  "outputs": {
+    "/home2/lobib/gen_hack/figures/analysis/station_map/tables/source_means.csv": "bcc87a53f97a683d118045f6e594383fd7e2eadca79915750a9cb1ed1615e3ef",
+    "/home2/lobib/gen_hack/figures/analysis/station_map/station_map.png": "a4cf809514fda567eb2017833d407bdd331a0bce7b825a1321022ab29930d3af",
+    "/home2/lobib/gen_hack/figures/analysis/station_map/station_map.pdf": "c378e6ab555babc253ff6bd8ae795157a37639169e07f1c796f264ef9b87a5e8",
+    "/home2/lobib/gen_hack/figures/analysis/station_map/tables/basemap.geojson": "63d9e81f31e006236ffb335f3e996d866bee3e7c5eb3d8b5401727888b5e7f38"
+  }
+}

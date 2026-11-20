@@ -11,7 +11,7 @@ from scipy import stats
 
 from py.load_data import load_data
 from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
-from py.paths import NotebookFiguresDirectory, ProjectRoot
+from py.paths import ANALYSIS_FIGURES_DIRECTORY, ProjectRoot
 from py.preprocessing.match_era5_grid import sha256
 from py.scripts.plot_style import COLORS as COLORS, paper_style, save_figure
 from py.scripts.scientific_style import (
@@ -21,7 +21,7 @@ from py.scripts.scientific_style import (
     zero_line as zero_line,
 )
 
-OUTPUT_DIRECTORY = NotebookFiguresDirectory / "numerical_analysis"
+OUTPUT_DIRECTORY = ANALYSIS_FIGURES_DIRECTORY / "numerical_analysis"
 FEATURES = ["station_celsius", "wind", "tp", "ndvi", "dist_to_sea_km", "elevation"]
 LABELS = {
     "station_celsius": "Station maximum temperature (°C)",
@@ -286,25 +286,3 @@ def draw_profile(ax, table, label, color):
     )
     ax.grid(True, axis="both")
     ax.margins(y=0.08)
-
-
-def markdown_table(table, columns=None, digits=3):
-    table = table.select(columns) if columns else table
-
-    def format_value(value):
-        if value is None:
-            return "—"
-        if isinstance(value, float):
-            return f"{value:.{digits}g}" if abs(value) < 0.001 and value else f"{value:,.{digits}f}"
-        if isinstance(value, int):
-            return f"{value:,}"
-        return str(value).replace("|", "/")
-
-    rows = [[format_value(value) for value in row] for row in table.iter_rows()]
-    return "\n".join(
-        [
-            "| " + " | ".join(table.columns) + " |",
-            "| " + " | ".join([":---"] * table.width) + " |",
-            *["| " + " | ".join(row) + " |" for row in rows],
-        ]
-    )

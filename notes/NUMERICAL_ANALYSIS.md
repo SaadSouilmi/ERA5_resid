@@ -1,5 +1,7 @@
 # Numerical analysis
 
+Saved result snapshot. Current runs write figures, CSV tables, results and manifests under `figures/analysis/`; the retained pipeline does not regenerate this note or manuscript tables.
+
 ## 1. DEGURBA partial dependence
 
 ![Mean residual and observation share by DEGURBA class](assets/degurba.png)
@@ -34,17 +36,17 @@ The additional analyses below are reruns of the ZIP's `pending_remarks_analysis.
 
 ## 3. Descriptive residual profiles
 
-![Quantile-binned residual profiles](../figures/notebooks/partial_dependence/partial_dependence.png)
+![Quantile-binned residual profiles](../figures/analysis/partial_dependence/partial_dependence.png)
 
 Observation-weighted means in ten quantile bins, with pointwise source-bootstrap intervals. These are descriptive conditional means. Station temperature also enters the residual definition. Each vertical range follows its mean curve and confidence band.
 
-[Profile tables](../figures/notebooks/partial_dependence/tables/) · [Manifest](../figures/notebooks/partial_dependence/manifest.json)
+[Profile tables](../figures/analysis/partial_dependence/tables/) · [Manifest](../figures/analysis/partial_dependence/manifest.json)
 
 **Hourly weather pending:** the current composite contains the four available profiles. All six are queued after hourly aggregation.
 
 ## 4. Cross-interaction profiles
 
-![Joint-bin residual heatmaps](../figures/notebooks/interactions/interactions.png)
+![Joint-bin residual heatmaps](../figures/analysis/interactions/interactions.png)
 
 Eight quantile bins per numeric axis; seven land DEGURBA classes. Cells show observation-weighted mean residuals, with all available observations in the marginal histograms. Each panel has its own colour scale. No cell confidence intervals are shown.
 
@@ -56,7 +58,7 @@ Every retained source-day enters the parent sample. Units: temperature °C, wind
 
 **Partial rerun:** temperature and static-covariate results are current; hourly-weather results are pending.
 
-![Sample and variable coverage](../figures/notebooks/numerical_analysis/descriptive/sample.png)
+![Sample and variable coverage](../figures/analysis/numerical_analysis/descriptive/sample.png)
 
 | Variable | Source-days | Missing | Mean | SD |
 | :--- | :--- | :--- | :--- | :--- |
@@ -69,7 +71,7 @@ Every retained source-day enters the parent sample. Units: temperature °C, wind
 
 Mean disagreement: **+1.51°C**, 95% source-bootstrap interval **1.45–1.56°C**. Giving every source equal weight gives **+1.49°C**.
 
-[PDF](../figures/notebooks/numerical_analysis/descriptive/sample.pdf) · [Tables](../figures/notebooks/numerical_analysis/descriptive/tables/) · [Methods and results](../figures/notebooks/numerical_analysis/descriptive/results.json) · [Input manifest](../figures/notebooks/numerical_analysis/descriptive/manifest.json)
+[PDF](../figures/analysis/numerical_analysis/descriptive/sample.pdf) · [Tables](../figures/analysis/numerical_analysis/descriptive/tables/) · [Methods and results](../figures/analysis/numerical_analysis/descriptive/results.json) · [Input manifest](../figures/analysis/numerical_analysis/descriptive/manifest.json)
 
 ## 6. Observation-window sensitivity
 
@@ -77,7 +79,7 @@ Compare 24-hour 00–00 UTC windows with other resolved windows. Both groups alr
 
 **Partial rerun:** temperature and static-covariate results are current; hourly-weather results are pending.
 
-![Observation-window sensitivity](../figures/notebooks/numerical_analysis/utc_windows/window_means.png)
+![Observation-window sensitivity](../figures/analysis/numerical_analysis/utc_windows/window_means.png)
 
 | Sample | Source-days | Sources | Mean | 95% low | 95% high |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -85,7 +87,7 @@ Compare 24-hour 00–00 UTC windows with other resolved windows. Both groups alr
 | utc_midnight | 3,576,314 | 2,184 | 1.361 | 1.284 | 1.436 |
 | other_resolved | 3,149,899 | 2,274 | 1.675 | 1.591 | 1.760 |
 
-[PDF](../figures/notebooks/numerical_analysis/utc_windows/window_means.pdf) · [Tables](../figures/notebooks/numerical_analysis/utc_windows/tables/) · [Methods and results](../figures/notebooks/numerical_analysis/utc_windows/results.json) · [Input manifest](../figures/notebooks/numerical_analysis/utc_windows/manifest.json)
+[PDF](../figures/analysis/numerical_analysis/utc_windows/window_means.pdf) · [Tables](../figures/analysis/numerical_analysis/utc_windows/tables/) · [Methods and results](../figures/analysis/numerical_analysis/utc_windows/results.json) · [Input manifest](../figures/analysis/numerical_analysis/utc_windows/manifest.json)
 
 ## 7. Hot-day exceedances
 
@@ -97,7 +99,7 @@ Count strict exceedances of 25, 30, 35 and 40°C. The displayed table uses the f
 
 Sum max(Tmax − 24°C, 0). This is a daily-maximum heat-excess proxy, not cooling degree-days based on daily mean temperature. The station/ERA5 ratio uses a source-bootstrap interval.
 
-![Daily-maximum heat excess above 24°C](../figures/notebooks/numerical_analysis/heat_excess/heat_excess_by_year.png)
+![Daily-maximum heat excess above 24°C](../figures/analysis/numerical_analysis/heat_excess/heat_excess_by_year.png)
 
 | Station heat excess (°C·days) | ERA5 heat excess (°C·days) | Station / ERA5 | 95% low | 95% high |
 | :--- | :--- | :--- | :--- | :--- |
@@ -105,13 +107,13 @@ Sum max(Tmax − 24°C, 0). This is a daily-maximum heat-excess proxy, not cooli
 
 The station heat-excess total is **1.50 times** the ERA5-Land total over the same retained source-days.
 
-[PDF](../figures/notebooks/numerical_analysis/heat_excess/heat_excess_by_year.pdf) · [Tables](../figures/notebooks/numerical_analysis/heat_excess/tables/) · [Methods and results](../figures/notebooks/numerical_analysis/heat_excess/results.json) · [Input manifest](../figures/notebooks/numerical_analysis/heat_excess/manifest.json)
+[PDF](../figures/analysis/numerical_analysis/heat_excess/heat_excess_by_year.pdf) · [Tables](../figures/analysis/numerical_analysis/heat_excess/tables/) · [Methods and results](../figures/analysis/numerical_analysis/heat_excess/results.json) · [Input manifest](../figures/analysis/numerical_analysis/heat_excess/manifest.json)
 
 ## 9. Hot spells of at least three days
 
 Count runs of at least three consecutive date-labelled maxima above 30 or 35°C. Gaps break runs. Ratios retain zero-event sources in the bootstrap; the result is conditional on retained observation coverage.
 
-![Hot spells of at least three days](../figures/notebooks/numerical_analysis/heatwaves/heatwave_ratios.png)
+![Hot spells of at least three days](../figures/analysis/numerical_analysis/heatwaves/heatwave_ratios.png)
 
 | Threshold (°C) | Counted | Station | ERA5 | Station / ERA5 | 95% low | 95% high |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -120,7 +122,7 @@ Count runs of at least three consecutive date-labelled maxima above 30 or 35°C.
 | 35 | spells | 14,440 | 8,068 | 1.790 | 1.713 | 1.875 |
 | 35 | days | 88,035 | 46,122 | 1.909 | 1.812 | 2.006 |
 
-[PDF](../figures/notebooks/numerical_analysis/heatwaves/heatwave_ratios.pdf) · [Tables](../figures/notebooks/numerical_analysis/heatwaves/tables/) · [Methods and results](../figures/notebooks/numerical_analysis/heatwaves/results.json) · [Input manifest](../figures/notebooks/numerical_analysis/heatwaves/manifest.json)
+[PDF](../figures/analysis/numerical_analysis/heatwaves/heatwave_ratios.pdf) · [Tables](../figures/analysis/numerical_analysis/heatwaves/tables/) · [Methods and results](../figures/analysis/numerical_analysis/heatwaves/results.json) · [Input manifest](../figures/analysis/numerical_analysis/heatwaves/manifest.json)
 
 ## 10. Seasonal temperature × wind
 
@@ -134,7 +136,7 @@ Demean each variable and the residual by SOUID × calendar month, pooling years.
 
 **Partial rerun:** temperature and static-covariate results are current; hourly-weather results are pending.
 
-![Within-source monthly anomalies](../figures/notebooks/numerical_analysis/fixed_effects/within_source_month.png)
+![Within-source monthly anomalies](../figures/analysis/numerical_analysis/fixed_effects/within_source_month.png)
 
 | Conditioning anomaly | Lowest-bin residual | Highest-bin residual | High − low (°C) |
 | :--- | :--- | :--- | :--- |
@@ -142,7 +144,7 @@ Demean each variable and the residual by SOUID × calendar month, pooling years.
 | era5_celsius | -0.102 | 0.122 | 0.224 |
 | midpoint | -0.613 | 0.627 | 1.240 |
 
-[PDF](../figures/notebooks/numerical_analysis/fixed_effects/within_source_month.pdf) · [Tables](../figures/notebooks/numerical_analysis/fixed_effects/tables/) · [Methods and results](../figures/notebooks/numerical_analysis/fixed_effects/results.json) · [Input manifest](../figures/notebooks/numerical_analysis/fixed_effects/manifest.json)
+[PDF](../figures/analysis/numerical_analysis/fixed_effects/within_source_month.pdf) · [Tables](../figures/analysis/numerical_analysis/fixed_effects/tables/) · [Methods and results](../figures/analysis/numerical_analysis/fixed_effects/results.json) · [Input manifest](../figures/analysis/numerical_analysis/fixed_effects/manifest.json)
 
 ## 12. Joint adjusted regression
 
@@ -160,7 +162,7 @@ Test equality of residual means across each feature's ten quantile bins with a s
 
 Compare all available original-season/carry-forward NDVI with observed seasonal values only. Each sample has its own deciles. Date coverage and station composition also change, so the difference does not isolate extrapolation error.
 
-![Observed-season NDVI sensitivity](../figures/notebooks/numerical_analysis/ndvi_sensitivity/observed_vs_carry_forward.png)
+![Observed-season NDVI sensitivity](../figures/analysis/numerical_analysis/ndvi_sensitivity/observed_vs_carry_forward.png)
 
 | Sample | Source-days | Sources | Bin range (°C) | Wald F | p |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -169,13 +171,13 @@ Compare all available original-season/carry-forward NDVI with observed seasonal 
 
 Observed-only decile means span **0.096°C**; the source-clustered equality test gives **p = 0.834**.
 
-[PDF](../figures/notebooks/numerical_analysis/ndvi_sensitivity/observed_vs_carry_forward.pdf) · [Tables](../figures/notebooks/numerical_analysis/ndvi_sensitivity/tables/) · [Methods and results](../figures/notebooks/numerical_analysis/ndvi_sensitivity/results.json) · [Input manifest](../figures/notebooks/numerical_analysis/ndvi_sensitivity/manifest.json)
+[PDF](../figures/analysis/numerical_analysis/ndvi_sensitivity/observed_vs_carry_forward.pdf) · [Tables](../figures/analysis/numerical_analysis/ndvi_sensitivity/tables/) · [Methods and results](../figures/analysis/numerical_analysis/ndvi_sensitivity/results.json) · [Input manifest](../figures/analysis/numerical_analysis/ndvi_sensitivity/manifest.json)
 
 ## 15. Geographic bin coverage
 
 Observation-weighted deciles can contain very different numbers of sources. The saved tables report actual bounds, source-days, distinct sources, residual means and intervals for every elevation and coastal-distance bin.
 
-![Geographic bin coverage](../figures/notebooks/numerical_analysis/geographic_deciles/sources_per_decile.png)
+![Geographic bin coverage](../figures/analysis/numerical_analysis/geographic_deciles/sources_per_decile.png)
 
 | Decile | Bin low | Bin high | Source-days | Sources | Mean |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -203,13 +205,13 @@ Observation-weighted deciles can contain very different numbers of sources. The 
 | 9 | 696.000 | 958.000 | 672,639 | 428 | 1.668 |
 | 10 | 959.000 | 3,440.000 | 669,249 | 453 | 0.680 |
 
-[PDF](../figures/notebooks/numerical_analysis/geographic_deciles/sources_per_decile.pdf) · [Tables](../figures/notebooks/numerical_analysis/geographic_deciles/tables/) · [Methods and results](../figures/notebooks/numerical_analysis/geographic_deciles/results.json) · [Input manifest](../figures/notebooks/numerical_analysis/geographic_deciles/manifest.json)
+[PDF](../figures/analysis/numerical_analysis/geographic_deciles/sources_per_decile.pdf) · [Tables](../figures/analysis/numerical_analysis/geographic_deciles/tables/) · [Methods and results](../figures/analysis/numerical_analysis/geographic_deciles/results.json) · [Input manifest](../figures/analysis/numerical_analysis/geographic_deciles/manifest.json)
 
 ## 16. Neighbour-source relative elevation
 
 Subtract the mean elevation of at least two distinct source locations 0.1–25 km away. This is a network-based proxy, not a DEM-derived topographic position or a station/grid elevation difference. The naive Pearson p-value does not account for spatial dependence.
 
-![Neighbour-source relative elevation](../figures/notebooks/numerical_analysis/relative_elevation/neighbour_elevation_residual.png)
+![Neighbour-source relative elevation](../figures/analysis/numerical_analysis/relative_elevation/neighbour_elevation_residual.png)
 
 | Elevation band | Sources | Relative height (m) | Below neighbours (%) | Mean source residual (°C) |
 | :--- | :--- | :--- | :--- | :--- |
@@ -221,7 +223,7 @@ Subtract the mean elevation of at least two distinct source locations 0.1–25 k
 
 Proxy available at **2,877 sources**. Source-level Pearson r = **-0.625**; descriptive slope = **-0.490°C per 100 m**.
 
-[PDF](../figures/notebooks/numerical_analysis/relative_elevation/neighbour_elevation_residual.pdf) · [Tables](../figures/notebooks/numerical_analysis/relative_elevation/tables/) · [Methods and results](../figures/notebooks/numerical_analysis/relative_elevation/results.json) · [Input manifest](../figures/notebooks/numerical_analysis/relative_elevation/manifest.json)
+[PDF](../figures/analysis/numerical_analysis/relative_elevation/neighbour_elevation_residual.pdf) · [Tables](../figures/analysis/numerical_analysis/relative_elevation/tables/) · [Methods and results](../figures/analysis/numerical_analysis/relative_elevation/results.json) · [Input manifest](../figures/analysis/numerical_analysis/relative_elevation/manifest.json)
 
 ## 17. Held-out-source bias correction
 
@@ -260,7 +262,7 @@ Run all sections in a dedicated tmux session:
 bash src/py/scripts/run_numerical_analysis.sh
 ```
 
-Run one analysis with `uv run python -m py.analysis_<name>` in its own tmux session. The full runner refreshes DEGURBA, all six descriptive profiles, four interaction plots, the additional analyses, manuscript tables and this note. Each analysis writes its own CSV tables, PNG/PDF figures, results and input/code hashes under `figures/notebooks/numerical_analysis/<name>/`.
+Run one analysis with `uv run python -m py.analysis_<name>` in its own tmux session. The full runner generates DEGURBA, all six descriptive profiles, four interaction plots and the additional analysis figures. Each analysis writes its own CSV tables, PNG/PDF figures, results and input/code hashes under `figures/analysis/numerical_analysis/<name>/`.
 
 Progress: `data2/numerical_analysis.progress.json`; log: `data2/numerical_analysis.log`; exit status: `data2/numerical_analysis.status` (`0` means success). The existing hourly-weather job is configured to invoke this runner after aggregation. No new NDVI acquisition is started.
 

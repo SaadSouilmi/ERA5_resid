@@ -10,7 +10,7 @@ import polars as pl
 
 from py import analysis_common as common
 from py.analysis_descriptive import residual_histogram
-from py.paths import NotebookFiguresDirectory as FIGURES_DIRECTORY, ProjectRoot as PROJECT_ROOT
+from py.paths import ANALYSIS_FIGURES_DIRECTORY as FIGURES_DIRECTORY, ProjectRoot as PROJECT_ROOT
 
 ANALYSES = [
     "descriptive",
