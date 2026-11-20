@@ -1,6 +1,6 @@
 # Numerical analysis
 
-Saved result snapshot. Current runs write figures, CSV tables, results and manifests under `figures/analysis/`; the retained pipeline does not regenerate this note or manuscript tables.
+Older partial write-up. All fourteen analyses completed on 20 November 2026; the pending labels below are historical. Start with the [current results index](../figures/analysis/README.md) for the completed figures, CSV tables, results and manifests. The retained pipeline does not regenerate this note or manuscript tables.
 
 ## 1. DEGURBA partial dependence
 
@@ -77,7 +77,7 @@ Mean disagreement: **+1.51°C**, 95% source-bootstrap interval **1.45–1.56°C*
 
 Compare 24-hour 00–00 UTC windows with other resolved windows. Both groups already have window-matched ERA5 maxima; their difference reflects sample composition rather than the former date-only matching. The companion profiles recalculate deciles within each sample.
 
-**Partial rerun:** temperature and static-covariate results are current; hourly-weather results are pending.
+**Rerun complete**, including window-matched wind and precipitation in the companion profiles. Bars show mean residuals with pointwise 95% source-bootstrap intervals.
 
 ![Observation-window sensitivity](../figures/analysis/numerical_analysis/utc_windows/window_means.png)
 
@@ -242,7 +242,7 @@ Replace one predictor at a time and average predictions on held-out background r
 | Analysis | File | Status |
 | :--- | :--- | :--- |
 | Sample and variable coverage | [analysis_descriptive.py](../src/py/analysis_descriptive.py) | Weather portion pending |
-| Observation-window sensitivity | [analysis_utc_windows.py](../src/py/analysis_utc_windows.py) | Weather portion pending |
+| Observation-window sensitivity | [analysis_utc_windows.py](../src/py/analysis_utc_windows.py) | Complete |
 | Hot-day exceedances | [analysis_exceedances.py](../src/py/analysis_exceedances.py) | Pending |
 | Daily-maximum heat excess above 24°C | [analysis_heat_excess.py](../src/py/analysis_heat_excess.py) | Complete |
 | Hot spells of at least three days | [analysis_heatwaves.py](../src/py/analysis_heatwaves.py) | Complete |

@@ -2,7 +2,7 @@
 
 import polars as pl
 
-from py.paths import AnalysisDataDirectory as data_dir
+from py.paths import ANALYSIS_DATA_DIRECTORY as data_dir
 
 
 def observation_window_rules():

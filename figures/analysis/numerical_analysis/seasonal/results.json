@@ -1,0 +1,78 @@
+{
+  "analysis": "seasonal",
+  "created_utc": "2026-11-20T01:22:04.209508+00:00",
+  "parent_observations": 6726213,
+  "parent_sources": 4458,
+  "summary": {},
+  "method": "DJF/MAM/JJA/SON, with separate 10\u00d710 temperature and wind quantiles within each season. Curves restrict to the season's warmest temperature decile, retaining the original seasonal wind bins. Station- and ERA5-conditioned curves use their respective warm subsets. Intervals: 1,000 SOUID draws per cell. Daily mean-vector wind is not wind measured at the temperature maximum.",
+  "tables": {
+    "DJF_station_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/DJF_station_celsius_cells.csv",
+      "sha256": "c88efc41a34180878b3a1424a73be3604cb9a417d455fb0919d9c0f0f460f4c4"
+    },
+    "DJF_station_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/DJF_station_celsius_warmest.csv",
+      "sha256": "988bcca1abfcc977604b8eb24b3013dee137eaf4a3756ba99ba2b459e4d66eaf"
+    },
+    "DJF_era5_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/DJF_era5_celsius_cells.csv",
+      "sha256": "f9e5919f4ea12bbdd947f984bbbf7b4f2b5d6f0fad96a116d2d4453aaae8b5fc"
+    },
+    "DJF_era5_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/DJF_era5_celsius_warmest.csv",
+      "sha256": "c7346ea291ec691244578744b4dd5db0c1366e8510a6aa6ad5f74958da5d8583"
+    },
+    "MAM_station_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/MAM_station_celsius_cells.csv",
+      "sha256": "be3862a7d2d7d9ed113c9d6af67b50c692c5722ef0e753b11e930b7602fa3f04"
+    },
+    "MAM_station_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/MAM_station_celsius_warmest.csv",
+      "sha256": "580cf98ed7394db12100506dfd47277ed061244885fedd3056d4ec5fd56e5356"
+    },
+    "MAM_era5_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/MAM_era5_celsius_cells.csv",
+      "sha256": "9d869e8fae9184a0a8e3cf7f6d43ebe4e25ee8f628e6d1fba100d6e0ed9e0ef5"
+    },
+    "MAM_era5_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/MAM_era5_celsius_warmest.csv",
+      "sha256": "7de19273b0886a1d8559eebf4936cec5663ec22bca95624e63fd2258fb4ac1f1"
+    },
+    "JJA_station_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/JJA_station_celsius_cells.csv",
+      "sha256": "8c19290f367796cb7662d962bc493e2facfb6cb5f1c4f3b368d6289620d508d4"
+    },
+    "JJA_station_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/JJA_station_celsius_warmest.csv",
+      "sha256": "94893387776c2c8d8f5c42bd1c5ea01a7675b53b5991e9536a65a1f8082ea6c9"
+    },
+    "JJA_era5_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/JJA_era5_celsius_cells.csv",
+      "sha256": "69219c6e195504b5b82d2a9cebd2fca3717d45002d21efe57ea6a9c1a0049b1b"
+    },
+    "JJA_era5_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/JJA_era5_celsius_warmest.csv",
+      "sha256": "f2b8da345ea679a5656a7e472c933f3d841988d42a8971c3171843527a2efc18"
+    },
+    "SON_station_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/SON_station_celsius_cells.csv",
+      "sha256": "9b3027b0c99e440f6739018e752648207b3a0e1862ec9d9eba29f5b62ad54356"
+    },
+    "SON_station_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/SON_station_celsius_warmest.csv",
+      "sha256": "b2fcaae507e40b663a9da856e99644af4343ddc29e659e0ab48d27f36ca8deba"
+    },
+    "SON_era5_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/SON_era5_celsius_cells.csv",
+      "sha256": "4128253fd95302507c85024ee3eee90ea33a36a39b25dc08a7e4316562a0575a"
+    },
+    "SON_era5_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/SON_era5_celsius_warmest.csv",
+      "sha256": "8f3e9d9f88db6b1d0a9ddaf2cffffb03b37bf253531beba7f6a56b589cdea829"
+    },
+    "seasons": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/seasons.csv",
+      "sha256": "7135648219f0ba0044606a40c6cfb2c7054c07ffac52e3455c931a3214aa8fad"
+    }
+  }
+}

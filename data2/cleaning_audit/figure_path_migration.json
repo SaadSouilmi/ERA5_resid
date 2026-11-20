@@ -1,0 +1,603 @@
+{
+  "migrated_utc": "2026-11-19T15:58:18.950670+00:00",
+  "from": "figures/notebooks",
+  "to": "figures/analysis",
+  "policy": "Move current outputs and rewrite paths plus dependent metadata hashes; preserve generation code hashes. No analysis rerun.",
+  "artifacts": {
+    "preprocessing_walkthrough/geographic_selection.vl.json": {
+      "before_sha256": "4f561a38e234deb239ad39df28efef09ec66129fc2ccea44c219ddbbfc19662f",
+      "after_sha256": "4f561a38e234deb239ad39df28efef09ec66129fc2ccea44c219ddbbfc19662f"
+    },
+    "preprocessing_walkthrough/geographic_selection.svg": {
+      "before_sha256": "81e22b87c643e7d22c845b43836237cf8fcacf2d005c314312fc8adf3f7bbb8b",
+      "after_sha256": "81e22b87c643e7d22c845b43836237cf8fcacf2d005c314312fc8adf3f7bbb8b"
+    },
+    "preprocessing_walkthrough/geographic_selection.pdf": {
+      "before_sha256": "32a494778a365d39691f3c2a4c7794fcf26cd5223321f158f14e50d0f4934ca5",
+      "after_sha256": "32a494778a365d39691f3c2a4c7794fcf26cd5223321f158f14e50d0f4934ca5"
+    },
+    "preprocessing_walkthrough/geographic_selection.png": {
+      "before_sha256": "a8dca6224a2b5394dd69a158ba87c7dae7dbd3f113391b8dbcc2cfd1a8e892c2",
+      "after_sha256": "a8dca6224a2b5394dd69a158ba87c7dae7dbd3f113391b8dbcc2cfd1a8e892c2"
+    },
+    "preprocessing_walkthrough/geographic_selection_country_counts.csv": {
+      "before_sha256": "408a36e1fb01e444b891130a967d3f87f254dd3fd5c91c3bb835ad750167caa7",
+      "after_sha256": "408a36e1fb01e444b891130a967d3f87f254dd3fd5c91c3bb835ad750167caa7"
+    },
+    "preprocessing_walkthrough/.cartopy/shapefiles/natural_earth/cultural/ne_50m_admin_0_countries.shp": {
+      "before_sha256": "94799b91827fb9f32c0c517d60281572abcf5e4647d19b7f52217071cc4fd30d",
+      "after_sha256": "94799b91827fb9f32c0c517d60281572abcf5e4647d19b7f52217071cc4fd30d"
+    },
+    "preprocessing_walkthrough/.cartopy/shapefiles/natural_earth/cultural/ne_50m_admin_0_countries.dbf": {
+      "before_sha256": "4ec70fc63842df719ee1f9f7bb0469b528b1eab8099c44aea6c7339a10cacc4b",
+      "after_sha256": "4ec70fc63842df719ee1f9f7bb0469b528b1eab8099c44aea6c7339a10cacc4b"
+    },
+    "preprocessing_walkthrough/.cartopy/shapefiles/natural_earth/cultural/ne_50m_admin_0_countries.shx": {
+      "before_sha256": "1813a4b55c3e9db05b7f5f77adbfe7b8f8ad5bce870dab0f4e5ec937f0e5a791",
+      "after_sha256": "1813a4b55c3e9db05b7f5f77adbfe7b8f8ad5bce870dab0f4e5ec937f0e5a791"
+    },
+    "preprocessing_walkthrough/.cartopy/shapefiles/natural_earth/cultural/ne_50m_admin_0_countries.prj": {
+      "before_sha256": "98aaf3d1c0ecadf1a424a4536de261c3daf4e373697cb86c40c43b989daf52eb",
+      "after_sha256": "98aaf3d1c0ecadf1a424a4536de261c3daf4e373697cb86c40c43b989daf52eb"
+    },
+    "preprocessing_walkthrough/.cartopy/shapefiles/natural_earth/cultural/ne_50m_admin_0_countries.cpg": {
+      "before_sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+      "after_sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+    },
+    "partial_dependence/pdp_station_celsius.svg": {
+      "before_sha256": "2546f0574b16a5e699289cf017a68461c94672a206942bb92a0961afaf441c25",
+      "after_sha256": "2546f0574b16a5e699289cf017a68461c94672a206942bb92a0961afaf441c25"
+    },
+    "partial_dependence/pdp_station_celsius.png": {
+      "before_sha256": "e547234650c0fd683d4f4b68df14f4c55dc2db8f90323c374e04e3ce8efabcee",
+      "after_sha256": "e547234650c0fd683d4f4b68df14f4c55dc2db8f90323c374e04e3ce8efabcee"
+    },
+    "partial_dependence/pdp_station_celsius.pdf": {
+      "before_sha256": "c9bf583401308e8b950770b794d36b24af2fbfa03dc37bffe8436a4c94415568",
+      "after_sha256": "c9bf583401308e8b950770b794d36b24af2fbfa03dc37bffe8436a4c94415568"
+    },
+    "partial_dependence/pdp_ndvi.svg": {
+      "before_sha256": "77efdf3ec2fc617ce17926d89d9081c71b23d14fe54d252b94c2f43a4c628cbc",
+      "after_sha256": "77efdf3ec2fc617ce17926d89d9081c71b23d14fe54d252b94c2f43a4c628cbc"
+    },
+    "partial_dependence/pdp_ndvi.png": {
+      "before_sha256": "b0856d3373972bede87bdc6ce3faaf1e737f029163ea167d76538c30777bb990",
+      "after_sha256": "b0856d3373972bede87bdc6ce3faaf1e737f029163ea167d76538c30777bb990"
+    },
+    "partial_dependence/pdp_ndvi.pdf": {
+      "before_sha256": "70d095f759b498d1401026543c7b824c7ba1c0ac11e3c79358aff7d9a102ede9",
+      "after_sha256": "70d095f759b498d1401026543c7b824c7ba1c0ac11e3c79358aff7d9a102ede9"
+    },
+    "partial_dependence/pdp_dist_to_sea_km.svg": {
+      "before_sha256": "2d9042c0e7f843bba585ee8cca18bd1db451c9646067f35eef30cf0bfa1407e6",
+      "after_sha256": "2d9042c0e7f843bba585ee8cca18bd1db451c9646067f35eef30cf0bfa1407e6"
+    },
+    "partial_dependence/pdp_dist_to_sea_km.png": {
+      "before_sha256": "0d32f8d75721f2e41a442333fc0a1aae498e86d243f071050c96395f3313f02f",
+      "after_sha256": "0d32f8d75721f2e41a442333fc0a1aae498e86d243f071050c96395f3313f02f"
+    },
+    "partial_dependence/pdp_dist_to_sea_km.pdf": {
+      "before_sha256": "37593b148d4d8906e6fa416fc5a623b34ae6300c50e3392fbef9c2c65b540640",
+      "after_sha256": "37593b148d4d8906e6fa416fc5a623b34ae6300c50e3392fbef9c2c65b540640"
+    },
+    "partial_dependence/pdp_elevation.svg": {
+      "before_sha256": "96a7078c5c4941b2cf5d69d8ee3217100c7c4a9d4c58625d81a7cc39d850353b",
+      "after_sha256": "96a7078c5c4941b2cf5d69d8ee3217100c7c4a9d4c58625d81a7cc39d850353b"
+    },
+    "partial_dependence/pdp_elevation.png": {
+      "before_sha256": "d7447821efda75e7b98290a1ea1a90211c875cbeb5fbde023c0254d23bf83f44",
+      "after_sha256": "d7447821efda75e7b98290a1ea1a90211c875cbeb5fbde023c0254d23bf83f44"
+    },
+    "partial_dependence/pdp_elevation.pdf": {
+      "before_sha256": "d1ee7934f94eb84403363aa671c2bc4f6aebef91be1170094abcc0d8d3568241",
+      "after_sha256": "d1ee7934f94eb84403363aa671c2bc4f6aebef91be1170094abcc0d8d3568241"
+    },
+    "partial_dependence/partial_dependence.svg": {
+      "before_sha256": "11da3d8c94067042cf091295c6a9822c7a3c84f39e605295b4b6383cfe908b19",
+      "after_sha256": "11da3d8c94067042cf091295c6a9822c7a3c84f39e605295b4b6383cfe908b19"
+    },
+    "partial_dependence/partial_dependence.png": {
+      "before_sha256": "1cf54b9427f727b09b0fef8a7a2e1e7229887c2b3a5bcd205ffaf3760e2c554f",
+      "after_sha256": "1cf54b9427f727b09b0fef8a7a2e1e7229887c2b3a5bcd205ffaf3760e2c554f"
+    },
+    "partial_dependence/partial_dependence.pdf": {
+      "before_sha256": "f700316817f57ab7cf14f8fbf2bfdc6eec68f8ba155862cf55282ace16ce93b3",
+      "after_sha256": "f700316817f57ab7cf14f8fbf2bfdc6eec68f8ba155862cf55282ace16ce93b3"
+    },
+    "partial_dependence/manifest.json": {
+      "before_sha256": "2cf9b0314f965eaad0c0429584734e18a60251806fe05465c468ee15e037a4ef",
+      "after_sha256": "2cf9b0314f965eaad0c0429584734e18a60251806fe05465c468ee15e037a4ef"
+    },
+    "partial_dependence/degurba.svg": {
+      "before_sha256": "c83ab1c26db7a0af28be8841360c0e596e374e4c60c7724661d48c33d041a7d1",
+      "after_sha256": "c83ab1c26db7a0af28be8841360c0e596e374e4c60c7724661d48c33d041a7d1"
+    },
+    "partial_dependence/degurba.png": {
+      "before_sha256": "5fe22e8ff2185bc08a60a22802f12e47059ac321c9eb2cea186ede93d352664d",
+      "after_sha256": "5fe22e8ff2185bc08a60a22802f12e47059ac321c9eb2cea186ede93d352664d"
+    },
+    "partial_dependence/degurba.pdf": {
+      "before_sha256": "0d63dd5ab1ad3765e71eb9770685bff5787ea790d45bc8da86751014c43b22e1",
+      "after_sha256": "0d63dd5ab1ad3765e71eb9770685bff5787ea790d45bc8da86751014c43b22e1"
+    },
+    "partial_dependence/degurba_manifest.json": {
+      "before_sha256": "a30883314ac66219c3b3abedd5c45005c9baa72b69226a1a176fac9bcc92c6cc",
+      "after_sha256": "e8f9a6626de172b8177111ed7fc859183da328f68ec95c5752926ec7d230c233"
+    },
+    "partial_dependence/degurba.vl.json": {
+      "before_sha256": "e8e486be38eadcfcc0a2d1544b4c04fad86e51b6916ef6fa103b2aabeabe3e79",
+      "after_sha256": "e8e486be38eadcfcc0a2d1544b4c04fad86e51b6916ef6fa103b2aabeabe3e79"
+    },
+    "partial_dependence/degurba_seaborn.png": {
+      "before_sha256": "4358c4210c71ab6ce7ad97ee54b458f82070cf1a1939fa40766fd6a9a1caaa03",
+      "after_sha256": "4358c4210c71ab6ce7ad97ee54b458f82070cf1a1939fa40766fd6a9a1caaa03"
+    },
+    "partial_dependence/degurba_seaborn.pdf": {
+      "before_sha256": "1f006c62fe9a48b23e13ef5c577b45781c9d05af1796aa84fe037b6b3f58900c",
+      "after_sha256": "1f006c62fe9a48b23e13ef5c577b45781c9d05af1796aa84fe037b6b3f58900c"
+    },
+    "partial_dependence/tables/pdp_station_celsius.csv": {
+      "before_sha256": "fd970258b36818f571b043011afdaddaa32f43ec56901859df1e3a6bbbb0e632",
+      "after_sha256": "fd970258b36818f571b043011afdaddaa32f43ec56901859df1e3a6bbbb0e632"
+    },
+    "partial_dependence/tables/histogram_station_celsius.csv": {
+      "before_sha256": "004a750e7e363132b5f5b0937f9b95aee56028c52c00cbd59d70db103b2f4ec3",
+      "after_sha256": "004a750e7e363132b5f5b0937f9b95aee56028c52c00cbd59d70db103b2f4ec3"
+    },
+    "partial_dependence/tables/pdp_ndvi.csv": {
+      "before_sha256": "011834243b4caf7cdaaf4db1cba4ba26575371c20e13b4387696b2255e663672",
+      "after_sha256": "011834243b4caf7cdaaf4db1cba4ba26575371c20e13b4387696b2255e663672"
+    },
+    "partial_dependence/tables/histogram_ndvi.csv": {
+      "before_sha256": "e024052b3a055e52360cb50fc6b1202fef3e773d5ff4887e9e38c12470bb028a",
+      "after_sha256": "e024052b3a055e52360cb50fc6b1202fef3e773d5ff4887e9e38c12470bb028a"
+    },
+    "partial_dependence/tables/pdp_dist_to_sea_km.csv": {
+      "before_sha256": "ae56455912b19dc5da6e87d26ea5101e669b66870c263209c05ed62e50923382",
+      "after_sha256": "ae56455912b19dc5da6e87d26ea5101e669b66870c263209c05ed62e50923382"
+    },
+    "partial_dependence/tables/histogram_dist_to_sea_km.csv": {
+      "before_sha256": "45239e733549fae9ccb8ef38dd036cbe51207ad28ab4232fa9d3155614172ca4",
+      "after_sha256": "45239e733549fae9ccb8ef38dd036cbe51207ad28ab4232fa9d3155614172ca4"
+    },
+    "partial_dependence/tables/pdp_elevation.csv": {
+      "before_sha256": "ce765e9d700260cd41f12e2da39667532c37ce06310c30de56fa89b695653c6f",
+      "after_sha256": "ce765e9d700260cd41f12e2da39667532c37ce06310c30de56fa89b695653c6f"
+    },
+    "partial_dependence/tables/histogram_elevation.csv": {
+      "before_sha256": "e4a30b1feea028e93da8f632e3f84f1e47fbc6ab7853ccc70bf9ea1ce9c6eb94",
+      "after_sha256": "e4a30b1feea028e93da8f632e3f84f1e47fbc6ab7853ccc70bf9ea1ce9c6eb94"
+    },
+    "partial_dependence/tables/degurba.csv": {
+      "before_sha256": "73e01b956d249ff7fb80afbad503dc4b0dba556b587afecf7171052792643d2d",
+      "after_sha256": "73e01b956d249ff7fb80afbad503dc4b0dba556b587afecf7171052792643d2d"
+    },
+    "partial_dependence/tables/degurba_sources.csv": {
+      "before_sha256": "94a126737f529f2a3537a8bd5c2652d01265006383187e042b041a350d3f60a5",
+      "after_sha256": "94a126737f529f2a3537a8bd5c2652d01265006383187e042b041a350d3f60a5"
+    },
+    "partial_dependence/tables/degurba_coverage.csv": {
+      "before_sha256": "f0387dbb5be46eb3a45212ed8ed3b55ffe67594ae755068f7336d40671eecad9",
+      "after_sha256": "f0387dbb5be46eb3a45212ed8ed3b55ffe67594ae755068f7336d40671eecad9"
+    },
+    "interactions/elevation_by_dist_to_sea_km.png": {
+      "before_sha256": "5a274abad26c35b0ee92598d7b1f4b0e6c5fabb7628413e69431baa084b0ac05",
+      "after_sha256": "5a274abad26c35b0ee92598d7b1f4b0e6c5fabb7628413e69431baa084b0ac05"
+    },
+    "interactions/elevation_by_dist_to_sea_km.pdf": {
+      "before_sha256": "6d01b626fbb2e0fe761893dab7db669a53e1c0187010139fa512d3588eb96717",
+      "after_sha256": "6d01b626fbb2e0fe761893dab7db669a53e1c0187010139fa512d3588eb96717"
+    },
+    "interactions/distance_by_degurba.png": {
+      "before_sha256": "d52c15f2b76f3961b1c8438321616c0d70820a98d1aaf91051890f1cbe33209e",
+      "after_sha256": "d52c15f2b76f3961b1c8438321616c0d70820a98d1aaf91051890f1cbe33209e"
+    },
+    "interactions/distance_by_degurba.pdf": {
+      "before_sha256": "af190445f7b77819a4f1fb401ebb3b755e4ca4e15ce5faa05cc47e43ddb54598",
+      "after_sha256": "af190445f7b77819a4f1fb401ebb3b755e4ca4e15ce5faa05cc47e43ddb54598"
+    },
+    "interactions/interactions.png": {
+      "before_sha256": "e9a26a9d73a0e7f226362c686ba8bc46c35a20d3a9a13c55d3fb704684099d47",
+      "after_sha256": "e9a26a9d73a0e7f226362c686ba8bc46c35a20d3a9a13c55d3fb704684099d47"
+    },
+    "interactions/interactions.pdf": {
+      "before_sha256": "bfb5a5e8980b2793f003a83762cc6874bb970c365b9634521785c8bbf93b92b0",
+      "after_sha256": "bfb5a5e8980b2793f003a83762cc6874bb970c365b9634521785c8bbf93b92b0"
+    },
+    "interactions/manifest.json": {
+      "before_sha256": "7de2f7a5328d1f820d45601e2ee24dce93eb55d05b72fc371312ac4c5f7fd795",
+      "after_sha256": "7de2f7a5328d1f820d45601e2ee24dce93eb55d05b72fc371312ac4c5f7fd795"
+    },
+    "interactions/elevation_by_dist_to_sea_km.svg": {
+      "before_sha256": "5d2c7da7405dab771c0a82326e3073ce916e5f9895f02a21e588ee8cae647697",
+      "after_sha256": "5d2c7da7405dab771c0a82326e3073ce916e5f9895f02a21e588ee8cae647697"
+    },
+    "interactions/distance_by_degurba.svg": {
+      "before_sha256": "28cfabb83481bce39c2a43c3edcc6d0289047357b12362d5435ce3844831d663",
+      "after_sha256": "28cfabb83481bce39c2a43c3edcc6d0289047357b12362d5435ce3844831d663"
+    },
+    "interactions/interactions.svg": {
+      "before_sha256": "b198dee61f95fe660513af6c601982cf38232c8bdf0882d8fdf6feda1b56fd29",
+      "after_sha256": "b198dee61f95fe660513af6c601982cf38232c8bdf0882d8fdf6feda1b56fd29"
+    },
+    "interactions/tables/elevation_by_dist_to_sea_km.csv": {
+      "before_sha256": "03a5b6953fda39beafba63a81035e38528fb99aa7636b00f1d13864c87d01eee",
+      "after_sha256": "03a5b6953fda39beafba63a81035e38528fb99aa7636b00f1d13864c87d01eee"
+    },
+    "interactions/tables/elevation_by_dist_to_sea_km_hist_x.csv": {
+      "before_sha256": "4583a864f53b372465d2672f8495d2c5f3b505d54f40cb2cee7886d72878e99f",
+      "after_sha256": "4583a864f53b372465d2672f8495d2c5f3b505d54f40cb2cee7886d72878e99f"
+    },
+    "interactions/tables/elevation_by_dist_to_sea_km_hist_y.csv": {
+      "before_sha256": "3e058b0f6f9083ec3df4159734fe077ee1efed8c4fe9559bfcb3ea6ca46ed502",
+      "after_sha256": "3e058b0f6f9083ec3df4159734fe077ee1efed8c4fe9559bfcb3ea6ca46ed502"
+    },
+    "interactions/tables/distance_by_degurba.csv": {
+      "before_sha256": "eb2665157406a75163aec675a296c4d1bbecbaab1a42f0442fc7cd0cebe8be18",
+      "after_sha256": "eb2665157406a75163aec675a296c4d1bbecbaab1a42f0442fc7cd0cebe8be18"
+    },
+    "interactions/tables/distance_by_degurba_hist_x.csv": {
+      "before_sha256": "710aad436222b8c0de125eed1dab917199fcd5e35f847b7f147cd8519993a87d",
+      "after_sha256": "710aad436222b8c0de125eed1dab917199fcd5e35f847b7f147cd8519993a87d"
+    },
+    "interactions/tables/distance_by_degurba_hist_y.csv": {
+      "before_sha256": "ccb7f9c7ca11e4f1a032aaee77e74906da2dc342877493b949562b4a61e48147",
+      "after_sha256": "ccb7f9c7ca11e4f1a032aaee77e74906da2dc342877493b949562b4a61e48147"
+    },
+    "numerical_analysis/restyle_manifest.json": {
+      "before_sha256": "f6fa067b9e7453312f1dd9cc5ef3b022ea94be5a2793ae707024046b87d20d06",
+      "after_sha256": "11fededccc5fc26d8f777ca66f1955a1513138a12907ebfd41b0f911b4bac859"
+    },
+    "numerical_analysis/descriptive/sample.png": {
+      "before_sha256": "7115b6e1600d1af2f042dad1cdf68620a9a2ad2731a2c68485e57eb998fef4d0",
+      "after_sha256": "7115b6e1600d1af2f042dad1cdf68620a9a2ad2731a2c68485e57eb998fef4d0"
+    },
+    "numerical_analysis/descriptive/sample.pdf": {
+      "before_sha256": "1c84df79caa192b1265c76c134546824ec5d26215d4c5777dbd18d1bf4b96f71",
+      "after_sha256": "1c84df79caa192b1265c76c134546824ec5d26215d4c5777dbd18d1bf4b96f71"
+    },
+    "numerical_analysis/descriptive/results.json": {
+      "before_sha256": "ef255d4df705b5253ea6eadfe5ba3b264002fd885528f79eaf6a6944b8e0aca4",
+      "after_sha256": "b9a0bd99794401881117b5476aecf0f6eaef4bb35ec2fed2b4c9077467aa33a6"
+    },
+    "numerical_analysis/descriptive/manifest.json": {
+      "before_sha256": "52331eafab96f3c063f5049dce79444be518ff66df47214a70a62fcebff69a2c",
+      "after_sha256": "653d52e0ec62caad6f79e9c727163b7a910d244f7dc8a22a388a0605d0ed4eb8"
+    },
+    "numerical_analysis/descriptive/sample.svg": {
+      "before_sha256": "7350d4b99c91fa62921790651932eb527af1386dc8f620ec049d7a1610aa1473",
+      "after_sha256": "7350d4b99c91fa62921790651932eb527af1386dc8f620ec049d7a1610aa1473"
+    },
+    "numerical_analysis/descriptive/tables/continuous.csv": {
+      "before_sha256": "344fc1dd3b4c3aa3fdd406a84bc31c0aa49728595c4b0f705c102cda50c8a725",
+      "after_sha256": "344fc1dd3b4c3aa3fdd406a84bc31c0aa49728595c4b0f705c102cda50c8a725"
+    },
+    "numerical_analysis/descriptive/tables/countries.csv": {
+      "before_sha256": "d93d5acba06fea65ffefec9a3b5d316d08c74ff22a9b431cf0aa9817f7923bff",
+      "after_sha256": "d93d5acba06fea65ffefec9a3b5d316d08c74ff22a9b431cf0aa9817f7923bff"
+    },
+    "numerical_analysis/descriptive/tables/degurba.csv": {
+      "before_sha256": "670e503fdf0fe0e5d735357eb5f6e0fffdaca2af3648b60cf6490d650fcafe04",
+      "after_sha256": "670e503fdf0fe0e5d735357eb5f6e0fffdaca2af3648b60cf6490d650fcafe04"
+    },
+    "numerical_analysis/descriptive/tables/by_year.csv": {
+      "before_sha256": "5fa9fba74dfc4944e05c1873c03dab5ab51515b2db9f3db5cf7543be58340716",
+      "after_sha256": "5fa9fba74dfc4944e05c1873c03dab5ab51515b2db9f3db5cf7543be58340716"
+    },
+    "numerical_analysis/descriptive/tables/residual_histogram.csv": {
+      "before_sha256": "c57b4490cd868ae3ac281c6b4cd931af627d4dfd2cef040f90e20564aca99381",
+      "after_sha256": "c57b4490cd868ae3ac281c6b4cd931af627d4dfd2cef040f90e20564aca99381"
+    },
+    "numerical_analysis/heat_excess/heat_excess_by_year.png": {
+      "before_sha256": "34f0933daf7b6a6e87e6f881bb85ebf99f3aa84b21923f3a6f3fe3d5ed8fbc7f",
+      "after_sha256": "34f0933daf7b6a6e87e6f881bb85ebf99f3aa84b21923f3a6f3fe3d5ed8fbc7f"
+    },
+    "numerical_analysis/heat_excess/heat_excess_by_year.pdf": {
+      "before_sha256": "a17dc402225b361575adc487bfe291b23023fa991d79b8eb5bd162372f75f5d1",
+      "after_sha256": "a17dc402225b361575adc487bfe291b23023fa991d79b8eb5bd162372f75f5d1"
+    },
+    "numerical_analysis/heat_excess/results.json": {
+      "before_sha256": "8812a5830d327dffac5e7b7072f24b3d8813c03caa6349b17fb4cf70b4295fb8",
+      "after_sha256": "82fbce43852bbc976adf6e285c9fcb18ff26745ed7cb1e6ba361fa6a0523bbc3"
+    },
+    "numerical_analysis/heat_excess/manifest.json": {
+      "before_sha256": "d73fd97375adda41ca92739df46be24b6c1c0ba15dedd69004c6595bfd921a5b",
+      "after_sha256": "4343342e7044515fad68ec3d874d02df57305cff9eb992740b4b252a50245455"
+    },
+    "numerical_analysis/heat_excess/heat_excess_by_year.svg": {
+      "before_sha256": "6742fd00a73163375759e3834f279537d0119ad2ad863ce634515b10d0d7e0bf",
+      "after_sha256": "6742fd00a73163375759e3834f279537d0119ad2ad863ce634515b10d0d7e0bf"
+    },
+    "numerical_analysis/heat_excess/tables/by_year.csv": {
+      "before_sha256": "8791ff64759da5b0ba87388820016fef7278ddcc1283d43eab27d59d4991b24d",
+      "after_sha256": "8791ff64759da5b0ba87388820016fef7278ddcc1283d43eab27d59d4991b24d"
+    },
+    "numerical_analysis/heat_excess/tables/summary.csv": {
+      "before_sha256": "d26eb3daa2667f880046f31f2b33995711b23d1efbde05d10d3324e8697e0126",
+      "after_sha256": "d26eb3daa2667f880046f31f2b33995711b23d1efbde05d10d3324e8697e0126"
+    },
+    "numerical_analysis/heatwaves/heatwave_ratios.png": {
+      "before_sha256": "b2baad8f983a63a30c7e38d534e06a437118d2eece599327b052f9a9e72c4b31",
+      "after_sha256": "b2baad8f983a63a30c7e38d534e06a437118d2eece599327b052f9a9e72c4b31"
+    },
+    "numerical_analysis/heatwaves/heatwave_ratios.pdf": {
+      "before_sha256": "d6896f01e958312649293e8dd206362b30b1c0d5595ef91e1a0f5c5391114051",
+      "after_sha256": "d6896f01e958312649293e8dd206362b30b1c0d5595ef91e1a0f5c5391114051"
+    },
+    "numerical_analysis/heatwaves/results.json": {
+      "before_sha256": "497093f12783c3577b30a3d397a833601617584f2aabf4f935daeb9d966a71c2",
+      "after_sha256": "20e9498b880d9e44d05414710c172aad19413eb40e634754e08cadf1ac623865"
+    },
+    "numerical_analysis/heatwaves/manifest.json": {
+      "before_sha256": "5f8a784374c58a8cc58b780f030663f2484a7f1de268a4e9a410b3fc29d2ab04",
+      "after_sha256": "c07597acd8751c3f45b6fb3b1c6b80b21fcfaa9065baa14fbc5a14cb7c59f79d"
+    },
+    "numerical_analysis/heatwaves/heatwave_ratios.svg": {
+      "before_sha256": "d690a394ddcc0bf6930f42b7b2ee6bcba26ae8892bb2935798f7b8d47153c394",
+      "after_sha256": "d690a394ddcc0bf6930f42b7b2ee6bcba26ae8892bb2935798f7b8d47153c394"
+    },
+    "numerical_analysis/heatwaves/tables/ratios.csv": {
+      "before_sha256": "a9c07a807f6cd45d203ae34f45d76bfce70d6e510250702d9d1d69fd841d58da",
+      "after_sha256": "a9c07a807f6cd45d203ae34f45d76bfce70d6e510250702d9d1d69fd841d58da"
+    },
+    "numerical_analysis/heatwaves/tables/source_counts.csv": {
+      "before_sha256": "367279dd39d28ab4d3d3ccacd97ea3ee8755a9004b4ae171c30a246d0f3ebb22",
+      "after_sha256": "367279dd39d28ab4d3d3ccacd97ea3ee8755a9004b4ae171c30a246d0f3ebb22"
+    },
+    "numerical_analysis/geographic_deciles/sources_per_decile.png": {
+      "before_sha256": "7d293a1e88d4969a39675e88403a05f2af0d77706ab8bc190ee2ad74eebac28b",
+      "after_sha256": "7d293a1e88d4969a39675e88403a05f2af0d77706ab8bc190ee2ad74eebac28b"
+    },
+    "numerical_analysis/geographic_deciles/sources_per_decile.pdf": {
+      "before_sha256": "49c182631532aa4760bb9db9cf2a94015ecb16d60fb0b643b1169799517bcf41",
+      "after_sha256": "49c182631532aa4760bb9db9cf2a94015ecb16d60fb0b643b1169799517bcf41"
+    },
+    "numerical_analysis/geographic_deciles/results.json": {
+      "before_sha256": "33f6d43fb93515885d4ce9221c365ba936bbb119a5aba4ce9e95f2dd0120b5a5",
+      "after_sha256": "48f7f8f8c8e8b259a6197932d5a623bb3b75812613381cefb912059e3f467698"
+    },
+    "numerical_analysis/geographic_deciles/manifest.json": {
+      "before_sha256": "fc0acff563ec2e1b0b3d0af5c88983982a50777d99cc1908cfc5f505af9bb615",
+      "after_sha256": "93024ea3a9723b3fd9954a4d943bc6b98d572ab2826a56445b82d5ea55b0dbd1"
+    },
+    "numerical_analysis/geographic_deciles/sources_per_decile.svg": {
+      "before_sha256": "5ae304d0d1b7fce6b2606d96336128c33c0bb04f46f47c7dc1fb04eae756e09a",
+      "after_sha256": "5ae304d0d1b7fce6b2606d96336128c33c0bb04f46f47c7dc1fb04eae756e09a"
+    },
+    "numerical_analysis/geographic_deciles/tables/dist_to_sea_km.csv": {
+      "before_sha256": "5bae29789bba368b360e87e208fd2144afd37acd09348ff08c7e63358b3f9362",
+      "after_sha256": "5bae29789bba368b360e87e208fd2144afd37acd09348ff08c7e63358b3f9362"
+    },
+    "numerical_analysis/geographic_deciles/tables/elevation.csv": {
+      "before_sha256": "65d954f6bb0af040103e85e2b26aa53d84f5fccab8982cf0d56224d195ca0fb3",
+      "after_sha256": "65d954f6bb0af040103e85e2b26aa53d84f5fccab8982cf0d56224d195ca0fb3"
+    },
+    "numerical_analysis/ndvi_sensitivity/observed_vs_carry_forward.png": {
+      "before_sha256": "85602814ce482da88c37720cfb92e50f3bdbb2ee96028ca6b6f5113b21eea987",
+      "after_sha256": "85602814ce482da88c37720cfb92e50f3bdbb2ee96028ca6b6f5113b21eea987"
+    },
+    "numerical_analysis/ndvi_sensitivity/observed_vs_carry_forward.pdf": {
+      "before_sha256": "75d3a092eed078034687ae541b69ea3389e2b368d95c982226eebaf46390a403",
+      "after_sha256": "75d3a092eed078034687ae541b69ea3389e2b368d95c982226eebaf46390a403"
+    },
+    "numerical_analysis/ndvi_sensitivity/results.json": {
+      "before_sha256": "619a8a592f275715834a42462d29425cea45ed75d0907b8187c6314c568ff44d",
+      "after_sha256": "6308ed08e112e9c2079b517044963b2f1328fe245b4913c86163939c1c2e4050"
+    },
+    "numerical_analysis/ndvi_sensitivity/manifest.json": {
+      "before_sha256": "90853f864cf6ac2af005b8e3bcdc508fb82266113b8e49e0c3d2eb345a5040f9",
+      "after_sha256": "6eb7504eb598429b0f3318df4d70902bac5966742e38f21256fe0742c24e77a4"
+    },
+    "numerical_analysis/ndvi_sensitivity/observed_vs_carry_forward.svg": {
+      "before_sha256": "c44d7b26def6999d3db5e09d1f2b499caf3f661e214a3aad8dd9717e0edcf303",
+      "after_sha256": "c44d7b26def6999d3db5e09d1f2b499caf3f661e214a3aad8dd9717e0edcf303"
+    },
+    "numerical_analysis/ndvi_sensitivity/tables/all_available.csv": {
+      "before_sha256": "59028a07a94daac967b6302636aec08cfd5f8f2148ad414bf61c171db56bf685",
+      "after_sha256": "59028a07a94daac967b6302636aec08cfd5f8f2148ad414bf61c171db56bf685"
+    },
+    "numerical_analysis/ndvi_sensitivity/tables/observed_only.csv": {
+      "before_sha256": "7a65e8c4245c031df513921641d9ed847357bc3c9c818c053562708397d651ad",
+      "after_sha256": "7a65e8c4245c031df513921641d9ed847357bc3c9c818c053562708397d651ad"
+    },
+    "numerical_analysis/ndvi_sensitivity/tables/wald_tests.csv": {
+      "before_sha256": "755267cffe5ef18a0ecf5801501e8f26e33be617781f144ccf912ac85a648636",
+      "after_sha256": "755267cffe5ef18a0ecf5801501e8f26e33be617781f144ccf912ac85a648636"
+    },
+    "numerical_analysis/relative_elevation/neighbour_elevation_residual.png": {
+      "before_sha256": "4abbc8156f1e07d54784faf801d8e21cb035a6b7232372c23682b9f1c427754d",
+      "after_sha256": "4abbc8156f1e07d54784faf801d8e21cb035a6b7232372c23682b9f1c427754d"
+    },
+    "numerical_analysis/relative_elevation/neighbour_elevation_residual.pdf": {
+      "before_sha256": "590959c806d41c4b278dd7a54e3367076fd2bb373d4777533c9c159a9b226c68",
+      "after_sha256": "590959c806d41c4b278dd7a54e3367076fd2bb373d4777533c9c159a9b226c68"
+    },
+    "numerical_analysis/relative_elevation/results.json": {
+      "before_sha256": "b75a07b330cf70c4e4e295fae84c4a6d19adbb5baea152d3aa28a71c45263dbf",
+      "after_sha256": "deb5cca16ecf7b20176421de1c3bc64cb681d37a137c3f0713af24f840b40a5e"
+    },
+    "numerical_analysis/relative_elevation/manifest.json": {
+      "before_sha256": "e4b916e62377050c4bdb41b93a325ed109847fcf13de4afa695b31ef0b3c21d5",
+      "after_sha256": "d14e759e58a6d5d26033b39e4803ba05b018a1efc8e168ba6081ca32d92fd739"
+    },
+    "numerical_analysis/relative_elevation/neighbour_elevation_residual.svg": {
+      "before_sha256": "b983aba560d1488edd91df7dbff44bf10ecff3776c44d28212d7e293507a59a5",
+      "after_sha256": "b983aba560d1488edd91df7dbff44bf10ecff3776c44d28212d7e293507a59a5"
+    },
+    "numerical_analysis/relative_elevation/tables/sources.csv": {
+      "before_sha256": "c55e6752acdf1548228e9815e2a4514319aaf4a24fcf8ce8d95f25359ef690f6",
+      "after_sha256": "c55e6752acdf1548228e9815e2a4514319aaf4a24fcf8ce8d95f25359ef690f6"
+    },
+    "numerical_analysis/relative_elevation/tables/elevation_bands.csv": {
+      "before_sha256": "f1df47b1a9f45b8a4c71d986763f567e3c13fd6ffe438f6bbd020e78cf85cf69",
+      "after_sha256": "f1df47b1a9f45b8a4c71d986763f567e3c13fd6ffe438f6bbd020e78cf85cf69"
+    },
+    "numerical_analysis/fixed_effects/within_source_month.png": {
+      "before_sha256": "4db7441571df658c78dd3c8c7781f2659e1005a14fddfe6b73d316e3021690f8",
+      "after_sha256": "4db7441571df658c78dd3c8c7781f2659e1005a14fddfe6b73d316e3021690f8"
+    },
+    "numerical_analysis/fixed_effects/within_source_month.pdf": {
+      "before_sha256": "d99e029fa2d90d0b3cc016c86f77e6133620f426e11a54fd187791d13f297c79",
+      "after_sha256": "d99e029fa2d90d0b3cc016c86f77e6133620f426e11a54fd187791d13f297c79"
+    },
+    "numerical_analysis/fixed_effects/results.json": {
+      "before_sha256": "9111150abd4777de657edd7c49af77b64e39c590734e6d9b8dc5915684be76b1",
+      "after_sha256": "fc8b1346a3d8d72d36cf1141e8a1ede70cb7ec7e1b95abc08a85c88bb2639a2a"
+    },
+    "numerical_analysis/fixed_effects/manifest.json": {
+      "before_sha256": "a385e36cdc3e3a9482fe8870b2176f1ced43450705b98c0b490cf7ac1c10018e",
+      "after_sha256": "fba283184f61688d7ba11d8dbe56f6b52159c6a548e26e78564373cc31d9e606"
+    },
+    "numerical_analysis/fixed_effects/within_source_month.svg": {
+      "before_sha256": "c306a88a1912560a8bf54a947b9017986eee2136a2f6d883857e265011f45161",
+      "after_sha256": "c306a88a1912560a8bf54a947b9017986eee2136a2f6d883857e265011f45161"
+    },
+    "numerical_analysis/fixed_effects/tables/station_celsius_raw.csv": {
+      "before_sha256": "219fc4fef1a4d84493530dec7fe3116d91d0cb471408f00091dd4b63a23621c3",
+      "after_sha256": "219fc4fef1a4d84493530dec7fe3116d91d0cb471408f00091dd4b63a23621c3"
+    },
+    "numerical_analysis/fixed_effects/tables/station_celsius_within.csv": {
+      "before_sha256": "4dc1fc69562ba484da678fbc1f134567aa17a2770528a4075b34f1ad5d6f266b",
+      "after_sha256": "4dc1fc69562ba484da678fbc1f134567aa17a2770528a4075b34f1ad5d6f266b"
+    },
+    "numerical_analysis/fixed_effects/tables/era5_celsius_raw.csv": {
+      "before_sha256": "10452a5c9b46f0fe5fc4f7124a7fec853b4f53cf6af1c86e686bc4c292a73ec1",
+      "after_sha256": "10452a5c9b46f0fe5fc4f7124a7fec853b4f53cf6af1c86e686bc4c292a73ec1"
+    },
+    "numerical_analysis/fixed_effects/tables/era5_celsius_within.csv": {
+      "before_sha256": "840c13b98bf871a90b1fd4eb51a612518535a17058939009b8eeb1cb3d271f3f",
+      "after_sha256": "840c13b98bf871a90b1fd4eb51a612518535a17058939009b8eeb1cb3d271f3f"
+    },
+    "numerical_analysis/fixed_effects/tables/midpoint_raw.csv": {
+      "before_sha256": "3384e8280dc89cee46b0ae46e79b80894194e896d0a4aed65b715c87e03130f2",
+      "after_sha256": "3384e8280dc89cee46b0ae46e79b80894194e896d0a4aed65b715c87e03130f2"
+    },
+    "numerical_analysis/fixed_effects/tables/midpoint_within.csv": {
+      "before_sha256": "0ce66b6ac398004c52f831cf22150367d22a8ef8ab8890f2fe4d24a15cd24745",
+      "after_sha256": "0ce66b6ac398004c52f831cf22150367d22a8ef8ab8890f2fe4d24a15cd24745"
+    },
+    "numerical_analysis/fixed_effects/tables/era5_celsius_raw_reference.csv": {
+      "before_sha256": "a78b3aa5bcbec5730f3b373e7689cdced87859d8f8f8d4b4a3778c0115145d3a",
+      "after_sha256": "a78b3aa5bcbec5730f3b373e7689cdced87859d8f8f8d4b4a3778c0115145d3a"
+    },
+    "numerical_analysis/fixed_effects/tables/era5_celsius_within_reference.csv": {
+      "before_sha256": "3e37a1eb00420e2c22ed7943c1875484c2261b2fb13945963e0ae98bf2d5c449",
+      "after_sha256": "3e37a1eb00420e2c22ed7943c1875484c2261b2fb13945963e0ae98bf2d5c449"
+    },
+    "numerical_analysis/fixed_effects/tables/midpoint_raw_reference.csv": {
+      "before_sha256": "08fbb7445d4e455f3e02f4ee0838d8e9e48398d860292e6783f5bf33d1ae9102",
+      "after_sha256": "08fbb7445d4e455f3e02f4ee0838d8e9e48398d860292e6783f5bf33d1ae9102"
+    },
+    "numerical_analysis/fixed_effects/tables/midpoint_within_reference.csv": {
+      "before_sha256": "356b147cea8f96a87038a75e6b21fe7dc5e03b6e6b096a4848fe40ac2407de1f",
+      "after_sha256": "356b147cea8f96a87038a75e6b21fe7dc5e03b6e6b096a4848fe40ac2407de1f"
+    },
+    "numerical_analysis/utc_windows/window_means.png": {
+      "before_sha256": "85839a9b2d5d4198f494ca0811b29564479e310357c2894670c5a29ba5bd5eea",
+      "after_sha256": "85839a9b2d5d4198f494ca0811b29564479e310357c2894670c5a29ba5bd5eea"
+    },
+    "numerical_analysis/utc_windows/window_means.pdf": {
+      "before_sha256": "ecc8c034103e3cd310a6188f077b6f92d9c29deb6bcf9459caf392104a08610e",
+      "after_sha256": "ecc8c034103e3cd310a6188f077b6f92d9c29deb6bcf9459caf392104a08610e"
+    },
+    "numerical_analysis/utc_windows/utc_profiles.png": {
+      "before_sha256": "dfe014e934c73413323fdf860a0ce225fbe2a82fa84d0be63937205f1fc8df8a",
+      "after_sha256": "dfe014e934c73413323fdf860a0ce225fbe2a82fa84d0be63937205f1fc8df8a"
+    },
+    "numerical_analysis/utc_windows/utc_profiles.pdf": {
+      "before_sha256": "f33d4c62f2e4683ffd1681015681f9ec73d5c067714f080b08f8240d9fa1a1b9",
+      "after_sha256": "f33d4c62f2e4683ffd1681015681f9ec73d5c067714f080b08f8240d9fa1a1b9"
+    },
+    "numerical_analysis/utc_windows/results.json": {
+      "before_sha256": "30aebd2f669419d9531d7cc2b226cb8d650c04877b9e532d8272294674689366",
+      "after_sha256": "9bdd458c308e7848ed422a3d3c24b930659cc3d76ec25a14ab48ebcd41652e21"
+    },
+    "numerical_analysis/utc_windows/manifest.json": {
+      "before_sha256": "a2cd3672cb7563d55f30b8b49486513f5e9a8aa5ecf6c97f4b5296cb17309308",
+      "after_sha256": "adb32802c844bfbfa314bb98b934e073b3fe804bcfb8ec5d274493b7eb88e963"
+    },
+    "numerical_analysis/utc_windows/window_means.svg": {
+      "before_sha256": "7c796cd7d12cb670384a9962fa5c637542e478231e5145ef2773e69bf15ec0a5",
+      "after_sha256": "7c796cd7d12cb670384a9962fa5c637542e478231e5145ef2773e69bf15ec0a5"
+    },
+    "numerical_analysis/utc_windows/utc_profiles.svg": {
+      "before_sha256": "1a6eba45d9b1e0328b748637a1f0936183a97f8f7afbfd0b2a06ed40bdeda7c9",
+      "after_sha256": "1a6eba45d9b1e0328b748637a1f0936183a97f8f7afbfd0b2a06ed40bdeda7c9"
+    },
+    "numerical_analysis/utc_windows/window_bootstrap_means.png": {
+      "before_sha256": "0982aba0db02d19303364d07055ff4c52cf53abb427a734a0cf425d729588ba8",
+      "after_sha256": "0982aba0db02d19303364d07055ff4c52cf53abb427a734a0cf425d729588ba8"
+    },
+    "numerical_analysis/utc_windows/window_bootstrap_means.pdf": {
+      "before_sha256": "c2f81b9ff85e6a0455bdc493f36926eedce5713eb552c23c92dce55e9731df6c",
+      "after_sha256": "c2f81b9ff85e6a0455bdc493f36926eedce5713eb552c23c92dce55e9731df6c"
+    },
+    "numerical_analysis/utc_windows/window_bootstrap_means.svg": {
+      "before_sha256": "933728b853ea69e8fd70805deadd2bc88c34fc148d372f8af812c635352504f4",
+      "after_sha256": "933728b853ea69e8fd70805deadd2bc88c34fc148d372f8af812c635352504f4"
+    },
+    "numerical_analysis/utc_windows/bootstrap_mean_manifest.json": {
+      "before_sha256": "f05e6ffb86e92a728598aad69269b050011171bf1b483d90273fc6cb26f1c73e",
+      "after_sha256": "bf96e95418a8b3379ce8b6e5a88edd99de339b655b4994ada5c2a64859d2aa22"
+    },
+    "numerical_analysis/utc_windows/tables/summary.csv": {
+      "before_sha256": "6d1cb4c5798a200b52430c273638a23c5d9bcda869ab677dc0d20e2b740bd1ae",
+      "after_sha256": "6d1cb4c5798a200b52430c273638a23c5d9bcda869ab677dc0d20e2b740bd1ae"
+    },
+    "numerical_analysis/utc_windows/tables/windows.csv": {
+      "before_sha256": "b7b7f4eae0319762c32d89fcf8d68bd9ced1e4052ef59e48f96c5f5bdd542355",
+      "after_sha256": "b7b7f4eae0319762c32d89fcf8d68bd9ced1e4052ef59e48f96c5f5bdd542355"
+    },
+    "numerical_analysis/utc_windows/tables/full_station_celsius.csv": {
+      "before_sha256": "08b0f3ee96666cf49c5e521e7607859ab27171105ba54e41470f903146da1537",
+      "after_sha256": "08b0f3ee96666cf49c5e521e7607859ab27171105ba54e41470f903146da1537"
+    },
+    "numerical_analysis/utc_windows/tables/full_ndvi.csv": {
+      "before_sha256": "59028a07a94daac967b6302636aec08cfd5f8f2148ad414bf61c171db56bf685",
+      "after_sha256": "59028a07a94daac967b6302636aec08cfd5f8f2148ad414bf61c171db56bf685"
+    },
+    "numerical_analysis/utc_windows/tables/full_dist_to_sea_km.csv": {
+      "before_sha256": "a56a8dd7978c670993df7dd2691d7560942eccb86d945cfb96963b671212406e",
+      "after_sha256": "a56a8dd7978c670993df7dd2691d7560942eccb86d945cfb96963b671212406e"
+    },
+    "numerical_analysis/utc_windows/tables/full_elevation.csv": {
+      "before_sha256": "353d77784fec9d6deef64761dde26746f9544721be8e9c2d169914c8a65748ae",
+      "after_sha256": "353d77784fec9d6deef64761dde26746f9544721be8e9c2d169914c8a65748ae"
+    },
+    "numerical_analysis/utc_windows/tables/utc_midnight_station_celsius.csv": {
+      "before_sha256": "5e1b00e2d5405e1773c28213e0b03520451b55e7b2dfc9ffb0f2e36353585154",
+      "after_sha256": "5e1b00e2d5405e1773c28213e0b03520451b55e7b2dfc9ffb0f2e36353585154"
+    },
+    "numerical_analysis/utc_windows/tables/utc_midnight_ndvi.csv": {
+      "before_sha256": "e14ef9bd10a5438c6afeafbbdb07a81a61cd354661c0375fcf890668e0017a73",
+      "after_sha256": "e14ef9bd10a5438c6afeafbbdb07a81a61cd354661c0375fcf890668e0017a73"
+    },
+    "numerical_analysis/utc_windows/tables/utc_midnight_dist_to_sea_km.csv": {
+      "before_sha256": "ac3164bf122a842ee570a677002dd6135b2d43b9e40eeb6b4edd219fbe59e52f",
+      "after_sha256": "ac3164bf122a842ee570a677002dd6135b2d43b9e40eeb6b4edd219fbe59e52f"
+    },
+    "numerical_analysis/utc_windows/tables/utc_midnight_elevation.csv": {
+      "before_sha256": "6dc35d7d1cb81303b726eb79e5ffdb4237ae650b232328cc39289fefb691622c",
+      "after_sha256": "6dc35d7d1cb81303b726eb79e5ffdb4237ae650b232328cc39289fefb691622c"
+    },
+    "numerical_analysis/utc_windows/tables/utc_degurba.csv": {
+      "before_sha256": "22f3b79f652010f06b00cb802c919144bc757109bac2abf51f5d8bcb5d430772",
+      "after_sha256": "22f3b79f652010f06b00cb802c919144bc757109bac2abf51f5d8bcb5d430772"
+    },
+    "numerical_analysis/utc_windows/tables/bootstrap_mean_draws.csv": {
+      "before_sha256": "a8ba49de15aeebf89bddf72f883cac878cb2a57200ab88a376304039e6a6e068",
+      "after_sha256": "a8ba49de15aeebf89bddf72f883cac878cb2a57200ab88a376304039e6a6e068"
+    },
+    "numerical_analysis/utc_windows/tables/bootstrap_mean_quantiles.csv": {
+      "before_sha256": "7068880216315a571508997f1f4d767c4937c5d6425344194d141fd09de509c5",
+      "after_sha256": "7068880216315a571508997f1f4d767c4937c5d6425344194d141fd09de509c5"
+    }
+  },
+  "metadata_outside_figures": {
+    "notes/assets/degurba_manifest.json": {
+      "before_sha256": "a30883314ac66219c3b3abedd5c45005c9baa72b69226a1a176fac9bcc92c6cc",
+      "after_sha256": "e8f9a6626de172b8177111ed7fc859183da328f68ec95c5752926ec7d230c233"
+    }
+  },
+  "migration_code_sha256": "3d511afc89b433998e4c04019ce761dbe8c574715c41e7b1023f4e8500b17cf6"
+}

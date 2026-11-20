@@ -3,17 +3,16 @@
 `paper.tex` is the working draft. Its numerical text, selected PDFs, table snapshots
 and `processing_review.json` describe the earlier release and have not yet been
 reconciled with `data2/station_era5_clean.parquet`. Current results are in
-[the numerical note](../notes/NUMERICAL_ANALYSIS.md).
+[the results index](../figures/analysis/README.md). The numerical note remains an
+older partial write-up.
 
-After the queued weather and numerical rerun:
+After the queued weather and numerical rerun, use the current PDFs and CSV source
+tables under `figures/analysis/` to reconcile the draft's prose, counts and
+interpretations. Export `py.scripts.plot_station_map` for the current source
+locations. Manuscript copying and table-export code are archived outside the
+retained preprocessing/figure source scope; see [notes/CLEANUP.md](../notes/CLEANUP.md).
 
-1. Export `py.scripts.plot_station_map` for the current source locations.
-2. Run `py.scripts.build_paper_tables` and `py.scripts.sync_paper_figures`.
-3. Reconcile the draft's prose, counts and interpretations with those results.
-
-`py.scripts.sync_paper_figures --check` validates the selected sources without
-copying. It requires the completed weather profiles/interactions and current
-station map. The retained `tables/degurba.vl.json` also supplies the approved
+The retained `tables/degurba.vl.json` also supplies the approved
 DEGURBA plotting style; keep it available to `py.scripts.plot_degurba`.
 
 The referenced `downscaling.bib` is missing, so a complete LaTeX build is pending.

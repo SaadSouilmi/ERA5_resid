@@ -1,0 +1,14 @@
+{
+  "analysis": "covariate_tests",
+  "created_utc": "2026-11-20T01:23:05.068754+00:00",
+  "parent_observations": 6726213,
+  "parent_sources": 4458,
+  "summary": {},
+  "method": "Equal residual means across observation-weighted deciles, using the source-clustered sandwich covariance with CR1 finite-sample correction. F test degrees of freedom use contrast covariance rank and G\u22121. P-values are unadjusted for multiple testing; effect ranges are descriptive, not causal effects. Invalid or negative precipitation totals are omitted only from its log profile.",
+  "tables": {
+    "wald_tests": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/covariate_tests/tables/wald_tests.csv",
+      "sha256": "f1c1c82450c8551bdf4a4708f54f484496f7259ceb2045f6afe531c64a84c6b7"
+    }
+  }
+}

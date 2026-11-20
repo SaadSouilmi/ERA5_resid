@@ -92,8 +92,9 @@ queued plotters read the new path.
 
 ## Publication status
 
-The queued weather aggregation and full numerical rerun must finish before current
-weather plots and tables can be exported. The manuscript's existing assets and
+Hourly weather aggregation and all fourteen retained numerical analyses completed
+on 20 November 2026. Current figures and numerical tables are linked in the
+[results index](../figures/analysis/README.md). The manuscript's existing assets and
 numerical prose still describe the earlier release; see [paper/README.md](../paper/README.md).
 No numerical values were refreshed as part of this cleanup.
 

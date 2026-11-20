@@ -7,7 +7,7 @@ import pandas as pd
 import polars as pl
 import xarray as xr
 
-from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
+from py.paths import ANALYSIS_DATA_DIRECTORY as DATA_DIRECTORY
 from py.preprocessing.observation_windows import attach_utc_windows
 from py.preprocessing.save_selected_observations import save_selected_observations, save_window_audits
 from py.preprocessing.station_metadata import attach_source_locations

@@ -10,7 +10,7 @@ import polars as pl
 import shapely
 from pyproj import Geod, Transformer
 
-from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
+from py.paths import ANALYSIS_DATA_DIRECTORY as DATA_DIRECTORY
 from py.preprocessing.match_era5_grid import sha256
 
 SOURCE_KEYS = ["SOUID", "source_lat", "source_lon"]

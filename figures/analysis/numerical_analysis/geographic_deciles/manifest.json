@@ -11,12 +11,13 @@
     "/home2/lobib/gen_hack/data2/station_land_cover.parquet": "fac834689993882de10e8c74a54209be1ad99e87669316671039ec3005e8ecc5"
   },
   "code_sha256": {
-    "/home2/lobib/gen_hack/src/py/analysis_common.py": "12f92324519ad1e3b410354d404cb65f78704847d0d7be8aa5098d3496e811f5",
-    "/home2/lobib/gen_hack/src/py/analysis_geographic_deciles.py": "afcfc2adb9aa4bd4411803d71bc442e1da09031d05c82dc1f4f4f58fdfc95f0e",
+    "/home2/lobib/gen_hack/src/py/analysis_common.py": "aadb60ef26dd7c029987bf62f62fe833abb7bb33c4c2a393fa654a3b6430c96a",
+    "/home2/lobib/gen_hack/src/py/analysis_geographic_deciles.py": "4becdd2e61368babfa5f2f60bc16c2c287b88ae2e4d886538db2790405f8492e",
     "/home2/lobib/gen_hack/src/py/load_data.py": "3cbb598247e81757632926c626058360bcc9088955ded67a0c970a9b376cfe57",
-    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "611557dc64dd723692a8783037108bb703ef82312853fdce8ecf4e19e459ab3f"
+    "/home2/lobib/gen_hack/src/py/scripts/scientific_style.py": "c3e89b7434a17aff0d95b6d6413610bd5cda2de75ef0e8a4aa594b158ddd2d6c",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "71ea7e7756e6b3774fc7fb0477ea4e3f8aea8ffa2f12c427b7b8b7218afd168b"
   },
-  "results_sha256": "48f7f8f8c8e8b259a6197932d5a623bb3b75812613381cefb912059e3f467698",
+  "results_sha256": "f806d2bb49ac510c43529be5090ab3efddcb32ef2e31503f7168ff4d75756675",
   "tables": {
     "dist_to_sea_km": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/geographic_deciles/tables/dist_to_sea_km.csv",

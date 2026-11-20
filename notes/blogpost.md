@@ -96,13 +96,6 @@ temperatures with **both endpoints included**:
 window_start_utc <= valid_time <= window_end_utc
 ```
 
-No one-hour shift is applied to instantaneous temperature. A 24-hour window
-therefore contains **25 samples**. A station's recorded extreme can still occur
-between those hourly samples.
-
-![A 24-hour observation window contains 25 hourly temperature samples,
-including both endpoints][window-diagram]
-
 We use each station's observation coordinates to find the nearest ERA5-Land
 grid point and select the corresponding temperature values.
 
@@ -174,9 +167,6 @@ precipitation, in metres.
 
 [window-coverage]:
   assets/blog/preprocessing_window_coverage.csv
-
-[window-diagram]:
-  assets/observation_window.png
 
 [monthly-coverage]:
   assets/blog/station_era5_monthly_coverage.csv

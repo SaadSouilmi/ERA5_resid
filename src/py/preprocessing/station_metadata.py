@@ -2,7 +2,7 @@
 
 import polars as pl
 
-from py.paths import RawDataDirectory as raw_data_dir
+from py.paths import RAW_DATA_DIRECTORY as raw_data_dir
 
 
 def _decimal_degrees(column):

@@ -9,27 +9,34 @@ from py import analysis_common as common
 
 def plot(tables):
     table = tables["ratios"]
-    common.setup_plotting(whiskers=True)
-    fig, axes = plt.subplots(1, 2, figsize=(8, 3.6), layout="constrained")
+    common.setup_plotting()
+    fig, axes = plt.subplots(1, 2, figsize=(8, 3.6), layout="constrained", sharey=True)
     for index, (ax, measure) in enumerate(zip(axes, ["spells", "days"])):
-        part = table.filter(pl.col("measure") == measure)
+        part = table.filter(pl.col("measure") == measure).sort("threshold_celsius")
         y, low, high = (part[column].to_numpy() for column in ["estimate", "ci_low", "ci_high"])
         positions = np.arange(part.height)
-        ax.errorbar(
+        ax.bar(
             positions,
             y,
-            yerr=np.array([y - low, high - y]),
-            fmt="o",
-            capsize=2,
-            linewidth=0.8,
+            width=0.62,
             color=common.COLORS[index],
-            markerfacecolor="white",
+            edgecolor=common.COLORS[index],
+            linewidth=0.4,
+            yerr=np.array([y - low, high - y]),
+            capsize=2.4,
+            error_kw={"ecolor": "#44524F", "elinewidth": 0.9, "capthick": 0.9},
         )
         common.zero_line(ax, 1)
-        ax.set(xlabel="Hot-day threshold (°C)", ylabel=f"Station / ERA5 {measure} count")
+        ax.set(
+            xlabel="Hot-day threshold (°C)",
+            ylabel="Station / ERA5 count ratio" if index == 0 else "",
+            title="Hot spells" if measure == "spells" else "Days in hot spells",
+            ylim=(0, table["ci_high"].max() * 1.12),
+        )
         ax.set_xticks(positions, part["threshold_celsius"].to_list())
         ax.set_xlim(-0.5, part.height - 0.5)
-    common.save_plot(fig, "heatwaves", "heatwave_ratios", whiskers=True)
+        ax.grid(axis="y", color="#DDE3E1", linewidth=0.5)
+    common.save_plot(fig, "heatwaves", "heatwave_ratios")
 
 
 def count_spells(data, column, threshold):

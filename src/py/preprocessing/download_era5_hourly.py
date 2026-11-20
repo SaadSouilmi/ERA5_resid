@@ -12,8 +12,8 @@ import numpy as np
 import pandas as pd
 import xarray as xr
 
-from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
-from py.paths import RawDataDirectory as RAW_DIRECTORY
+from py.paths import ANALYSIS_DATA_DIRECTORY as DATA_DIRECTORY
+from py.paths import RAW_DATA_DIRECTORY as RAW_DIRECTORY
 from py.preprocessing.match_era5_grid import sha256
 
 DATASET = "reanalysis-era5-land"

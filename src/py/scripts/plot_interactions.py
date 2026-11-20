@@ -13,7 +13,7 @@ import seaborn as sns
 
 from py import pdp
 from py.load_data import load_data
-from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
+from py.paths import ANALYSIS_DATA_DIRECTORY as DATA_DIRECTORY
 from py.paths import ANALYSIS_FIGURES_DIRECTORY as FIGURES_DIRECTORY
 from py.preprocessing.land_cover import CLASSES
 from py.preprocessing.match_era5_grid import sha256
@@ -40,14 +40,14 @@ def prepare(data, x, y, bins):
     frame = data.filter(pl.all_horizontal(pl.col(name).is_finite() for name in numeric))
     if y == "degurba_label":
         frame = frame.filter(pl.col(y).is_in(LAND_CLASSES))
-    frame, labels_x = pdp.BinFeatures(frame, x, NBins=bins)
+    frame, labels_x = pdp.bin_features(frame, x, n_bins=bins)
     frame = frame.rename({"bin": "bin_x"})
     if y == "degurba_label":
         labels_y = LAND_CLASSES
         frame = frame.with_columns(pl.col(y).alias("bin_y"))
         edges_y = np.arange(len(labels_y) + 1, dtype=float)
     else:
-        frame, labels_y = pdp.BinFeatures(frame, y, NBins=bins)
+        frame, labels_y = pdp.bin_features(frame, y, n_bins=bins)
         frame = frame.rename({"bin": "bin_y"})
         edges_y = bounds(labels_y, frame[y].min(), frame[y].max())
     edges_x = bounds(labels_x, frame[x].min(), frame[x].max())

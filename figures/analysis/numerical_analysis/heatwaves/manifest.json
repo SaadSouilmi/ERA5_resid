@@ -11,12 +11,13 @@
     "/home2/lobib/gen_hack/data2/station_land_cover.parquet": "fac834689993882de10e8c74a54209be1ad99e87669316671039ec3005e8ecc5"
   },
   "code_sha256": {
-    "/home2/lobib/gen_hack/src/py/analysis_common.py": "12f92324519ad1e3b410354d404cb65f78704847d0d7be8aa5098d3496e811f5",
-    "/home2/lobib/gen_hack/src/py/analysis_heatwaves.py": "19e69cea737f40cd6b1f0b30e4795f9060f1bed0ca2b8ceaf7c70aaf04e0a8bf",
+    "/home2/lobib/gen_hack/src/py/analysis_common.py": "aadb60ef26dd7c029987bf62f62fe833abb7bb33c4c2a393fa654a3b6430c96a",
+    "/home2/lobib/gen_hack/src/py/analysis_heatwaves.py": "9456c85e51901076d492f443240ca7df6b14913c13e0098dec8cf545b1065478",
     "/home2/lobib/gen_hack/src/py/load_data.py": "3cbb598247e81757632926c626058360bcc9088955ded67a0c970a9b376cfe57",
-    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "611557dc64dd723692a8783037108bb703ef82312853fdce8ecf4e19e459ab3f"
+    "/home2/lobib/gen_hack/src/py/scripts/scientific_style.py": "c3e89b7434a17aff0d95b6d6413610bd5cda2de75ef0e8a4aa594b158ddd2d6c",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "71ea7e7756e6b3774fc7fb0477ea4e3f8aea8ffa2f12c427b7b8b7218afd168b"
   },
-  "results_sha256": "20e9498b880d9e44d05414710c172aad19413eb40e634754e08cadf1ac623865",
+  "results_sha256": "4d3e18350ede016a5d0ff9e0657944c2a8bf23da48e6fb23d41dd7fcdfa12775",
   "tables": {
     "ratios": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/heatwaves/tables/ratios.csv",
@@ -26,5 +27,28 @@
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/heatwaves/tables/source_counts.csv",
       "sha256": "367279dd39d28ab4d3d3ccacd97ea3ee8755a9004b4ae171c30a246d0f3ebb22"
     }
+  },
+  "restyled_utc": "2026-11-20T11:33:51.255138+00:00",
+  "presentation": {
+    "chart": "Two bar panels: hot spells and days in hot spells",
+    "thresholds_celsius": [
+      30,
+      35
+    ],
+    "estimate": "Station / ERA5 count ratio; unchanged",
+    "intervals": "Saved pointwise 95% source-bootstrap intervals; unchanged",
+    "bar_baseline": 0,
+    "shared_y_axis": true,
+    "reference": 1,
+    "colours": {
+      "spells": "#347F74",
+      "days": "#BE6274"
+    },
+    "typography": "Original Seaborn/DejaVu Sans bar style"
+  },
+  "render_code_sha256": {
+    "/home2/lobib/gen_hack/src/py/analysis_heatwaves.py": "8e40fda05417b1af0e357741d1d519b80e8d7edcde9e72b7232980939a8d0d63",
+    "/home2/lobib/gen_hack/src/py/analysis_common.py": "aadb60ef26dd7c029987bf62f62fe833abb7bb33c4c2a393fa654a3b6430c96a",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "71ea7e7756e6b3774fc7fb0477ea4e3f8aea8ffa2f12c427b7b8b7218afd168b"
   }
 }

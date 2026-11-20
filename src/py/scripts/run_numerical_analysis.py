@@ -5,7 +5,7 @@ import json
 import subprocess
 from datetime import datetime, timezone
 
-from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
+from py.paths import ANALYSIS_DATA_DIRECTORY as DATA_DIRECTORY
 
 ANALYSES = [
     "descriptive",

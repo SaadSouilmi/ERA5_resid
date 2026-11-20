@@ -2,7 +2,7 @@
 
 import argparse
 
-from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
+from py.paths import ANALYSIS_DATA_DIRECTORY as DATA_DIRECTORY
 from py.preprocessing.analysis_covariates import build_source_elevation
 from py.preprocessing.build_monthly_era5_pairs import main as build_monthly_era5_pairs
 from py.preprocessing.build_station_cache import main as build_station_cache

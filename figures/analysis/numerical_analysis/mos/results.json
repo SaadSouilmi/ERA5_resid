@@ -1,0 +1,51 @@
+{
+  "analysis": "mos",
+  "created_utc": "2026-11-20T01:25:03.736363+00:00",
+  "parent_observations": 6726213,
+  "parent_sources": 4458,
+  "summary": {
+    "folds": 5,
+    "train_limit": 800000,
+    "max_iter": 200,
+    "base_features": [
+      "era5_celsius",
+      "wind",
+      "elevation",
+      "dist_to_sea_km",
+      "degurba",
+      "log10_tp",
+      "ndvi",
+      "sin_doy",
+      "cos_doy"
+    ],
+    "extended_features": [
+      "era5_celsius",
+      "wind",
+      "elevation",
+      "relative_elevation_25km",
+      "dist_to_sea_km",
+      "degurba",
+      "log10_tp",
+      "ndvi",
+      "sin_doy",
+      "cos_doy"
+    ],
+    "predictions_file": "/home2/lobib/gen_hack/data2/numerical_analysis/mos_predictions.parquet",
+    "predictions_sha256": "c11b0a66ebe26b73188ac812346a989ca42031f008655fb4d4aeb2d1b2e5e185"
+  },
+  "method": "Five GroupKFold splits by SOUID, covering every retained row out of fold. Raw ERA5, training-mean offset, additive spline ridge, histogram gradient boosting, and boosting plus neighbour-source relative elevation. Learned models share up to 800,000 sampled training rows per fold, seed 1337+fold. Imputation and spline transforms fit training rows only. No station temperature, midpoint or residual-derived feature enters predictors. Missing covariates remain missing for imputation/native tree handling; negative rain totals become missing log precipitation. These are source holdouts over mixed dates, not independent spatial or future-year validation. MAE-improvement intervals use paired SOUID bootstrap draws.",
+  "tables": {
+    "metrics": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/mos/tables/metrics.csv",
+      "sha256": "3c13a8328ba72d66331759597302f64d10f29858ca32e5ffb51c77ef472e1fcd"
+    },
+    "fold_metrics": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/mos/tables/fold_metrics.csv",
+      "sha256": "236482297afe28e83a1b23fc121c2e053f5aca3031400e68399ba239e797507e"
+    },
+    "models": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/mos/tables/models.csv",
+      "sha256": "0a400c456676fcdfbeac55880e52e06b84d711291a395f603a51a681640bcc93"
+    }
+  }
+}

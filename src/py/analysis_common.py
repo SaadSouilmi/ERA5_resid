@@ -10,8 +10,8 @@ import polars as pl
 from scipy import stats
 
 from py.load_data import load_data
-from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
-from py.paths import ANALYSIS_FIGURES_DIRECTORY, ProjectRoot
+from py.paths import ANALYSIS_DATA_DIRECTORY as DATA_DIRECTORY
+from py.paths import ANALYSIS_FIGURES_DIRECTORY, PROJECT_ROOT
 from py.preprocessing.match_era5_grid import sha256
 from py.scripts.plot_style import COLORS as COLORS, paper_style, save_figure
 from py.scripts.scientific_style import (
@@ -248,8 +248,8 @@ def finish(name, data, tables, summary, method, weather=False, extra_inputs=()):
                 Path(__file__),
                 Path(__file__).with_name(f"analysis_{name}.py"),
                 Path(__file__).with_name("load_data.py"),
-                ProjectRoot / "src/py/scripts/scientific_style.py",
-                ProjectRoot / "src/py/scripts/plot_style.py",
+                PROJECT_ROOT / "src/py/scripts/scientific_style.py",
+                PROJECT_ROOT / "src/py/scripts/plot_style.py",
             ]
         },
         "results_sha256": sha256(result_path),

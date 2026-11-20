@@ -1,0 +1,41 @@
+{
+  "analysis": "multivariate",
+  "created_utc": "2026-11-20T01:22:53.798416+00:00",
+  "parent_observations": 6726213,
+  "parent_sources": 4458,
+  "summary": {
+    "observations": 6669351,
+    "sources": 4433,
+    "parameters": 20,
+    "r_squared": 0.0666795532231681,
+    "feature_means": {
+      "midpoint": 14.887645937526186,
+      "wind": 2.056288507775733,
+      "dist_to_sea_km": 139.97183144554546,
+      "elevation": 403.67442199398414,
+      "log10_tp": -3.9568087709982445,
+      "ndvi": 0.43170867761906695
+    },
+    "feature_sd": {
+      "midpoint": 9.787210714803477,
+      "wind": 1.4985627611115184,
+      "dist_to_sea_km": 139.66781869918253,
+      "elevation": 440.9709734305863,
+      "log10_tp": 1.82040689071513,
+      "ndvi": 0.2171391771273618
+    },
+    "reference_month": 1,
+    "excluded_missing_covariates_or_water": 56862
+  },
+  "method": "Complete-case OLS: standardized temperature midpoint, wind, coastal distance, elevation, log10 precipitation, NDVI; standardized midpoint\u00d7wind interaction; urban indicator for classes 22/23/30; calendar-month indicators. SOUID-clustered sandwich CR1 covariance, t intervals with G\u22121 degrees of freedom. The midpoint contains the station outcome, so this is descriptive adjustment and is not a feasible prediction model.",
+  "tables": {
+    "coefficients": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/multivariate/tables/coefficients.csv",
+      "sha256": "881b1c252e9077dad65f68ecdbd1105d9347e788bdef676b4df10eb3c2202712"
+    },
+    "covariance": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/multivariate/tables/covariance.csv",
+      "sha256": "146b2ec96aadefdc84f4769c8f14e913674f8da8de8d09f011c05c28a4132e10"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "analysis": "utc_windows",
-  "created_utc": "2026-11-19T00:56:36.658894+00:00",
+  "created_utc": "2026-11-20T01:21:24.205164+00:00",
   "parent_observations": 6726213,
   "parent_sources": 4458,
   "summary": {
@@ -14,11 +14,19 @@
     },
     "windows": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/windows.csv",
-      "sha256": "b7b7f4eae0319762c32d89fcf8d68bd9ced1e4052ef59e48f96c5f5bdd542355"
+      "sha256": "e6411b561dc26c8a75e8796c18da7ef5614885f29e050e79d31c65b19824d5b1"
     },
     "full_station_celsius": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/full_station_celsius.csv",
       "sha256": "08b0f3ee96666cf49c5e521e7607859ab27171105ba54e41470f903146da1537"
+    },
+    "full_wind": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/full_wind.csv",
+      "sha256": "7816b649eb6977e7087f694d1fa34af70726a52e759523001ac191f2eef09da7"
+    },
+    "full_tp": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/full_tp.csv",
+      "sha256": "8278332f7db715e8047f83e9a13d86b30ee31704af1b08e826f2c3e30b7e813f"
     },
     "full_ndvi": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/full_ndvi.csv",
@@ -36,6 +44,14 @@
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/utc_midnight_station_celsius.csv",
       "sha256": "5e1b00e2d5405e1773c28213e0b03520451b55e7b2dfc9ffb0f2e36353585154"
     },
+    "utc_midnight_wind": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/utc_midnight_wind.csv",
+      "sha256": "f768eac99a470bc82190996e1d524794cb090e011033576be0cd3285454fab31"
+    },
+    "utc_midnight_tp": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/utc_midnight_tp.csv",
+      "sha256": "7c99402d2304372ce7b40751371b4484f7c5760581187455a1f68a6aa988603c"
+    },
     "utc_midnight_ndvi": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/utc_midnight_ndvi.csv",
       "sha256": "e14ef9bd10a5438c6afeafbbdb07a81a61cd354661c0375fcf890668e0017a73"
@@ -47,6 +63,14 @@
     "utc_midnight_elevation": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/utc_midnight_elevation.csv",
       "sha256": "6dc35d7d1cb81303b726eb79e5ffdb4237ae650b232328cc39289fefb691622c"
+    },
+    "utc_temperature_wind_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/utc_temperature_wind_cells.csv",
+      "sha256": "84e42a3eb4673df5c2c2fd4071d3da243f0a127d92fd4cdcc345b89b2713c9fe"
+    },
+    "utc_warm_calm": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/utc_warm_calm.csv",
+      "sha256": "8a3ea6f7f260dc3868448a40457cba048fa05f5054ff9e7bd4ab8cdbd26f5ae9"
     },
     "utc_degurba": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/utc_windows/tables/utc_degurba.csv",

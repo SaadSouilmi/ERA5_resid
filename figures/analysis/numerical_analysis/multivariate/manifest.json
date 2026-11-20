@@ -1,0 +1,32 @@
+{
+  "analysis": "multivariate",
+  "bootstrap_unit": "SOUID (actual observation source)",
+  "hourly_weather_included": true,
+  "origin": "ERA5_resid_v3_code.zip: pending_remarks_analysis.py and supplemental_v3_checks.py",
+  "inputs": {
+    "/home2/lobib/gen_hack/data2/station_era5_clean.parquet": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+    "/home2/lobib/gen_hack/data2/station_ndvi.parquet": "be428f2ff7dca8f3fda425339d3f8d31681d014b5dceb101767e29bfae89120c",
+    "/home2/lobib/gen_hack/data2/station_elevation.parquet": "3595df9b7406222c9b27a42002fc11a4c300eb0901b2fd2b56f1c7b762ad5d9f",
+    "/home2/lobib/gen_hack/data2/station_coastal_distance.parquet": "8401de603d68e522ba57efd64bc49ee3b8f92b19523c0bac9cd5787f6ab2709b",
+    "/home2/lobib/gen_hack/data2/station_land_cover.parquet": "fac834689993882de10e8c74a54209be1ad99e87669316671039ec3005e8ecc5",
+    "/home2/lobib/gen_hack/data2/station_hourly_weather.parquet": "4177f8e7bd1ddd7ea1917971268c2d23126b99ff89ca66b9d35168b528f57d60"
+  },
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/analysis_common.py": "aadb60ef26dd7c029987bf62f62fe833abb7bb33c4c2a393fa654a3b6430c96a",
+    "/home2/lobib/gen_hack/src/py/analysis_multivariate.py": "09806502c1e3261a642cc6d4c51b27bf5d6ffb43e3612f7e88687c1f4cc190a3",
+    "/home2/lobib/gen_hack/src/py/load_data.py": "3cbb598247e81757632926c626058360bcc9088955ded67a0c970a9b376cfe57",
+    "/home2/lobib/gen_hack/src/py/scripts/scientific_style.py": "c3e89b7434a17aff0d95b6d6413610bd5cda2de75ef0e8a4aa594b158ddd2d6c",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "71ea7e7756e6b3774fc7fb0477ea4e3f8aea8ffa2f12c427b7b8b7218afd168b"
+  },
+  "results_sha256": "73a9d9446b1fbf2551b0c93f413f9118a2135d434d8f42c1a27d5dee2b062b1c",
+  "tables": {
+    "coefficients": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/multivariate/tables/coefficients.csv",
+      "sha256": "881b1c252e9077dad65f68ecdbd1105d9347e788bdef676b4df10eb3c2202712"
+    },
+    "covariance": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/multivariate/tables/covariance.csv",
+      "sha256": "146b2ec96aadefdc84f4769c8f14e913674f8da8de8d09f011c05c28a4132e10"
+    }
+  }
+}

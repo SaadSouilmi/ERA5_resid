@@ -7,33 +7,36 @@ import numpy as np
 import polars as pl
 
 from py import analysis_common as common
-from py.scripts.scientific_style import COLORS as WHISKER_COLORS
+from py.scripts.scientific_style import COLORS as WINDOW_COLORS
 
 
 def plot(tables):
     summary = tables["summary"]
-    common.setup_plotting(whiskers=True)
+    common.setup_plotting()
     fig, ax = plt.subplots(figsize=(6.5, 3.6), layout="constrained")
     labels = {
         "full": "All resolved windows",
         "utc_midnight": "00–00 UTC, 24 h",
         "other_resolved": "Other resolved windows",
     }
-    for index, row in enumerate(summary.iter_rows(named=True)):
-        ax.errorbar(
-            index,
-            row["mean"],
-            yerr=[[row["mean"] - row["ci_low"]], [row["ci_high"] - row["mean"]]],
-            fmt="o",
-            color=WHISKER_COLORS[index],
-            capsize=2,
-            linewidth=0.8,
-            markerfacecolor="white",
-        )
-    ax.set_xticks(np.arange(summary.height), [labels[name] for name in summary["sample"]])
+    positions = np.arange(summary.height)
+    mean, low, high = (summary[column].to_numpy() for column in ["mean", "ci_low", "ci_high"])
+    ax.bar(
+        positions,
+        mean,
+        width=0.62,
+        color=WINDOW_COLORS[:summary.height],
+        edgecolor=WINDOW_COLORS[:summary.height],
+        linewidth=0.4,
+        yerr=np.array([mean - low, high - mean]),
+        capsize=2.4,
+        error_kw={"ecolor": "#44524F", "elinewidth": 0.9, "capthick": 0.9},
+    )
+    ax.set_xticks(positions, [labels[name] for name in summary["sample"]])
     ax.set(xlim=(-0.5, summary.height - 0.5), ylabel="Mean residual (°C)")
     ax.margins(y=0.08)
-    common.save_plot(fig, "utc_windows", "window_means", whiskers=True)
+    ax.grid(axis="y", color="#DDE3E1", linewidth=0.5)
+    common.save_plot(fig, "utc_windows", "window_means")
     features = [name for name in common.FEATURES if f"full_{name}" in tables]
     common.setup_plotting()
     fig, axes = plt.subplots(2, 3, figsize=(13, 6.5), layout="constrained")

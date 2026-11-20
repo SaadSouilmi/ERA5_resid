@@ -1,0 +1,16 @@
+{
+  "analysis": "exceedances",
+  "created_utc": "2026-11-20T01:21:33.608949+00:00",
+  "parent_observations": 6726213,
+  "parent_sources": 4458,
+  "summary": {
+    "low_wind_cutoff_mps": 0.5034484
+  },
+  "method": "Strict >25, >30, >35 and >40\u00b0C; archive's fixed low-wind cutoff retained for comparability. Ratios use 1,000 SOUID bootstrap draws. Count shortfall is a net count difference, distinct from false negatives. Unbounded or undefined ratio intervals are flagged.",
+  "tables": {
+    "exceedances": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/exceedances/tables/exceedances.csv",
+      "sha256": "9f6cfa9c1d55c8fb38504e4250e6b83bba14e2e632c3864ec128e446683326db"
+    }
+  }
+}

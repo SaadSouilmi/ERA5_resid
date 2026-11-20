@@ -12,19 +12,19 @@ import seaborn as sns
 
 from py import pdp
 from py.load_data import load_data
-from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
+from py.paths import ANALYSIS_DATA_DIRECTORY as DATA_DIRECTORY
 from py.paths import ANALYSIS_FIGURES_DIRECTORY as FIGURES_DIRECTORY
 from py.preprocessing.match_era5_grid import sha256
 from py.scripts.plot_style import COLORS, paper_style
 from py.scripts.scientific_style import save_scientific_figure as save_figure
 
 FEATURES = {
-    "station_celsius": ("Station temperature", "Station maximum temperature (°C)", COLORS[2]),
-    "tp": ("Precipitation", "Window precipitation total (log₁₀ m)", COLORS[1]),
+    "station_celsius": ("Station temperature", "Station maximum temperature (°C)", "#D18A32"),
+    "tp": ("Precipitation", "Window precipitation total (log₁₀ m)", "#2A9BA8"),
     "wind": ("Wind", "Magnitude of mean wind (m/s)", COLORS[3]),
     "ndvi": ("Vegetation", "NDVI (with carry-forward)", COLORS[0]),
-    "dist_to_sea_km": ("Coastal distance", "Distance to sea (km)", COLORS[4]),
-    "elevation": ("Elevation", "Source elevation (m)", COLORS[5]),
+    "dist_to_sea_km": ("Coastal distance", "Distance to sea (km)", COLORS[2]),
+    "elevation": ("Elevation", "Source elevation (m)", COLORS[4]),
 }
 
 
@@ -39,11 +39,11 @@ def summarize(data, feature, bins, bootstrap, seed):
         frame = frame.filter(pl.col(feature) >= 0)
     if feature == "tp":
         frame = frame.with_columns(pl.col("tp").clip(lower_bound=1e-9).log10())
-    binned, labels = pdp.BinFeatures(frame, feature, NBins=bins)
-    mean, low, high = pdp.PdpClusterBootstrap(
-        binned, "bin", labels, NBoot=bootstrap, Rng=np.random.default_rng(seed)
+    binned, labels = pdp.bin_features(frame, feature, n_bins=bins)
+    mean, low, high = pdp.pdp_cluster_bootstrap(
+        binned, "bin", labels, n_boot=bootstrap, rng=np.random.default_rng(seed)
     )
-    centers = pdp.BinCenters(labels, frame[feature].min(), frame[feature].max())
+    centers = pdp.bin_centers(labels, frame[feature].min(), frame[feature].max())
     counts = (
         binned.group_by("bin")
         .agg(pl.len().alias("observations"), pl.col("STAID").n_unique().alias("sources"))
@@ -180,6 +180,7 @@ def main():
         manifest["render_code_sha256"] = render_code
         manifest["presentation"] = {
             "style": "Original Seaborn/DejaVu Sans",
+            "feature_colours": {name: FEATURES[name][2] for name in args.features},
             "grid": "major horizontal and vertical",
             "y_limits": "Fit curve and confidence band with 8% padding",
             "zero_reference": False,
@@ -212,6 +213,7 @@ def main():
         "precipitation_plot": "Exclude negative window totals from the log profile only; retain them in the saved covariates. Nonnegative totals use log10(max(tp, 1e-9)).",
         "presentation": {
             "style": "Original Seaborn/DejaVu Sans",
+            "feature_colours": {name: FEATURES[name][2] for name in args.features},
             "grid": "major horizontal and vertical",
             "y_limits": "Fit curve and confidence band with 8% padding",
             "zero_reference": False,

@@ -1,0 +1,30 @@
+{
+  "analysis": "model_partial_dependence",
+  "created_utc": "2026-11-20T01:25:30.317527+00:00",
+  "parent_observations": 6726213,
+  "parent_sources": 4458,
+  "summary": {
+    "background_per_fold": 5000,
+    "background_total": 25000,
+    "mos_results_sha256": "1a0b8438557d9d42bae5ecdbabd2eee6d897b51795feb40e394a6edd7a3feda8"
+  },
+  "method": "Brute-force replacement of one feature at a time, averaging predictions over up to 5,000 held-out background rows per fold; seed 2026+fold. Grids use pooled background 5th\u201395th percentiles, or observed DEGURBA classes. Combine all five fitted folds with held-out-row weights; shading is the fold minimum\u2013maximum range, not a confidence interval. Avoids the archive's recursion/NaN issue and final-fold-only interpretation. These average predictions on synthetic covariate combinations are model diagnostics, not causal effects.",
+  "tables": {
+    "gradient_boosting_fold_profiles": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/model_partial_dependence/tables/gradient_boosting_fold_profiles.csv",
+      "sha256": "6f6a6555fe51fcbd06f8c2a13a6cd668ccc271ac1c06312cc1e43c41524751ee"
+    },
+    "gradient_boosting_profiles": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/model_partial_dependence/tables/gradient_boosting_profiles.csv",
+      "sha256": "199f465a77607df754cac61920a06f5621e7d9821a1303bf907012319468e3c7"
+    },
+    "gradient_boosting_relative_elevation_fold_profiles": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/model_partial_dependence/tables/gradient_boosting_relative_elevation_fold_profiles.csv",
+      "sha256": "437c548f6bb8c69ba4aeff7666f889c1845c60b95aaadfc8b209b3c009e6fd69"
+    },
+    "gradient_boosting_relative_elevation_profiles": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/model_partial_dependence/tables/gradient_boosting_relative_elevation_profiles.csv",
+      "sha256": "773f2730711a74a8b97a170c1d8bdb749cfbc916a5d501b95490ea448e4a8c6f"
+    }
+  }
+}

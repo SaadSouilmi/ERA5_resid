@@ -9,7 +9,7 @@ import numpy as np
 import polars as pl
 import xarray as xr
 
-from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
+from py.paths import ANALYSIS_DATA_DIRECTORY as DATA_DIRECTORY
 from py.preprocessing.era5_grid import match_coordinates
 
 SOURCE_KEYS = ["STAID", "SOUID", "source_lat", "source_lon"]

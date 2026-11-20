@@ -11,7 +11,7 @@ import pandas as pd
 import polars as pl
 import xarray as xr
 
-from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
+from py.paths import ANALYSIS_DATA_DIRECTORY as DATA_DIRECTORY
 from py.preprocessing.download_era5_hourly import expected_times, save_json, unpack
 from py.preprocessing.match_era5_grid import sha256
 

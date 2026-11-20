@@ -11,12 +11,13 @@
     "/home2/lobib/gen_hack/data2/station_land_cover.parquet": "fac834689993882de10e8c74a54209be1ad99e87669316671039ec3005e8ecc5"
   },
   "code_sha256": {
-    "/home2/lobib/gen_hack/src/py/analysis_common.py": "12f92324519ad1e3b410354d404cb65f78704847d0d7be8aa5098d3496e811f5",
-    "/home2/lobib/gen_hack/src/py/analysis_ndvi_sensitivity.py": "f971e24b723e086d2d0528e076bebd6e7d79cad545a6f9d2d652acd031e3fbef",
+    "/home2/lobib/gen_hack/src/py/analysis_common.py": "aadb60ef26dd7c029987bf62f62fe833abb7bb33c4c2a393fa654a3b6430c96a",
+    "/home2/lobib/gen_hack/src/py/analysis_ndvi_sensitivity.py": "a442c12a4f15dd7210c0f7f8449047f5701c4e8d66db827984d75064047da1c7",
     "/home2/lobib/gen_hack/src/py/load_data.py": "3cbb598247e81757632926c626058360bcc9088955ded67a0c970a9b376cfe57",
-    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "611557dc64dd723692a8783037108bb703ef82312853fdce8ecf4e19e459ab3f"
+    "/home2/lobib/gen_hack/src/py/scripts/scientific_style.py": "c3e89b7434a17aff0d95b6d6413610bd5cda2de75ef0e8a4aa594b158ddd2d6c",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "71ea7e7756e6b3774fc7fb0477ea4e3f8aea8ffa2f12c427b7b8b7218afd168b"
   },
-  "results_sha256": "6308ed08e112e9c2079b517044963b2f1328fe245b4913c86163939c1c2e4050",
+  "results_sha256": "4e4ca13ef1744b83a4c60aba9549df1b613fa39b18515fab1d2a16b5f35a2ea5",
   "tables": {
     "all_available": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/ndvi_sensitivity/tables/all_available.csv",
@@ -28,7 +29,7 @@
     },
     "wald_tests": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/ndvi_sensitivity/tables/wald_tests.csv",
-      "sha256": "755267cffe5ef18a0ecf5801501e8f26e33be617781f144ccf912ac85a648636"
+      "sha256": "74a944df2167142b266a8e663978dc0cecc1adc234084a0f20e0ae33db289f1c"
     }
   }
 }

@@ -1,8 +1,19 @@
 {
-  "created_utc": "2026-11-18T23:36:37.275123+00:00",
+  "created_utc": "2026-11-20T01:20:05.024900+00:00",
   "input_records": 6726213,
   "features": {
     "station_celsius": {
+      "observations": 6726213,
+      "sources": 4458,
+      "missing_or_invalid": 0
+    },
+    "tp": {
+      "observations": 6716790,
+      "sources": 4457,
+      "missing_or_invalid": 9423,
+      "negative_totals_excluded": 9423
+    },
+    "wind": {
       "observations": 6726213,
       "sources": 4458,
       "missing_or_invalid": 0
@@ -29,30 +40,41 @@
   "statistic": "Observation-weighted residual means in quantile bins; descriptive associations, not model-based partial dependence or causal effects.",
   "bootstrap_unit": "SOUID: source IDs resampled within each bin for pointwise percentile intervals.",
   "ndvi_policy": "Original seasonal rasters with last available value carried forward across seasons; missing pixels within existing seasons remain missing.",
-  "weather_policy": "Supplied date-labelled daily covariates, not aggregates over the station-specific temperature windows.",
-  "inputs": {
-    "/home2/lobib/gen_hack/data2/station_era5_clean.parquet": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
-    "/home2/lobib/gen_hack/data2/station_coastal_distance.parquet": "8401de603d68e522ba57efd64bc49ee3b8f92b19523c0bac9cd5787f6ab2709b",
-    "/home2/lobib/gen_hack/data2/station_ndvi.parquet": "be428f2ff7dca8f3fda425339d3f8d31681d014b5dceb101767e29bfae89120c",
-    "/home2/lobib/gen_hack/data2/station_elevation.parquet": "3595df9b7406222c9b27a42002fc11a4c300eb0901b2fd2b56f1c7b762ad5d9f"
-  },
-  "code_sha256": {
-    "/home2/lobib/gen_hack/src/py/scripts/plot_partial_dependence.py": "eb931b6dbe19633eb3fd694ed263b0bc9d6f142649526c5dee033cf021753f99",
-    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "8d3026057151f55df01018539c8770f92b3d58140753604ae6e932dfe20e87f3",
-    "/home2/lobib/gen_hack/src/py/load_data.py": "bfcb74f3c33343e9c70e333b76b631fd8638a193fe494522e1fcf1c6f161b141",
-    "/home2/lobib/gen_hack/src/py/pdp.py": "66cbfdf70cd7598c9008d75c72c1cd278438ac8a95f963854d1f0159ca77a422"
-  },
-  "restyled_utc": "2026-11-19T11:51:31.186459+00:00",
-  "render_code_sha256": {
-    "/home2/lobib/gen_hack/src/py/scripts/plot_partial_dependence.py": "bd3143fea4163713926e23a6fe7e059c8181863355be11764ffc99da724001e0",
-    "/home2/lobib/gen_hack/src/py/scripts/scientific_style.py": "6ffc7d0c365dd33f7655795bf4f52862bb832b951ea4502d4cc119321d3e0bbd",
-    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "611557dc64dd723692a8783037108bb703ef82312853fdce8ecf4e19e459ab3f"
-  },
+  "weather_policy": "Wind and precipitation aggregated over each station's UTC observation window from hourly ERA5-Land; wind is the magnitude of the time-mean vector and tp is total precipitation in metres.",
+  "precipitation_plot": "Exclude negative window totals from the log profile only; retain them in the saved covariates. Nonnegative totals use log10(max(tp, 1e-9)).",
   "presentation": {
     "style": "Original Seaborn/DejaVu Sans",
+    "feature_colours": {
+      "station_celsius": "#D18A32",
+      "tp": "#2A9BA8",
+      "wind": "#6A56A0",
+      "ndvi": "#347F74",
+      "dist_to_sea_km": "#3E6FAD",
+      "elevation": "#A86C1A"
+    },
     "grid": "major horizontal and vertical",
     "y_limits": "Fit curve and confidence band with 8% padding",
     "zero_reference": false,
     "bottom_caption": false
+  },
+  "inputs": {
+    "/home2/lobib/gen_hack/data2/station_era5_clean.parquet": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+    "/home2/lobib/gen_hack/data2/station_coastal_distance.parquet": "8401de603d68e522ba57efd64bc49ee3b8f92b19523c0bac9cd5787f6ab2709b",
+    "/home2/lobib/gen_hack/data2/station_ndvi.parquet": "be428f2ff7dca8f3fda425339d3f8d31681d014b5dceb101767e29bfae89120c",
+    "/home2/lobib/gen_hack/data2/station_elevation.parquet": "3595df9b7406222c9b27a42002fc11a4c300eb0901b2fd2b56f1c7b762ad5d9f",
+    "/home2/lobib/gen_hack/data2/station_hourly_weather.parquet": "4177f8e7bd1ddd7ea1917971268c2d23126b99ff89ca66b9d35168b528f57d60"
+  },
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/scripts/plot_partial_dependence.py": "7d0fe184692310abfd4bd110b867f78261488baeb181898b7597da914bebf643",
+    "/home2/lobib/gen_hack/src/py/scripts/scientific_style.py": "c3e89b7434a17aff0d95b6d6413610bd5cda2de75ef0e8a4aa594b158ddd2d6c",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "71ea7e7756e6b3774fc7fb0477ea4e3f8aea8ffa2f12c427b7b8b7218afd168b",
+    "/home2/lobib/gen_hack/src/py/load_data.py": "3cbb598247e81757632926c626058360bcc9088955ded67a0c970a9b376cfe57",
+    "/home2/lobib/gen_hack/src/py/pdp.py": "58c7c49b1925418f72c7e55c8e71f91b5ddecf5f3b11be0b72988e6130f9b530"
+  },
+  "restyled_utc": "2026-11-20T11:32:26.000833+00:00",
+  "render_code_sha256": {
+    "/home2/lobib/gen_hack/src/py/scripts/plot_partial_dependence.py": "c8b458672f40bb4772e59bfe3005c2a3bba967878ee6da27b21154b0528fa744",
+    "/home2/lobib/gen_hack/src/py/scripts/scientific_style.py": "c3e89b7434a17aff0d95b6d6413610bd5cda2de75ef0e8a4aa594b158ddd2d6c",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "71ea7e7756e6b3774fc7fb0477ea4e3f8aea8ffa2f12c427b7b8b7218afd168b"
   }
 }

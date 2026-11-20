@@ -1,0 +1,38 @@
+{
+  "analysis": "mos",
+  "bootstrap_unit": "SOUID (actual observation source)",
+  "hourly_weather_included": true,
+  "origin": "ERA5_resid_v3_code.zip: pending_remarks_analysis.py and supplemental_v3_checks.py",
+  "inputs": {
+    "/home2/lobib/gen_hack/data2/station_era5_clean.parquet": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+    "/home2/lobib/gen_hack/data2/station_ndvi.parquet": "be428f2ff7dca8f3fda425339d3f8d31681d014b5dceb101767e29bfae89120c",
+    "/home2/lobib/gen_hack/data2/station_elevation.parquet": "3595df9b7406222c9b27a42002fc11a4c300eb0901b2fd2b56f1c7b762ad5d9f",
+    "/home2/lobib/gen_hack/data2/station_coastal_distance.parquet": "8401de603d68e522ba57efd64bc49ee3b8f92b19523c0bac9cd5787f6ab2709b",
+    "/home2/lobib/gen_hack/data2/station_land_cover.parquet": "fac834689993882de10e8c74a54209be1ad99e87669316671039ec3005e8ecc5",
+    "/home2/lobib/gen_hack/data2/station_hourly_weather.parquet": "4177f8e7bd1ddd7ea1917971268c2d23126b99ff89ca66b9d35168b528f57d60",
+    "/home2/lobib/gen_hack/data2/numerical_analysis/relative_elevation.parquet": "a1edacd6d9a20ccd221f8704bce9860765c19b26180def2fe737be8d74e47381",
+    "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/relative_elevation/manifest.json": "ee3a39b29fc5bd7c7a8c4b00cf0928c50c2b1ffd253de0b24906596d97e1f559"
+  },
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/analysis_common.py": "aadb60ef26dd7c029987bf62f62fe833abb7bb33c4c2a393fa654a3b6430c96a",
+    "/home2/lobib/gen_hack/src/py/analysis_mos.py": "f7358cf5c3816f3cbee5832291aeb1f00ff8ce2ae62ebe3ede905728556cb5a2",
+    "/home2/lobib/gen_hack/src/py/load_data.py": "3cbb598247e81757632926c626058360bcc9088955ded67a0c970a9b376cfe57",
+    "/home2/lobib/gen_hack/src/py/scripts/scientific_style.py": "c3e89b7434a17aff0d95b6d6413610bd5cda2de75ef0e8a4aa594b158ddd2d6c",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "71ea7e7756e6b3774fc7fb0477ea4e3f8aea8ffa2f12c427b7b8b7218afd168b"
+  },
+  "results_sha256": "1a0b8438557d9d42bae5ecdbabd2eee6d897b51795feb40e394a6edd7a3feda8",
+  "tables": {
+    "metrics": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/mos/tables/metrics.csv",
+      "sha256": "3c13a8328ba72d66331759597302f64d10f29858ca32e5ffb51c77ef472e1fcd"
+    },
+    "fold_metrics": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/mos/tables/fold_metrics.csv",
+      "sha256": "236482297afe28e83a1b23fc121c2e053f5aca3031400e68399ba239e797507e"
+    },
+    "models": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/mos/tables/models.csv",
+      "sha256": "0a400c456676fcdfbeac55880e52e06b84d711291a395f603a51a681640bcc93"
+    }
+  }
+}

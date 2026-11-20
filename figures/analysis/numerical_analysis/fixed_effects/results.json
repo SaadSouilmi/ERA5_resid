@@ -1,6 +1,6 @@
 {
   "analysis": "fixed_effects",
-  "created_utc": "2026-11-19T00:56:20.956470+00:00",
+  "created_utc": "2026-11-20T01:22:35.764442+00:00",
   "parent_observations": 6726213,
   "parent_sources": 4458,
   "summary": {},
@@ -29,6 +29,14 @@
     "midpoint_within": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/fixed_effects/tables/midpoint_within.csv",
       "sha256": "0ce66b6ac398004c52f831cf22150367d22a8ef8ab8890f2fe4d24a15cd24745"
+    },
+    "wind_raw": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/fixed_effects/tables/wind_raw.csv",
+      "sha256": "bed8b8524ff7b01c9227d321bba80898cc602ae1b0cb41fe030321f337a544ff"
+    },
+    "wind_within": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/fixed_effects/tables/wind_within.csv",
+      "sha256": "93211342ddfe7d2a4faefa1859449e97fe9ea95e5c2b5e3fc31a85bdfd2bd8ca"
     },
     "era5_celsius_raw_reference": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/fixed_effects/tables/era5_celsius_raw_reference.csv",

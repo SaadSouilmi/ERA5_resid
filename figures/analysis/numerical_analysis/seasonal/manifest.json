@@ -1,0 +1,92 @@
+{
+  "analysis": "seasonal",
+  "bootstrap_unit": "SOUID (actual observation source)",
+  "hourly_weather_included": true,
+  "origin": "ERA5_resid_v3_code.zip: pending_remarks_analysis.py and supplemental_v3_checks.py",
+  "inputs": {
+    "/home2/lobib/gen_hack/data2/station_era5_clean.parquet": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+    "/home2/lobib/gen_hack/data2/station_ndvi.parquet": "be428f2ff7dca8f3fda425339d3f8d31681d014b5dceb101767e29bfae89120c",
+    "/home2/lobib/gen_hack/data2/station_elevation.parquet": "3595df9b7406222c9b27a42002fc11a4c300eb0901b2fd2b56f1c7b762ad5d9f",
+    "/home2/lobib/gen_hack/data2/station_coastal_distance.parquet": "8401de603d68e522ba57efd64bc49ee3b8f92b19523c0bac9cd5787f6ab2709b",
+    "/home2/lobib/gen_hack/data2/station_land_cover.parquet": "fac834689993882de10e8c74a54209be1ad99e87669316671039ec3005e8ecc5",
+    "/home2/lobib/gen_hack/data2/station_hourly_weather.parquet": "4177f8e7bd1ddd7ea1917971268c2d23126b99ff89ca66b9d35168b528f57d60"
+  },
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/analysis_common.py": "aadb60ef26dd7c029987bf62f62fe833abb7bb33c4c2a393fa654a3b6430c96a",
+    "/home2/lobib/gen_hack/src/py/analysis_seasonal.py": "f64ea52a8f73693b11aebc5a9b64d8cfc4824acf62d6dd8914d52c1e5470483f",
+    "/home2/lobib/gen_hack/src/py/load_data.py": "3cbb598247e81757632926c626058360bcc9088955ded67a0c970a9b376cfe57",
+    "/home2/lobib/gen_hack/src/py/scripts/scientific_style.py": "c3e89b7434a17aff0d95b6d6413610bd5cda2de75ef0e8a4aa594b158ddd2d6c",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "71ea7e7756e6b3774fc7fb0477ea4e3f8aea8ffa2f12c427b7b8b7218afd168b"
+  },
+  "results_sha256": "5a698f7b8c76102a726e6589298f820dd64e114ce0584b9367d92493d897adc9",
+  "tables": {
+    "DJF_station_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/DJF_station_celsius_cells.csv",
+      "sha256": "c88efc41a34180878b3a1424a73be3604cb9a417d455fb0919d9c0f0f460f4c4"
+    },
+    "DJF_station_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/DJF_station_celsius_warmest.csv",
+      "sha256": "988bcca1abfcc977604b8eb24b3013dee137eaf4a3756ba99ba2b459e4d66eaf"
+    },
+    "DJF_era5_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/DJF_era5_celsius_cells.csv",
+      "sha256": "f9e5919f4ea12bbdd947f984bbbf7b4f2b5d6f0fad96a116d2d4453aaae8b5fc"
+    },
+    "DJF_era5_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/DJF_era5_celsius_warmest.csv",
+      "sha256": "c7346ea291ec691244578744b4dd5db0c1366e8510a6aa6ad5f74958da5d8583"
+    },
+    "MAM_station_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/MAM_station_celsius_cells.csv",
+      "sha256": "be3862a7d2d7d9ed113c9d6af67b50c692c5722ef0e753b11e930b7602fa3f04"
+    },
+    "MAM_station_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/MAM_station_celsius_warmest.csv",
+      "sha256": "580cf98ed7394db12100506dfd47277ed061244885fedd3056d4ec5fd56e5356"
+    },
+    "MAM_era5_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/MAM_era5_celsius_cells.csv",
+      "sha256": "9d869e8fae9184a0a8e3cf7f6d43ebe4e25ee8f628e6d1fba100d6e0ed9e0ef5"
+    },
+    "MAM_era5_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/MAM_era5_celsius_warmest.csv",
+      "sha256": "7de19273b0886a1d8559eebf4936cec5663ec22bca95624e63fd2258fb4ac1f1"
+    },
+    "JJA_station_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/JJA_station_celsius_cells.csv",
+      "sha256": "8c19290f367796cb7662d962bc493e2facfb6cb5f1c4f3b368d6289620d508d4"
+    },
+    "JJA_station_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/JJA_station_celsius_warmest.csv",
+      "sha256": "94893387776c2c8d8f5c42bd1c5ea01a7675b53b5991e9536a65a1f8082ea6c9"
+    },
+    "JJA_era5_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/JJA_era5_celsius_cells.csv",
+      "sha256": "69219c6e195504b5b82d2a9cebd2fca3717d45002d21efe57ea6a9c1a0049b1b"
+    },
+    "JJA_era5_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/JJA_era5_celsius_warmest.csv",
+      "sha256": "f2b8da345ea679a5656a7e472c933f3d841988d42a8971c3171843527a2efc18"
+    },
+    "SON_station_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/SON_station_celsius_cells.csv",
+      "sha256": "9b3027b0c99e440f6739018e752648207b3a0e1862ec9d9eba29f5b62ad54356"
+    },
+    "SON_station_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/SON_station_celsius_warmest.csv",
+      "sha256": "b2fcaae507e40b663a9da856e99644af4343ddc29e659e0ab48d27f36ca8deba"
+    },
+    "SON_era5_celsius_cells": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/SON_era5_celsius_cells.csv",
+      "sha256": "4128253fd95302507c85024ee3eee90ea33a36a39b25dc08a7e4316562a0575a"
+    },
+    "SON_era5_celsius_warmest": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/SON_era5_celsius_warmest.csv",
+      "sha256": "8f3e9d9f88db6b1d0a9ddaf2cffffb03b37bf253531beba7f6a56b589cdea829"
+    },
+    "seasons": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/seasonal/tables/seasons.csv",
+      "sha256": "7135648219f0ba0044606a40c6cfb2c7054c07ffac52e3455c931a3214aa8fad"
+    }
+  }
+}

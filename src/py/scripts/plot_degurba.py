@@ -15,11 +15,11 @@ from matplotlib.ticker import FormatStrFormatter, MultipleLocator
 from py import pdp
 from py.covariates import sample_raster
 from py.load_data import load_data
-from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
+from py.paths import ANALYSIS_DATA_DIRECTORY as DATA_DIRECTORY
 from py.paths import ANALYSIS_FIGURES_DIRECTORY as FIGURES_DIRECTORY
-from py.paths import ProjectRoot as PROJECT_ROOT
+from py.paths import PROJECT_ROOT
 from py.preprocessing.match_era5_grid import sha256
-from py.publication import SaveFigure as save_altair_figure
+from py.publication import save_figure as save_altair_figure
 from py.scripts.plot_style import paper_style, save_figure
 
 DEGURBA_LABELS = {
@@ -64,8 +64,8 @@ def summarize(data, bootstrap, seed):
         "degurba_label",
     )
     present = [label for label in LAND_CLASSES if label in land["degurba_label"].unique()]
-    mean, low, high = pdp.PdpClusterBootstrap(
-        land, "degurba_label", present, NBoot=bootstrap, Rng=np.random.default_rng(seed)
+    mean, low, high = pdp.pdp_cluster_bootstrap(
+        land, "degurba_label", present, n_boot=bootstrap, rng=np.random.default_rng(seed)
     )
     summary = (
         pl.DataFrame({"degurba_label": present, "mean": mean, "ci_low": low, "ci_high": high})
@@ -103,7 +103,7 @@ def draw_altair(summary, output):
         if row["degurba_label"] in rows
     ]
     chart = alt.VConcatChart.from_dict(spec)
-    dimensions = save_altair_figure(chart, output, Formats=("png", "pdf"))
+    dimensions = save_altair_figure(chart, output, formats=("png", "pdf"))
     return {
         "outputs": [str(output.with_suffix(suffix)) for suffix in (".png", ".pdf", ".vl.json")],
         # The paper's shared scale renders alphabetical order, as verified in its PDF.

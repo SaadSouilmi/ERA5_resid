@@ -15,13 +15,13 @@ import polars as pl
 from matplotlib.colors import Normalize
 from pyproj import Transformer
 
-from py.paths import AnalysisDataDirectory, ANALYSIS_FIGURES_DIRECTORY
+from py.paths import ANALYSIS_DATA_DIRECTORY, ANALYSIS_FIGURES_DIRECTORY
 from py.preprocessing.match_era5_grid import sha256
 from py.publication import export_analysis_plotly_figure
-from py.publication import Font as FONT
+from py.publication import FONT
 from py.scripts.plot_style import INK, MUTED, paper_style
 
-BASEMAP_SOURCE = AnalysisDataDirectory / "clean/sources/ne_50m_admin_0_countries.shp"
+BASEMAP_SOURCE = ANALYSIS_DATA_DIRECTORY / "clean/sources/ne_50m_admin_0_countries.shp"
 
 
 def source_means(observations):
@@ -150,7 +150,7 @@ def clean_map(sources, directory):
 
 
 async def export_station_map(style="clean"):
-    input_path = AnalysisDataDirectory / "station_era5_clean.parquet"
+    input_path = ANALYSIS_DATA_DIRECTORY / "station_era5_clean.parquet"
     observations = pl.read_parquet(input_path)
     sources = source_means(observations)
     directory = ANALYSIS_FIGURES_DIRECTORY / "station_map"

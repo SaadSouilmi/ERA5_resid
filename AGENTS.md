@@ -4,6 +4,12 @@ This project compares European ECA&D daily maximum temperatures with hourly
 ERA5-Land maxima over verified provider UTC windows. Residual means station minus
 ERA5-Land temperature, in °C.
 
+Read `figures/analysis/README.md` first for current results and the completed
+fourteen-analysis run. It links each figure to its CSV tables, `results.json`
+and input manifest. `notes/NUMERICAL_ANALYSIS.md` is an older partial write-up;
+its pending labels are historical. The manuscript has not been reconciled with
+the current results. Do not infer run status from either document.
+
 All active Python belongs under `src/py`, the `py` package. Preprocessing lives in
 `py.preprocessing`, analyses directly in `py` and commands in `py.scripts`.
 Keep this source restricted to the new preprocessing pipeline, its loader and
@@ -26,9 +32,8 @@ worktree. Do not delete ignored datasets or environments during source cleanup.
 
 Use idiomatic Python naming: `snake_case` for functions, parameters, variables,
 modules and packages, `UPPER_CASE` for constants and `PascalCase` for classes.
-Prefer familiar aliases such as `np`, `pd`, `pl` and `xr`. Existing PascalCase APIs
-may remain for compatibility; do not rename unrelated code for style. External
-API names, data columns, serialized keys and command-line flags retain their
+Prefer familiar aliases such as `np`, `pd`, `pl` and `xr`. External API names,
+data columns, serialized keys and command-line flags retain their
 required spelling.
 
 Use small plain functions and direct code. Avoid unnecessary classes, speculative
@@ -76,6 +81,11 @@ Use the project plotting skill at `skills/seaborn-paper-style/SKILL.md`. Preserv
 the approved bar/curve styles and red/green paired palette; use the STIX/SciencePlots
 variant only for whisker/box plots. Preserve the separately approved DEGURBA
 figure when restyling other figures. Preserve estimates when changing presentation.
+Use warm orange `#D18A32` for the station-temperature residual profile.
+Use ocean blue `#3E6FAD` for coastal distance, turquoise `#2A9BA8` for
+precipitation and earthy ochre `#A86C1A` for elevation.
+Show hot-spell count ratios and observation-window mean residuals as bars with
+their source-bootstrap confidence intervals.
 
 Default exports are PNG/PDF. Do not generate new SVG files unless explicitly
 requested. Saved Altair specifications remain supported for figures using Altair.

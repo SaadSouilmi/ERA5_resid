@@ -11,6 +11,8 @@ We study ERA5-Land temperature errors across European weather stations.
 We compare daily maximum temperatures and analyse how the differences vary with
 weather and local environmental conditions.
 
+[Current results, figures and source tables](figures/analysis/README.md)
+
 ![Mean temperature residuals (station − ERA5-Land) across Europe][map]
 
 [map]: figures/analysis/station_map/station_map.png

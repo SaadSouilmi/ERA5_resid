@@ -4,8 +4,8 @@ import argparse
 
 import polars as pl
 
-from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
-from py.paths import RawDataDirectory as RAW_DIRECTORY
+from py.paths import ANALYSIS_DATA_DIRECTORY as DATA_DIRECTORY
+from py.paths import RAW_DATA_DIRECTORY as RAW_DIRECTORY
 
 
 def main():

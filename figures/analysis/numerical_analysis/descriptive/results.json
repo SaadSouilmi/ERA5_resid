@@ -1,6 +1,6 @@
 {
   "analysis": "descriptive",
-  "created_utc": "2026-11-19T00:55:20.605982+00:00",
+  "created_utc": "2026-11-20T01:20:56.700209+00:00",
   "parent_observations": 6726213,
   "parent_sources": 4458,
   "summary": {
@@ -16,13 +16,13 @@
     "countries": 33,
     "first_date": "2020-01-01",
     "last_date": "2025-08-31",
-    "hourly_weather_included": false
+    "hourly_weather_included": true
   },
   "method": "All retained source-days; no covariate-based temperature exclusions. 2025 ends in August.",
   "tables": {
     "continuous": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/descriptive/tables/continuous.csv",
-      "sha256": "344fc1dd3b4c3aa3fdd406a84bc31c0aa49728595c4b0f705c102cda50c8a725"
+      "sha256": "cddf8f36d6c838c69a751c67618002d906fa629a95985dcd37eacb1455600224"
     },
     "countries": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/descriptive/tables/countries.csv",
@@ -35,6 +35,10 @@
     "by_year": {
       "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/descriptive/tables/by_year.csv",
       "sha256": "5fa9fba74dfc4944e05c1873c03dab5ab51515b2db9f3db5cf7543be58340716"
+    },
+    "residual_histogram": {
+      "file": "/home2/lobib/gen_hack/figures/analysis/numerical_analysis/descriptive/tables/residual_histogram.csv",
+      "sha256": "c57b4490cd868ae3ac281c6b4cd931af627d4dfd2cef040f90e20564aca99381"
     }
   }
 }

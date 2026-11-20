@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-11-19T00:14:16.087878+00:00",
+  "created_utc": "2026-11-20T01:20:45.412067+00:00",
   "input_records": 6726213,
   "sources": 4458,
   "source_locations": 4458,
@@ -14,6 +14,22 @@
   "seed": 1337,
   "classification": "2020 GHS-SMOD raster sampled at actual source coordinates, using the existing raster sampling helper; no interpolation",
   "share_denominator": "All current clean source-days, including water and missing classifications; water and missing classes omitted from both panels",
+  "inputs": {
+    "/home2/lobib/gen_hack/data2/station_era5_clean.parquet": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
+    "/home2/lobib/gen_hack/data2/GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0/GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0.tif": "1e2d7d7a6994b0458fc5d6ff985fb872f27841162b1808a3d52e32ae1a4953a0"
+  },
+  "code_sha256": {
+    "/home2/lobib/gen_hack/src/py/scripts/plot_degurba.py": "94da377e166247522fd5fa3c41d78ebc7cba6d8ea6c32c3386a6726812c318be",
+    "/home2/lobib/gen_hack/src/py/publication.py": "b3e6ce9a3fbcd7ccd710f24a8de84f61ed139cd88b4608860d1a00a27c174376",
+    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "71ea7e7756e6b3774fc7fb0477ea4e3f8aea8ffa2f12c427b7b8b7218afd168b",
+    "/home2/lobib/gen_hack/src/py/load_data.py": "3cbb598247e81757632926c626058360bcc9088955ded67a0c970a9b376cfe57",
+    "/home2/lobib/gen_hack/src/py/covariates.py": "97e5848f5549117f56c8b33ff5d5bc2ab88f9075f8da8c288ea1e79da308fbb2",
+    "/home2/lobib/gen_hack/src/py/pdp.py": "58c7c49b1925418f72c7e55c8e71f91b5ddecf5f3b11be0b72988e6130f9b530"
+  },
+  "outputs": [
+    "/home2/lobib/gen_hack/figures/analysis/partial_dependence/degurba_seaborn.png",
+    "/home2/lobib/gen_hack/figures/analysis/partial_dependence/degurba_seaborn.pdf"
+  ],
   "class_order": [
     "Dense urban cluster",
     "Low density rural",
@@ -42,39 +58,9 @@
     "share_units": "fraction",
     "dpi": 300
   },
-  "inputs": {
-    "/home2/lobib/gen_hack/data2/station_era5_clean.parquet": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74",
-    "/home2/lobib/gen_hack/data2/GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0/GHS_SMOD_E2020_GLOBE_R2023A_54009_1000_V2_0.tif": "1e2d7d7a6994b0458fc5d6ff985fb872f27841162b1808a3d52e32ae1a4953a0"
-  },
-  "code_sha256": {
-    "/home2/lobib/gen_hack/src/py/scripts/plot_degurba.py": "e64c82c79ab621042e142a1eab25e84a0f8840d35f93ab489293b41f7136f003",
-    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "8d3026057151f55df01018539c8770f92b3d58140753604ae6e932dfe20e87f3",
-    "/home2/lobib/gen_hack/src/py/load_data.py": "39a020d78790700335d09d45c57bb05fdfa7924569875655500276c43b90663f",
-    "/home2/lobib/gen_hack/src/py/covariates.py": "6fe89c62a32599922165fbac1b3425f7f83efcf75021bc29a290443cd9a48f8b",
-    "/home2/lobib/gen_hack/src/py/pdp.py": "66cbfdf70cd7598c9008d75c72c1cd278438ac8a95f963854d1f0159ca77a422"
-  },
   "tables_sha256": {
-    "degurba.csv": "73e01b956d249ff7fb80afbad503dc4b0dba556b587afecf7171052792643d2d",
+    "degurba.csv": "7e31e9f65bf62a11707e7c46071d14fd2aa8279a2afa78d895dafb0d9ce209a3",
     "degurba_sources.csv": "94a126737f529f2a3537a8bd5c2652d01265006383187e042b041a350d3f60a5",
     "degurba_coverage.csv": "f0387dbb5be46eb3a45212ed8ed3b55ffe67594ae755068f7336d40671eecad9"
-  },
-  "outputs": [
-    "/home2/lobib/gen_hack/figures/analysis/partial_dependence/degurba_seaborn.png",
-    "/home2/lobib/gen_hack/figures/analysis/partial_dependence/degurba_seaborn.pdf"
-  ],
-  "restyled_utc": "2026-11-19T11:17:54.619946+00:00",
-  "render_code_sha256": {
-    "/home2/lobib/gen_hack/src/py/scripts/plot_degurba.py": "110a76b765fee3c0ccc50b34cd45abca5946683b49d9783e59b63fbf8dfc24e7",
-    "/home2/lobib/gen_hack/src/py/publication.py": "86815dac9634930ba99b3ef0c248bfa56b3106f0e8f59d7d97bed597db410429",
-    "/home2/lobib/gen_hack/src/py/scripts/plot_style.py": "611557dc64dd723692a8783037108bb703ef82312853fdce8ecf4e19e459ab3f"
-  },
-  "spec_declared_class_order": [
-    "Very low density rural",
-    "Low density rural",
-    "Rural cluster",
-    "Suburban",
-    "Semi-dense urban cluster",
-    "Dense urban cluster",
-    "Urban centre"
-  ]
+  }
 }

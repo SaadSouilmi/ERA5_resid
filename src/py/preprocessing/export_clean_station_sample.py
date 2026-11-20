@@ -6,8 +6,8 @@ from datetime import datetime, timezone
 
 import polars as pl
 
-from py.paths import AnalysisDataDirectory as DATA_DIRECTORY
-from py.paths import ProjectRoot as PROJECT_ROOT
+from py.paths import ANALYSIS_DATA_DIRECTORY as DATA_DIRECTORY
+from py.paths import PROJECT_ROOT
 from py.preprocessing.match_era5_grid import sha256
 from py.preprocessing.station_sample import select_clean_sample
 
