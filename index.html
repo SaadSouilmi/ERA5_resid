@@ -9,8 +9,8 @@ vegetation, elevation, coastal distance and urbanisation. The aim is to
 identify systematic discrepancies and assess how well ERA5-Land represents
 local temperature extremes.">
   <title>Station temperatures and ERA5-Land</title>
-  <link rel="stylesheet" href="assets/blog.css">
-  <script src="assets/sidebar.js" defer></script>
+  <link rel="stylesheet" href="assets/blog.css?v=32bc8387f0e4">
+  <script src="assets/sidebar.js?v=bb28cf3b5c8b" defer></script>
 </head>
 <body>
   <nav id="article-toc" aria-label="Table of contents" hidden>
@@ -101,18 +101,7 @@ in the labelled date.</p><div class="table-wrap"><table>
 transitions span 23 or 25 hours. Luxembourg's verified days use fixed CET,
 UTC+1. The 12-hour <code>TX7</code> interval is retained as such.</p></section><section aria-labelledby="hourly-maxima"><h3 id="hourly-maxima">Compute a maximum over the same hours</h3><p>For a resolved station window, take the maximum of the instantaneous ERA5-Land
 temperatures with <strong>both endpoints included</strong>:</p><pre><code>window_start_utc &lt;= valid_time &lt;= window_end_utc
-</code></pre><p>No one-hour shift is applied to instantaneous temperature. A 24-hour window
-therefore contains <strong>25 samples</strong>. A station's recorded extreme can still occur
-between those hourly samples.</p><figure class="diagram"><svg viewBox="0 0 784 196" role="img" aria-labelledby="window-diagram-title window-diagram-desc" style="display:block;width:100%;height:auto" xmlns="http://www.w3.org/2000/svg">
-            <title id="window-diagram-title">A 24-hour observation window contains 25 hourly timestamps</title>
-            <desc id="window-diagram-desc">From 18 UTC on the previous day to 18 UTC on the labelled day, including both endpoints. Twenty-five dots mark instantaneous hourly temperature samples.</desc>
-            <g font-family="Arial, Helvetica, sans-serif" fill="#23312f">
-              <text x="392" y="28" text-anchor="middle" font-size="20">24 hours · 25 temperature samples</text>
-              <line x1="80" y1="88" x2="704" y2="88" stroke="#a9c6b6" stroke-width="2" />
-              <g fill="#347f74"><circle cx="80" cy="88" r="5"/><circle cx="106" cy="88" r="3"/><circle cx="132" cy="88" r="3"/><circle cx="158" cy="88" r="3"/><circle cx="184" cy="88" r="3"/><circle cx="210" cy="88" r="3"/><circle cx="236" cy="88" r="3"/><circle cx="262" cy="88" r="3"/><circle cx="288" cy="88" r="3"/><circle cx="314" cy="88" r="3"/><circle cx="340" cy="88" r="3"/><circle cx="366" cy="88" r="3"/><circle cx="392" cy="88" r="3"/><circle cx="418" cy="88" r="3"/><circle cx="444" cy="88" r="3"/><circle cx="470" cy="88" r="3"/><circle cx="496" cy="88" r="3"/><circle cx="522" cy="88" r="3"/><circle cx="548" cy="88" r="3"/><circle cx="574" cy="88" r="3"/><circle cx="600" cy="88" r="3"/><circle cx="626" cy="88" r="3"/><circle cx="652" cy="88" r="3"/><circle cx="678" cy="88" r="3"/><circle cx="704" cy="88" r="5"/></g>
-              <g font-size="17" text-anchor="middle"><text x="80" y="125">18:00</text><text x="236" y="125">00:00</text><text x="392" y="125">06:00</text><text x="548" y="125">12:00</text><text x="704" y="125">18:00</text><text x="80" y="153">D−1</text><text x="704" y="153">D</text></g>
-            </g>
-          </svg></figure><p>We use each station's observation coordinates to find the nearest ERA5-Land
+</code></pre><p>We use each station's observation coordinates to find the nearest ERA5-Land
 grid point and select the corresponding temperature values.</p></section><section aria-labelledby="environmental-covariates"><h3 id="environmental-covariates">Attach the environmental covariates</h3><p>We attach environmental information to each temperature pair using its
 observation location and the relevant observation period.</p><p><strong>Coastal distance.</strong> We use Natural Earth coastline data to calculate the
 distance, in kilometres, from each station location to the nearest coastline.</p><p><strong>Elevation.</strong> We take each observation site's elevation, in metres, from the

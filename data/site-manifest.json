@@ -44,7 +44,7 @@
     "data2/cleaning_audit/station_era5_monthly.json": "800bc10571e0f8603f3487368977c1c284e2b35b1457a1f7102cfea162049333",
     "data2/cleaning_audit/station_era5_clean.json": "1a01c28bae2a5100b9b988647c2bb4721d99af62dc304baaf04c77627a50b2aa",
     "data2/cleaning_audit/station_ndvi_coverage.csv": "3a5311a873bc7030c63e39e6a1802e57b3eee2081b25178fa6d90781f9a8026d",
-    "notes/blogpost.md": "4a0420dc1168a66f820de6b0fec452f5c506fde1239cbe04bf5c44835dfb742d"
+    "notes/blogpost.md": "4b03494fe9d4e810c2e4c312c46b8aba0f0d6e15d38d94f7441cb814e2d93321"
   },
   "files": {
     ".era5-generated-site": "8c05411d7570b299491b2212ccfe419942129024d1be4c7f4ee215db3e1a0f29",
@@ -66,12 +66,16 @@
     "data/study-area.pdf": "53a84e5d98855d807a7a9a96b3e6be9574540427ac35a05ab605eb3626ecf1c5",
     "data/verified_observation_window_override_rules.csv": "ae2ce3dced73bdc1a931419384693934050372c1fbbcbfc1da9fd9920e976550",
     "data/verified_observation_window_rules.csv": "f3c1d51d39eb6e3d94fa6bd8c278adfe3a66130599f9065a048c0920aaae731f",
-    "index.html": "abfa20c712a727bd5bba732d40d0a2d68594cd04cb5e7236c19e3188550e44a6",
+    "index.html": "b3e0dac4fd07b22f1c0356e565522964d7532290b9e1ede8e0762dc5a240bf82",
     "preprocessing.html": "4102a719ef175ff0d95f94b2df7c555e5ca4ae9412e514f13088eb1d2b17f126",
     "report.html": "4102a719ef175ff0d95f94b2df7c555e5ca4ae9412e514f13088eb1d2b17f126"
   },
-  "presentation_updated_utc": "2026-11-19T22:24:57.828634+00:00",
+  "presentation_updated_utc": "2026-11-20T00:34:10.595167+00:00",
   "layout": "Single article: h2 main sections with nested h3/h4 subsections",
   "content_source": "notes/blogpost.md",
-  "content_source_sha256": "4a0420dc1168a66f820de6b0fec452f5c506fde1239cbe04bf5c44835dfb742d"
+  "content_source_sha256": "4b03494fe9d4e810c2e4c312c46b8aba0f0d6e15d38d94f7441cb814e2d93321",
+  "asset_versions": {
+    "blog.css": "32bc8387f0e4",
+    "sidebar.js": "bb28cf3b5c8b"
+  }
 }
