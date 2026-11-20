@@ -116,7 +116,21 @@ the same observation window as each temperature pair.</p><p><strong>Wind.</stron
 then calculate the magnitude of the resulting mean wind vector, in metres
 per second.</p><p><strong>Precipitation.</strong> We derive hourly rainfall amounts from the ERA5-Land
 accumulations and sum them over the observation window to obtain total
-precipitation, in metres.</p></section></section><footer><a href="https://github.com/SaadSouilmi/ERA5_resid">Source and reproduction instructions</a></footer></article>
+precipitation, in metres.</p></section></section><section aria-labelledby="analysis"><h2 id="analysis">Analysis</h2><p>In all that follows we focus on the daily maximum temperature residual:</p><div class="equation"><math aria-label="Residual equals station maximum minus ERA5-Land maximum" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mi>r</mi><mo>=</mo><msub><mi>T</mi><mtext>stations</mtext></msub><mo>−</mo><msub><mi>T</mi><mtext>ERA5</mtext></msub></math></div><p>Across the screened sample, station daily maximum temperature exceeds the
+matched ERA5-Land maximum by <strong>1.51°C</strong> when averaging all observations.
+Mean residuals are positive at <strong>88.0%</strong> of stations, although their magnitude
+varies geographically (Figure 1).</p><figure class="plot"><img alt="Mean temperature residuals across Europe" decoding="async" height="1471" loading="lazy" src="assets/figures/station_map.png?v=ffc42d6cb4d5" style="display:block;width:100%;height:auto;max-width:600px;margin:0 auto" width="1200"/><figcaption class="figure-note"><em>Figure 1. Mean daily maximum temperature residual (station − ERA5-Land) at
+each observation source, in °C.</em></figcaption></figure><section aria-labelledby="partial-dependence"><h3 id="partial-dependence">Partial dependence</h3><p>For continuous variables, we split the available observations into ten groups
+with roughly equal counts and calculate the mean residual in each group.
+For DEGURBA, we calculate the mean within each land class. Shading and error
+bars show pointwise 95% confidence intervals from 1,000 bootstrap samples,
+resampling whole observation sources within each group. The lower panels show
+the distribution of observations. These profiles describe unadjusted
+associations between each variable and the residual.</p><section aria-labelledby="urbanisation"><h4 id="urbanisation">Urbanisation</h4><figure class="plot"><img alt="Mean residual and observation share by DEGURBA class" decoding="async" height="1633" loading="lazy" src="assets/figures/degurba_seaborn.png?v=7a604c3a50c0" style="display:block;width:100%;height:auto" width="2000"/><figcaption class="figure-note"><em>Figure 2. Mean residual by DEGURBA class, with 95% confidence intervals above
+and each class's share of all retained observations below.</em></figcaption></figure></section><section aria-labelledby="continuous-variables"><h4 id="continuous-variables">Continuous variables</h4><figure class="wide-plot"><img alt="Mean residual profiles for six continuous variables" decoding="async" height="1051" loading="lazy" src="assets/figures/partial_dependence.png?v=3ef19fb300cc" style="display:block;width:100%;height:auto" width="2000"/><figcaption class="figure-note"><em>Figure 3. Mean residuals by station temperature, precipitation and wind
+(top row), and NDVI, coastal distance and elevation (bottom row). The
+precipitation axis is logarithmic; negative totals are excluded. Station
+temperature also enters the residual definition.</em></figcaption></figure></section></section></section><footer><a href="https://github.com/SaadSouilmi/ERA5_resid">Source and reproduction instructions</a></footer></article>
   </main>
 </body>
 </html>

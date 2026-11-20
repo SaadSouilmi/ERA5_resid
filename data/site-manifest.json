@@ -44,12 +44,30 @@
     "data2/cleaning_audit/station_era5_monthly.json": "800bc10571e0f8603f3487368977c1c284e2b35b1457a1f7102cfea162049333",
     "data2/cleaning_audit/station_era5_clean.json": "1a01c28bae2a5100b9b988647c2bb4721d99af62dc304baaf04c77627a50b2aa",
     "data2/cleaning_audit/station_ndvi_coverage.csv": "3a5311a873bc7030c63e39e6a1802e57b3eee2081b25178fa6d90781f9a8026d",
-    "notes/blogpost.md": "4b03494fe9d4e810c2e4c312c46b8aba0f0d6e15d38d94f7441cb814e2d93321"
+    "notes/blogpost.md": "d4d471b8cc303db9fca96ed8f4ebde6d09b4d4759a4a82c4ea9e5bb79058f42a",
+    "figures/analysis/station_map/station_map.png": "a4cf809514fda567eb2017833d407bdd331a0bce7b825a1321022ab29930d3af",
+    "figures/analysis/partial_dependence/degurba_seaborn.png": "4358c4210c71ab6ce7ad97ee54b458f82070cf1a1939fa40766fd6a9a1caaa03",
+    "figures/analysis/partial_dependence/pdp_station_celsius.png": "6e36c3c38fd7ef7b42606c7a5dadf2ce4bad16c959c84a860d8547441d06f2e4",
+    "figures/analysis/partial_dependence/pdp_tp.png": "c648f5282ea944a3072c150aa2ba58ce9e132fe6db4acbd558d816e7420c6d2e",
+    "figures/analysis/partial_dependence/pdp_wind.png": "4571a13fc545a283bd58111632611a916499913a485f8d8f5c34f1569272c7de",
+    "figures/analysis/partial_dependence/pdp_ndvi.png": "b0856d3373972bede87bdc6ce3faaf1e737f029163ea167d76538c30777bb990",
+    "figures/analysis/partial_dependence/pdp_dist_to_sea_km.png": "cf0209d92c7a7674b34044957c0a38c6ffe03f7eba3d806d7ef6df13e4712da4",
+    "figures/analysis/partial_dependence/pdp_elevation.png": "43d2605c5e3e634b94f29d128285a5968f0f85dca0fc472cfc9c3e9d650fcbe5",
+    "figures/analysis/partial_dependence/partial_dependence.png": "76413d6817b249d20e3b2673731685cba38550192e9a053c95fc31a3b4ac2bc8"
   },
   "files": {
     ".era5-generated-site": "8c05411d7570b299491b2212ccfe419942129024d1be4c7f4ee215db3e1a0f29",
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "assets/blog.css": "32bc8387f0e43bc048b91d1c305eab8dcaac814232959c91f66300af2dd5c9ae",
+    "assets/figures/degurba_seaborn.png": "7a604c3a50c0ca20dd936dfcd5cbf7706b4dea463f6af8a6e6757244940a38fe",
+    "assets/figures/partial_dependence.png": "3ef19fb300cc4d8641c51b70a586d8fd6b21f71b64ddccc3271c34713d150982",
+    "assets/figures/pdp_dist_to_sea_km.png": "cf0209d92c7a7674b34044957c0a38c6ffe03f7eba3d806d7ef6df13e4712da4",
+    "assets/figures/pdp_elevation.png": "43d2605c5e3e634b94f29d128285a5968f0f85dca0fc472cfc9c3e9d650fcbe5",
+    "assets/figures/pdp_ndvi.png": "b0856d3373972bede87bdc6ce3faaf1e737f029163ea167d76538c30777bb990",
+    "assets/figures/pdp_station_celsius.png": "6e36c3c38fd7ef7b42606c7a5dadf2ce4bad16c959c84a860d8547441d06f2e4",
+    "assets/figures/pdp_tp.png": "c648f5282ea944a3072c150aa2ba58ce9e132fe6db4acbd558d816e7420c6d2e",
+    "assets/figures/pdp_wind.png": "4571a13fc545a283bd58111632611a916499913a485f8d8f5c34f1569272c7de",
+    "assets/figures/station_map.png": "ffc42d6cb4d5b12d2d491a429caed6ef361fc353f8508adbe59a0c677e362de1",
     "assets/fonts/LICENSE.txt": "86f8a7de774bb9a0efd72968f55486305e3a93d147600cb53497160d7c49b842",
     "assets/fonts/hack-bold-italic.ttf": "81f1b2b159e934f29c355814ce4f0e7bcbc3926a46a4c46da89f7e0bb7873ad9",
     "assets/fonts/hack-bold.ttf": "add70efb723227c08400c4d0f0068cf9f1783e22f6702b811bafbf3f5920902c",
@@ -66,16 +84,17 @@
     "data/study-area.pdf": "53a84e5d98855d807a7a9a96b3e6be9574540427ac35a05ab605eb3626ecf1c5",
     "data/verified_observation_window_override_rules.csv": "ae2ce3dced73bdc1a931419384693934050372c1fbbcbfc1da9fd9920e976550",
     "data/verified_observation_window_rules.csv": "f3c1d51d39eb6e3d94fa6bd8c278adfe3a66130599f9065a048c0920aaae731f",
-    "index.html": "b3e0dac4fd07b22f1c0356e565522964d7532290b9e1ede8e0762dc5a240bf82",
+    "index.html": "f5e72f583110ec2b65ec1acb7c53b94c86c1bf3a54450a5aa5c7854066a3b051",
     "preprocessing.html": "4102a719ef175ff0d95f94b2df7c555e5ca4ae9412e514f13088eb1d2b17f126",
     "report.html": "4102a719ef175ff0d95f94b2df7c555e5ca4ae9412e514f13088eb1d2b17f126"
   },
-  "presentation_updated_utc": "2026-11-20T00:34:10.595167+00:00",
+  "presentation_updated_utc": "2026-11-20T16:53:58.011868+00:00",
   "layout": "Single article: h2 main sections with nested h3/h4 subsections",
   "content_source": "notes/blogpost.md",
-  "content_source_sha256": "4b03494fe9d4e810c2e4c312c46b8aba0f0d6e15d38d94f7441cb814e2d93321",
+  "content_source_sha256": "d4d471b8cc303db9fca96ed8f4ebde6d09b4d4759a4a82c4ea9e5bb79058f42a",
   "asset_versions": {
     "blog.css": "32bc8387f0e4",
     "sidebar.js": "bb28cf3b5c8b"
-  }
+  },
+  "analysis_temperature_input_sha256": "a794e06dc13336388d4fd89645271facb1d6fe4fadf128e029670cb344fccb74"
 }
